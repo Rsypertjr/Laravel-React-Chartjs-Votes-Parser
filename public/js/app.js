@@ -2668,22 +2668,11 @@ var VoteTableReact = /*#__PURE__*/function (_React$Component) {
       //alert(JSON.stringify(json));
       var theVotes = _this.getVotes(json);
 
-      alert(JSON.stringify(theVotes)); //let theVotes = json;
-
       var currentPages = [];
       var pageSize = 10;
       var numPages = theVotes.length / pageSize;
       var pageNo = 1;
       var pagingArray = [];
-      /*
-      for(var i =0;i < numPages;i++){
-          currentPages[i]= theVotes.slice(i*pageSize,( i*pageSize+(pageSize) ) );
-          pagingArray[i] = [];
-          for(var j = i*pageSize+1; j <= (i*pageSize+(pageSize)); j++ ){
-              pagingArray[i].push(j);      
-          }       
-      }
-      */
 
       var result = _this.setPages(0, pageSize, numPages, theVotes);
 
@@ -2777,10 +2766,8 @@ var VoteTableReact = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "getVotes",
     value: function getVotes(res) {
-      var jobj = res; //console.log("Data: ", jobj);
-
-      var timeseries = jobj.data.races[0].timeseries; //console.log(jobj);
-
+      var jobj = res;
+      var timeseries = jobj.data.races[0].timeseries;
       this.setState({
         raceId: jobj.data.races[0].race_id,
         raceSlug: jobj.data.races[0].race_slug,
@@ -2808,15 +2795,12 @@ var VoteTableReact = /*#__PURE__*/function (_React$Component) {
           "total_vote_add_total": 0,
           "percent_of_remaining_trump": 0,
           "percent_of_remaining_biden": 0,
-          //"total_vote_add_bdiff":0,
-          // "total_vote_add_tdiff":0,
           "time": votes.timestamp
         };
         return vote_row;
       }
 
-      var presVotes = timeseries.map(calc_votes); //  console.log("Pres Votes: ", presVotes);
-
+      var presVotes = timeseries.map(calc_votes);
       var thePresVotes = presVotes;
       var pres_votes = thePresVotes;
       pres_votes = pres_votes.map(function (votes, index) {
@@ -2826,55 +2810,29 @@ var VoteTableReact = /*#__PURE__*/function (_React$Component) {
           votes.total_vote_add = votes.votes;
           votes.total_vote_add_trump = votes.votes * votes.trumpd;
           votes.total_vote_add_biden = votes.votes * votes.bidenj;
-          votes.total_vote_add_other = votes.votes - (votes.votes * votes.trumpd + votes.votes * votes.bidenj); //votes.total_vote_add_bdiff = votes.votes * votes.bidenj - votes.votes * votes.trumpd;
-          //votes.total_vote_add_tdiff = votes.votes * votes.trumpd - votes.votes * votes.bidenj;
-
+          votes.total_vote_add_other = votes.votes - (votes.votes * votes.trumpd + votes.votes * votes.bidenj);
           votes.other_votes = (1 - votes.bidenj - votes.trumpd) * votes.votes;
         } else if (index > 0) {
           if (votes.votes == 0) votes.total_vote_add = 0;else votes.total_vote_add = pres_votes[index].votes - pres_votes[index - 1].votes;
-          if (votes.bidenj == 0) votes.biden_votes = 0; //votes.biden_votes = pres_votes[index-1].biden_votes + votes.total_vote_add*votes.bidenj;
-
+          if (votes.bidenj == 0) votes.biden_votes = 0;
           votes.biden_votes = votes.bidenj * votes.votes;
-          if (votes.trumpd == 0) votes.trump_votes = 0;else //votes.trump_votes = pres_votes[index-1].trump_votes + votes.total_vote_add*votes.trumpd;
-            votes.trump_votes = votes.trumpd * votes.votes;
-          votes.other_votes = votes.votes - votes.biden_votes - votes.trump_votes; //votes.total_vote_add_trump = (pres_votes[index].votes - pres_votes[index-1].votes) * votes.trumpd;
-
-          votes.total_vote_add_trump = votes.votes * votes.trumpd - pres_votes[index - 1].votes * pres_votes[index - 1].trumpd; //votes.total_vote_add_biden = (pres_votes[index].votes - pres_votes[index-1].votes) * votes.bidenj;
-
+          if (votes.trumpd == 0) votes.trump_votes = 0;
+          votes.trump_votes = votes.trumpd * votes.votes;
+          votes.other_votes = votes.votes - votes.biden_votes - votes.trump_votes;
+          votes.total_vote_add_trump = votes.votes * votes.trumpd - pres_votes[index - 1].votes * pres_votes[index - 1].trumpd;
           votes.total_vote_add_biden = votes.votes * votes.bidenj - pres_votes[index - 1].votes * pres_votes[index - 1].bidenj;
           votes.total_vote_add_other = (1 - votes.bidenj - votes.trumpd) * votes.votes - pres_votes[index - 1].votes * (1 - pres_votes[index - 1].bidenj - pres_votes[index - 1].trumpd);
-          votes.total_vote_add_total = pres_votes[index].votes - pres_votes[index - 1].votes; // votes.total_vote_add_bdiff = (votes.votes*votes.bidenj - pres_votes[index-1].votes*pres_votes[index-1].bidenj) - (votes.votes*votes.trumpd - pres_votes[index-1].votes*pres_votes[index-1].trumpd);
-          // votes.total_vote_add_tdiff = (votes.votes*votes.trumpd - pres_votes[index-1].votes*pres_votes[index-1].trumpd) - (votes.votes*votes.bidenj - pres_votes[index-1].votes*pres_votes[index-1].bidenj);
+          votes.total_vote_add_total = pres_votes[index].votes - pres_votes[index - 1].votes;
         }
 
         return votes;
       });
       var temp_rows = pres_votes.map(function (vote, index) {
-        //return {"votes":vote.votes,"timestamp":vote.timestamp,"bidenj":vote.bidenj,"trumpd":vote.trumpd};
         vote.percent_of_remaining_trump = vote.total_vote_add_trump * 100 / (totalnum_votes - vote.votes);
         vote.percent_of_remaining_biden = vote.total_vote_add_biden * 100 / (totalnum_votes - vote.votes);
         return vote;
-      }); //console.log("Total Votes:",pres_votes);
-      // console.log("Sort Selected: ",this.selected_sort);
-
+      });
       var totalnum_votes = pres_votes[pres_votes.length - 1].votes;
-      /* var temp_rows = [];
-       // console.log("Total Num of Votes: ",totalnum_votes);
-        if(this.selected_sort && this.selected_sort.includes('Time')) {    
-              temp_rows = pres_votes.map(function(vote,index){                            
-                //return {"votes":vote.votes,"timestamp":vote.timestamp,"bidenj":vote.bidenj,"trumpd":vote.trumpd};
-                vote.percent_of_remaining_trump = vote.total_vote_add_trump*100/(totalnum_votes-vote.votes);
-                vote.percent_of_remaining_biden = vote.total_vote_add_biden*100/(totalnum_votes-vote.votes);
-                return vote;
-            }).sort(function(a, b){return a.timestamp - b.timestamp});
-        }
-        if(this.selected_sort && this.selected_sort.includes('Vote')) {
-             sort(function(a, b){return a.votes - b.votes}); 
-        }
-        
-        //console.log("Total Votes Again:",temp_rows);
-        */
-
       var vote_rows = temp_rows.map(function (vote, index) {
         return {
           "id": index,
@@ -2891,8 +2849,7 @@ var VoteTableReact = /*#__PURE__*/function (_React$Component) {
           "remaining_percent_trump": vote.percent_of_remaining_trump,
           "remaining_percent_biden": vote.percent_of_remaining_biden
         };
-      }); //console.log("Vote Rows:", vote_rows);
-
+      });
       return vote_rows;
     } // ComponentDidMount is used to
     // execute the code 
