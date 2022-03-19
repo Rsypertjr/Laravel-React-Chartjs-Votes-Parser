@@ -3,3 +3,26 @@ table.table.table-sm {
 
 }
 
+.navbar-nav {
+    padding-left: 10em;
+}
+
+nav.navbar {
+    margin-bottom: 4em;
+}
+
+.col-4 {
+    margin-top: -2em;
+}
+
+.col-1 {
+    margin-top: -1.5em;
+}
+
+.row.justify-content-start{
+    margin-bottom:2em;
+}
+
+.jumbotron {
+    zoom:75%;
+}
