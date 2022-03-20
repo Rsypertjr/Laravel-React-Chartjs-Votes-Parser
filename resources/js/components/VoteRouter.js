@@ -53,11 +53,11 @@ export default class VoteRouter extends React.Component {
           theCurrentPage: [],
           theCurrentPages: [],
           theNumberOfPages: 0,
-          thePageNumber:1,
+          thePageSetNumber:1,
           isPageEmpty:false,
           thePagingArray: [],
           thePageSize:0,
-          theStartPage:0,
+          pageNo:0,
           raceId: '',
           raceSlug: '',
           raceUrl:'',
@@ -149,7 +149,7 @@ testCharts(){
           theCurrentPages: currentPages,
           theCurrentPage: currentPages[pageNo-1],
           theNumberOfPages: numPages,
-          thePageNumber: pageNo,
+          thePageSetNumber: pageNo,
           thePagingArray: pagingArray,
           thePageSize: pageSize,
           theState:this.state.theState,
@@ -465,21 +465,21 @@ testCharts(){
 
   leftArrow(e){
      
-      if(this.state.thePageNumber > 1){
+      if(this.state.thePageSetNumber > 1){
           this.setState({          
-              theCurrentPage : this.state.theCurrentPages[(parseInt(this.state.thePageNumber) - 2)*parseInt(this.state.thePageSize)],                
-              thePageNumber: parseInt(this.state.thePageNumber) - 1 
+              theCurrentPage : this.state.theCurrentPages[(parseInt(this.state.thePageSetNumber) - 2)*parseInt(this.state.thePageSize)],                
+              thePageSetNumber: parseInt(this.state.thePageSetNumber) - 1 
           });
       }
    
   }
 
   rightArrow(e){    
-      if(this.state.thePageNumber*this.state.thePageSize < this.state.theNumberOfPages){
+      if(this.state.thePageSetNumber*this.state.thePageSize < this.state.theNumberOfPages){
           let pageNo = e.target.value;
           this.setState({     
-              theCurrentPage : this.state.theCurrentPages[parseInt(this.state.thePageNumber)*parseInt(this.state.thePageSize)],   
-              thePageNumber: parseInt(this.state.thePageNumber) + 1         
+              theCurrentPage : this.state.theCurrentPages[parseInt(this.state.thePageSetNumber)*parseInt(this.state.thePageSize)],   
+              thePageSetNumber: parseInt(this.state.thePageSetNumber) + 1         
           });      
       }   
       
@@ -496,7 +496,8 @@ testCharts(){
 
       if(this.state.theCurrentPages[parseInt(pageNo) - 1] != null){
           this.setState({
-              theCurrentPage : this.state.theCurrentPages[parseInt(pageNo) - 1]
+              theCurrentPage : this.state.theCurrentPages[parseInt(pageNo) - 1],
+              pageNo: pageNo
           });
 
         
@@ -724,9 +725,10 @@ testCharts(){
         </nav>
           <Routes>
             <Route exact path="/votestable" element={<VoteTableReact theVotes={this.state.theVotes} theCurrentPage={this.state.theCurrentPage} 
-                thePageNumber={this.state.thePageNumber} thePagingArray={this.state.thePagingArray}  leftArrow={this.leftArrow} rightArrow={this.rightArrow}
+                thePageSetNumber={this.state.thePageSetNumber} thePagingArray={this.state.thePagingArray}  leftArrow={this.leftArrow} rightArrow={this.rightArrow}
                 handlePage={this.handlePage} theNumberOfPages={this.state.theNumberOfPages} theCurrentPages={this.state.theCurrentPages}/>}/>
-            <Route path="/voteslinechart" element={<VotesLineChart2 type={'line'} chartData={this.state.chartData}/>}/>
+            <Route path="/voteslinechart" element={<VotesLineChart2 type={'line'} chartData={this.state.chartData} selected_index={this.state.pageNo} 
+                thepageSize={this.state.thePageSize}/>}/>
             <Route path="/spikeslinechart" element={<SpikesLineChart />}/>
             <Route path="/difflinechart" element={<DiffLineChart />}/>
             <Route path="/perlinechart" element={<PerLineChart />} />

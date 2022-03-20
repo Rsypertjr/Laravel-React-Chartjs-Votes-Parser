@@ -1,4 +1,4 @@
-import {React, useEffect} from 'react';
+import {React, useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
 import {
     Chart,
@@ -63,17 +63,18 @@ export default function VoteLineChart2(props) {
        // let data = [65, 59, 80, 81, 56, 55, 40];
         let label =  '# of Votes';
         let type = props.type;
-        let selected_index = 2;
+        let selected_index = props.selected_index;
+        alert(selected_index);
         let bgColors = ['red','orange','yellow','lime','green','teal','blue','purple']; 
         let bdColors =  ['black'];
         
         //alert(JSON.stringify(props.chartData.dateHeadersStore));
-        let date_headers =    props.chartData.dateHeadersStore[selected_index];
-        let datedata_biden = props.chartData.dateDataBidenStore[selected_index];
-        let datedata_trump = props.chartData.dateDataTrumpStore[selected_index];
-        let datedata_other = props.chartData.dateDataOtherStore[selected_index];
+        let date_headers =    props.chartData.dateHeadersStore.map((item) => item);
+        let datedata_biden = props.chartData.dateDataBidenStore.map((item) => item);
+        let datedata_trump = props.chartData.dateDataTrumpStore.map((item) => item);
+        let datedata_other = props.chartData.dateDataOtherStore.map((item) => item);
         let datasets = [];   
-        let labels = date_headers;
+        let labels = date_headers[selected_index-1];
 
         
         if(type == 'line'){
@@ -83,7 +84,7 @@ export default function VoteLineChart2(props) {
             data1.backgroundColor = bgColors[0];
             data1.borderColor = bgColors[0];
             data1.data = [];
-            datedata_biden.map((data) => {               
+            datedata_biden[selected_index].map((data) => {               
                 data1.data.push(data);
             });
             let dataset1 = data1;
@@ -94,7 +95,7 @@ export default function VoteLineChart2(props) {
             data2.backgroundColor = bgColors[1];
             data2.borderColor = bgColors[1];
             data2.data = [];
-            datedata_trump.map((data) => {                
+            datedata_trump[selected_index].map((data) => {                
                 data2.data.push(data);
             });
             let dataset2 = data2;
@@ -107,7 +108,7 @@ export default function VoteLineChart2(props) {
             data3.borderColor = bgColors[2];          
             data3.data = [];
             
-            datedata_other.map((data) => {
+            datedata_other[selected_index].map((data) => {
                 data3.data.push(data);
             });
             let dataset3 = data3;
