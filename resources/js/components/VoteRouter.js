@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Link, Route, Routes, Redirect } from 'react-router-dom';
-import VotesLineChart from './Charts/VotesLineChart';
+import VotesLineChart2 from './Charts/VotesLineChart2';
 import SpikesLineChart from './Charts/SpikesLineChart'; 
 import DiffLineChart from './Charts/DiffLineChart';
 import PerLineChart from './Charts/PerLineChart';
@@ -14,29 +14,7 @@ import styled from "styled-components";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import { map } from 'lodash';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
 
-import { Line } from 'react-chartjs-2';
-//import faker from 'faker';
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
 
 
 const NavUnlisted = styled.ul`
@@ -122,11 +100,11 @@ testCharts(){
 
         //alert(JSON.stringify(test));
         
-        this.setState({
-          chartData: test
-        });
-
-        alert(JSON.stringify(this.state.chartData));
+       // this.setState({
+  //       chartData: test
+   //    });
+//
+       // alert(JSON.stringify(this.state.chartData));
 
         
 
@@ -161,6 +139,10 @@ testCharts(){
         // let chartData = this.getChartsData(theVotes);
 
 
+        let chartData = this.getChartsData(theVotes);
+        //alert(JSON.stringify(chartData));
+       
+
         this.setState({
           theVotes: theVotes,
           DataisLoaded: true,
@@ -172,12 +154,11 @@ testCharts(){
           thePageSize: pageSize,
           theState:this.state.theState,
           options: states,
-          defaultOption: this.state.theState
+          defaultOption: this.state.theState,
+          chartData: chartData
       });
 
-      let chartData = this.getChartsData(this.state.theVotes);
-      //alert(JSON.stringify(chartData));
-     
+    
     
   });
 
@@ -745,7 +726,7 @@ testCharts(){
             <Route exact path="/votestable" element={<VoteTableReact theVotes={this.state.theVotes} theCurrentPage={this.state.theCurrentPage} 
                 thePageNumber={this.state.thePageNumber} thePagingArray={this.state.thePagingArray}  leftArrow={this.leftArrow} rightArrow={this.rightArrow}
                 handlePage={this.handlePage} theNumberOfPages={this.state.theNumberOfPages} theCurrentPages={this.state.theCurrentPages}/>}/>
-            <Route path="/voteslinechart" element={<VotesLineChart />}/>
+            <Route path="/voteslinechart" element={<VotesLineChart2 type={'line'} chartData={this.state.chartData}/>}/>
             <Route path="/spikeslinechart" element={<SpikesLineChart />}/>
             <Route path="/difflinechart" element={<DiffLineChart />}/>
             <Route path="/perlinechart" element={<PerLineChart />} />
