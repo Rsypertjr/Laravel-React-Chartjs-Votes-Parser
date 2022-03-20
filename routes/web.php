@@ -32,6 +32,10 @@ Route::get('/sea-animals', function () {
 
 
 
+
+
+
+
 Route::get('/vote-rows/{state}', [VoteRowController::class, 'vote_rows']);
 
 Route::get('add-cat-form', [CatController::class, 'index']);

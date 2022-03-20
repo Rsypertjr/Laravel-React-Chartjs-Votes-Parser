@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes, Redirect } from 'react-router-dom';
 import VotesLineChart from './Charts/VotesLineChart';
 import SpikesLineChart from './Charts/SpikesLineChart'; 
 import DiffLineChart from './Charts/DiffLineChart';
@@ -9,10 +9,34 @@ import PieChart from './Charts/PieChart';
 import StackedChart from './Charts/StackedChart';
 import BinStackedChart from './Charts/BinStackedChart';
 import VoteTableReact from './VoteTableReact';
+import BarChart from './BarChart';
 import styled from "styled-components";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import { map } from 'lodash';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+import { Line } from 'react-chartjs-2';
+//import faker from 'faker';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 
 const NavUnlisted = styled.ul`
@@ -43,6 +67,7 @@ export default class VoteRouter extends React.Component {
       this.getVotes = this.getVotes.bind(this);
       this._onSelect = this._onSelect.bind(this);
       this.getStateData = this.getStateData.bind(this);
+      this.testCharts = this.testCharts.bind(this);
 
       this.state = {
           theVotes: [],
@@ -60,16 +85,58 @@ export default class VoteRouter extends React.Component {
           raceUrl:'',
           theState:states[0],
           options: [],
-          defaultOption:states[0]
+          defaultOption:states[0],
+          chartData:{}
         
 
 
       };
-    
       let state = this.state.defaultOption;
       this.getStateData(state);
-     
+      this.testCharts();
+    
   }
+
+testCharts(){
+  fetch("https://api.coincap.io/v2/assets/?limit=5").then((res) => res.json())
+  .then((json) => {
+
+      let data = json;
+
+      let test = {
+          labels: data.data.map((crypto) => crypto.name),
+          datasets: [
+            {
+              label: "Price in USD",
+              data: data.data.map((crypto) => crypto.priceUsd),
+              backgroundColor: [
+                "#ffbb11",
+                "#ecf0f1",
+                "#50AF95",
+                "#f3ba2f",
+                "#2a71d0"
+              ]
+            }
+          ]
+        };
+
+        //alert(JSON.stringify(test));
+        
+        this.setState({
+          chartData: test
+        });
+
+        alert(JSON.stringify(this.state.chartData));
+
+        
+
+      
+  
+  
+  });
+
+
+}
 
  getStateData(state){
     //let stateUrl = 'http://'+window.location.host+'/vote-rows/'+ state;
@@ -107,6 +174,10 @@ export default class VoteRouter extends React.Component {
           options: states,
           defaultOption: this.state.theState
       });
+
+      let chartData = this.getChartsData(this.state.theVotes);
+      //alert(JSON.stringify(chartData));
+     
     
   });
 
@@ -126,6 +197,7 @@ export default class VoteRouter extends React.Component {
   }
 
   getChartsData(vote_rows){
+    var vote_bins = [];
     var dateheaders = [];
     var datedatabiden = [];
     var datedatabidenadd = [];
@@ -283,6 +355,108 @@ export default class VoteRouter extends React.Component {
     }
 
 
+    // Fill Votebins
+
+    
+    // Set up Vote Bins
+    var index = 0;
+    var interval = 0;
+    var vote_bin = {
+        "interval":0,
+        "biden_in_bin": 0,
+        "trump_in_bin":0,
+    };
+  
+  
+   let step = 200000/(this.state.theNumberOfPages*10);
+    //var step = 2500;
+ 
+    while(interval <= 200000){
+        vote_bin.interval = interval;
+        vote_bin.trump_in_bin = 0;
+        vote_bin.biden_in_bin = 0;
+        vote_bins[index] = vote_bin;
+        index++;
+        interval = interval + step;
+        
+        var vote_bin = {
+            "interval":0,
+            "biden_in_bin": 0,
+            "trump_in_bin":0,
+        };
+
+    }
+   
+
+
+    // Put in Biden Bins
+    for(var j = 0;j<datedatabidenadddiff_store.length;j++){
+        var store = datedatabidenadddiff_store[j];
+        for(var k=0;k < store.length;k++){
+            for(var l = 0;l < vote_bins.length;l++){
+                if(l > 0)
+                    if(store[k] < vote_bins[l].interval && store[k] >= vote_bins[l-1].interval)
+                        vote_bins[l].biden_in_bin++;
+            }
+        }
+    }
+
+    // Put in Trump Bins
+    for(var j = 0;j<datedatatrumpadddiff_store.length;j++){
+        var store = datedatatrumpadddiff_store[j];
+        for(var k=0;k < store.length;k++){
+            for(var l = 0;l < vote_bins.length;l++){
+                if(l > 0)
+                    if(store[k] < vote_bins[l].interval && store[k] >= vote_bins[l-1].interval)
+                        vote_bins[l].trump_in_bin++;
+            }
+        }
+    }
+    var bin_headers = [];
+    var bin_biden = [];
+    var bin_trump = [];
+    // Just for update
+
+    var index = 0;
+    for(let i=0;i<vote_bins.length;i++){
+            if(i == 0){
+                bin_headers[index] = [];
+                bin_biden[index] = [];
+                bin_trump[index] = [];
+                bin_headers[index].push(vote_bins[i].interval);
+                bin_biden[index].push(vote_bins[i].biden_in_bin);
+                bin_trump[index].push(vote_bins[i].trump_in_bin);
+                
+            }
+            else if( i % parse_interval != 0 ){
+                bin_headers[index].push(vote_bins[i].interval);
+                bin_biden[index].push(vote_bins[i].biden_in_bin);
+                bin_trump[index].push(vote_bins[i].trump_in_bin);
+            }
+            else if(i % this.parse_interval == 0) {
+                bin_headers[index].push(vote_bins[i].interval);
+                bin_biden[index].push(vote_bins[i].biden_in_bin);
+                bin_trump[index].push(vote_bins[i].trump_in_bin);
+                
+                index++;     
+                bin_headers[index] = [];
+                bin_biden[index] = [];
+                bin_trump[index] = [];     
+            }
+            else{
+                bin_headers[index].push(vote_bins[i].interval);
+                bin_biden[index].push(vote_bins[i].biden_in_bin);
+                bin_trump[index].push(vote_bins[i].trump_in_bin);
+            }
+
+        }
+    
+
+
+
+
+
+
     let dataLoad = {
       "dateHeadersStore": dateheaders_store,
       "dateDataBidenStore": datedatabiden_store,
@@ -301,7 +475,8 @@ export default class VoteRouter extends React.Component {
       "trumpSlices": trumpslices,
       "otherSlices": otherslices,
       "totalSlices": totalslices,
-      "pieHeaders":  pieheaders
+      "pieHeaders":  pieheaders,
+      "voteBins": vote_bins
     }
 
     return dataLoad;
@@ -560,6 +735,9 @@ export default class VoteRouter extends React.Component {
               <li class="nav-item">
                 <a class="nav-link" href="#"><Link to="/binstackedchart" style={linkStyle} >Bin Stacked Chart</Link></a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"><Link to="/testbarchart" style={linkStyle} >Test Bar Chart</Link></a>
+              </li>
             </ul>
           </div>
         </nav>
@@ -574,6 +752,7 @@ export default class VoteRouter extends React.Component {
             <Route path="/piechart" element={<PieChart />}/>
             <Route path="/stackedchart" element={<StackedChart />}/>
             <Route path="/binstackedchart" element={<BinStackedChart />} />
+            <Route path="/testbarchart" element={<BarChart chartData={this.state.chartData} />} />
           </Routes>
         </BrowserRouter>
       </div>

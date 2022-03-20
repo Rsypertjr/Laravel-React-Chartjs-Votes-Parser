@@ -59,7 +59,7 @@ export default function VoteTableReact(props) {
                     {
                         props.thePagingArray[props.thePageNumber-1].map((num) => (      
                             <span>
-                             { JSON.stringify(props.theCurrentPages[parseInt(num) - 1]) !== undefined  && <input type="button" class="page" id={`page-${num}`} value={num} onClick={props.handlePage}/> }
+                             { props.theCurrentPages[parseInt(num) - 1] !== undefined  && <input type="button" class="page" id={`page-${num}`} value={num} onClick={props.handlePage}/> }
                             </span>
                         ))
                     }
