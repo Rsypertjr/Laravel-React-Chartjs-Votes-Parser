@@ -2,9 +2,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-
-
+import VotesPager from './VotesPager';
 
 function OuterTable(props){
     const headers = ["Index","Biden %","Biden Votes","Trump %","Trump Votes","Other Votes","Time Stamps","Votes", "Votes Added","Trump Added","Biden Added","% of Remaining Biden","% of Remaining Trump"];
@@ -52,22 +50,9 @@ export default function VoteTableReact(props) {
                             </tr>
                         )}                  
                     </tbody>
-                </OuterTable>
-                <div class="container">
-                    <input type="button" value="<" onClick={props.leftArrow}/>
+                </OuterTable>   
+                <VotesPager theVotes={props.theVotes} pageSize={props.thePageSize}/>  
                     
-                    {
-                        props.thePagingArray[props.thePageSetNumber-1].map((num) => (      
-                            <span>
-                             { props.theCurrentPages[parseInt(num) - 1] !== undefined  && <input type="button" class="page" id={`page-${num}`} value={num} onClick={props.handlePage}/> }
-                            </span>
-                        ))
-                    }
-                    <input type="button" value=">" onClick={props.rightArrow}/>  
-                </div>
-              
-               
-              
             </div>
            
         );

@@ -725,7 +725,7 @@ testCharts(){
         </nav>
           <Routes>
             <Route exact path="/votestable" element={<VoteTableReact theVotes={this.state.theVotes} theCurrentPage={this.state.theCurrentPage} 
-                thePageSetNumber={this.state.thePageSetNumber} thePagingArray={this.state.thePagingArray}  leftArrow={this.leftArrow} rightArrow={this.rightArrow}
+                thePageSetNumber={this.state.thePageSetNumber} thePagingArray={this.state.thePagingArray} thePageSize={this.state.thePageSize}  leftArrow={this.leftArrow} rightArrow={this.rightArrow}
                 handlePage={this.handlePage} theNumberOfPages={this.state.theNumberOfPages} theCurrentPages={this.state.theCurrentPages}/>}/>
             <Route path="/voteslinechart" element={<VotesLineChart2 type={'line'} chartData={this.state.chartData} selected_index={this.state.pageNo} 
                 thepageSize={this.state.thePageSize}/>}/>

@@ -63,7 +63,7 @@ export default function VoteLineChart2(props) {
        // let data = [65, 59, 80, 81, 56, 55, 40];
         let label =  '# of Votes';
         let type = props.type;
-        let selected_index = props.selected_index;
+        let selected_index = props.selected_index-1;
         alert(selected_index);
         let bgColors = ['red','orange','yellow','lime','green','teal','blue','purple']; 
         let bdColors =  ['black'];
@@ -74,10 +74,13 @@ export default function VoteLineChart2(props) {
         let datedata_trump = props.chartData.dateDataTrumpStore.map((item) => item);
         let datedata_other = props.chartData.dateDataOtherStore.map((item) => item);
         let datasets = [];   
-        let labels = date_headers[selected_index-1];
+        let labels = date_headers[selected_index];
 
         
         if(type == 'line'){
+
+            while(typeof(datedata_biden[selected_index]) === undefined)
+                selected_index--;
 
             var data1= {};
             data1.label = "Biden Votes";
@@ -108,7 +111,7 @@ export default function VoteLineChart2(props) {
             data3.borderColor = bgColors[2];          
             data3.data = [];
             
-            datedata_other[selected_index].map((data) => {
+            datedata_other[selected_index-1].map((data) => {
                 data3.data.push(data);
             });
             let dataset3 = data3;
@@ -130,6 +133,7 @@ export default function VoteLineChart2(props) {
     return (
         <div class="container-sm smaller">
             <canvas id="myChart"></canvas>
+
         </div>
     );
 
