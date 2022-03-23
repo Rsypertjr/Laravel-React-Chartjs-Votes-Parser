@@ -57,7 +57,7 @@ import {
   
 
 
-export default function VoteLineChart2(props) {
+export default function VotesLineChart2(props) {
     useEffect(() => {
         const ctx = document.getElementById('myChart').getContext('2d');
        // let data = [65, 59, 80, 81, 56, 55, 40];

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Link, Route, Routes, Redirect, useHistory } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes, Navigate } from 'react-router-dom';
 import AppRouter from './AppRouter';
 import BarChart from './BarChart';
 import styled from "styled-components";
@@ -28,14 +28,16 @@ const states = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado",
 "Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]; 
 
 
-export default class VoteRouter extends React.Component {
+export default class VotesApp extends React.Component {
   constructor(props){
       super(props);        
       this.setPages = this.setPages.bind(this);
       this.getVotes = this.getVotes.bind(this);
-      this._onSelect = this._onSelect.bind(this);
+      this.selectState = this.selectState.bind(this);
       this.getStateData = this.getStateData.bind(this);
       this.getPageNumber = this.getPageNumber.bind(this);
+      this.leftArrow = this.leftArrow.bind(this);
+      this.rightArrow = this.rightArrow.bind(this);
       this.state = {
           theVotes: [],
           DataisLoaded: false,
@@ -53,7 +55,9 @@ export default class VoteRouter extends React.Component {
           theState:states[0],
           options: states,
           defaultOption:states[0],
-          chartData:{}
+          chartData:{},
+          graphType:'table',
+          goto_Linechart: false
         
 
 
@@ -64,14 +68,47 @@ export default class VoteRouter extends React.Component {
   }
 
 
-  getPageNumber(num)
-  {
-     
+  getPageNumber(info)
+  {     
+      
+    let num = info.num;
+    //alert(info.type);
      this.setState({
          theCurrentPage:this.state.theCurrentPages[parseInt(num)-1],
          pageNo: num
      });
+     if(info.type == 'line') {
+        //alert(JSON.stringify(info));
+      $('#navbarNav > ul > li:nth-child(3) > a > a').trigger("click");
+      }
  
+  }
+
+  rightArrow(info){
+      let num = info.num;
+      let newNum = (this.state.thePageSetNumber)*this.state.thePageSize + 1;
+      let limit = Math.ceil(this.state.thePagingArray.length/this.state.thePageSize);
+      if(num <= limit){
+        this.setState({
+            thePageSetNumber:num,
+            pageNo: newNum
+        })
+      }
+     
+      
+  }
+
+  leftArrow(info){
+
+      let num = info.num;
+      let newNum = (this.state.thePageSetNumber-1)*this.state.thePageSize + 1;
+      if(num > 0){
+        this.setState({
+            thePageSetNumber:num,
+            pageNo: newNum
+        })
+      }
+    
   }
 
 
@@ -461,13 +498,15 @@ export default class VoteRouter extends React.Component {
       return result;
   }
 
-  _onSelect(e){
+  selectState(e){
     this.getStateData(e.value); 
  
     this.setState({
         theState: e.value,      
         //theCurrentPage: currentPages[ this.state.pageNo-1],
-        theVotes:this.state.theVotes
+        theVotes:this.state.theVotes,
+        pageNo: 1,
+        thePageSetNumber:1
       });
 
     
@@ -596,7 +635,7 @@ export default class VoteRouter extends React.Component {
                       <span>Select a State: </span>
                     </div>
                     <div class="col-4">
-                      <Dropdown options={this.state.options} onChange={this._onSelect} value={this.state.defaultOption} placeholder="Select an option" /> 
+                      <Dropdown options={this.state.options} onChange={this.selectState} value={this.state.defaultOption} placeholder="Select an option" /> 
                     </div>
                 </div>
                 <h1>Laravel/React 2020 Presidential Election Parser</h1> 
@@ -606,8 +645,9 @@ export default class VoteRouter extends React.Component {
                 <p>{ this.state.raceUrl }</p>
                 <p>State: { this.state.theState }</p>
             </div>        
-        </div>      
-        <AppRouter {...this.state} getPageNumber={this.getPageNumber}/>  
+        </div>     
+    
+        <AppRouter {...this.state} getPageNumber={this.getPageNumber} rightArrow={this.rightArrow} leftArrow={this.leftArrow} />  
       </div>
       
       
@@ -617,5 +657,5 @@ export default class VoteRouter extends React.Component {
 
 
 if (document.getElementById('votes-table-react')){
-    ReactDOM.render(<VoteRouter />, document.getElementById('votes-table-react'));
+    ReactDOM.render(<VotesApp />, document.getElementById('votes-table-react'));
 }

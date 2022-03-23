@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom';
 import VotesPager from './VotesPager';
 
 
-
 function OuterTable(props){
     const headers = ["Index","Biden %","Biden Votes","Trump %","Trump Votes","Other Votes","Time Stamps","Votes", "Votes Added","Trump Added","Biden Added","% of Remaining Biden","% of Remaining Trump"];
     //const headers = ['X','Y','Z']
@@ -52,8 +51,8 @@ export default function VoteTableReact(props)  {
                             </tr>
                         )}                  
                     </tbody>
-                </OuterTable>   
-                <VotesPager {...props} pageClick={props.getPageNumber} />
+                </OuterTable>  
+                <VotesPager {...props} getPageNumber={props.getPageNumber} type={props.type} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>
             
             </div>
         
