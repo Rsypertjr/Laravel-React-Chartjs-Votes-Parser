@@ -1,5 +1,6 @@
 import {React, useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
+import VotesPager from '../VotesPager';
 import {
     Chart,
     ArcElement,
@@ -63,16 +64,17 @@ export default function VoteLineChart2(props) {
        // let data = [65, 59, 80, 81, 56, 55, 40];
         let label =  '# of Votes';
         let type = props.type;
-        let selected_index = props.selected_index-1;
+        let selected_index = props.selected_index;
         alert(selected_index);
         let bgColors = ['red','orange','yellow','lime','green','teal','blue','purple']; 
         let bdColors =  ['black'];
         
-        //alert(JSON.stringify(props.chartData.dateHeadersStore));
-        let date_headers =    props.chartData.dateHeadersStore.map((item) => item);
-        let datedata_biden = props.chartData.dateDataBidenStore.map((item) => item);
-        let datedata_trump = props.chartData.dateDataTrumpStore.map((item) => item);
-        let datedata_other = props.chartData.dateDataOtherStore.map((item) => item);
+        let chartsData =   props.getChartsData(props.theVotes);
+        alert(JSON.stringify(chartsData));
+        let date_headers =    chartsData.dateHeadersStore.map((item) => item);
+        let datedata_biden = chartsData.dateDataBidenStore.map((item) => item);
+        let datedata_trump = chartsData.dateDataTrumpStore.map((item) => item);
+        let datedata_other = chartsData.dateDataOtherStore.map((item) => item);
         let datasets = [];   
         let labels = date_headers[selected_index];
 
@@ -121,19 +123,25 @@ export default function VoteLineChart2(props) {
 
         }
     
+        
         const myChart = new Chart(ctx, {
             type: type,
             data: {
                 labels: labels,
                 datasets: datasets
             }
-        });
+        }).update();
+
+
+
       }, []);
    
     return (
         <div class="container-sm smaller">
             <canvas id="myChart"></canvas>
-
+            <VotesPager handlePage={props.handlePage} leftArrow={props.leftArrow} rightArrow={props.rightArrow}
+                        thePagingArray={props.thePagingArray} thePageSetNumber={props.thePageSetNumber} theCurrentPages={props.theCurrentPages}/>  
+                    
         </div>
     );
 

@@ -1,8 +1,10 @@
 // resources/js/components/TableReact.js
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import VotesPager from './VotesPager';
+
+
 
 function OuterTable(props){
     const headers = ["Index","Biden %","Biden Votes","Trump %","Trump Votes","Other Votes","Time Stamps","Votes", "Votes Added","Trump Added","Biden Added","% of Remaining Biden","% of Remaining Trump"];
@@ -25,14 +27,14 @@ function OuterTable(props){
 }
 
 
- 
+export default function VoteTableReact(props)  {
+             
 
-export default function VoteTableReact(props) {
         return (
             <div>
                 <OuterTable>
                     <tbody>
-                        {props.theCurrentPage.map(row => 
+                        { props.theCurrentPages[props.pageNo-1].map(row => 
                             <tr>
                                 <td>{ row.id }</td>
                                 <td>{ row.bidenj }</td>
@@ -51,9 +53,9 @@ export default function VoteTableReact(props) {
                         )}                  
                     </tbody>
                 </OuterTable>   
-                <VotesPager theVotes={props.theVotes} pageSize={props.thePageSize}/>  
-                    
+                <VotesPager {...props} pageClick={props.getPageNumber} />
+            
             </div>
-           
+        
         );
 }

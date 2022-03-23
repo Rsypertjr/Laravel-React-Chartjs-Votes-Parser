@@ -130,6 +130,7 @@ export default function VoteLineChart2(props) {
     return (
         <div class="container-sm smaller">
             <canvas id="myChart"></canvas>
+            
         </div>
     );
 

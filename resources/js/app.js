@@ -8,4 +8,4 @@ require('./components/VoteTableReact');
 require('./components/Sea/Sea');
 
 require('./components/Manatee/Manatee');
-require('./components/VoteRouter');
+require('./components/VotesApp');
