@@ -68,43 +68,31 @@ export default class VotesApp extends React.Component {
   }
 
 
-  getPageNumber(info)
+  getPageNumber(num)
   {     
-      
-    let num = info.num;
-    //alert(info.type);
      this.setState({
          theCurrentPage:this.state.theCurrentPages[parseInt(num)-1],
          pageNo: num
      });
-     if(info.type == 'line') {
-        //alert(JSON.stringify(info));
-      $('#navbarNav > ul > li:nth-child(3) > a > a').trigger("click");
-      }
- 
+  
   }
 
-  rightArrow(info){
-      let num = info.num;
-      let newNum = (this.state.thePageSetNumber)*this.state.thePageSize + 1;
-      let limit = Math.ceil(this.state.thePagingArray.length/this.state.thePageSize);
-      if(num <= limit){
+  rightArrow(num){
+      let newNum = parseInt(this.state.thePageSetNumber)*parseInt(this.state.thePageSize);
+      alert(newNum);
+      if(this.state.thePagingArray[num-1] != null || this.state.thePagingArray[num-1].length>0){
         this.setState({
-            thePageSetNumber:num,
-            pageNo: newNum
-        })
-      }
-     
-      
+            thePageSetNumber:parseInt(num),
+            pageNo: newNum-1 
+        });
+    } 
   }
 
-  leftArrow(info){
-
-      let num = info.num;
-      let newNum = (this.state.thePageSetNumber-1)*this.state.thePageSize + 1;
-      if(num > 0){
+  leftArrow(num){
+      let newNum = (parseInt(this.state.thePageSetNumber)-1)*parseInt(this.state.thePageSize) + 1;
+      if(this.state.thePagingArray[num-1] != null || this.state.thePagingArray[num-1].length>0){
         this.setState({
-            thePageSetNumber:num,
+            thePageSetNumber:parseInt(num),
             pageNo: newNum
         })
       }
@@ -122,7 +110,7 @@ export default class VotesApp extends React.Component {
         let theVotes = this.getVotes(json);
         let currentPages = [];
         let pageSize = 10;
-        let numPages = Math.ceil(theVotes.length/pageSize);
+        let numPages = Math.ceil(parseInt(theVotes.length)/pageSize);
         let pagingArray = [];
     
         
@@ -205,8 +193,25 @@ export default class VotesApp extends React.Component {
     var otherslices = [];
     var pieheaders = [];
     var parse_interval = 10;
+    //var dataheaders2 = [];
     for(i=0;i<vote_rows.length;i++){
-      if(i == 0){
+
+        dateheaders[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.timestamp);
+        datedatabiden[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.biden_votes);
+        datedatatrump[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.trump_votes);
+        datedatabidenadd[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.biden_votes);
+        datedatatrumpadd[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.trump_votes);
+        datedatabidenadddiff[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.biden_votes);
+        datedatatrumpadddiff[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.trump_votes);
+        datedataotheradd[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.other_votes);
+        datedatatotaladd[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.votes);
+        datedatatotal[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.votes);
+        datedataother[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.other_votes);
+        perremainingtrump[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.remaining_percent_trump);
+        perremainingbiden[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.remaining_percent_biden);
+
+  /*
+      if(i > 0){
           dateheaders.push(vote_rows[i].timestamp);
           datedatabiden.push(vote_rows[i].biden_votes);
           datedatatrump.push(vote_rows[i].trump_votes);
@@ -221,84 +226,82 @@ export default class VotesApp extends React.Component {
           datedataother.push(vote_rows[i].other_votes);
           perremainingtrump.push(vote_rows[i].remaining_percent_trump);
           perremainingbiden.push(vote_rows[i].remaining_percent_biden);
+          */
+         // datedatabidenadd.push()
           
+    //  }
+    //  else if( i % parse_interval != 0 ){
+      //    dateheaders.push(vote_rows[i].timestamp);
+      //    datedatabiden.push(vote_rows[i].biden_votes);
+      //    datedatatrump.push(vote_rows[i].trump_votes);
+     //     datedataother.push(vote_rows[i].other_votes);
+        if(i > 0) {
+          datedatabidenadd.push(vote_rows[i].biden_votes-vote_rows[i-1].biden_votes);
+          datedatatrumpadd.push(vote_rows[i].trump_votes-vote_rows[i-1].trump_votes);
+          datedataotheradd.push(vote_rows[i].other_votes-vote_rows[i-1].other_votes);
+          datedatatotaladd.push(vote_rows[i].votes-vote_rows[i-1].votes);
+          datedatabidenadddiff.push(vote_rows[i].biden_votes - vote_rows[i-1].biden_votes);
+          datedatatrumpadddiff.push(vote_rows[i].trump_votes - vote_rows[i-1].trump_votes);
+
           
-      }
-      else if( i % parse_interval != 0 ){
-          dateheaders.push(vote_rows[i].timestamp);
-          datedatabiden.push(vote_rows[i].biden_votes);
-          datedatatrump.push(vote_rows[i].trump_votes);
-          datedataother.push(vote_rows[i].other_votes);
-          datedatabidenadd.push(vote_rows[i].biden_votes-vote_rows[i-1].biden_votes);
-          datedatatrumpadd.push(vote_rows[i].trump_votes-vote_rows[i-1].trump_votes);
-          datedataotheradd.push(vote_rows[i].other_votes-vote_rows[i-1].other_votes);
-          datedatatotaladd.push(vote_rows[i].votes-vote_rows[i-1].votes);
-          datedatabidenadddiff.push(vote_rows[i].biden_votes - vote_rows[i-1].biden_votes);
-          datedatatrumpadddiff.push(vote_rows[i].trump_votes - vote_rows[i-1].trump_votes);
-          datedatatotal.push(vote_rows[i].votes);
-          perremainingtrump.push(vote_rows[i].remaining_percent_trump);
-          perremainingbiden.push(vote_rows[i].remaining_percent_biden);
-      }
-      else if(i % parse_interval == 0) {
-          dateheaders.push(vote_rows[i].timestamp);
-          datedatabiden.push(vote_rows[i].biden_votes);
-          datedatatrump.push(vote_rows[i].trump_votes);
-          datedataother.push(vote_rows[i].other_votes);
-          datedatatotal.push(vote_rows[i].votes);
-          datedatabidenadd.push(vote_rows[i].biden_votes-vote_rows[i-1].biden_votes);
-          datedatatrumpadd.push(vote_rows[i].trump_votes-vote_rows[i-1].trump_votes);
-          datedataotheradd.push(vote_rows[i].other_votes-vote_rows[i-1].other_votes);
-          datedatatotaladd.push(vote_rows[i].votes-vote_rows[i-1].votes);
-          datedatabidenadddiff.push(vote_rows[i].biden_votes - vote_rows[i-1].biden_votes);
-          datedatatrumpadddiff.push(vote_rows[i].trump_votes - vote_rows[i-1].trump_votes);
-          perremainingtrump.push(vote_rows[i].remaining_percent_trump);
-          perremainingbiden.push(vote_rows[i].remaining_percent_biden);
+        }
+        //  datedatatotal.push(vote_rows[i].votes);
+        //  perremainingtrump.push(vote_rows[i].remaining_percent_trump);
+         // perremainingbiden.push(vote_rows[i].remaining_percent_biden);
+    //  }
+   //   else if(i % parse_interval == 0) {
+      //    dateheaders.push(vote_rows[i].timestamp);
+     //     datedatabiden.push(vote_rows[i].biden_votes);
+      //    datedatatrump.push(vote_rows[i].trump_votes);
+      //    datedataother.push(vote_rows[i].other_votes);
+     //     datedatatotal.push(vote_rows[i].votes);
+         // datedatabidenadd.push(vote_rows[i].biden_votes-vote_rows[i-1].biden_votes);
+         // datedatatrumpadd.push(vote_rows[i].trump_votes-vote_rows[i-1].trump_votes);
+        //  datedataotheradd.push(vote_rows[i].other_votes-vote_rows[i-1].other_votes);
+        //  datedatatotaladd.push(vote_rows[i].votes-vote_rows[i-1].votes);
+        //  datedatabidenadddiff.push(vote_rows[i].biden_votes - vote_rows[i-1].biden_votes);
+      //    datedatatrumpadddiff.push(vote_rows[i].trump_votes - vote_rows[i-1].trump_votes);
+        //  perremainingtrump.push(vote_rows[i].remaining_percent_trump);
+        //  perremainingbiden.push(vote_rows[i].remaining_percent_biden);
 
-
-          dateheaders_store.push(dateheaders);
-          dateheaders = []; 
-          datedatabiden_store.push(datedatabiden);
-          datedatabiden = [];
-          datedatabidenadd_store.push(datedatabidenadd);
-          datedatabidenadd = [];
-          datedatatrump_store.push(datedatatrump);
-          datedatatrump = [];  
-          datedatatrumpadd_store.push(datedatatrumpadd);
-          datedatatrumpadd = [];  
-          datedatatotal_store.push(datedatatotal);
-          datedatatotal = []; 
-          datedataother_store.push(datedataother);
-          datedataother = [];     
-          datedataotheradd_store.push(datedataotheradd);
-          datedataotheradd = [];       
-          datedatatotaladd_store.push(datedatatotaladd);
-          datedatatotaladd = [];  
-          datedatabidenadddiff_store.push(datedatabidenadddiff);
-          datedatabidenadddiff = [];       
-          datedatatrumpadddiff_store.push(datedatatrumpadddiff);
-          datedatatrumpadddiff = [];    
-          perremainingtrump_store.push(perremainingtrump);
-          perremainingtrump = [];
-          perremainingbiden_store.push(perremainingbiden);
-          perremainingbiden = [];                                          
-      }
-      else{
-          dateheaders.push(vote_rows[i].timestamp);
-          datedatabiden.push(vote_rows[i].biden_votes);
-          datedatatrump.push(vote_rows[i].trump_votes);
-          datedataother.push(vote_rows[i].other_votes);
-          datedatatotal.push(vote_rows[i].votes);
-          datedatabidenadd.push(vote_rows[i].biden_votes-vote_rows[i-1].biden_votes);
-          datedatatrumpadd.push(vote_rows[i].trump_votes-vote_rows[i-1].trump_votes);
-          datedataotheradd.push(vote_rows[i].other_votes-vote_rows[i-1].other_votes);
-          datedatatotaladd.push(vote_rows[i].votes-vote_rows[i-1].votes);
-          datedatabidenadddiff.push(vote_rows[i].biden_votes - vote_rows[i-1].biden_votes);
-          datedatatrumpadddiff.push(vote_rows[i].trump_votes - vote_rows[i-1].trump_votes);
-          perremainingtrump.push(vote_rows[i].remaining_percent_trump);
-          perremainingbiden.push(vote_rows[i].remaining_percent_biden);
-      }
+   //   }
+    //  else{
+    //      dateheaders.push(vote_rows[i].timestamp);
+    //      datedatabiden.push(vote_rows[i].biden_votes);
+      //    datedatatrump.push(vote_rows[i].trump_votes);
+      //    datedataother.push(vote_rows[i].other_votes);
+    //      datedatatotal.push(vote_rows[i].votes);
+       //   datedatabidenadd.push(vote_rows[i].biden_votes-vote_rows[i-1].biden_votes);
+       //   datedatatrumpadd.push(vote_rows[i].trump_votes-vote_rows[i-1].trump_votes);
+       //   datedataotheradd.push(vote_rows[i].other_votes-vote_rows[i-1].other_votes);
+      //    datedatatotaladd.push(vote_rows[i].votes-vote_rows[i-1].votes);
+      //    datedatabidenadddiff.push(vote_rows[i].biden_votes - vote_rows[i-1].biden_votes);
+     //     datedatatrumpadddiff.push(vote_rows[i].trump_votes - vote_rows[i-1].trump_votes);
+      //    perremainingtrump.push(vote_rows[i].remaining_percent_trump);
+     //     perremainingbiden.push(vote_rows[i].remaining_percent_biden);
+     // }
 
     }
+
+
+    datedatabidenadd_store = datedatabidenadd.map((item) => item);
+    datedatatrumpadd_store = datedatatrumpadd.map((item) => item);
+    
+    datedataotheradd_store = datedataotheradd.map((item) => item);
+    datedatatotaladd_store = datedatatotaladd.map((item) => item);
+    
+    datedatabidenadddiff_store = datedatabidenadddiff.map((item) => item);
+    datedatatrumpadddiff_store = datedatatrumpadddiff.map((item) => item);
+  dateheaders_store = dateheaders.map((item) => item);
+  datedatabiden_store = datedatabiden.map((item) => item);
+  datedatatrump_store = datedatatrump.map((item) => item);
+  datedatatotal_store = datedatatotal.map((item) => item);
+  datedataother_store = datedataother.map((item) => item);
+  perremainingtrump_store = perremainingtrump.map((item) => item);
+  perremainingbiden_store = perremainingbiden.map((item) => item);             
+
+
+
 
     // PieChart calculations        
     if(datedatabiden_store != null) {
@@ -467,7 +470,7 @@ export default class VotesApp extends React.Component {
           currentPages[i]= theVotes.slice(i*parseInt(pageSize),( i*parseInt(pageSize)+parseInt(pageSize) ) );
           pagingArray[i] = [];
           
-            for(var j = i*parseInt(pageSize)+1; j < (i*parseInt(pageSize)+parseInt(pageSize)); j++ ){   
+            for(var j = i*parseInt(pageSize); j <= (i*parseInt(pageSize)+parseInt(pageSize)-1); j++ ){   
                   pagingArray[i].push(j); 
                   
             }       

@@ -72,8 +72,8 @@ export default function AppRouter(props){
           <Routes>
             <Route exact path="/votestable" element={<VoteTableReact {...props} getPageNumber={props.getPageNumber} type={'table'} rightArrow={props.rightArrow} leftArrow={props.leftArrow}/>} />
             <Route path="/voteslinechart" element={<VotesLineChart2 {...props} getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow}/>} />
-            <Route path="/spikeslinechart" element={<SpikesLineChart />}/>
-            <Route path="/difflinechart" element={<DiffLineChart />}/>
+            <Route path="/spikeslinechart" element={<SpikesLineChart {...props} getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow}  />}/>
+            <Route path="/difflinechart" element={<DiffLineChart  {...props} getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />}/>
             <Route path="/perlinechart" element={<PerLineChart />} />
             <Route path="/piechart" element={<PieChart />}/>
             <Route path="/stackedchart" element={<StackedChart />}/>

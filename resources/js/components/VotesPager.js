@@ -6,11 +6,8 @@ export default function VotesPager(props){
             
     const handlePage = (e) => {
         let pageNum = e.target.value;
-        let info = {};
-        info.num = pageNum;
-        info.type = props.type;
 
-        props.getPageNumber(info);
+        props.getPageNumber(parseInt(pageNum)+1);
         $('.page').css('background-color','rgb(239, 239, 239').css('border-color','rgb(255, 255, 255').css('border-width','3px');
         $('#page-'+pageNum).css('background-color','grey');        
     }
@@ -19,33 +16,29 @@ export default function VotesPager(props){
     
 
   const leftArrow = (e) => {
-      let info = {};
-      info.num = props.thePageSetNumber - 1;
-      info.type = props.type; 
-      props.leftArrow(info);
+  
+      let num = parseInt(props.thePageSetNumber) - 1;
+      props.leftArrow(num);
     }
 
   const rightArrow = (e) => {    
-     
-          let info = {};
-          info.num = props.thePageSetNumber + 1;
-          info.type = props.type; 
-          props.rightArrow(info);
+         let num = parseInt(props.thePageSetNumber) + 1;
+          props.rightArrow(num);
     }
 
 
     return(
         <div class="container">
             <div class="row">
-                <div class="col-md-8 offset-md-4">
+                <div class="col-md-8 offset-md-3">
                     <input type="button" value="<" onClick={leftArrow}/>
                     
                     {  
                     
-                            props.thePagingArray[props.thePageSetNumber-1].map((num) => (      
+                            props.thePagingArray[parseInt(props.thePageSetNumber)-1].map((num) => (      
                             //pagingArr.map((num) => (    
                                 <span>
-                                { props.theCurrentPages[parseInt(num) - 1] !== undefined  && <input type="button" class="page" id={`page-${num}`} value={num} onClick={handlePage}/> }
+                                { props.theCurrentPages[parseInt(num)] !== undefined  && <input type="button" class="page" id={`page-${num}`} value={num} onClick={handlePage}/> }
                                 </span>
                             ))
                     

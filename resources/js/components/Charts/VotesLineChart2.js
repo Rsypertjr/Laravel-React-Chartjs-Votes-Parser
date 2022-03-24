@@ -134,6 +134,14 @@ export default function VotesLineChart2(props) {
    
     return (
         <div class="container-sm smaller">
+            <div class="row justify-content-start">
+                <div class="col-4"/>
+                <div class="col-7">
+                    <h4>Total Votes Line Chart</h4>
+                </div>
+                <div class="col-1">
+                </div>
+            </div>
             <canvas id="myChart"></canvas>           
             <VotesPager {...props} pageClick={props.getPageNumber} type={'line'} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>
              

@@ -1,7 +1,141 @@
-import React from 'react';
-
-export default function DiffLineChart() {
-  return(
-    <h3>Difference Line Chart</h3>
+import {React, useEffect, useState} from 'react';
+import ReactDOM from 'react-dom';
+import { Redirect } from 'react-router-dom';
+import VotesPager from '../VotesPager';
+import {
+    Chart,
+    ArcElement,
+    LineElement,
+    BarElement,
+    PointElement,
+    BarController,
+    BubbleController,
+    DoughnutController,
+    LineController,
+    PieController,
+    PolarAreaController,
+    RadarController,
+    ScatterController,
+    CategoryScale,
+    LinearScale,
+    LogarithmicScale,
+    RadialLinearScale,
+    TimeScale,
+    TimeSeriesScale,
+    Decimation,
+    Filler,
+    Legend,
+    Title,
+    Tooltip,
+    SubTitle,
+  } from 'chart.js';
+  
+  Chart.register(
+    ArcElement,
+    LineElement,
+    BarElement,
+    PointElement,
+    BarController,
+    BubbleController,
+    DoughnutController,
+    LineController,
+    PieController,
+    PolarAreaController,
+    RadarController,
+    ScatterController,
+    CategoryScale,
+    LinearScale,
+    LogarithmicScale,
+    RadialLinearScale,
+    TimeScale,
+    TimeSeriesScale,
+    Decimation,
+    Filler,
+    Legend,
+    Title,
+    Tooltip,
+    SubTitle
   );
+  
+
+
+export default function DiffLineChart(props) {
+    
+    useEffect(() => {
+        let ctx = document.getElementById('myChart').getContext('2d');
+
+       // let data = [65, 59, 80, 81, 56, 55, 40];
+        let label =  '# of Votes';
+        let type = props.type;
+        let selected_index = props.pageNo;
+        let bgColors = ['red','orange','yellow','lime','green','teal','blue','purple']; 
+        let bdColors =  ['black'];
+        
+        let chartData =   props.chartData;
+        //alert(JSON.stringify(chartData));
+        let date_headers =    chartData.dateHeadersStore.map((item) => item);
+        let datedata_biden_diff_add = chartData.dateDataBidenAddDiffStore.map((item) => item);
+        let datedata_trump_diff_add = chartData.dateDataTrumpAddDiffStore.map((item) => item);
+        let datasets = [];   
+        let labels = date_headers[selected_index];
+
+        var data1= {};
+        data1.label = "Biden Gain/Loss";
+        data1.backgroundColor = bgColors[0];
+        data1.borderColor = bgColors[0];
+        data1.data = [];
+        datedata_biden_diff_add[selected_index].map((data) => {               
+            data1.data.push(data);
+        });
+        let dataset1 = data1;
+        //alert(JSON.stringify(dataset1));
+
+        var data2 = {};
+        data2.label = "Trump Gain/Loss";
+        data2.backgroundColor = bgColors[1];
+        data2.borderColor = bgColors[1];
+        data2.data = [];
+        datedata_trump_diff_add[selected_index].map((data) => {                
+            data2.data.push(data);
+        });
+        let dataset2 = data2;
+        //alert(JSON.stringify(dataset2));
+
+       
+
+        datasets = [dataset1, dataset2]
+        //alert(JSON.stringify(datasets));
+
+       
+        const myChart = new Chart(ctx, {
+                type: type,
+                data: {
+                    labels: labels,
+                    datasets: datasets
+                }
+            });
+       
+        return () => {
+          myChart.destroy()
+        }
+
+      });
+   
+    return (
+        <div class="container-sm smaller">
+            <div class="row justify-content-start">
+                <div class="col-3"/>
+                <div class="col-8">
+                    <h4>Incremental Gain/Loss of Votes</h4>
+                </div>
+                <div class="col-1">
+                </div>
+            </div>                
+            <canvas id="myChart"></canvas>           
+            <VotesPager {...props} pageClick={props.getPageNumber} type={'line'} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>
+             
+        </div>
+
+    );
+
 }
