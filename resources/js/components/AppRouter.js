@@ -7,7 +7,7 @@ import SpikesLineChart from './Charts/SpikesLineChart';
 import DiffLineChart from './Charts/DiffLineChart';
 import PerLineChart from './Charts/PerLineChart';
 import PieChart from './Charts/PieChart';
-import StackedChart from './Charts/StackedChart';
+import BarChart from './Charts/BarChart';
 import BinStackedChart from './Charts/BinStackedChart';
 import VoteTableReact from './VoteTableReact';
 
@@ -60,7 +60,7 @@ export default function AppRouter(props){
                 <a class="nav-link" href="#"><Link to="/piechart" style={linkStyle} >Pie Chart</Link></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#"><Link to="/stackedchart" style={linkStyle} >Stacked Chart</Link></a>
+                <a class="nav-link" href="#"><Link to="/barchart" style={linkStyle} >Votes Bar Chart</Link></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#"><Link to="/binstackedchart" style={linkStyle} >Bin Stacked Chart</Link></a>
@@ -75,8 +75,8 @@ export default function AppRouter(props){
             <Route path="/difflinechart" element={<DiffLineChart  {...props} getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />}/>
             <Route path="/perlinechart" element={<PerLineChart  {...props} getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />} />
             <Route path="/piechart" element={<PieChart />}/>
-            <Route path="/stackedchart" element={<StackedChart />}/>
-            <Route path="/binstackedchart" element={<BinStackedChart />} />
+            <Route path="/barchart" element={<BarChart  {...props} getPageNumber={props.getPageNumber} type={'bar'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />}/>
+            <Route path="/binstackedchart" element={<BinStackedChart {...props} getPageNumber={props.getPageNumber} type={'bar'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />} />
           </Routes>
         </BrowserRouter>
     );

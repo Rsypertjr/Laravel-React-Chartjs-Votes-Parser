@@ -1,7 +1,7 @@
 import {React, useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
 import { Redirect } from 'react-router-dom';
-import VotesPager from '../VotesPager';
+import ChartPager from '../ChartPager';
 import {
     Chart,
     ArcElement,
@@ -137,7 +137,7 @@ export default function DiffLineChart(props) {
                 <div><canvas id="myChart"></canvas></div>
             </div> 
             <div class="container h-100 d-flex justify-content-center">
-                <VotesPager {...props} pageClick={props.getPageNumber} type={'line'} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>
+                <ChartPager {...props} getPageNumber={props.getPageNumber} type={'line'} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>
             </div> 
         </div>
     );
