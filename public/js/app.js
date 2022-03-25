@@ -2814,8 +2814,6 @@ module.exports = {
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // React Components
 
 
-__webpack_require__(/*! ./components/HelloReact */ "./resources/js/components/HelloReact.js");
-
 __webpack_require__(/*! ./components/VoteTableReact */ "./resources/js/components/VoteTableReact.js");
 
 __webpack_require__(/*! ./components/Sea/Sea */ "./resources/js/components/Sea/Sea.js");
@@ -3034,17 +3032,6 @@ function AppRouter(props) {
                 children: "Bin Stacked Chart"
               })
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("li", {
-            "class": "nav-item",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)("a", {
-              "class": "nav-link",
-              href: "#",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Link, {
-                to: "/testbarchart",
-                style: linkStyle,
-                children: "Test Bar Chart"
-              })
-            })
           })]
         })
       })]
@@ -3084,7 +3071,12 @@ function AppRouter(props) {
         }))
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
         path: "/perlinechart",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Charts_PerLineChart__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Charts_PerLineChart__WEBPACK_IMPORTED_MODULE_5__["default"], _objectSpread(_objectSpread({}, props), {}, {
+          getPageNumber: props.getPageNumber,
+          type: 'line',
+          rightArrow: props.rightArrow,
+          leftArrow: props.leftArrow
+        }))
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
         path: "/piechart",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Charts_PieChart__WEBPACK_IMPORTED_MODULE_6__["default"], {})
@@ -3095,48 +3087,6 @@ function AppRouter(props) {
         path: "/binstackedchart",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Charts_BinStackedChart__WEBPACK_IMPORTED_MODULE_8__["default"], {})
       })]
-    })]
-  });
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/BarChart.js":
-/*!*********************************************!*\
-  !*** ./resources/js/components/BarChart.js ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ BarChart)
-/* harmony export */ });
-/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-chartjs-2 */ "./node_modules/react-chartjs-2/dist/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-
-function BarChart(props) {
-  alert(JSON.stringify(props.chartData));
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-    "class": "container",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", {
-      children: "Test Bar Chart"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_chartjs_2__WEBPACK_IMPORTED_MODULE_1__.Bar, {
-      data: props.chartData,
-      options: {
-        plugins: {
-          title: {
-            display: true,
-            text: "Cryptocurrency prices"
-          },
-          legend: {
-            display: true,
-            position: "bottom"
-          }
-        }
-      }
     })]
   });
 }
@@ -3198,7 +3148,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 chart_js__WEBPACK_IMPORTED_MODULE_3__.Chart.register(chart_js__WEBPACK_IMPORTED_MODULE_3__.ArcElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.LineElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.BarElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.PointElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.BarController, chart_js__WEBPACK_IMPORTED_MODULE_3__.BubbleController, chart_js__WEBPACK_IMPORTED_MODULE_3__.DoughnutController, chart_js__WEBPACK_IMPORTED_MODULE_3__.LineController, chart_js__WEBPACK_IMPORTED_MODULE_3__.PieController, chart_js__WEBPACK_IMPORTED_MODULE_3__.PolarAreaController, chart_js__WEBPACK_IMPORTED_MODULE_3__.RadarController, chart_js__WEBPACK_IMPORTED_MODULE_3__.ScatterController, chart_js__WEBPACK_IMPORTED_MODULE_3__.CategoryScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.LinearScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.LogarithmicScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.RadialLinearScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.TimeScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.TimeSeriesScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.Decimation, chart_js__WEBPACK_IMPORTED_MODULE_3__.Filler, chart_js__WEBPACK_IMPORTED_MODULE_3__.Legend, chart_js__WEBPACK_IMPORTED_MODULE_3__.Title, chart_js__WEBPACK_IMPORTED_MODULE_3__.Tooltip, chart_js__WEBPACK_IMPORTED_MODULE_3__.SubTitle);
 function DiffLineChart(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var ctx = document.getElementById('myChart').getContext('2d'); // let data = [65, 59, 80, 81, 56, 55, 40];
+    var ctx = document.getElementById('myChart').getContext('2d');
+    $('.viewerClose').on('click', function () {
+      $('.chart-viewer').css('margin-top', '0').css('transition', 'opacity 100s ease-in-out').css('z-index', '1').css('border-style', 'none');
+      $('.viewerClose').css('display', 'none');
+    }); // let data = [65, 59, 80, 81, 56, 55, 40];
 
     var label = '# of Votes';
     var type = props.type;
@@ -3252,27 +3206,31 @@ function DiffLineChart(props) {
     };
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    "class": "container-sm smaller",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-      "class": "row justify-content-start",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        "class": "col-3"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        "class": "col-8",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
-          children: "Incremental Gain/Loss of Votes"
+    "class": "chart-viewer",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+      "class": "viewerClose",
+      children: "X"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      "class": "container h-10 d-flex justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+        children: "Incremental Gain/Loss of Votes"
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      "class": "container smaller justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("canvas", {
+          id: "myChart"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        "class": "col-1"
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("canvas", {
-      id: "myChart"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_VotesPager__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
-      pageClick: props.getPageNumber,
-      type: 'line',
-      leftArrow: props.leftArrow,
-      rightArrow: props.rightArrow
-    }))]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      "class": "container h-100 d-flex justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_VotesPager__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
+        pageClick: props.getPageNumber,
+        type: 'line',
+        leftArrow: props.leftArrow,
+        rightArrow: props.rightArrow
+      }))
+    })]
   });
 }
 
@@ -3290,12 +3248,109 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ PerLineChart)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _VotesPager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../VotesPager */ "./resources/js/components/VotesPager.js");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/chart.esm.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
-function PerLineChart() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
-    children: "Per Line Chart"
+
+
+
+
+
+
+chart_js__WEBPACK_IMPORTED_MODULE_3__.Chart.register(chart_js__WEBPACK_IMPORTED_MODULE_3__.ArcElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.LineElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.BarElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.PointElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.BarController, chart_js__WEBPACK_IMPORTED_MODULE_3__.BubbleController, chart_js__WEBPACK_IMPORTED_MODULE_3__.DoughnutController, chart_js__WEBPACK_IMPORTED_MODULE_3__.LineController, chart_js__WEBPACK_IMPORTED_MODULE_3__.PieController, chart_js__WEBPACK_IMPORTED_MODULE_3__.PolarAreaController, chart_js__WEBPACK_IMPORTED_MODULE_3__.RadarController, chart_js__WEBPACK_IMPORTED_MODULE_3__.ScatterController, chart_js__WEBPACK_IMPORTED_MODULE_3__.CategoryScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.LinearScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.LogarithmicScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.RadialLinearScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.TimeScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.TimeSeriesScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.Decimation, chart_js__WEBPACK_IMPORTED_MODULE_3__.Filler, chart_js__WEBPACK_IMPORTED_MODULE_3__.Legend, chart_js__WEBPACK_IMPORTED_MODULE_3__.Title, chart_js__WEBPACK_IMPORTED_MODULE_3__.Tooltip, chart_js__WEBPACK_IMPORTED_MODULE_3__.SubTitle);
+function PerLineChart(props) {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var ctx = document.getElementById('myChart').getContext('2d');
+    $('.viewerClose').on('click', function () {
+      $('.chart-viewer').css('margin-top', '0').css('transition', 'opacity 100s ease-in-out').css('z-index', '1').css('border-style', 'none');
+      $('.viewerClose').css('display', 'none');
+    }); // let data = [65, 59, 80, 81, 56, 55, 40];
+
+    var label = '# of Votes';
+    var type = props.type;
+    var selected_index = props.pageNo;
+    var bgColors = ['red', 'orange', 'yellow', 'lime', 'green', 'teal', 'blue', 'purple'];
+    var bdColors = ['black'];
+    var chartData = props.chartData; //alert(JSON.stringify(chartData));
+
+    var date_headers = chartData.dateHeadersStore.map(function (item) {
+      return item;
+    });
+    var perremainingbiden_store = chartData.perRemainingBidenStore.map(function (item) {
+      return item;
+    });
+    var perremainingtrump_store = chartData.perRemainingTrumpStore.map(function (item) {
+      return item;
+    });
+    var datasets = [];
+    var labels = date_headers[selected_index];
+    var data1 = {};
+    data1.label = "Biden % of Remaining Vote";
+    data1.backgroundColor = bgColors[0];
+    data1.borderColor = bgColors[0];
+    data1.data = [];
+    perremainingbiden_store[selected_index].map(function (data) {
+      data1.data.push(data);
+    });
+    var dataset1 = data1; //alert(JSON.stringify(dataset1));
+
+    var data2 = {};
+    data2.label = "Trump % of Remaining Vote";
+    data2.backgroundColor = bgColors[1];
+    data2.borderColor = bgColors[1];
+    data2.data = [];
+    perremainingtrump_store[selected_index].map(function (data) {
+      data2.data.push(data);
+    });
+    var dataset2 = data2; //alert(JSON.stringify(dataset2));
+
+    datasets = [dataset1, dataset2]; //alert(JSON.stringify(datasets));
+
+    var myChart = new chart_js__WEBPACK_IMPORTED_MODULE_3__.Chart(ctx, {
+      type: type,
+      data: {
+        labels: labels,
+        datasets: datasets
+      }
+    });
+    return function () {
+      myChart.destroy();
+    };
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    "class": "chart-viewer",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+      "class": "viewerClose",
+      children: "X"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      "class": "container h-10 d-flex justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+        children: "Percent Line Chart"
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      "class": "container smaller justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("canvas", {
+          id: "myChart"
+        })
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      "class": "container h-100 d-flex justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_VotesPager__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
+        pageClick: props.getPageNumber,
+        type: 'line',
+        leftArrow: props.leftArrow,
+        rightArrow: props.rightArrow
+      }))
+    })]
   });
 }
 
@@ -3356,7 +3411,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 chart_js__WEBPACK_IMPORTED_MODULE_3__.Chart.register(chart_js__WEBPACK_IMPORTED_MODULE_3__.ArcElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.LineElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.BarElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.PointElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.BarController, chart_js__WEBPACK_IMPORTED_MODULE_3__.BubbleController, chart_js__WEBPACK_IMPORTED_MODULE_3__.DoughnutController, chart_js__WEBPACK_IMPORTED_MODULE_3__.LineController, chart_js__WEBPACK_IMPORTED_MODULE_3__.PieController, chart_js__WEBPACK_IMPORTED_MODULE_3__.PolarAreaController, chart_js__WEBPACK_IMPORTED_MODULE_3__.RadarController, chart_js__WEBPACK_IMPORTED_MODULE_3__.ScatterController, chart_js__WEBPACK_IMPORTED_MODULE_3__.CategoryScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.LinearScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.LogarithmicScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.RadialLinearScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.TimeScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.TimeSeriesScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.Decimation, chart_js__WEBPACK_IMPORTED_MODULE_3__.Filler, chart_js__WEBPACK_IMPORTED_MODULE_3__.Legend, chart_js__WEBPACK_IMPORTED_MODULE_3__.Title, chart_js__WEBPACK_IMPORTED_MODULE_3__.Tooltip, chart_js__WEBPACK_IMPORTED_MODULE_3__.SubTitle);
 function SpikesLineChart(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var ctx = document.getElementById('myChart').getContext('2d'); // let data = [65, 59, 80, 81, 56, 55, 40];
+    var ctx = document.getElementById('myChart').getContext('2d');
+    $('.viewerClose').on('click', function () {
+      $('.chart-viewer').css('margin-top', '0').css('transition', 'opacity 100s ease-in-out').css('z-index', '1').css('border-style', 'none');
+      $('.viewerClose').css('display', 'none');
+    }); // let data = [65, 59, 80, 81, 56, 55, 40];
 
     var label = '# of Votes';
     var type = props.type;
@@ -3434,27 +3493,31 @@ function SpikesLineChart(props) {
     };
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    "class": "container-sm smaller",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-      "class": "row justify-content-start",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        "class": "col-4"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        "class": "col-7",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
-          children: "Votes Spike Line Chart"
+    "class": "chart-viewer",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+      "class": "viewerClose",
+      children: "X"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      "class": "container h-10 d-flex justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+        children: "Votes Spike Line Chart"
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      "class": "container smaller justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("canvas", {
+          id: "myChart"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        "class": "col-1"
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("canvas", {
-      id: "myChart"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_VotesPager__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
-      pageClick: props.getPageNumber,
-      type: 'line',
-      leftArrow: props.leftArrow,
-      rightArrow: props.rightArrow
-    }))]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      "class": "container h-100 d-flex justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_VotesPager__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
+        pageClick: props.getPageNumber,
+        type: 'line',
+        leftArrow: props.leftArrow,
+        rightArrow: props.rightArrow
+      }))
+    })]
   });
 }
 
@@ -3515,8 +3578,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 chart_js__WEBPACK_IMPORTED_MODULE_3__.Chart.register(chart_js__WEBPACK_IMPORTED_MODULE_3__.ArcElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.LineElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.BarElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.PointElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.BarController, chart_js__WEBPACK_IMPORTED_MODULE_3__.BubbleController, chart_js__WEBPACK_IMPORTED_MODULE_3__.DoughnutController, chart_js__WEBPACK_IMPORTED_MODULE_3__.LineController, chart_js__WEBPACK_IMPORTED_MODULE_3__.PieController, chart_js__WEBPACK_IMPORTED_MODULE_3__.PolarAreaController, chart_js__WEBPACK_IMPORTED_MODULE_3__.RadarController, chart_js__WEBPACK_IMPORTED_MODULE_3__.ScatterController, chart_js__WEBPACK_IMPORTED_MODULE_3__.CategoryScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.LinearScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.LogarithmicScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.RadialLinearScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.TimeScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.TimeSeriesScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.Decimation, chart_js__WEBPACK_IMPORTED_MODULE_3__.Filler, chart_js__WEBPACK_IMPORTED_MODULE_3__.Legend, chart_js__WEBPACK_IMPORTED_MODULE_3__.Title, chart_js__WEBPACK_IMPORTED_MODULE_3__.Tooltip, chart_js__WEBPACK_IMPORTED_MODULE_3__.SubTitle);
 function VotesLineChart2(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var ctx = document.getElementById('myChart').getContext('2d'); // let data = [65, 59, 80, 81, 56, 55, 40];
-
+    var ctx = document.getElementById('myChart').getContext('2d');
+    $('.viewerClose').on('click', function () {
+      $('.chart-viewer').css('margin-top', '0').css('transition', 'opacity 100s ease-in-out').css('z-index', '1').css('border-style', 'none');
+      $('.viewerClose').css('display', 'none');
+    });
     var label = '# of Votes';
     var type = props.type;
     var selected_index = props.pageNo;
@@ -3581,58 +3647,32 @@ function VotesLineChart2(props) {
     };
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    "class": "container-sm smaller",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-      "class": "row justify-content-start",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        "class": "col-4"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        "class": "col-7",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
-          children: "Total Votes Line Chart"
+    "class": "chart-viewer",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+      "class": "viewerClose",
+      children: "X"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      "class": "container h-10 d-flex justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
+        children: "Votes Line Chart"
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      "class": "container smaller justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("canvas", {
+          id: "myChart"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        "class": "col-1"
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("canvas", {
-      id: "myChart"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_VotesPager__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
-      pageClick: props.getPageNumber,
-      type: 'line',
-      leftArrow: props.leftArrow,
-      rightArrow: props.rightArrow
-    }))]
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      "class": "container h-100 d-flex justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_VotesPager__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
+        pageClick: props.getPageNumber,
+        type: 'line',
+        leftArrow: props.leftArrow,
+        rightArrow: props.rightArrow
+      }))
+    })]
   });
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/HelloReact.js":
-/*!***********************************************!*\
-  !*** ./resources/js/components/HelloReact.js ***!
-  \***********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ HelloReact)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-// resources/js/components/HelloReact.js
-
-
-
-function HelloReact() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
-    children: "Hello React!"
-  });
-}
-
-if (document.getElementById('hello-react')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(HelloReact, {}), document.getElementById('hello-react'));
 }
 
 /***/ }),
@@ -3825,47 +3865,68 @@ function OuterTable(props) {
 }
 
 function VoteTableReact(props) {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    $('.viewerClose').on('click', function () {
+      $('.chart-viewer').css('margin-top', '0').css('transition', 'opacity 100s ease-in-out').css('z-index', '1').css('border-style', 'none');
+      $('.viewerClose').css('display', 'none');
+    });
+  });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(OuterTable, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tbody", {
-        children: props.theCurrentPages[props.pageNo - 1].map(function (row) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-              children: row.id
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-              children: row.bidenj
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-              children: row.biden_votes
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-              children: row.trumpd
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-              children: row.trump_votes
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-              children: row.other_votes
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-              children: row.timestamp
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-              children: row.votes
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-              children: row.total_vote_add
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-              children: row.trump_added
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-              children: row.biden_added
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-              children: row.remaining_percent_biden
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-              children: row.remaining_percent_trump
-            })]
-          });
+    "class": "chart-viewer",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+      "class": "viewerClose",
+      children: "X"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      "class": "container h-10 d-flex justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h4", {
+        children: "2020 Presidential Election Votes"
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      "class": "container smaller justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(OuterTable, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tbody", {
+          children: props.theCurrentPages[props.pageNo - 1].map(function (row) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                children: row.id
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                children: row.bidenj
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                children: row.biden_votes
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                children: row.trumpd
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                children: row.trump_votes
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                children: row.other_votes
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                children: row.timestamp
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                children: row.votes
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                children: row.total_vote_add
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                children: row.trump_added
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                children: row.biden_added
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                children: row.remaining_percent_biden
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                children: row.remaining_percent_trump
+              })]
+            });
+          })
         })
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_VotesPager__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
-      getPageNumber: props.getPageNumber,
-      type: props.type,
-      leftArrow: props.leftArrow,
-      rightArrow: props.rightArrow
-    }))]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      "class": "container h-100 d-flex justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_VotesPager__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
+        pageClick: props.getPageNumber,
+        type: 'line',
+        leftArrow: props.leftArrow,
+        rightArrow: props.rightArrow
+      }))
+    })]
   });
 }
 
@@ -3885,13 +3946,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _AppRouter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AppRouter */ "./resources/js/components/AppRouter.js");
-/* harmony import */ var _BarChart__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./BarChart */ "./resources/js/components/BarChart.js");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-/* harmony import */ var react_dropdown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dropdown */ "./node_modules/react-dropdown/dist/index.js");
-/* harmony import */ var react_dropdown_style_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-dropdown/style.css */ "./node_modules/react-dropdown/style.css");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var react_dropdown__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dropdown */ "./node_modules/react-dropdown/dist/index.js");
+/* harmony import */ var react_dropdown_style_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dropdown/style.css */ "./node_modules/react-dropdown/style.css");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 var _templateObject;
@@ -3934,8 +3994,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
-
-var NavUnlisted = styled_components__WEBPACK_IMPORTED_MODULE_8__["default"].ul(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  text-decoration: none;\n"])));
+var NavUnlisted = styled_components__WEBPACK_IMPORTED_MODULE_7__["default"].ul(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  text-decoration: none;\n"])));
 var linkStyle = {
   margin: "1rem",
   textDecoration: "none",
@@ -4001,25 +4060,35 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "rightArrow",
     value: function rightArrow(num) {
-      var newNum = parseInt(this.state.thePageSetNumber) * parseInt(this.state.thePageSize);
-      alert(newNum);
+      var newNum = Math.ceil(parseInt(this.state.thePageSetNumber) / this.state.thePageSize) * this.state.thePageSize + 1;
 
-      if (this.state.thePagingArray[num - 1] != null || this.state.thePagingArray[num - 1].length > 0) {
+      if (parseInt(num) < this.state.thePagingArray.length) {
         this.setState({
-          thePageSetNumber: parseInt(num),
-          pageNo: newNum - 1
+          thePageSetNumber: this.state.thePageSetNumber + 1,
+          pageNo: newNum
+        });
+      } else if (parseInt(num) >= this.state.thePagingArray.length) {
+        var newNum2 = (parseInt(this.state.thePageSetNumber) - 1) * this.state.thePageSize + 1;
+        this.setState({
+          thePageSetNumber: this.state.thePageSetNumber,
+          pageNo: newNum2
         });
       }
     }
   }, {
     key: "leftArrow",
     value: function leftArrow(num) {
-      var newNum = (parseInt(this.state.thePageSetNumber) - 1) * parseInt(this.state.thePageSize) + 1;
+      var newNum = Math.ceil((parseInt(this.state.thePageSetNumber) - 1) / this.state.thePageSize) * this.state.thePageSize + 1;
 
-      if (this.state.thePagingArray[num - 1] != null || this.state.thePagingArray[num - 1].length > 0) {
+      if (num > 0) {
         this.setState({
-          thePageSetNumber: parseInt(num),
-          pageNo: newNum
+          thePageSetNumber: parseInt(this.state.thePageSetNumber) - 1,
+          pageNo: parseInt(newNum) + 1
+        });
+      } else {
+        this.setState({
+          thePageSetNumber: 1,
+          pageNo: 1
         });
       }
     }
@@ -4535,49 +4604,49 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
         className: "wrapper",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
           "class": "container-fluid",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
             "class": "jumbotron text-center",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
               "class": "row justify-content-start",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                 "class": "col-3"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                 "class": "col-1",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
                   children: "Select a State: "
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                 "class": "col-4",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_dropdown__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_dropdown__WEBPACK_IMPORTED_MODULE_3__["default"], {
                   options: this.state.options,
                   onChange: this.selectState,
                   value: this.state.defaultOption,
                   placeholder: "Select an option"
                 })
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h1", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
               children: "Laravel/React 2020 Presidential Election Parser"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
               children: "Race Data:"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
               children: this.state.raceId
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
               children: this.state.raceSlug
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
               children: this.state.raceUrl
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("p", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("p", {
               children: ["State: ", this.state.theState]
             })]
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_AppRouter__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, this.state), {}, {
-          getPageNumber: this.getPageNumber,
-          rightArrow: this.rightArrow,
-          leftArrow: this.leftArrow
-        }))]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_AppRouter__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, this.state), {}, {
+            getPageNumber: this.getPageNumber,
+            rightArrow: this.rightArrow,
+            leftArrow: this.leftArrow
+          }))]
+        })
       });
     }
   }]);
@@ -4588,7 +4657,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
 
 
 if (document.getElementById('votes-table-react')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(VotesApp, {}), document.getElementById('votes-table-react'));
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(VotesApp, {}), document.getElementById('votes-table-react'));
 }
 
 /***/ }),
@@ -4614,52 +4683,47 @@ __webpack_require__.r(__webpack_exports__);
 function VotesPager(props) {
   var handlePage = function handlePage(e) {
     var pageNum = e.target.value;
-    props.getPageNumber(parseInt(pageNum) + 1);
+    props.getPageNumber(parseInt(pageNum));
     $('.page').css('background-color', 'rgb(239, 239, 239').css('border-color', 'rgb(255, 255, 255').css('border-width', '3px');
-    $('#page-' + pageNum).css('background-color', 'grey');
+    $('#page-' + pageNum).css('background-color', 'lightgrey');
   };
 
   var leftArrow = function leftArrow(e) {
-    var num = parseInt(props.thePageSetNumber) - 1;
+    var num = (parseInt(props.thePageSetNumber) - 1) * props.thePageSize;
     props.leftArrow(num);
   };
 
   var rightArrow = function rightArrow(e) {
-    var num = parseInt(props.thePageSetNumber) + 1;
+    var num = parseInt(props.thePageSetNumber) * props.thePageSize;
     props.rightArrow(num);
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    "class": "container",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      "class": "row",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        "class": "col-md-8 offset-md-3",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-          type: "button",
-          value: "<",
-          onClick: leftArrow
-        }), props.thePagingArray[parseInt(props.thePageSetNumber) - 1].map(function (num) {
-          return (
-            /*#__PURE__*/
-            //pagingArr.map((num) => (    
-            (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-              children: props.theCurrentPages[parseInt(num)] !== undefined && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                type: "button",
-                "class": "page",
-                id: "page-".concat(num),
-                value: num,
-                onClick: handlePage
-              })
-            })
-          );
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-          type: "button",
-          value: ">",
-          onClick: rightArrow
-        })]
-      })
-    })
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+      "class": "page-arrow",
+      type: "button",
+      value: "<",
+      onClick: leftArrow
+    }), props.thePagingArray[parseInt(props.thePageSetNumber) - 1].map(function (num) {
+      return (
+        /*#__PURE__*/
+        //pagingArr.map((num) => (    
+        (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+          children: props.theCurrentPages[parseInt(num)] !== undefined && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+            type: "button",
+            "class": "page",
+            id: "page-".concat(num + 1),
+            value: num + 1,
+            onClick: handlePage
+          })
+        })
+      );
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+      "class": "page-arrow",
+      type: "button",
+      value: ">",
+      onClick: rightArrow
+    })]
   });
 }
 
@@ -36926,204 +36990,6 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 process.umask = function() { return 0; };
-
-
-/***/ }),
-
-/***/ "./node_modules/react-chartjs-2/dist/index.js":
-/*!****************************************************!*\
-  !*** ./node_modules/react-chartjs-2/dist/index.js ***!
-  \****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Bar": () => (/* binding */ Bar),
-/* harmony export */   "Bubble": () => (/* binding */ Bubble),
-/* harmony export */   "Chart": () => (/* binding */ Chart),
-/* harmony export */   "Doughnut": () => (/* binding */ Doughnut),
-/* harmony export */   "Line": () => (/* binding */ Line),
-/* harmony export */   "Pie": () => (/* binding */ Pie),
-/* harmony export */   "PolarArea": () => (/* binding */ PolarArea),
-/* harmony export */   "Radar": () => (/* binding */ Radar),
-/* harmony export */   "Scatter": () => (/* binding */ Scatter),
-/* harmony export */   "getDatasetAtEvent": () => (/* binding */ getDatasetAtEvent),
-/* harmony export */   "getElementAtEvent": () => (/* binding */ getElementAtEvent),
-/* harmony export */   "getElementsAtEvent": () => (/* binding */ getElementsAtEvent)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/chart.esm.js");
-
-
-
-const defaultDatasetIdKey = 'label';
-function reforwardRef(ref, value) {
-    if (typeof ref === 'function') {
-        ref(value);
-    } else if (ref) {
-        ref.current = value;
-    }
-}
-function setOptions(chart, nextOptions) {
-    chart.options = {
-        ...nextOptions
-    };
-}
-function setLabels(currentData, nextLabels) {
-    currentData.labels = nextLabels;
-}
-function setDatasets(currentData, nextDatasets) {
-    let datasetIdKey = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : defaultDatasetIdKey;
-    const addedDatasets = [];
-    currentData.datasets = nextDatasets.map((nextDataset)=>{
-        // given the new set, find it's current match
-        const currentDataset = currentData.datasets.find((dataset)=>dataset[datasetIdKey] === nextDataset[datasetIdKey]
-        );
-        // There is no original to update, so simply add new one
-        if (!currentDataset || !nextDataset.data || addedDatasets.includes(currentDataset)) {
-            return {
-                ...nextDataset
-            };
-        }
-        addedDatasets.push(currentDataset);
-        Object.assign(currentDataset, nextDataset);
-        return currentDataset;
-    });
-}
-function cloneData(data) {
-    let datasetIdKey = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : defaultDatasetIdKey;
-    const nextData = {
-        labels: [],
-        datasets: []
-    };
-    setLabels(nextData, data.labels);
-    setDatasets(nextData, data.datasets, datasetIdKey);
-    return nextData;
-}
-/**
- * Get dataset from mouse click event
- * @param chart - Chart.js instance
- * @param event - Mouse click event
- * @returns Dataset
- */ function getDatasetAtEvent(chart, event) {
-    return chart.getElementsAtEventForMode(event.nativeEvent, 'dataset', {
-        intersect: true
-    }, false);
-}
-/**
- * Get single dataset element from mouse click event
- * @param chart - Chart.js instance
- * @param event - Mouse click event
- * @returns Dataset
- */ function getElementAtEvent(chart, event) {
-    return chart.getElementsAtEventForMode(event.nativeEvent, 'nearest', {
-        intersect: true
-    }, false);
-}
-/**
- * Get all dataset elements from mouse click event
- * @param chart - Chart.js instance
- * @param event - Mouse click event
- * @returns Dataset
- */ function getElementsAtEvent(chart, event) {
-    return chart.getElementsAtEventForMode(event.nativeEvent, 'index', {
-        intersect: true
-    }, false);
-}
-
-function ChartComponent(param, ref) {
-    let { height =150 , width =300 , redraw =false , datasetIdKey , type , data , options , plugins =[] , fallbackContent , ...props } = param;
-    const canvasRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-    const chartRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
-    const renderChart = ()=>{
-        if (!canvasRef.current) return;
-        chartRef.current = new chart_js__WEBPACK_IMPORTED_MODULE_1__.Chart(canvasRef.current, {
-            type,
-            data: cloneData(data, datasetIdKey),
-            options,
-            plugins
-        });
-        reforwardRef(ref, chartRef.current);
-    };
-    const destroyChart = ()=>{
-        reforwardRef(ref, null);
-        if (chartRef.current) {
-            chartRef.current.destroy();
-            chartRef.current = null;
-        }
-    };
-    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{
-        if (!redraw && chartRef.current && options) {
-            setOptions(chartRef.current, options);
-        }
-    }, [
-        redraw,
-        options
-    ]);
-    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{
-        if (!redraw && chartRef.current) {
-            setLabels(chartRef.current.config.data, data.labels);
-        }
-    }, [
-        redraw,
-        data.labels
-    ]);
-    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{
-        if (!redraw && chartRef.current && data.datasets) {
-            setDatasets(chartRef.current.config.data, data.datasets, datasetIdKey);
-        }
-    }, [
-        redraw,
-        data.datasets
-    ]);
-    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{
-        if (!chartRef.current) return;
-        if (redraw) {
-            destroyChart();
-            setTimeout(renderChart);
-        } else {
-            chartRef.current.update();
-        }
-    }, [
-        redraw,
-        options,
-        data.labels,
-        data.datasets
-    ]);
-    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{
-        renderChart();
-        return ()=>destroyChart()
-        ;
-    }, []);
-    return(/*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0__.createElement("canvas", Object.assign({
-        ref: canvasRef,
-        role: "img",
-        height: height,
-        width: width
-    }, props), fallbackContent));
-}
-const Chart = /*#__PURE__*/ (0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)(ChartComponent);
-
-function createTypedChart(type, registerables) {
-    chart_js__WEBPACK_IMPORTED_MODULE_1__.Chart.register(registerables);
-    return(/*#__PURE__*/ (0,react__WEBPACK_IMPORTED_MODULE_0__.forwardRef)((props, ref)=>/*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_0__.createElement(Chart, Object.assign({}, props, {
-            ref: ref,
-            type: type
-        }))
-    ));
-}
-const Line = /* #__PURE__ */ createTypedChart('line', chart_js__WEBPACK_IMPORTED_MODULE_1__.LineController);
-const Bar = /* #__PURE__ */ createTypedChart('bar', chart_js__WEBPACK_IMPORTED_MODULE_1__.BarController);
-const Radar = /* #__PURE__ */ createTypedChart('radar', chart_js__WEBPACK_IMPORTED_MODULE_1__.RadarController);
-const Doughnut = /* #__PURE__ */ createTypedChart('doughnut', chart_js__WEBPACK_IMPORTED_MODULE_1__.DoughnutController);
-const PolarArea = /* #__PURE__ */ createTypedChart('polarArea', chart_js__WEBPACK_IMPORTED_MODULE_1__.PolarAreaController);
-const Bubble = /* #__PURE__ */ createTypedChart('bubble', chart_js__WEBPACK_IMPORTED_MODULE_1__.BubbleController);
-const Pie = /* #__PURE__ */ createTypedChart('pie', chart_js__WEBPACK_IMPORTED_MODULE_1__.PieController);
-const Scatter = /* #__PURE__ */ createTypedChart('scatter', chart_js__WEBPACK_IMPORTED_MODULE_1__.ScatterController);
-
-
-//# sourceMappingURL=index.js.map
 
 
 /***/ }),

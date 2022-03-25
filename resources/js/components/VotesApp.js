@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Link, Route, Routes, Navigate } from 'react-router-dom';
 import AppRouter from './AppRouter';
-import BarChart from './BarChart';
 import styled from "styled-components";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
@@ -78,22 +77,34 @@ export default class VotesApp extends React.Component {
   }
 
   rightArrow(num){
-      let newNum = parseInt(this.state.thePageSetNumber)*parseInt(this.state.thePageSize);
-      alert(newNum);
-      if(this.state.thePagingArray[num-1] != null || this.state.thePagingArray[num-1].length>0){
-        this.setState({
-            thePageSetNumber:parseInt(num),
-            pageNo: newNum-1 
-        });
-    } 
+      let newNum = Math.ceil(parseInt(this.state.thePageSetNumber)/this.state.thePageSize)*(this.state.thePageSize) + 1;
+      if(parseInt(num) < this.state.thePagingArray.length){
+            this.setState({
+                thePageSetNumber:this.state.thePageSetNumber + 1,
+                pageNo: newNum
+            });
+        } 
+      else if(parseInt(num) >= this.state.thePagingArray.length){
+            let newNum2 = (parseInt(this.state.thePageSetNumber) - 1)*this.state.thePageSize + 1;
+            this.setState({
+                thePageSetNumber:this.state.thePageSetNumber,
+                pageNo: newNum2
+            });
+        }
   }
 
   leftArrow(num){
-      let newNum = (parseInt(this.state.thePageSetNumber)-1)*parseInt(this.state.thePageSize) + 1;
-      if(this.state.thePagingArray[num-1] != null || this.state.thePagingArray[num-1].length>0){
+      let newNum = Math.ceil((parseInt(this.state.thePageSetNumber) - 1)/this.state.thePageSize)*(this.state.thePageSize) + 1;
+      if(num > 0){
         this.setState({
-            thePageSetNumber:parseInt(num),
-            pageNo: newNum
+            thePageSetNumber:parseInt(this.state.thePageSetNumber) - 1,
+            pageNo: parseInt(newNum) + 1
+        })
+    }
+    else{
+        this.setState({
+            thePageSetNumber:1,
+            pageNo:1
         })
       }
     
@@ -641,16 +652,18 @@ export default class VotesApp extends React.Component {
                       <Dropdown options={this.state.options} onChange={this.selectState} value={this.state.defaultOption} placeholder="Select an option" /> 
                     </div>
                 </div>
-                <h1>Laravel/React 2020 Presidential Election Parser</h1> 
-                <h2>Race Data:</h2>   
+                <h3>Laravel/React 2020 Presidential Election Parser</h3> 
+                <h4>Race Data:</h4>   
                 <p>{ this.state.raceId }</p>
                 <p>{ this.state.raceSlug }</p>
                 <p>{ this.state.raceUrl }</p>
                 <p>State: { this.state.theState }</p>
-            </div>        
+                  
+            </div> 
+            <AppRouter {...this.state} getPageNumber={this.getPageNumber} rightArrow={this.rightArrow} leftArrow={this.leftArrow} />  
+             
         </div>     
     
-        <AppRouter {...this.state} getPageNumber={this.getPageNumber} rightArrow={this.rightArrow} leftArrow={this.leftArrow} />  
       </div>
       
       

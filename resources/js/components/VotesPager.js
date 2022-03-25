@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 
 
 export default function VotesPager(props){
-            
+          
     const handlePage = (e) => {
         let pageNum = e.target.value;
 
-        props.getPageNumber(parseInt(pageNum)+1);
+        props.getPageNumber(parseInt(pageNum));
         $('.page').css('background-color','rgb(239, 239, 239').css('border-color','rgb(255, 255, 255').css('border-width','3px');
-        $('#page-'+pageNum).css('background-color','grey');        
+        $('#page-'+pageNum).css('background-color','lightgrey');        
     }
 
 
@@ -17,37 +17,28 @@ export default function VotesPager(props){
 
   const leftArrow = (e) => {
   
-      let num = parseInt(props.thePageSetNumber) - 1;
+     let num = (parseInt(props.thePageSetNumber) - 1)*(props.thePageSize);
       props.leftArrow(num);
     }
 
   const rightArrow = (e) => {    
-         let num = parseInt(props.thePageSetNumber) + 1;
-          props.rightArrow(num);
+         let num = parseInt(props.thePageSetNumber)*(props.thePageSize);
+         props.rightArrow(num);
     }
 
 
     return(
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 offset-md-3">
-                    <input type="button" value="<" onClick={leftArrow}/>
-                    
-                    {  
-                    
-                            props.thePagingArray[parseInt(props.thePageSetNumber)-1].map((num) => (      
-                            //pagingArr.map((num) => (    
-                                <span>
-                                { props.theCurrentPages[parseInt(num)] !== undefined  && <input type="button" class="page" id={`page-${num}`} value={num} onClick={handlePage}/> }
-                                </span>
-                            ))
-                    
-                    }
-                    <input type="button" value=">" onClick={rightArrow}/>  
-                </div>
-            </div>
-           
-        </div>
-                    
-    );
+            <div>
+                <input class="page-arrow" type="button" value="<" onClick={leftArrow}/>                
+                {                      
+                    props.thePagingArray[parseInt(props.thePageSetNumber)-1].map((num) => (      
+                    //pagingArr.map((num) => (    
+                        <span>
+                        { props.theCurrentPages[parseInt(num)] !== undefined  && <input type="button" class="page" id={`page-${num+1}`} value={num+1} onClick={handlePage}/> }
+                        </span>
+                    ))                    
+                }                    
+                <input class="page-arrow" type="button" value=">" onClick={rightArrow}/> 
+            </div>                    
+        );
 }

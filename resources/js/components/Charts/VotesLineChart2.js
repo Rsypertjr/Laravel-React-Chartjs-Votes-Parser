@@ -63,8 +63,13 @@ export default function VotesLineChart2(props) {
     
     useEffect(() => {
         let ctx = document.getElementById('myChart').getContext('2d');
+        
+        
+        $('.viewerClose').on('click', function(){
+            $('.chart-viewer').css('margin-top','0').css('transition','opacity 100s ease-in-out').css('z-index','1').css('border-style','none');
+            $('.viewerClose').css('display','none');
+        });
 
-       // let data = [65, 59, 80, 81, 56, 55, 40];
         let label =  '# of Votes';
         let type = props.type;
         let selected_index = props.pageNo;
@@ -130,21 +135,21 @@ export default function VotesLineChart2(props) {
           myChart.destroy()
         }
 
+
       });
    
     return (
-        <div class="container-sm smaller">
-            <div class="row justify-content-start">
-                <div class="col-4"/>
-                <div class="col-7">
-                    <h4>Total Votes Line Chart</h4>
-                </div>
-                <div class="col-1">
-                </div>
+        <div class="chart-viewer">
+            <span class="viewerClose">X</span>            
+            <div class="container h-10 d-flex justify-content-center">
+                <h3>Votes Line Chart</h3>
             </div>
-            <canvas id="myChart"></canvas>           
-            <VotesPager {...props} pageClick={props.getPageNumber} type={'line'} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>
-             
+            <div class="container smaller justify-content-center">
+                <div><canvas id="myChart"></canvas></div>
+            </div> 
+            <div class="container h-100 d-flex justify-content-center">
+                <VotesPager {...props} pageClick={props.getPageNumber} type={'line'} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>
+            </div>   
         </div>
 
     );

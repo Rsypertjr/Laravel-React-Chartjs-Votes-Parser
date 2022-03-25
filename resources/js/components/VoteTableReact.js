@@ -28,9 +28,20 @@ function OuterTable(props){
 
 export default function VoteTableReact(props)  {
              
+        useEffect(() => {
+            $('.viewerClose').on('click', function(){
+                $('.chart-viewer').css('margin-top','0').css('transition','opacity 100s ease-in-out').css('z-index','1').css('border-style','none');
+                $('.viewerClose').css('display','none');
+            });
+        });
 
-        return (
-            <div>
+        return (          
+        <div class="chart-viewer">
+            <span class="viewerClose">X</span>            
+            <div class="container h-10 d-flex justify-content-center">
+                <h4>2020 Presidential Election Votes</h4>
+            </div>
+            <div class="container smaller justify-content-center">
                 <OuterTable>
                     <tbody>
                         { props.theCurrentPages[props.pageNo-1].map(row => 
@@ -52,9 +63,10 @@ export default function VoteTableReact(props)  {
                         )}                  
                     </tbody>
                 </OuterTable>  
-                <VotesPager {...props} getPageNumber={props.getPageNumber} type={props.type} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>
-            
-            </div>
-        
+            </div> 
+            <div class="container h-100 d-flex justify-content-center">
+                <VotesPager {...props} pageClick={props.getPageNumber} type={'line'} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>
+            </div> 
+        </div>        
         );
 }

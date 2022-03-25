@@ -64,6 +64,12 @@ export default function DiffLineChart(props) {
     useEffect(() => {
         let ctx = document.getElementById('myChart').getContext('2d');
 
+        $('.viewerClose').on('click', function(){
+            $('.chart-viewer').css('margin-top','0').css('transition','opacity 100s ease-in-out').css('z-index','1').css('border-style','none');
+            $('.viewerClose').css('display','none');
+        });
+ 
+
        // let data = [65, 59, 80, 81, 56, 55, 40];
         let label =  '# of Votes';
         let type = props.type;
@@ -121,21 +127,19 @@ export default function DiffLineChart(props) {
 
       });
    
-    return (
-        <div class="container-sm smaller">
-            <div class="row justify-content-start">
-                <div class="col-3"/>
-                <div class="col-8">
-                    <h4>Incremental Gain/Loss of Votes</h4>
-                </div>
-                <div class="col-1">
-                </div>
-            </div>                
-            <canvas id="myChart"></canvas>           
-            <VotesPager {...props} pageClick={props.getPageNumber} type={'line'} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>
-             
+    return (      
+        <div class="chart-viewer">
+            <span class="viewerClose">X</span>            
+            <div class="container h-10 d-flex justify-content-center">
+                <h4>Incremental Gain/Loss of Votes</h4>
+            </div>
+            <div class="container smaller justify-content-center">
+                <div><canvas id="myChart"></canvas></div>
+            </div> 
+            <div class="container h-100 d-flex justify-content-center">
+                <VotesPager {...props} pageClick={props.getPageNumber} type={'line'} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>
+            </div> 
         </div>
-
     );
 
 }

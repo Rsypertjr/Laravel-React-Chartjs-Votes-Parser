@@ -30,6 +30,8 @@ const linkStyle = {
 export default function AppRouter(props){
 
 
+
+
     return(
         <BrowserRouter>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -63,9 +65,6 @@ export default function AppRouter(props){
               <li class="nav-item">
                 <a class="nav-link" href="#"><Link to="/binstackedchart" style={linkStyle} >Bin Stacked Chart</Link></a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#"><Link to="/testbarchart" style={linkStyle} >Test Bar Chart</Link></a>
-              </li>
             </ul>
           </div>
         </nav>
@@ -74,7 +73,7 @@ export default function AppRouter(props){
             <Route path="/voteslinechart" element={<VotesLineChart2 {...props} getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow}/>} />
             <Route path="/spikeslinechart" element={<SpikesLineChart {...props} getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow}  />}/>
             <Route path="/difflinechart" element={<DiffLineChart  {...props} getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />}/>
-            <Route path="/perlinechart" element={<PerLineChart />} />
+            <Route path="/perlinechart" element={<PerLineChart  {...props} getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />} />
             <Route path="/piechart" element={<PieChart />}/>
             <Route path="/stackedchart" element={<StackedChart />}/>
             <Route path="/binstackedchart" element={<BinStackedChart />} />

@@ -8,7 +8,8 @@ table.table.table-sm {
 }
 
 nav.navbar {
-    margin-bottom: 4em;
+    margin-bottom: 1em;
+    margin-top:-5em;
 }
 
 .col-4 {
@@ -24,7 +25,8 @@ nav.navbar {
 }
 
 .jumbotron {
-    zoom:70%;
+    transform:scale(0.65);
+    margin-top:-4em;
 }  
 
 .vertical-scrollable > .row {
@@ -42,19 +44,40 @@ nav.navbar {
   } 
   
   .smaller {
-      height:40em;
-      width:40em;
-      padding:0.5em;
-      margin-top:-3em;
-
+      height:65%;
+      width:65%;
   } 
 
-  .col-md-8{
+  .csmaller {
+    height:50%;
+    width:50%;
+
+} 
+
+.chart-viewer {
+    opacity:0.90;
+    transform:scale(0.90);
+    margin-top: -15em;
+    transition : opacity 100s ease-in-out;
+    z-index:10;
+    border-style:outset;
+    background-color:white;
+    padding:2em;
+}
+
+.col-md-8{
     margin-top:1em;
   }
 
  #myChart{
      margin-bottom:1em;
+ }
+
+
+ .viewerClose{
+     position:relative;
+     float:left;
+     display:block;
  }
   /*
   .col-sm-12:nth-child(2n+1) { 
