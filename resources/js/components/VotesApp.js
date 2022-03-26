@@ -57,7 +57,7 @@ export default class VotesApp extends React.Component {
           chartData:{},
           graphType:'table',
           goto_Linechart: false,
-          parse_resolution: 15,
+          parse_resolution: 10,
           noOfChartPages:0,
           theChartArray:[]
         
@@ -106,10 +106,10 @@ export default class VotesApp extends React.Component {
             });
         }
      else if(type != 'table' && parseInt(num) >= this.state.chartData.dateHeadersStore.length){
-            let newNum2 = (parseInt(this.state.thePageSetNumber) - 1)*this.state.thePageSize;
+            //let newNum2 = (parseInt(this.state.thePageSetNumber) - 1)*this.state.thePageSize;
             this.setState({
                 thePageSetNumber:this.state.thePageSetNumber,
-                pageNo: newNum2
+                pageNo: num - this.state.thePageSize
             });
             $('.page').css('background-color','rgb(239, 239, 239').css('border-color','rgb(255, 255, 255').css('border-width','3px');
             $('#page-'+newNum2).css('background-color','lightgrey');            
@@ -546,6 +546,11 @@ export default class VotesApp extends React.Component {
         pageNo: 1,
         thePageSetNumber:1
       });
+
+        if($('.chart-viewer'))
+           $('.chart-viewer').css('transition','opacity 5s ease-in-out').css('transition-delay','2s').css('z-index','10').css('margin-top','-15em').css('border-style','none').css('opacity','0.90');
+           
+        $('.viewerClose').css('display','block');
 
     
   }
