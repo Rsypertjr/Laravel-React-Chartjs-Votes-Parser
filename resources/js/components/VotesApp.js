@@ -91,10 +91,10 @@ export default class VotesApp extends React.Component {
                 pageNo: newNum
             });
         } 
-      else if(type != 'table' && parseInt(num) < (Math.ceil(this.state.chartData.dateHeadersStore.length/this.state.thePageSize))){
+      else if(type != 'table' && parseInt(num) < this.state.chartData.dateHeadersStore.length){
             this.setState({
-                thePageSetNumber:this.state.thePageSetNumber + 1,
-                pageNo: newNum
+                thePageSetNumber:this.state.thePageSetNumber+1,
+                pageNo: num
             });
         } 
       else if(type == 'table' && parseInt(num) >= this.state.thePagingArray.length){
@@ -106,7 +106,7 @@ export default class VotesApp extends React.Component {
             });
         }
      else if(type != 'table' && parseInt(num) >= this.state.chartData.dateHeadersStore.length){
-            let newNum2 = (parseInt(this.state.thePageSetNumber) - 1)*this.state.thePageSize + 1;
+            let newNum2 = (parseInt(this.state.thePageSetNumber) - 1)*this.state.thePageSize;
             this.setState({
                 thePageSetNumber:this.state.thePageSetNumber,
                 pageNo: newNum2
@@ -117,21 +117,23 @@ export default class VotesApp extends React.Component {
   }
 
   leftArrow(obj){
-      let newNum = (parseInt(this.state.thePageSetNumber) - 1)*(this.state.thePageSize) + 1;
+     
       let num = obj.num;
-      if(num > 0){
+      let newNum = parseInt(num) -this.state.thePageSize;
+      if(newNum > 0){
         this.setState({
             thePageSetNumber:parseInt(this.state.thePageSetNumber) - 1,
-            pageNo: parseInt(newNum) + 1
-        })
+            pageNo: parseInt(newNum)
+        });
+        $('.page').css('background-color','rgb(239, 239, 239').css('border-color','rgb(255, 255, 255').css('border-width','3px');
+            $('#page-'+newNum).css('background-color','lightgrey');             
     }
-    else{
+    else {
         this.setState({
             thePageSetNumber:1,
-            pageNo:1
-        })
-      }
-    
+            pageNo: 1
+      });
+    }
   }
 
 
@@ -264,30 +266,9 @@ export default class VotesApp extends React.Component {
           
         }
     }
-    this.setState({
-        noOfChartPages: datedatabiden.length
-    });
-    var arr = [];
-    for(var i=0;i<this.state.noOfChartPages;i++){
-        arr[i]=i;
-    }
+   
 
-    var arr2 = [];
-    for(var i=0;i<arr.length;i++){
-        arr2[i]=[];
-        for(var j = i*parseInt(this.state.thePageSize); j <= (i*parseInt(this.state.thePageSize)+parseInt(this.state.thePageSize)-1); j++ ){   
-            if(j > 0)
-                arr2[i].push(j); 
-            
-      }       
-    }
- 
-
-    this.setState({
-        theChartArray: arr2
-    });
-
-    datedatabidenadd_store = datedatabidenadd.map((item) => item);
+    datedatabidenadd_store = datedatabidenadd.map((item) => item != null? item: item.delete());
     datedatatrumpadd_store = datedatatrumpadd.map((item) => item);
     
     datedataotheradd_store = datedataotheradd.map((item) => item);
@@ -329,7 +310,48 @@ export default class VotesApp extends React.Component {
             }
     }
 
+   // Trim Out Nulls
+     
+    dateheaders_store  = dateheaders_store.filter((i) => i.length > 0);
+    datedatabiden_store  = datedatabiden_store.filter((i) => i.length > 0);
+    datedatabidenadd_store  = datedatabidenadd_store.filter((i) => i.length > 0);
+    datedatabidenadddiff_store  = datedatabidenadddiff_store.filter((i) => i.length > 0);
+    datedatatrump_store  = datedatatrump_store.filter((i) => i.length > 0);
+    datedatatrumpadd_store  = datedatatrumpadd_store.filter((i) => i.length > 0);
+    datedatatrumpadddiff_store  = datedatatrumpadddiff_store.filter((i) => i.length > 0);
+    datedatatotal_store  = datedatatotal_store.filter((i) => i.length > 0);
+    datedataother_store  = datedataother_store.filter((i) => i.length > 0);
+    datedatatotaladd_store  = datedatatotaladd_store.filter((i) => i.length > 0);
+    datedataotheradd_store  = datedataotheradd_store.filter((i) => i.length > 0);
+    perremainingtrump_store  = perremainingtrump_store.filter((i) => i.length > 0);
+    perremainingbiden_store  = perremainingbiden_store.filter((i) => i.length > 0);
+  
 
+    this.setState({
+        noOfChartPages: dateheaders_store.length
+    });
+    var arr = [];
+    for(var i=0;i<this.state.noOfChartPages;i++){
+        arr[i]=i;
+    }
+
+    var arr2 = [];
+    for(var i=0;i<arr.length;i++){
+        arr2[i]=[];
+        for(var j = i*parseInt(this.state.thePageSize); j <= (i*parseInt(this.state.thePageSize)+parseInt(this.state.thePageSize)-1); j++ ){   
+           arr2[i].push(j); 
+            
+      }       
+    }
+ 
+
+    this.setState({
+        theChartArray: arr2
+    });
+
+
+
+    
     // Fill Votebins
 
     
@@ -343,7 +365,7 @@ export default class VotesApp extends React.Component {
     };
   
   
-   let step = parseInt(200000)/(this.state.theNumberOfPages*10);
+   let step = Math.floor(parseInt(200000)/(this.state.noOfChartPages*10));
     //var step = 2500;
     interval = vote_bin.interval;
     while(interval <= 200000){
@@ -430,11 +452,18 @@ export default class VotesApp extends React.Component {
 
         }
     
-
-
-
-
-
+        // Trim Out Zeros
+        bidenslices = bidenslices.filter((i) => i != 0);
+        trumpslices = trumpslices.filter((i) => i != 0);
+        otherslices = otherslices.filter((i) => i != 0);
+       totalslices = totalslices.filter((i) => i != 0);
+        pieheaders = pieheaders.filter((i) => i != null);
+        vote_bins = vote_bins.filter((i) => i != null);
+        bin_headers = bin_headers.filter((i) => i != null);
+        bin_biden = bin_biden.filter((i) => i != null);
+        bin_trump = bin_trump.filter((i) => i != null);
+    
+    
 
     let dataLoad = {
       "dateHeadersStore": dateheaders_store,

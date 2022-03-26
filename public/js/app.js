@@ -3133,7 +3133,7 @@ function ChartPager(props) {
   };
 
   var leftArrow = function leftArrow(e) {
-    var num = (parseInt(props.thePageSetNumber) - 1) * props.thePageSize;
+    var num = parseInt(props.thePageSetNumber) * parseInt(props.thePageSize) - 1;
     var obj = {};
     obj.num = num;
     obj.type = props.type;
@@ -3155,19 +3155,15 @@ function ChartPager(props) {
       value: "<",
       onClick: leftArrow
     }), props.theChartArray[parseInt(props.thePageSetNumber) - 1].map(function (num) {
-      return (
-        /*#__PURE__*/
-        //pagingArr.map((num) => (    
-        (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-          children: props.chartData.dateHeadersStore[num - 1].length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-            type: "button",
-            "class": "page",
-            id: "page-".concat(num),
-            value: num,
-            onClick: handlePage
-          })
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+        children: num < props.chartData.dateHeadersStore.length - 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+          type: "button",
+          "class": "page",
+          id: "page-".concat(num + 1),
+          value: num + 1,
+          onClick: handlePage
         })
-      );
+      });
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
       "class": "page-arrow",
       type: "button",
@@ -4396,10 +4392,10 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
           thePageSetNumber: this.state.thePageSetNumber + 1,
           pageNo: newNum
         });
-      } else if (type != 'table' && parseInt(num) < Math.ceil(this.state.chartData.dateHeadersStore.length / this.state.thePageSize)) {
+      } else if (type != 'table' && parseInt(num) < this.state.chartData.dateHeadersStore.length) {
         this.setState({
           thePageSetNumber: this.state.thePageSetNumber + 1,
-          pageNo: newNum
+          pageNo: num
         });
       } else if (type == 'table' && parseInt(num) >= this.state.thePagingArray.length) {
         var newNum2 = (parseInt(this.state.thePageSetNumber) - 1) * this.state.thePageSize + 1;
@@ -4408,7 +4404,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
           pageNo: newNum2
         });
       } else if (type != 'table' && parseInt(num) >= this.state.chartData.dateHeadersStore.length) {
-        var _newNum = (parseInt(this.state.thePageSetNumber) - 1) * this.state.thePageSize + 1;
+        var _newNum = (parseInt(this.state.thePageSetNumber) - 1) * this.state.thePageSize;
 
         this.setState({
           thePageSetNumber: this.state.thePageSetNumber,
@@ -4421,14 +4417,16 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "leftArrow",
     value: function leftArrow(obj) {
-      var newNum = (parseInt(this.state.thePageSetNumber) - 1) * this.state.thePageSize + 1;
       var num = obj.num;
+      var newNum = parseInt(num) - this.state.thePageSize;
 
-      if (num > 0) {
+      if (newNum > 0) {
         this.setState({
           thePageSetNumber: parseInt(this.state.thePageSetNumber) - 1,
-          pageNo: parseInt(newNum) + 1
+          pageNo: parseInt(newNum)
         });
+        $('.page').css('background-color', 'rgb(239, 239, 239').css('border-color', 'rgb(255, 255, 255').css('border-width', '3px');
+        $('#page-' + newNum).css('background-color', 'lightgrey');
       } else {
         this.setState({
           thePageSetNumber: 1,
@@ -4579,30 +4577,8 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
         }
       }
 
-      this.setState({
-        noOfChartPages: datedatabiden.length
-      });
-      var arr = [];
-
-      for (var i = 0; i < this.state.noOfChartPages; i++) {
-        arr[i] = i;
-      }
-
-      var arr2 = [];
-
-      for (var i = 0; i < arr.length; i++) {
-        arr2[i] = [];
-
-        for (var j = i * parseInt(this.state.thePageSize); j <= i * parseInt(this.state.thePageSize) + parseInt(this.state.thePageSize) - 1; j++) {
-          if (j > 0) arr2[i].push(j);
-        }
-      }
-
-      this.setState({
-        theChartArray: arr2
-      });
       datedatabidenadd_store = datedatabidenadd.map(function (item) {
-        return item;
+        return item != null ? item : item["delete"]();
       });
       datedatatrumpadd_store = datedatatrumpadd.map(function (item) {
         return item;
@@ -4668,9 +4644,71 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
           trumpslices.push(total_trump);
           otherslices.push(total_other);
         }
-      } // Fill Votebins
-      // Set up Vote Bins
+      } // Trim Out Nulls
 
+
+      dateheaders_store = dateheaders_store.filter(function (i) {
+        return i.length > 0;
+      });
+      datedatabiden_store = datedatabiden_store.filter(function (i) {
+        return i.length > 0;
+      });
+      datedatabidenadd_store = datedatabidenadd_store.filter(function (i) {
+        return i.length > 0;
+      });
+      datedatabidenadddiff_store = datedatabidenadddiff_store.filter(function (i) {
+        return i.length > 0;
+      });
+      datedatatrump_store = datedatatrump_store.filter(function (i) {
+        return i.length > 0;
+      });
+      datedatatrumpadd_store = datedatatrumpadd_store.filter(function (i) {
+        return i.length > 0;
+      });
+      datedatatrumpadddiff_store = datedatatrumpadddiff_store.filter(function (i) {
+        return i.length > 0;
+      });
+      datedatatotal_store = datedatatotal_store.filter(function (i) {
+        return i.length > 0;
+      });
+      datedataother_store = datedataother_store.filter(function (i) {
+        return i.length > 0;
+      });
+      datedatatotaladd_store = datedatatotaladd_store.filter(function (i) {
+        return i.length > 0;
+      });
+      datedataotheradd_store = datedataotheradd_store.filter(function (i) {
+        return i.length > 0;
+      });
+      perremainingtrump_store = perremainingtrump_store.filter(function (i) {
+        return i.length > 0;
+      });
+      perremainingbiden_store = perremainingbiden_store.filter(function (i) {
+        return i.length > 0;
+      });
+      this.setState({
+        noOfChartPages: dateheaders_store.length
+      });
+      var arr = [];
+
+      for (var i = 0; i < this.state.noOfChartPages; i++) {
+        arr[i] = i;
+      }
+
+      var arr2 = [];
+
+      for (var i = 0; i < arr.length; i++) {
+        arr2[i] = [];
+
+        for (var j = i * parseInt(this.state.thePageSize); j <= i * parseInt(this.state.thePageSize) + parseInt(this.state.thePageSize) - 1; j++) {
+          arr2[i].push(j);
+        }
+      }
+
+      this.setState({
+        theChartArray: arr2
+      }); // Fill Votebins
+      // Set up Vote Bins
 
       var index = 0;
       var interval = 0;
@@ -4679,7 +4717,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
         "biden_in_bin": 0,
         "trump_in_bin": 0
       };
-      var step = parseInt(200000) / (this.state.theNumberOfPages * 10); //var step = 2500;
+      var step = Math.floor(parseInt(200000) / (this.state.noOfChartPages * 10)); //var step = 2500;
 
       interval = vote_bin.interval;
 
@@ -4750,8 +4788,36 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
           bin_biden[index].push(vote_bins[_i].biden_in_bin);
           bin_trump[index].push(vote_bins[_i].trump_in_bin);
         }
-      }
+      } // Trim Out Zeros
 
+
+      bidenslices = bidenslices.filter(function (i) {
+        return i != 0;
+      });
+      trumpslices = trumpslices.filter(function (i) {
+        return i != 0;
+      });
+      otherslices = otherslices.filter(function (i) {
+        return i != 0;
+      });
+      totalslices = totalslices.filter(function (i) {
+        return i != 0;
+      });
+      pieheaders = pieheaders.filter(function (i) {
+        return i != null;
+      });
+      vote_bins = vote_bins.filter(function (i) {
+        return i != null;
+      });
+      bin_headers = bin_headers.filter(function (i) {
+        return i != null;
+      });
+      bin_biden = bin_biden.filter(function (i) {
+        return i != null;
+      });
+      bin_trump = bin_trump.filter(function (i) {
+        return i != null;
+      });
       var dataLoad = {
         "dateHeadersStore": dateheaders_store,
         "dateDataBidenStore": datedatabiden_store,

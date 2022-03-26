@@ -19,7 +19,7 @@ export default function ChartPager(props){
     
 
     const leftArrow = (e) => {  
-      let num = (parseInt(props.thePageSetNumber) - 1)*(props.thePageSize);
+      let num = parseInt(props.thePageSetNumber)*parseInt(props.thePageSize) - 1;
       let obj = {};
       obj.num = num;
       obj.type = props.type;
@@ -37,14 +37,15 @@ export default function ChartPager(props){
 
 
     return(
+        
             <div>
+                
                 <input class="page-arrow" type="button" value="<" onClick={leftArrow}/>                
                 {  
                 
                 props.theChartArray[parseInt(props.thePageSetNumber)-1].map((num) => (      
-                    //pagingArr.map((num) => (    
                         <span>
-                        { (props.chartData.dateHeadersStore[num-1].length > 0 ) &&  <input type="button" class="page" id={`page-${num}`} value={num} onClick={handlePage}/> }
+                        { (num < (props.chartData.dateHeadersStore.length-1)) && <input type="button" class="page" id={`page-${num+1}`} value={num+1} onClick={handlePage}/> }
                         </span>
                     ))              
                          
