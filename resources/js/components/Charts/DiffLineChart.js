@@ -2,6 +2,9 @@ import {React, useEffect, useState} from 'react';
 import ReactDOM from 'react-dom';
 import { Redirect } from 'react-router-dom';
 import ChartPager from '../ChartPager';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
+
 import {
     Chart,
     ArcElement,
@@ -58,6 +61,30 @@ import {
   );
   
 
+  const dataLoad = {
+    dateHeadersStore: [],
+    dateDataBidenStore: [],
+    dateDataBidenAddStore: [],
+    dateDataBidenAddDiffStore: [],
+    dateDataTrumpStore: [],
+    dateDataTrumpAddStore: [],
+    dateDataTrumpAddDiffStore: [],
+    dateDataTotalStore: [],
+    dateDataOtherStore: [],
+    dateDataOtherAddStore: [],
+    dateDataTotalAddStore: [],
+    perRemainingTrumpStore: [],
+    perRemainingBidenStore: [],
+    bidenSlices: [],
+    trumpSlices: [],
+    otherSlices: [],
+    totalSlices: [],
+    pieHeaders: [],
+    voteBins: [],
+    bin_headers: [],
+    bin_biden: [],
+    bin_trump: []
+  };
 
 export default function DiffLineChart(props) {
     
@@ -74,11 +101,11 @@ export default function DiffLineChart(props) {
         let label =  '# of Votes';
         let type = props.type;
         let selected_index = props.pageNo;
+
         let bgColors = ['red','orange','yellow','lime','green','teal','blue','purple']; 
         let bdColors =  ['black'];
         
         let chartData =   props.chartData;
-        //alert(JSON.stringify(chartData));
         let date_headers =    chartData.dateHeadersStore.map((item) => item);
         let datedata_biden_diff_add = chartData.dateDataBidenAddDiffStore.map((item) => item);
         let datedata_trump_diff_add = chartData.dateDataTrumpAddDiffStore.map((item) => item);
@@ -126,10 +153,33 @@ export default function DiffLineChart(props) {
         }
 
       });
-   
+      const selectResolution = (e) => {    
+               props.selectResolution(e.target.value);        
+        }
+    
+    
+
+
+
     return (      
         <div class="chart-viewer">
-            <span class="viewerClose">X</span>            
+            <span class="viewerClose">X</span>         
+            <div class="container">
+                <div class="row justify-content-start">
+                    <div class="btn-group dropright">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Select Chart Resolution
+                        </button>
+                        <div class="dropdown-menu">
+                            { props.theResolutions.map((res) => 
+                               <input type="input" class="dropdown-item" href="#" id={res} onClick={selectResolution} value={res}/>
+                            )}
+                         
+                        </div>
+                    </div>
+                </div>
+            </div>    
+               
             <div class="container h-10 d-flex justify-content-center">
                 <h4>Incremental Gain/Loss of Votes</h4>
             </div>

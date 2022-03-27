@@ -72,7 +72,7 @@ export default function AppRouter(props){
             <Route exact path="/votestable" element={<VoteTableReact {...props} getPageNumber={props.getPageNumber} type={'table'} rightArrow={props.rightArrow} leftArrow={props.leftArrow}/>} />
             <Route path="/voteslinechart" element={<VotesLineChart2 {...props} getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow}/>} />
             <Route path="/spikeslinechart" element={<SpikesLineChart {...props} getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow}  />}/>
-            <Route path="/difflinechart" element={<DiffLineChart  {...props} getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />}/>
+            <Route path="/difflinechart" element={<DiffLineChart  {...props} selectResolution={props.selectResolution} getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />}/>
             <Route path="/perlinechart" element={<PerLineChart  {...props} getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />} />
             <Route path="/piechart" element={<PieChart />}/>
             <Route path="/barchart" element={<BarChart  {...props} getPageNumber={props.getPageNumber} type={'bar'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />}/>

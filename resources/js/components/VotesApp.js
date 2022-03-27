@@ -26,6 +26,7 @@ const states = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado",
 "North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee",
 "Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]; 
 
+const resolutions= [5,10,15,20];
 
 export default class VotesApp extends React.Component {
   constructor(props){
@@ -34,9 +35,11 @@ export default class VotesApp extends React.Component {
       this.getVotes = this.getVotes.bind(this);
       this.selectState = this.selectState.bind(this);
       this.getStateData = this.getStateData.bind(this);
+      this.getChartsData = this.getChartsData.bind(this);
       this.getPageNumber = this.getPageNumber.bind(this);
       this.leftArrow = this.leftArrow.bind(this);
       this.rightArrow = this.rightArrow.bind(this);
+      this.selectResolution = this.selectResolution.bind(this);
       this.state = {
           theVotes: [],
           DataisLoaded: false,
@@ -59,7 +62,8 @@ export default class VotesApp extends React.Component {
           goto_Linechart: false,
           parse_resolution: 10,
           noOfChartPages:0,
-          theChartArray:[]
+          theChartArray:[],
+          theResolutions: resolutions
         
 
 
@@ -156,7 +160,6 @@ export default class VotesApp extends React.Component {
 
         pagingArray = JSON.parse(JSON.stringify(result.pagingArray));   
         numPages = Math.ceil(currentPages.length);
-        // let chartData = this.getChartsData(theVotes);
 
 
        
@@ -173,11 +176,10 @@ export default class VotesApp extends React.Component {
       });
 
       
-      let chartData = this.getChartsData(theVotes);
+      let chartData = this.getChartsData(this.state.parse_resolution);
       //alert(JSON.stringify(chartData));
 
-      this.setState({
-       
+      this.setState({       
         chartData: chartData
     });
 
@@ -202,7 +204,9 @@ export default class VotesApp extends React.Component {
           
   }
 
-  getChartsData(vote_rows){
+  getChartsData(parse_interval){
+
+    let vote_rows = this.state.theVotes;
     var vote_bins = [];
     var dateheaders = [];
     var datedatabiden = [];
@@ -237,9 +241,8 @@ export default class VotesApp extends React.Component {
     var trumpslices = [];
     var otherslices = [];
     var pieheaders = [];
-    var parse_interval = this.state.parse_resolution;
-    for(i=0;i<vote_rows.length;i++){
 
+    for(i=0;i<vote_rows.length;i++){
       
         dateheaders[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.timestamp);
         datedatabiden[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.biden_votes);
@@ -548,11 +551,18 @@ export default class VotesApp extends React.Component {
       });
 
         if($('.chart-viewer'))
-           $('.chart-viewer').css('transition','opacity 5s ease-in-out').css('transition-delay','2s').css('z-index','10').css('margin-top','-15em').css('border-style','none').css('opacity','0.90');
+           $('.chart-viewer').css('transition','opacity 5s ease-in-out').css('transition-delay','2s').css('z-index','10').css('margin-top','-15em')
+           .css('border-style','none').css('opacity','0.90').css('border-style','outset');
            
-        $('.viewerClose').css('display','block');
+        $('.viewerClose').css('display','block');    
+  }
 
-    
+  selectResolution(e){
+      
+      this.setState({     
+        chartData: this.getChartsData(parseInt(e))  
+       });
+       
   }
 
 
@@ -688,9 +698,8 @@ export default class VotesApp extends React.Component {
                 <p>{ this.state.raceUrl }</p>
                 <p>State: { this.state.theState }</p>
                   
-            </div> 
-            <AppRouter {...this.state} getPageNumber={this.getPageNumber} rightArrow={this.rightArrow} leftArrow={this.leftArrow} />  
-             
+            </div>             
+            <AppRouter {...this.state} selectResolution={this.selectResolution}  getPageNumber={this.getPageNumber} rightArrow={this.rightArrow} leftArrow={this.leftArrow} />              
         </div>     
     
       </div>

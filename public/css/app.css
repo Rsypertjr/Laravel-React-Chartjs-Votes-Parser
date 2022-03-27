@@ -78,6 +78,7 @@ nav.navbar {
      position:relative;
      float:left;
      display:block;
+     cursor:pointer;
  }
   /*
   .col-sm-12:nth-child(2n+1) { 

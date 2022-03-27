@@ -3064,6 +3064,7 @@ function AppRouter(props) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
         path: "/difflinechart",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Charts_DiffLineChart__WEBPACK_IMPORTED_MODULE_4__["default"], _objectSpread(_objectSpread({}, props), {}, {
+          selectResolution: props.selectResolution,
           getPageNumber: props.getPageNumber,
           type: 'line',
           rightArrow: props.rightArrow,
@@ -3470,8 +3471,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _ChartPager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ChartPager */ "./resources/js/components/ChartPager.js");
-/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/chart.esm.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_dropdown__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dropdown */ "./node_modules/react-dropdown/dist/index.js");
+/* harmony import */ var react_dropdown_style_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dropdown/style.css */ "./node_modules/react-dropdown/style.css");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/chart.esm.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -3485,7 +3488,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-chart_js__WEBPACK_IMPORTED_MODULE_3__.Chart.register(chart_js__WEBPACK_IMPORTED_MODULE_3__.ArcElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.LineElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.BarElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.PointElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.BarController, chart_js__WEBPACK_IMPORTED_MODULE_3__.BubbleController, chart_js__WEBPACK_IMPORTED_MODULE_3__.DoughnutController, chart_js__WEBPACK_IMPORTED_MODULE_3__.LineController, chart_js__WEBPACK_IMPORTED_MODULE_3__.PieController, chart_js__WEBPACK_IMPORTED_MODULE_3__.PolarAreaController, chart_js__WEBPACK_IMPORTED_MODULE_3__.RadarController, chart_js__WEBPACK_IMPORTED_MODULE_3__.ScatterController, chart_js__WEBPACK_IMPORTED_MODULE_3__.CategoryScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.LinearScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.LogarithmicScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.RadialLinearScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.TimeScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.TimeSeriesScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.Decimation, chart_js__WEBPACK_IMPORTED_MODULE_3__.Filler, chart_js__WEBPACK_IMPORTED_MODULE_3__.Legend, chart_js__WEBPACK_IMPORTED_MODULE_3__.Title, chart_js__WEBPACK_IMPORTED_MODULE_3__.Tooltip, chart_js__WEBPACK_IMPORTED_MODULE_3__.SubTitle);
+
+
+chart_js__WEBPACK_IMPORTED_MODULE_5__.Chart.register(chart_js__WEBPACK_IMPORTED_MODULE_5__.ArcElement, chart_js__WEBPACK_IMPORTED_MODULE_5__.LineElement, chart_js__WEBPACK_IMPORTED_MODULE_5__.BarElement, chart_js__WEBPACK_IMPORTED_MODULE_5__.PointElement, chart_js__WEBPACK_IMPORTED_MODULE_5__.BarController, chart_js__WEBPACK_IMPORTED_MODULE_5__.BubbleController, chart_js__WEBPACK_IMPORTED_MODULE_5__.DoughnutController, chart_js__WEBPACK_IMPORTED_MODULE_5__.LineController, chart_js__WEBPACK_IMPORTED_MODULE_5__.PieController, chart_js__WEBPACK_IMPORTED_MODULE_5__.PolarAreaController, chart_js__WEBPACK_IMPORTED_MODULE_5__.RadarController, chart_js__WEBPACK_IMPORTED_MODULE_5__.ScatterController, chart_js__WEBPACK_IMPORTED_MODULE_5__.CategoryScale, chart_js__WEBPACK_IMPORTED_MODULE_5__.LinearScale, chart_js__WEBPACK_IMPORTED_MODULE_5__.LogarithmicScale, chart_js__WEBPACK_IMPORTED_MODULE_5__.RadialLinearScale, chart_js__WEBPACK_IMPORTED_MODULE_5__.TimeScale, chart_js__WEBPACK_IMPORTED_MODULE_5__.TimeSeriesScale, chart_js__WEBPACK_IMPORTED_MODULE_5__.Decimation, chart_js__WEBPACK_IMPORTED_MODULE_5__.Filler, chart_js__WEBPACK_IMPORTED_MODULE_5__.Legend, chart_js__WEBPACK_IMPORTED_MODULE_5__.Title, chart_js__WEBPACK_IMPORTED_MODULE_5__.Tooltip, chart_js__WEBPACK_IMPORTED_MODULE_5__.SubTitle);
+var dataLoad = {
+  dateHeadersStore: [],
+  dateDataBidenStore: [],
+  dateDataBidenAddStore: [],
+  dateDataBidenAddDiffStore: [],
+  dateDataTrumpStore: [],
+  dateDataTrumpAddStore: [],
+  dateDataTrumpAddDiffStore: [],
+  dateDataTotalStore: [],
+  dateDataOtherStore: [],
+  dateDataOtherAddStore: [],
+  dateDataTotalAddStore: [],
+  perRemainingTrumpStore: [],
+  perRemainingBidenStore: [],
+  bidenSlices: [],
+  trumpSlices: [],
+  otherSlices: [],
+  totalSlices: [],
+  pieHeaders: [],
+  voteBins: [],
+  bin_headers: [],
+  bin_biden: [],
+  bin_trump: []
+};
 function DiffLineChart(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -3499,8 +3528,7 @@ function DiffLineChart(props) {
     var selected_index = props.pageNo;
     var bgColors = ['red', 'orange', 'yellow', 'lime', 'green', 'teal', 'blue', 'purple'];
     var bdColors = ['black'];
-    var chartData = props.chartData; //alert(JSON.stringify(chartData));
-
+    var chartData = props.chartData;
     var date_headers = chartData.dateHeadersStore.map(function (item) {
       return item;
     });
@@ -3534,7 +3562,7 @@ function DiffLineChart(props) {
 
     datasets = [dataset1, dataset2]; //alert(JSON.stringify(datasets));
 
-    var myChart = new chart_js__WEBPACK_IMPORTED_MODULE_3__.Chart(ctx, {
+    var myChart = new chart_js__WEBPACK_IMPORTED_MODULE_5__.Chart(ctx, {
       type: type,
       data: {
         labels: labels,
@@ -3545,26 +3573,59 @@ function DiffLineChart(props) {
       myChart.destroy();
     };
   });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+
+  var selectResolution = function selectResolution(e) {
+    props.selectResolution(e.target.value);
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
     "class": "chart-viewer",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
       "class": "viewerClose",
       children: "X"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+      "class": "container",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+        "class": "row justify-content-start",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          "class": "btn-group dropright",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+            type: "button",
+            "class": "btn btn-secondary dropdown-toggle",
+            "data-toggle": "dropdown",
+            "aria-haspopup": "true",
+            "aria-expanded": "false",
+            children: "Select Chart Resolution"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+            "class": "dropdown-menu",
+            children: props.theResolutions.map(function (res) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                type: "input",
+                "class": "dropdown-item",
+                href: "#",
+                id: res,
+                onClick: selectResolution,
+                value: res
+              });
+            })
+          })]
+        })
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
       "class": "container h-10 d-flex justify-content-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
         children: "Incremental Gain/Loss of Votes"
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
       "class": "container smaller justify-content-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("canvas", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("canvas", {
           id: "myChart"
         })
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
       "class": "container h-100 d-flex justify-content-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ChartPager__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ChartPager__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
         getPageNumber: props.getPageNumber,
         type: 'line',
         leftArrow: props.leftArrow,
@@ -4321,6 +4382,7 @@ var linkStyle = {
   fontSize: '0.8em'
 };
 var states = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
+var resolutions = [5, 10, 15, 20];
 
 var VotesApp = /*#__PURE__*/function (_React$Component) {
   _inherits(VotesApp, _React$Component);
@@ -4337,9 +4399,11 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
     _this.getVotes = _this.getVotes.bind(_assertThisInitialized(_this));
     _this.selectState = _this.selectState.bind(_assertThisInitialized(_this));
     _this.getStateData = _this.getStateData.bind(_assertThisInitialized(_this));
+    _this.getChartsData = _this.getChartsData.bind(_assertThisInitialized(_this));
     _this.getPageNumber = _this.getPageNumber.bind(_assertThisInitialized(_this));
     _this.leftArrow = _this.leftArrow.bind(_assertThisInitialized(_this));
     _this.rightArrow = _this.rightArrow.bind(_assertThisInitialized(_this));
+    _this.selectResolution = _this.selectResolution.bind(_assertThisInitialized(_this));
     _this.state = {
       theVotes: [],
       DataisLoaded: false,
@@ -4362,7 +4426,8 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
       goto_Linechart: false,
       parse_resolution: 10,
       noOfChartPages: 0,
-      theChartArray: []
+      theChartArray: [],
+      theResolutions: resolutions
     };
     var state = _this.state.defaultOption;
 
@@ -4456,7 +4521,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
 
         currentPages = JSON.parse(JSON.stringify(result.currentPages));
         pagingArray = JSON.parse(JSON.stringify(result.pagingArray));
-        numPages = Math.ceil(currentPages.length); // let chartData = this.getChartsData(theVotes);
+        numPages = Math.ceil(currentPages.length);
 
         _this2.setState({
           theVotes: theVotes,
@@ -4469,7 +4534,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
           defaultOption: _this2.state.theState
         });
 
-        var chartData = _this2.getChartsData(theVotes); //alert(JSON.stringify(chartData));
+        var chartData = _this2.getChartsData(_this2.state.parse_resolution); //alert(JSON.stringify(chartData));
 
 
         _this2.setState({
@@ -4491,7 +4556,8 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "getChartsData",
-    value: function getChartsData(vote_rows) {
+    value: function getChartsData(parse_interval) {
+      var vote_rows = this.state.theVotes;
       var vote_bins = [];
       var dateheaders = [];
       var datedatabiden = [];
@@ -4524,7 +4590,6 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
       var trumpslices = [];
       var otherslices = [];
       var pieheaders = [];
-      var parse_interval = this.state.parse_resolution;
 
       for (i = 0; i < vote_rows.length; i++) {
         dateheaders[i] = vote_rows.slice(i * parseInt(parse_interval), i * parseInt(parse_interval) + parseInt(parse_interval)).map(function (item) {
@@ -4887,8 +4952,15 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
         pageNo: 1,
         thePageSetNumber: 1
       });
-      if ($('.chart-viewer')) $('.chart-viewer').css('transition', 'opacity 5s ease-in-out').css('transition-delay', '2s').css('z-index', '10').css('margin-top', '-15em').css('border-style', 'none').css('opacity', '0.90');
+      if ($('.chart-viewer')) $('.chart-viewer').css('transition', 'opacity 5s ease-in-out').css('transition-delay', '2s').css('z-index', '10').css('margin-top', '-15em').css('border-style', 'none').css('opacity', '0.90').css('border-style', 'outset');
       $('.viewerClose').css('display', 'block');
+    }
+  }, {
+    key: "selectResolution",
+    value: function selectResolution(e) {
+      this.setState({
+        chartData: this.getChartsData(parseInt(e))
+      });
     }
   }, {
     key: "getVotes",
@@ -5025,6 +5097,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
               children: ["State: ", this.state.theState]
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_AppRouter__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, this.state), {}, {
+            selectResolution: this.selectResolution,
             getPageNumber: this.getPageNumber,
             rightArrow: this.rightArrow,
             leftArrow: this.leftArrow
