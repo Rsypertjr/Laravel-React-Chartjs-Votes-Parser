@@ -1,8 +1,6 @@
 import {React, useEffect, useState} from 'react';
-import ReactDOM from 'react-dom';
-import { Redirect } from 'react-router-dom';
-import VotesPager from '../VotesPager';
 import ChartPager from '../ChartPager';
+import ResolutionDropdown from '../ResolutionDropdown';
 import {
     Chart,
     ArcElement,
@@ -153,7 +151,8 @@ export default function SpikesLineChart(props) {
     return (
         
         <div class="chart-viewer">
-            <span class="viewerClose">X</span>            
+            <span class="viewerClose">X</span>  
+            <ResolutionDropdown theResolutions={props.theResolutions} selectResolution={props.selectResolution}/>           
             <div class="container h-10 d-flex justify-content-center">
                 <h4>Votes Spike Line Chart</h4>
             </div>

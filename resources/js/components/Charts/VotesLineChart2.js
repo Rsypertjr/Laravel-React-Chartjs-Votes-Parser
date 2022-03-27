@@ -1,7 +1,6 @@
 import {React, useEffect, useState} from 'react';
-import ReactDOM from 'react-dom';
-import { Redirect } from 'react-router-dom';
 import VotesPager from '../VotesPager';
+import ResolutionDropdown from '../ResolutionDropdown';
 import {
     Chart,
     ArcElement,
@@ -140,7 +139,8 @@ export default function VotesLineChart2(props) {
    
     return (
         <div class="chart-viewer">
-            <span class="viewerClose">X</span>            
+            <span class="viewerClose">X</span>        
+            <ResolutionDropdown theResolutions={props.theResolutions} selectResolution={props.selectResolution}/>     
             <div class="container h-10 d-flex justify-content-center">
                 <h3>Votes Line Chart</h3>
             </div>

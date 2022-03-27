@@ -3048,6 +3048,7 @@ function AppRouter(props) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
         path: "/voteslinechart",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Charts_VotesLineChart2__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
+          selectResolution: props.selectResolution,
           getPageNumber: props.getPageNumber,
           type: 'line',
           rightArrow: props.rightArrow,
@@ -3056,6 +3057,7 @@ function AppRouter(props) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
         path: "/spikeslinechart",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Charts_SpikesLineChart__WEBPACK_IMPORTED_MODULE_3__["default"], _objectSpread(_objectSpread({}, props), {}, {
+          selectResolution: props.selectResolution,
           getPageNumber: props.getPageNumber,
           type: 'line',
           rightArrow: props.rightArrow,
@@ -3073,6 +3075,7 @@ function AppRouter(props) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
         path: "/perlinechart",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Charts_PerLineChart__WEBPACK_IMPORTED_MODULE_5__["default"], _objectSpread(_objectSpread({}, props), {}, {
+          selectResolution: props.selectResolution,
           getPageNumber: props.getPageNumber,
           type: 'line',
           rightArrow: props.rightArrow,
@@ -3084,6 +3087,7 @@ function AppRouter(props) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
         path: "/barchart",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Charts_BarChart__WEBPACK_IMPORTED_MODULE_7__["default"], _objectSpread(_objectSpread({}, props), {}, {
+          selectResolution: props.selectResolution,
           getPageNumber: props.getPageNumber,
           type: 'bar',
           rightArrow: props.rightArrow,
@@ -3092,6 +3096,7 @@ function AppRouter(props) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
         path: "/binstackedchart",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Charts_BinStackedChart__WEBPACK_IMPORTED_MODULE_8__["default"], _objectSpread(_objectSpread({}, props), {}, {
+          selectResolution: props.selectResolution,
           getPageNumber: props.getPageNumber,
           type: 'bar',
           rightArrow: props.rightArrow,
@@ -3320,8 +3325,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ BinStackedChart)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _ChartPager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ChartPager */ "./resources/js/components/ChartPager.js");
+/* harmony import */ var _ChartPager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../ChartPager */ "./resources/js/components/ChartPager.js");
+/* harmony import */ var _ResolutionDropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ResolutionDropdown */ "./resources/js/components/ResolutionDropdown.js");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/chart.esm.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -3329,7 +3334,6 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -3431,6 +3435,9 @@ function BinStackedChart(props) {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
       "class": "viewerClose",
       children: "X"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ResolutionDropdown__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      theResolutions: props.theResolutions,
+      selectResolution: props.selectResolution
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container h-10 d-flex justify-content-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
@@ -3445,7 +3452,7 @@ function BinStackedChart(props) {
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container h-100 d-flex justify-content-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ChartPager__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ChartPager__WEBPACK_IMPORTED_MODULE_1__["default"], _objectSpread(_objectSpread({}, props), {}, {
         getPageNumber: props.getPageNumber,
         type: 'line',
         leftArrow: props.leftArrow,
@@ -3469,12 +3476,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ DiffLineChart)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _ChartPager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ChartPager */ "./resources/js/components/ChartPager.js");
-/* harmony import */ var react_dropdown__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dropdown */ "./node_modules/react-dropdown/dist/index.js");
-/* harmony import */ var react_dropdown_style_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dropdown/style.css */ "./node_modules/react-dropdown/style.css");
-/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/chart.esm.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _ChartPager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../ChartPager */ "./resources/js/components/ChartPager.js");
+/* harmony import */ var _ResolutionDropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ResolutionDropdown */ "./resources/js/components/ResolutionDropdown.js");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/chart.esm.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -3487,10 +3492,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
-
-
-chart_js__WEBPACK_IMPORTED_MODULE_5__.Chart.register(chart_js__WEBPACK_IMPORTED_MODULE_5__.ArcElement, chart_js__WEBPACK_IMPORTED_MODULE_5__.LineElement, chart_js__WEBPACK_IMPORTED_MODULE_5__.BarElement, chart_js__WEBPACK_IMPORTED_MODULE_5__.PointElement, chart_js__WEBPACK_IMPORTED_MODULE_5__.BarController, chart_js__WEBPACK_IMPORTED_MODULE_5__.BubbleController, chart_js__WEBPACK_IMPORTED_MODULE_5__.DoughnutController, chart_js__WEBPACK_IMPORTED_MODULE_5__.LineController, chart_js__WEBPACK_IMPORTED_MODULE_5__.PieController, chart_js__WEBPACK_IMPORTED_MODULE_5__.PolarAreaController, chart_js__WEBPACK_IMPORTED_MODULE_5__.RadarController, chart_js__WEBPACK_IMPORTED_MODULE_5__.ScatterController, chart_js__WEBPACK_IMPORTED_MODULE_5__.CategoryScale, chart_js__WEBPACK_IMPORTED_MODULE_5__.LinearScale, chart_js__WEBPACK_IMPORTED_MODULE_5__.LogarithmicScale, chart_js__WEBPACK_IMPORTED_MODULE_5__.RadialLinearScale, chart_js__WEBPACK_IMPORTED_MODULE_5__.TimeScale, chart_js__WEBPACK_IMPORTED_MODULE_5__.TimeSeriesScale, chart_js__WEBPACK_IMPORTED_MODULE_5__.Decimation, chart_js__WEBPACK_IMPORTED_MODULE_5__.Filler, chart_js__WEBPACK_IMPORTED_MODULE_5__.Legend, chart_js__WEBPACK_IMPORTED_MODULE_5__.Title, chart_js__WEBPACK_IMPORTED_MODULE_5__.Tooltip, chart_js__WEBPACK_IMPORTED_MODULE_5__.SubTitle);
+chart_js__WEBPACK_IMPORTED_MODULE_3__.Chart.register(chart_js__WEBPACK_IMPORTED_MODULE_3__.ArcElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.LineElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.BarElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.PointElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.BarController, chart_js__WEBPACK_IMPORTED_MODULE_3__.BubbleController, chart_js__WEBPACK_IMPORTED_MODULE_3__.DoughnutController, chart_js__WEBPACK_IMPORTED_MODULE_3__.LineController, chart_js__WEBPACK_IMPORTED_MODULE_3__.PieController, chart_js__WEBPACK_IMPORTED_MODULE_3__.PolarAreaController, chart_js__WEBPACK_IMPORTED_MODULE_3__.RadarController, chart_js__WEBPACK_IMPORTED_MODULE_3__.ScatterController, chart_js__WEBPACK_IMPORTED_MODULE_3__.CategoryScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.LinearScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.LogarithmicScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.RadialLinearScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.TimeScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.TimeSeriesScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.Decimation, chart_js__WEBPACK_IMPORTED_MODULE_3__.Filler, chart_js__WEBPACK_IMPORTED_MODULE_3__.Legend, chart_js__WEBPACK_IMPORTED_MODULE_3__.Title, chart_js__WEBPACK_IMPORTED_MODULE_3__.Tooltip, chart_js__WEBPACK_IMPORTED_MODULE_3__.SubTitle);
 var dataLoad = {
   dateHeadersStore: [],
   dateDataBidenStore: [],
@@ -3562,7 +3564,7 @@ function DiffLineChart(props) {
 
     datasets = [dataset1, dataset2]; //alert(JSON.stringify(datasets));
 
-    var myChart = new chart_js__WEBPACK_IMPORTED_MODULE_5__.Chart(ctx, {
+    var myChart = new chart_js__WEBPACK_IMPORTED_MODULE_3__.Chart(ctx, {
       type: type,
       data: {
         labels: labels,
@@ -3573,59 +3575,29 @@ function DiffLineChart(props) {
       myChart.destroy();
     };
   });
-
-  var selectResolution = function selectResolution(e) {
-    props.selectResolution(e.target.value);
-  };
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     "class": "chart-viewer",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
       "class": "viewerClose",
       children: "X"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-      "class": "container",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-        "class": "row justify-content-start",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-          "class": "btn-group dropright",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
-            type: "button",
-            "class": "btn btn-secondary dropdown-toggle",
-            "data-toggle": "dropdown",
-            "aria-haspopup": "true",
-            "aria-expanded": "false",
-            children: "Select Chart Resolution"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-            "class": "dropdown-menu",
-            children: props.theResolutions.map(function (res) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
-                type: "input",
-                "class": "dropdown-item",
-                href: "#",
-                id: res,
-                onClick: selectResolution,
-                value: res
-              });
-            })
-          })]
-        })
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ResolutionDropdown__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      theResolutions: props.theResolutions,
+      selectResolution: props.selectResolution
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container h-10 d-flex justify-content-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
         children: "Incremental Gain/Loss of Votes"
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container smaller justify-content-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("canvas", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("canvas", {
           id: "myChart"
         })
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container h-100 d-flex justify-content-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ChartPager__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ChartPager__WEBPACK_IMPORTED_MODULE_1__["default"], _objectSpread(_objectSpread({}, props), {}, {
         getPageNumber: props.getPageNumber,
         type: 'line',
         leftArrow: props.leftArrow,
@@ -3649,8 +3621,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ PerLineChart)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _ChartPager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ChartPager */ "./resources/js/components/ChartPager.js");
+/* harmony import */ var _ChartPager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../ChartPager */ "./resources/js/components/ChartPager.js");
+/* harmony import */ var _ResolutionDropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ResolutionDropdown */ "./resources/js/components/ResolutionDropdown.js");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/chart.esm.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -3658,7 +3630,6 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -3731,6 +3702,9 @@ function PerLineChart(props) {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
       "class": "viewerClose",
       children: "X"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ResolutionDropdown__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      theResolutions: props.theResolutions,
+      selectResolution: props.selectResolution
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container h-10 d-flex justify-content-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
@@ -3745,7 +3719,7 @@ function PerLineChart(props) {
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container h-100 d-flex justify-content-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ChartPager__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ChartPager__WEBPACK_IMPORTED_MODULE_1__["default"], _objectSpread(_objectSpread({}, props), {}, {
         getPageNumber: props.getPageNumber,
         type: 'line',
         leftArrow: props.leftArrow,
@@ -3792,11 +3766,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ SpikesLineChart)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _VotesPager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../VotesPager */ "./resources/js/components/VotesPager.js");
-/* harmony import */ var _ChartPager__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ChartPager */ "./resources/js/components/ChartPager.js");
-/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/chart.esm.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _ChartPager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../ChartPager */ "./resources/js/components/ChartPager.js");
+/* harmony import */ var _ResolutionDropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ResolutionDropdown */ "./resources/js/components/ResolutionDropdown.js");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/chart.esm.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -3809,9 +3782,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
-
-chart_js__WEBPACK_IMPORTED_MODULE_4__.Chart.register(chart_js__WEBPACK_IMPORTED_MODULE_4__.ArcElement, chart_js__WEBPACK_IMPORTED_MODULE_4__.LineElement, chart_js__WEBPACK_IMPORTED_MODULE_4__.BarElement, chart_js__WEBPACK_IMPORTED_MODULE_4__.PointElement, chart_js__WEBPACK_IMPORTED_MODULE_4__.BarController, chart_js__WEBPACK_IMPORTED_MODULE_4__.BubbleController, chart_js__WEBPACK_IMPORTED_MODULE_4__.DoughnutController, chart_js__WEBPACK_IMPORTED_MODULE_4__.LineController, chart_js__WEBPACK_IMPORTED_MODULE_4__.PieController, chart_js__WEBPACK_IMPORTED_MODULE_4__.PolarAreaController, chart_js__WEBPACK_IMPORTED_MODULE_4__.RadarController, chart_js__WEBPACK_IMPORTED_MODULE_4__.ScatterController, chart_js__WEBPACK_IMPORTED_MODULE_4__.CategoryScale, chart_js__WEBPACK_IMPORTED_MODULE_4__.LinearScale, chart_js__WEBPACK_IMPORTED_MODULE_4__.LogarithmicScale, chart_js__WEBPACK_IMPORTED_MODULE_4__.RadialLinearScale, chart_js__WEBPACK_IMPORTED_MODULE_4__.TimeScale, chart_js__WEBPACK_IMPORTED_MODULE_4__.TimeSeriesScale, chart_js__WEBPACK_IMPORTED_MODULE_4__.Decimation, chart_js__WEBPACK_IMPORTED_MODULE_4__.Filler, chart_js__WEBPACK_IMPORTED_MODULE_4__.Legend, chart_js__WEBPACK_IMPORTED_MODULE_4__.Title, chart_js__WEBPACK_IMPORTED_MODULE_4__.Tooltip, chart_js__WEBPACK_IMPORTED_MODULE_4__.SubTitle);
+chart_js__WEBPACK_IMPORTED_MODULE_3__.Chart.register(chart_js__WEBPACK_IMPORTED_MODULE_3__.ArcElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.LineElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.BarElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.PointElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.BarController, chart_js__WEBPACK_IMPORTED_MODULE_3__.BubbleController, chart_js__WEBPACK_IMPORTED_MODULE_3__.DoughnutController, chart_js__WEBPACK_IMPORTED_MODULE_3__.LineController, chart_js__WEBPACK_IMPORTED_MODULE_3__.PieController, chart_js__WEBPACK_IMPORTED_MODULE_3__.PolarAreaController, chart_js__WEBPACK_IMPORTED_MODULE_3__.RadarController, chart_js__WEBPACK_IMPORTED_MODULE_3__.ScatterController, chart_js__WEBPACK_IMPORTED_MODULE_3__.CategoryScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.LinearScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.LogarithmicScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.RadialLinearScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.TimeScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.TimeSeriesScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.Decimation, chart_js__WEBPACK_IMPORTED_MODULE_3__.Filler, chart_js__WEBPACK_IMPORTED_MODULE_3__.Legend, chart_js__WEBPACK_IMPORTED_MODULE_3__.Title, chart_js__WEBPACK_IMPORTED_MODULE_3__.Tooltip, chart_js__WEBPACK_IMPORTED_MODULE_3__.SubTitle);
 function SpikesLineChart(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -3884,7 +3855,7 @@ function SpikesLineChart(props) {
     var dataset4 = data4;
     datasets = [dataset1, dataset2, dataset3, dataset4]; //alert(JSON.stringify(datasets));
 
-    var myChart = new chart_js__WEBPACK_IMPORTED_MODULE_4__.Chart(ctx, {
+    var myChart = new chart_js__WEBPACK_IMPORTED_MODULE_3__.Chart(ctx, {
       type: type,
       data: {
         labels: labels,
@@ -3895,26 +3866,29 @@ function SpikesLineChart(props) {
       myChart.destroy();
     };
   });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     "class": "chart-viewer",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
       "class": "viewerClose",
       children: "X"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ResolutionDropdown__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      theResolutions: props.theResolutions,
+      selectResolution: props.selectResolution
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container h-10 d-flex justify-content-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
         children: "Votes Spike Line Chart"
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container smaller justify-content-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("canvas", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("canvas", {
           id: "myChart"
         })
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container h-100 d-flex justify-content-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ChartPager__WEBPACK_IMPORTED_MODULE_3__["default"], _objectSpread(_objectSpread({}, props), {}, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ChartPager__WEBPACK_IMPORTED_MODULE_1__["default"], _objectSpread(_objectSpread({}, props), {}, {
         getPageNumber: props.getPageNumber,
         type: 'line',
         leftArrow: props.leftArrow,
@@ -3938,8 +3912,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ VotesLineChart2)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _VotesPager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../VotesPager */ "./resources/js/components/VotesPager.js");
+/* harmony import */ var _VotesPager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VotesPager */ "./resources/js/components/VotesPager.js");
+/* harmony import */ var _ResolutionDropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ResolutionDropdown */ "./resources/js/components/ResolutionDropdown.js");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/chart.esm.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -3947,7 +3921,6 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -4031,6 +4004,9 @@ function VotesLineChart2(props) {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
       "class": "viewerClose",
       children: "X"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ResolutionDropdown__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      theResolutions: props.theResolutions,
+      selectResolution: props.selectResolution
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container h-10 d-flex justify-content-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
@@ -4045,7 +4021,7 @@ function VotesLineChart2(props) {
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container h-100 d-flex justify-content-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_VotesPager__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_VotesPager__WEBPACK_IMPORTED_MODULE_1__["default"], _objectSpread(_objectSpread({}, props), {}, {
         pageClick: props.getPageNumber,
         type: 'line',
         leftArrow: props.leftArrow,
@@ -4098,6 +4074,62 @@ __webpack_require__.r(__webpack_exports__);
 function Narwhal() {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
     children: "Narwhal"
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/ResolutionDropdown.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/ResolutionDropdown.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ResolutionDropdown)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+function ResolutionDropdown(props) {
+  var selectResolution = function selectResolution(e) {
+    props.selectResolution(e.target.value);
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    "class": "container",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      "class": "row justify-content-start",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        "class": "btn-group dropright",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          type: "button",
+          "class": "btn btn-secondary dropdown-toggle",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true",
+          "aria-expanded": "false",
+          children: "Select Chart Resolution"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          "class": "dropdown-menu",
+          children: props.theResolutions.map(function (res) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "input",
+              "class": "dropdown-item",
+              href: "#",
+              id: res,
+              onClick: selectResolution,
+              value: res
+            });
+          })
+        })]
+      })
+    })
   });
 }
 
