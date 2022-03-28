@@ -3580,10 +3580,10 @@ function DiffLineChart(props) {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
       "class": "viewerClose",
       children: "X"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ResolutionDropdown__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ResolutionDropdown__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
       theResolutions: props.theResolutions,
       selectResolution: props.selectResolution
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container h-10 d-flex justify-content-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
         children: "Incremental Gain/Loss of Votes"
@@ -4102,15 +4102,15 @@ function ResolutionDropdown(props) {
     props.selectResolution(e.target.value);
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     "class": "container",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       "class": "row justify-content-start",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         "class": "btn-group dropright",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
           type: "button",
-          "class": "btn btn-secondary dropdown-toggle",
+          "class": "btn btn-warning dropdown-toggle",
           "data-toggle": "dropdown",
           "aria-haspopup": "true",
           "aria-expanded": "false",
@@ -4122,14 +4122,19 @@ function ResolutionDropdown(props) {
               type: "input",
               "class": "dropdown-item",
               href: "#",
-              id: res,
+              id: 'res_' + res,
               onClick: selectResolution,
               value: res
             });
           })
         })]
       })
-    })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      "class": "container h-10 d-flex justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h6", {
+        id: "interval_message"
+      })
+    })]
   });
 }
 
@@ -4436,6 +4441,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
     _this.leftArrow = _this.leftArrow.bind(_assertThisInitialized(_this));
     _this.rightArrow = _this.rightArrow.bind(_assertThisInitialized(_this));
     _this.selectResolution = _this.selectResolution.bind(_assertThisInitialized(_this));
+    _this.getTimeDiff = _this.getTimeDiff.bind(_assertThisInitialized(_this));
     _this.state = {
       theVotes: [],
       DataisLoaded: false,
@@ -4566,8 +4572,9 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
           defaultOption: _this2.state.theState
         });
 
-        var chartData = _this2.getChartsData(_this2.state.parse_resolution); //alert(JSON.stringify(chartData));
+        var chartData = _this2.getChartsData(_this2.state.parse_resolution);
 
+        _this2.getTimeDiff(chartData.dateHeadersStore);
 
         _this2.setState({
           chartData: chartData
@@ -4585,6 +4592,65 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
       }).then(function (json) {
         return json;
       });
+    }
+  }, {
+    key: "getTimeDiff",
+    value: function getTimeDiff(dateHeadersStore) {
+      var flat_times = [];
+      dateHeadersStore.forEach(function (page) {
+        return page.forEach(function (time) {
+          flat_times.push(time);
+        });
+      });
+      var flat_times2 = [];
+      dateHeadersStore[this.state.pageNo].forEach(function (atime) {
+        var regex = /(\d\d\d\d)(-)/;
+        var found = atime.match(regex);
+        var year = parseInt(found[1]); // Parse Month
+
+        var regex2 = /(-)(\d\d)(-)/;
+        var found2 = atime.match(regex2);
+        var month = parseInt(found2[2]); // Parse Day
+
+        var regex3 = /(-)(\d\d)(T)/;
+        var found3 = atime.match(regex3);
+        var day = parseInt(found3[2]); // Parse Hour
+
+        var regex4 = /(T)(\d\d)(:)/;
+        var found4 = atime.match(regex4);
+        var hours = parseInt(found4[2]); // Parse Minutes
+
+        var regex5 = /(:)(\d\d)(:)/;
+        var found5 = atime.match(regex5);
+        var minutes = parseInt(found5[2]); // Parse Seconds
+
+        var regex6 = /(:)(\d\d)([Z])/;
+        var found6 = atime.match(regex6);
+        var seconds = 0;
+        if (found6 != null) seconds = parseInt(found6[2]);
+        var d = new Date(year, month - 1, day, hours, minutes, seconds);
+        flat_times2.push(d);
+      });
+      var timeDiff_accum = 0;
+      var count = 0;
+
+      for (var i = 0; i < flat_times2.length; i++) {
+        if (i > 0) {
+          var diff = flat_times2[i + 1] / 1000 - flat_times2[i] / 1000;
+
+          if (diff > 0) {
+            timeDiff_accum += diff;
+            count++;
+          }
+        }
+      }
+
+      var hours_diff = timeDiff_accum / (count * 3600);
+      var minutes_diff = 0;
+      if (hours_diff < 1) minutes_diff = timeDiff_accum / (count * 60);else minutes_diff = hours_diff * 60;
+      hours_diff = Math.floor(hours_diff);
+      var time_diff = "Average Time Interval: " + hours_diff.toFixed(2) + " hours, and " + minutes_diff.toFixed(2) + " minutes";
+      return time_diff;
     }
   }, {
     key: "getChartsData",
@@ -4939,6 +5005,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
         "bin_biden": bin_biden,
         "bin_trump": bin_trump
       };
+      $('#interval_message').html(this.getTimeDiff(dataLoad.dateHeadersStore));
       return dataLoad;
     }
   }, {
@@ -4991,6 +5058,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
     key: "selectResolution",
     value: function selectResolution(e) {
       this.setState({
+        parse_resolution: parseInt(e),
         chartData: this.getChartsData(parseInt(e))
       });
     }

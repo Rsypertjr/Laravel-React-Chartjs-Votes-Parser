@@ -40,6 +40,7 @@ export default class VotesApp extends React.Component {
       this.leftArrow = this.leftArrow.bind(this);
       this.rightArrow = this.rightArrow.bind(this);
       this.selectResolution = this.selectResolution.bind(this);
+      this.getTimeDiff = this.getTimeDiff.bind(this);
       this.state = {
           theVotes: [],
           DataisLoaded: false,
@@ -177,13 +178,12 @@ export default class VotesApp extends React.Component {
 
       
       let chartData = this.getChartsData(this.state.parse_resolution);
-      //alert(JSON.stringify(chartData));
-
+      this.getTimeDiff(chartData.dateHeadersStore);
       this.setState({       
         chartData: chartData
     });
 
-
+    
 
     return theVotes;
     
@@ -202,6 +202,74 @@ export default class VotesApp extends React.Component {
           return json;
       });
           
+  }
+
+  getTimeDiff(dateHeadersStore){
+    
+      let flat_times = [];
+      dateHeadersStore.forEach((page) => page.forEach((time) => {              
+                    flat_times.push(time);
+                }));
+
+      let flat_times2 = [];
+      dateHeadersStore[this.state.pageNo].forEach((atime) => {
+        const regex = /(\d\d\d\d)(-)/;
+        const found = atime.match(regex);
+        let year = parseInt(found[1]);   
+        // Parse Month
+        const regex2 = /(-)(\d\d)(-)/;
+        const found2 = atime.match(regex2);
+        let month = parseInt(found2[2]);
+    
+        // Parse Day
+        const regex3 = /(-)(\d\d)(T)/;
+        const found3 = atime.match(regex3);
+        let day = parseInt(found3[2]);
+    
+        // Parse Hour
+        const regex4 = /(T)(\d\d)(:)/;
+        const found4 = atime.match(regex4);
+        let hours = parseInt(found4[2]);
+    
+        // Parse Minutes
+        const regex5 = /(:)(\d\d)(:)/;
+        const found5 = atime.match(regex5);
+        let minutes = parseInt(found5[2]);
+    
+        // Parse Seconds
+        const regex6 = /(:)(\d\d)([Z])/;
+        const found6 = atime.match(regex6);
+        let seconds = 0;
+        if(found6 != null)
+            seconds = parseInt(found6[2]);
+        let d = new Date(year,month-1,day,hours,minutes,seconds);
+        flat_times2.push(d);
+      });
+
+      let timeDiff_accum = 0;
+      let count = 0;
+      for(var i=0;i<flat_times2.length;i++)
+      {
+          if(i>0){
+            let diff = flat_times2[i+1]/1000 - flat_times2[i]/1000;
+            if(diff > 0){
+                timeDiff_accum += diff;
+                count++;
+            }
+          }
+      }
+     
+      let hours_diff = timeDiff_accum/(count*3600);
+      let minutes_diff = 0;
+      if(hours_diff < 1)
+        minutes_diff = timeDiff_accum/(count*60);
+      else 
+        minutes_diff = hours_diff * 60;
+
+      hours_diff = Math.floor(hours_diff);
+     
+    let time_diff = "Average Time Interval: " + hours_diff.toFixed(2) + " hours, and " + minutes_diff.toFixed(2) + " minutes";
+    return time_diff;
   }
 
   getChartsData(parse_interval){
@@ -493,6 +561,8 @@ export default class VotesApp extends React.Component {
       "bin_trump": bin_trump
     }
 
+   $('#interval_message').html(this.getTimeDiff(dataLoad.dateHeadersStore));
+
     return dataLoad;
   }
 
@@ -560,9 +630,10 @@ export default class VotesApp extends React.Component {
   selectResolution(e){
       
       this.setState({     
+        parse_resolution:parseInt(e),
         chartData: this.getChartsData(parseInt(e))  
        });
-       
+     
   }
 
 

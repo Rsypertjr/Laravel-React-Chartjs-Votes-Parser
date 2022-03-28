@@ -80,6 +80,12 @@ nav.navbar {
      display:block;
      cursor:pointer;
  }
+
+ #interval_message{
+     margin-top: -1em;
+     color:red;
+     background-color:lightcyan;
+ }
   /*
   .col-sm-12:nth-child(2n+1) { 
       background: green; 
