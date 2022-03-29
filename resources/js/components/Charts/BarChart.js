@@ -65,7 +65,7 @@ export default function BarChart(props) {
         let ctx = document.getElementById('myChart').getContext('2d');
 
         $('.viewerClose').on('click', function(){
-            $('.chart-viewer').css('margin-top','0').css('transition','opacity 100s ease-in-out').css('z-index','1').css('border-style','none');
+            $('.chart-viewer').removeClass('upslide').addClass('downslide');
             $('.viewerClose').css('display','none');
         });
  

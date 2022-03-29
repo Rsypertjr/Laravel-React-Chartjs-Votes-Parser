@@ -110,7 +110,7 @@ export default class VotesApp extends React.Component {
                 pageNo: newNum2
             });
         }
-     else if(type != 'table' && parseInt(num) >= this.state.chartData.dateHeadersStore.length){
+     else if((type != 'table' && parseInt(num) >= this.state.chartData.dateHeadersStore.length) || typeof(this.state.theChartArray[num-1]) != undefined ){
             //let newNum2 = (parseInt(this.state.thePageSetNumber) - 1)*this.state.thePageSize;
             this.setState({
                 thePageSetNumber:this.state.thePageSetNumber,
@@ -211,7 +211,7 @@ export default class VotesApp extends React.Component {
                     flat_times.push(time);
                 }));
 
-      let flat_times2 = [];
+      let newDateHeaderStore = [];
       dateHeadersStore[this.state.pageNo].forEach((atime) => {
         const regex = /(\d\d\d\d)(-)/;
         const found = atime.match(regex);
@@ -243,15 +243,17 @@ export default class VotesApp extends React.Component {
         if(found6 != null)
             seconds = parseInt(found6[2]);
         let d = new Date(year,month-1,day,hours,minutes,seconds);
-        flat_times2.push(d);
+        newDateHeaderStore.push(d);
       });
+
+      //alert(JSON.stringify(newDateHeaderStore));
 
       let timeDiff_accum = 0;
       let count = 0;
-      for(var i=0;i<flat_times2.length;i++)
+      for(var i=0;i<newDateHeaderStore.length;i++)
       {
           if(i>0){
-            let diff = flat_times2[i+1]/1000 - flat_times2[i]/1000;
+            let diff = newDateHeaderStore[i+1]/1000 - newDateHeaderStore[i]/1000;
             if(diff > 0){
                 timeDiff_accum += diff;
                 count++;
@@ -620,10 +622,7 @@ export default class VotesApp extends React.Component {
         thePageSetNumber:1
       });
 
-        if($('.chart-viewer'))
-           $('.chart-viewer').css('transition','opacity 5s ease-in-out').css('transition-delay','2s').css('z-index','10').css('margin-top','-15em')
-           .css('border-style','none').css('opacity','0.90').css('border-style','outset');
-           
+        $('.chart-viewer').removeClass('downslide').addClass('upslide');           
         $('.viewerClose').css('display','block');    
   }
 

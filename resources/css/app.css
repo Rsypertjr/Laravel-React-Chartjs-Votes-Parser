@@ -55,16 +55,55 @@ nav.navbar {
 } 
 
 .chart-viewer {
+  
     opacity:0.90;
     transform:scale(0.90);
-    margin-top: -15em;
-    transition : opacity 100s ease-in-out;
     z-index:10;
     border-style:outset;
     background-color:white;
     padding:2em;
+    -webkit-animation: slideup 0.5s forwards;
+    -webkit-animation-delay: 0.5s;
+    animation: slideup 0.5s forwards;
+    animation-delay: 0.5s;
 }
 
+.upslide{    
+    opacity:0.90;
+    transform:scale(0.90);
+    z-index:10;
+    margin-top:0em;
+    -webkit-animation: slideup 0.5s forwards;
+    -webkit-animation-delay: 0.5s;
+    animation: slideup 0.5s forwards;
+    animation-delay: 0.5s;
+}
+
+.downslide{
+    z-index:1.0;
+    opacity:1.0;
+    margin-top:-15em;
+    -webkit-animation: slidedown 0.5s forwards;
+    -webkit-animation-delay: 0.5s;
+    animation: slidedown 0.5s forwards;
+    animation-delay: 0.5s;
+}
+
+@-webkit-keyframes slideup {
+    100% { margin-top: -15em; }
+}
+
+@keyframes slideup {
+    100% { margin-top: -15em; }
+}
+
+@-webkit-keyframes slidedown {
+    100% { margin-top: 0em; }
+}
+
+@keyframes slidedown {
+    100% { margin-top: 0em; }
+}
 .col-md-8{
     margin-top:1em;
   }
@@ -75,10 +114,12 @@ nav.navbar {
 
 
  .viewerClose{
+    
      position:relative;
      float:left;
      display:block;
      cursor:pointer;
+     
  }
 
  #interval_message{

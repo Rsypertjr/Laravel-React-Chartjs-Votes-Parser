@@ -3215,7 +3215,7 @@ function BarChart(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var ctx = document.getElementById('myChart').getContext('2d');
     $('.viewerClose').on('click', function () {
-      $('.chart-viewer').css('margin-top', '0').css('transition', 'opacity 100s ease-in-out').css('z-index', '1').css('border-style', 'none');
+      $('.chart-viewer').removeClass('upslide').addClass('downslide');
       $('.viewerClose').css('display', 'none');
     }); // let data = [65, 59, 80, 81, 56, 55, 40];
 
@@ -3346,7 +3346,7 @@ function BinStackedChart(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var ctx = document.getElementById('myChart').getContext('2d');
     $('.viewerClose').on('click', function () {
-      $('.chart-viewer').css('margin-top', '0').css('transition', 'opacity 100s ease-in-out').css('z-index', '1').css('border-style', 'none');
+      $('.chart-viewer').removeClass('upslide').addClass('downslide');
       $('.viewerClose').css('display', 'none');
     }); // let data = [65, 59, 80, 81, 56, 55, 40];
 
@@ -3521,7 +3521,7 @@ function DiffLineChart(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var ctx = document.getElementById('myChart').getContext('2d');
     $('.viewerClose').on('click', function () {
-      $('.chart-viewer').css('margin-top', '0').css('transition', 'opacity 100s ease-in-out').css('z-index', '1').css('border-style', 'none');
+      $('.chart-viewer').removeClass('upslide').addClass('downslide');
       $('.viewerClose').css('display', 'none');
     }); // let data = [65, 59, 80, 81, 56, 55, 40];
 
@@ -3642,7 +3642,7 @@ function PerLineChart(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var ctx = document.getElementById('myChart').getContext('2d');
     $('.viewerClose').on('click', function () {
-      $('.chart-viewer').css('margin-top', '0').css('transition', 'opacity 100s ease-in-out').css('z-index', '1').css('border-style', 'none');
+      $('.chart-viewer').removeClass('upslide').addClass('downslide');
       $('.viewerClose').css('display', 'none');
     }); // let data = [65, 59, 80, 81, 56, 55, 40];
 
@@ -3787,7 +3787,7 @@ function SpikesLineChart(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var ctx = document.getElementById('myChart').getContext('2d');
     $('.viewerClose').on('click', function () {
-      $('.chart-viewer').css('margin-top', '0').css('transition', 'opacity 100s ease-in-out').css('z-index', '1').css('border-style', 'none');
+      $('.chart-viewer').addClass('downslide').fadeOut();
       $('.viewerClose').css('display', 'none');
     }); // let data = [65, 59, 80, 81, 56, 55, 40];
 
@@ -3933,7 +3933,8 @@ function VotesLineChart2(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var ctx = document.getElementById('myChart').getContext('2d');
     $('.viewerClose').on('click', function () {
-      $('.chart-viewer').css('margin-top', '0').css('transition', 'opacity 100s ease-in-out').css('z-index', '1').css('border-style', 'none');
+      //$('.chart-viewer').css('margin-top','0').css('transition','opacity 100s ease-in-out').css('z-index','1').css('border-style','none');
+      $('.chart-viewer').removeClass('upslide').addClass('downslide');
       $('.viewerClose').css('display', 'none');
     });
     var label = '# of Votes';
@@ -4369,8 +4370,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-
 var _templateObject;
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -4378,6 +4377,8 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -4507,7 +4508,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
           thePageSetNumber: this.state.thePageSetNumber,
           pageNo: _newNum
         });
-      } else if (type != 'table' && parseInt(num) >= this.state.chartData.dateHeadersStore.length) {
+      } else if (type != 'table' && parseInt(num) >= this.state.chartData.dateHeadersStore.length || _typeof(this.state.theChartArray[num - 1]) != undefined) {
         //let newNum2 = (parseInt(this.state.thePageSetNumber) - 1)*this.state.thePageSize;
         this.setState({
           thePageSetNumber: this.state.thePageSetNumber,
@@ -4602,7 +4603,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
           flat_times.push(time);
         });
       });
-      var flat_times2 = [];
+      var newDateHeaderStore = [];
       dateHeadersStore[this.state.pageNo].forEach(function (atime) {
         var regex = /(\d\d\d\d)(-)/;
         var found = atime.match(regex);
@@ -4629,14 +4630,15 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
         var seconds = 0;
         if (found6 != null) seconds = parseInt(found6[2]);
         var d = new Date(year, month - 1, day, hours, minutes, seconds);
-        flat_times2.push(d);
-      });
+        newDateHeaderStore.push(d);
+      }); //alert(JSON.stringify(newDateHeaderStore));
+
       var timeDiff_accum = 0;
       var count = 0;
 
-      for (var i = 0; i < flat_times2.length; i++) {
+      for (var i = 0; i < newDateHeaderStore.length; i++) {
         if (i > 0) {
-          var diff = flat_times2[i + 1] / 1000 - flat_times2[i] / 1000;
+          var diff = newDateHeaderStore[i + 1] / 1000 - newDateHeaderStore[i] / 1000;
 
           if (diff > 0) {
             timeDiff_accum += diff;
@@ -5051,7 +5053,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
         pageNo: 1,
         thePageSetNumber: 1
       });
-      if ($('.chart-viewer')) $('.chart-viewer').css('transition', 'opacity 5s ease-in-out').css('transition-delay', '2s').css('z-index', '10').css('margin-top', '-15em').css('border-style', 'none').css('opacity', '0.90').css('border-style', 'outset');
+      $('.chart-viewer').removeClass('downslide').addClass('upslide');
       $('.viewerClose').css('display', 'block');
     }
   }, {
