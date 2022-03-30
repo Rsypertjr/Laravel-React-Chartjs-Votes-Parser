@@ -130,7 +130,7 @@ export default function PerLineChart(props) {
     return (      
         <div class="chart-viewer">
             <span class="viewerClose">X</span>  
-            <ResolutionDropdown theResolutions={props.theResolutions} selectResolution={props.selectResolution}/>           
+            <ResolutionDropdown {...props} theResolutions={props.theResolutions} selectResolution={props.selectResolution}/>           
             <div class="container h-10 d-flex justify-content-center">
                 <h4>Percent Line Chart</h4>
             </div>
