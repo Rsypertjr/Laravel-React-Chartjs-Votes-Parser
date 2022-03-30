@@ -3877,10 +3877,10 @@ function SpikesLineChart(props) {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
       "class": "viewerClose",
       children: "X"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ResolutionDropdown__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ResolutionDropdown__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
       theResolutions: props.theResolutions,
       selectResolution: props.selectResolution
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container h-10 d-flex justify-content-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
         children: "Votes Spike Line Chart"
@@ -4101,15 +4101,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
 
 function ResolutionDropdown(props) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+      _useState2 = _slicedToArray(_useState, 2),
+      resolution = _useState2[0],
+      setResolution = _useState2[1];
+
   var selectResolution = function selectResolution(e) {
     props.selectResolution(e.target.value);
   };
 
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    setResolution(props.parse_resolution);
+    if (typeof props.chartData.interval_message != "undefined") $('#interval_message').html(props.chartData.interval_message + "<br>");
+    if (!$('#interval_message').html().toString().match('The Current Chart') && typeof resolution != "undefined") $('#interval_message').append("The Current Chart Resolution is: " + resolution);
+  });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     "class": "container",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -4122,7 +4144,7 @@ function ResolutionDropdown(props) {
           "data-toggle": "dropdown",
           "aria-haspopup": "true",
           "aria-expanded": "false",
-          children: "Select Chart Resolution"
+          children: "Select Chart Resolution (X Times)"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
           "class": "dropdown-menu",
           children: props.theResolutions.map(function (res) {
@@ -4428,7 +4450,7 @@ var linkStyle = {
   fontSize: '0.8em'
 };
 var states = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
-var resolutions = [1, 5, 10, 15, 20];
+var resolutions = [1, 2, 3, 4, 5];
 
 var VotesApp = /*#__PURE__*/function (_React$Component) {
   _inherits(VotesApp, _React$Component);
@@ -4640,7 +4662,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
         var seconds = 0;
         if (found6 != null) seconds = parseInt(found6[2]);
         var d = new Date(year, month - 1, day, hours, minutes, seconds);
-        newDateHeaderStore.push(d);
+        newDateHeaderStore.push(d.getTime());
       }); //alert(JSON.stringify(newDateHeaderStore));
 
       var timeDiff_accum = 0;
@@ -4699,10 +4721,10 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
       var bidenslices = [];
       var trumpslices = [];
       var otherslices = [];
-      var pieheaders = [];
-      var j = 0;
+      var pieheaders = []; //var j = 0;
+      //for(i=0;i<vote_rows.length;i=i+parse_interval){
 
-      for (i = 0; i < vote_rows.length; i = i + parse_interval) {
+      for (i = 0; i < vote_rows.length; i++) {
         /*
         dateheaders[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.timestamp);
         datedatabiden[i] = vote_rows.slice(i*parseInt(parse_interval + 1),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.biden_votes);
@@ -4718,20 +4740,22 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
         perremainingtrump[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.remaining_percent_trump);
         perremainingbiden[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.remaining_percent_biden);
         */
-        dateheaders[j] = vote_rows[i].timestamp;
-        datedatabiden[j] = vote_rows[i].biden_votes;
-        datedatatrump[j] = vote_rows[i].trump_votes;
-        datedatabidenadd[j] = vote_rows[i].biden_votes;
-        datedatatrumpadd[j] = vote_rows[i].trump_votes;
-        datedatabidenadddiff[j] = vote_rows[i].biden_votes;
-        datedatatrumpadddiff[j] = vote_rows[i].trump_votes;
-        datedataotheradd[j] = vote_rows[i].other_votes;
-        datedatatotaladd[j] = vote_rows[i].votes;
-        datedatatotal[j] = vote_rows[i].votes;
-        datedataother[j] = vote_rows[i].other_votes;
-        perremainingtrump[j] = vote_rows[i].remaining_percent_trump;
-        perremainingbiden[j] = vote_rows[i].remaining_percent_biden;
-        j++;
+        dateheaders[i] = vote_rows[i].timestamp;
+        datedatabiden[i] = vote_rows[i].biden_votes;
+        datedatatrump[i] = vote_rows[i].trump_votes;
+        datedataother[i] = vote_rows[i].other_votes;
+        datedatatotal[i] = vote_rows[i].votes;
+        perremainingtrump[i] = vote_rows[i].remaining_percent_trump;
+        perremainingbiden[i] = vote_rows[i].remaining_percent_biden; //j++;
+
+        if (i == 0) {
+          datedatabidenadd[i] = vote_rows[i].biden_votes;
+          datedatatrumpadd[i] = vote_rows[i].trump_votes;
+          datedataotheradd[i] = vote_rows[i].other_votes;
+          datedatatotaladd[i] = vote_rows[i].votes;
+          datedatabidenadddiff[i] = vote_rows[i].biden_votes;
+          datedatatrumpadddiff[i] = vote_rows[i].trump_votes;
+        }
 
         if (i > 0) {
           datedatabidenadd.push(vote_rows[i].biden_votes - vote_rows[i - 1].biden_votes);
@@ -4758,20 +4782,20 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
       var per_remainingbiden = [];
       var cnt3 = 0;
 
-      for (var k = 0; k < datedatabiden.length; k = k + this.state.thePageSize) {
-        date_headers[cnt3] = dateheaders.slice(k, k + this.state.thePageSize);
-        date_databiden[cnt3] = datedatabiden.slice(k, k + this.state.thePageSize);
-        date_datatrump[cnt3] = datedatatrump.slice(k, k + this.state.thePageSize);
-        date_databidenadd[cnt3] = datedatabidenadd.slice(k, k + this.state.thePageSize);
-        date_datatrumpadd[cnt3] = datedatatrumpadd.slice(k, k + this.state.thePageSize);
-        date_databidenadddiff[cnt3] = datedatabidenadddiff.slice(k, k + this.state.thePageSize);
-        date_datatrumpadddiff[cnt3] = datedatatrumpadddiff.slice(k, k + this.state.thePageSize);
-        date_dataotheradd[cnt3] = datedataotheradd.slice(k, k + this.state.thePageSize);
-        date_datatotaladd[cnt3] = datedatatotaladd.slice(k, k + this.state.thePageSize);
-        date_datatotal[cnt3] = datedatatotal.slice(k, k + this.state.thePageSize);
-        date_dataother[cnt3] = datedataother.slice(k, k + this.state.thePageSize);
-        per_remainingtrump[cnt3] = perremainingtrump.slice(k, k + this.state.thePageSize);
-        per_remainingbiden[cnt3] = perremainingbiden.slice(k, k + this.state.thePageSize);
+      for (var k = 0; k < datedatabiden.length; k = k + this.state.thePageSize * parse_interval) {
+        date_headers[cnt3] = dateheaders.slice(k, k + this.state.thePageSize * parse_interval);
+        date_databiden[cnt3] = datedatabiden.slice(k, k + this.state.thePageSize * parse_interval);
+        date_datatrump[cnt3] = datedatatrump.slice(k, k + this.state.thePageSize * parse_interval);
+        date_databidenadd[cnt3] = datedatabidenadd.slice(k, k + this.state.thePageSize * parse_interval);
+        date_datatrumpadd[cnt3] = datedatatrumpadd.slice(k, k + this.state.thePageSize * parse_interval);
+        date_databidenadddiff[cnt3] = datedatabidenadddiff.slice(k, k + this.state.thePageSize * parse_interval);
+        date_datatrumpadddiff[cnt3] = datedatatrumpadddiff.slice(k, k + this.state.thePageSize * parse_interval);
+        date_dataotheradd[cnt3] = datedataotheradd.slice(k, k + this.state.thePageSize * parse_interval);
+        date_datatotaladd[cnt3] = datedatatotaladd.slice(k, k + this.state.thePageSize * parse_interval);
+        date_datatotal[cnt3] = datedatatotal.slice(k, k + this.state.thePageSize * parse_interval);
+        date_dataother[cnt3] = datedataother.slice(k, k + this.state.thePageSize * parse_interval);
+        per_remainingtrump[cnt3] = perremainingtrump.slice(k, k + this.state.thePageSize * parse_interval);
+        per_remainingbiden[cnt3] = perremainingbiden.slice(k, k + this.state.thePageSize * parse_interval);
         cnt3++;
       }
 
@@ -4855,7 +4879,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
           trumpslices.push(total_trump);
           otherslices.push(total_other);
         }
-      } // Trim Out Nulls
+      } // Trim Out Nulls     
 
 
       dateheaders_store = dateheaders_store.filter(function (i) {
@@ -4918,7 +4942,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
 
       this.setState({
         theChartArray: arr2
-      }); // Fill Votebins
+      }); // Fill Votebins    
       // Set up Vote Bins
 
       var index = 0;
@@ -4970,8 +4994,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
 
       var bin_headers = [];
       var bin_biden = [];
-      var bin_trump = []; // Just for update
-
+      var bin_trump = [];
       var index = 0;
 
       for (var _i = 0; _i < vote_bins.length; _i++) {
@@ -5029,6 +5052,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
       bin_trump = bin_trump.filter(function (i) {
         return i != null;
       });
+      var interval_message = this.getTimeDiff(dateheaders_store);
       var dataLoad = {
         "dateHeadersStore": dateheaders_store,
         "dateDataBidenStore": datedatabiden_store,
@@ -5051,9 +5075,9 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
         "voteBins": vote_bins,
         "bin_headers": bin_headers,
         "bin_biden": bin_biden,
-        "bin_trump": bin_trump
-      }; //$('#interval_message').html(this.getTimeDiff(dataLoad.dateHeadersStore));
-
+        "bin_trump": bin_trump,
+        "interval_message": interval_message
+      };
       return dataLoad;
     }
   }, {
@@ -5161,10 +5185,8 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
           votes.other_votes = (1 - votes.bidenj - votes.trumpd) * votes.votes;
         } else if (index > 0) {
           if (votes.votes == 0) votes.total_vote_add = 0;else votes.total_vote_add = pres_votes[index].votes - pres_votes[index - 1].votes;
-          if (votes.bidenj == 0) votes.biden_votes = 0;
-          votes.biden_votes = votes.bidenj * votes.votes;
-          if (votes.trumpd == 0) votes.trump_votes = 0;
-          votes.trump_votes = votes.trumpd * votes.votes;
+          if (votes.bidenj == 0) votes.biden_votes = 0;else votes.biden_votes = votes.bidenj * votes.votes;
+          if (votes.trumpd == 0) votes.trump_votes = 0;else votes.trump_votes = votes.trumpd * votes.votes;
           votes.other_votes = votes.votes - votes.biden_votes - votes.trump_votes;
           votes.total_vote_add_trump = votes.votes * votes.trumpd - pres_votes[index - 1].votes * pres_votes[index - 1].trumpd;
           votes.total_vote_add_biden = votes.votes * votes.bidenj - pres_votes[index - 1].votes * pres_votes[index - 1].bidenj;

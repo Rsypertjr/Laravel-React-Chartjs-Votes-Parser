@@ -26,7 +26,7 @@ const states = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado",
 "North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee",
 "Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]; 
 
-const resolutions= [1,5,10,15,20];
+const resolutions= [1,2,3,4,5];
 
 export default class VotesApp extends React.Component {
   constructor(props){
@@ -250,7 +250,7 @@ export default class VotesApp extends React.Component {
         if(found6 != null)
             seconds = parseInt(found6[2]);
         let d = new Date(year,month-1,day,hours,minutes,seconds);
-        newDateHeaderStore.push(d);
+        newDateHeaderStore.push(d.getTime());
       });
 
       //alert(JSON.stringify(newDateHeaderStore));
@@ -318,8 +318,9 @@ export default class VotesApp extends React.Component {
     var trumpslices = [];
     var otherslices = [];
     var pieheaders = [];
-    var j = 0;
-    for(i=0;i<vote_rows.length;i=i+parse_interval){
+    //var j = 0;
+    //for(i=0;i<vote_rows.length;i=i+parse_interval){
+    for(i=0;i<vote_rows.length;i++){
       
         /*
         dateheaders[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.timestamp);
@@ -337,35 +338,32 @@ export default class VotesApp extends React.Component {
         perremainingbiden[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.remaining_percent_biden);
         */
         
-        dateheaders[j] = vote_rows[i].timestamp;
-        datedatabiden[j] = vote_rows[i].biden_votes;
-        datedatatrump[j] = vote_rows[i].trump_votes;
-        datedatabidenadd[j] = vote_rows[i].biden_votes;
-        datedatatrumpadd[j] = vote_rows[i].trump_votes;
-        datedatabidenadddiff[j] = vote_rows[i].biden_votes;
-        datedatatrumpadddiff[j] = vote_rows[i].trump_votes;
-        datedataotheradd[j] = vote_rows[i].other_votes;
-        datedatatotaladd[j] = vote_rows[i].votes;
-        datedatatotal[j] = vote_rows[i].votes;
-        datedataother[j] = vote_rows[i].other_votes;
-        perremainingtrump[j] = vote_rows[i].remaining_percent_trump;
-        perremainingbiden[j] = vote_rows[i].remaining_percent_biden;
-        j++;
+        dateheaders[i] = vote_rows[i].timestamp;
+        datedatabiden[i] = vote_rows[i].biden_votes;
+        datedatatrump[i] = vote_rows[i].trump_votes;
+        datedataother[i] = vote_rows[i].other_votes;        
+        datedatatotal[i] = vote_rows[i].votes;
+        perremainingtrump[i] = vote_rows[i].remaining_percent_trump;
+        perremainingbiden[i] = vote_rows[i].remaining_percent_biden;
+        //j++;
         
 
-
-
-
-
+        if(i == 0)
+        {
+            datedatabidenadd[i] = vote_rows[i].biden_votes;
+            datedatatrumpadd[i] = vote_rows[i].trump_votes;
+            datedataotheradd[i] = vote_rows[i].other_votes;
+            datedatatotaladd[i] = vote_rows[i].votes;
+            datedatabidenadddiff[i] = vote_rows[i].biden_votes;
+            datedatatrumpadddiff[i] = vote_rows[i].trump_votes;           
+        }        
         if(i > 0) {
           datedatabidenadd.push(vote_rows[i].biden_votes-vote_rows[i-1].biden_votes);
           datedatatrumpadd.push(vote_rows[i].trump_votes-vote_rows[i-1].trump_votes);
           datedataotheradd.push(vote_rows[i].other_votes-vote_rows[i-1].other_votes);
           datedatatotaladd.push(vote_rows[i].votes-vote_rows[i-1].votes);
           datedatabidenadddiff.push(vote_rows[i].biden_votes - vote_rows[i-1].biden_votes);
-          datedatatrumpadddiff.push(vote_rows[i].trump_votes - vote_rows[i-1].trump_votes);
-
-          
+          datedatatrumpadddiff.push(vote_rows[i].trump_votes - vote_rows[i-1].trump_votes);          
         }
     }
 
@@ -383,20 +381,20 @@ export default class VotesApp extends React.Component {
     let per_remainingtrump = [];
     let per_remainingbiden = [];
     let cnt3 = 0
-    for(var k=0;k < datedatabiden.length;k=k+this.state.thePageSize){
-        date_headers[cnt3] = dateheaders.slice(k,k+this.state.thePageSize);
-        date_databiden[cnt3] = datedatabiden.slice(k,k+this.state.thePageSize);
-        date_datatrump[cnt3] = datedatatrump.slice(k,k+this.state.thePageSize);
-        date_databidenadd[cnt3] = datedatabidenadd.slice(k,k+this.state.thePageSize);
-        date_datatrumpadd[cnt3] = datedatatrumpadd.slice(k,k+this.state.thePageSize);
-        date_databidenadddiff[cnt3] = datedatabidenadddiff.slice(k,k+this.state.thePageSize);
-        date_datatrumpadddiff[cnt3] = datedatatrumpadddiff.slice(k,k+this.state.thePageSize);
-        date_dataotheradd[cnt3] = datedataotheradd.slice(k,k+this.state.thePageSize);
-        date_datatotaladd[cnt3] = datedatatotaladd.slice(k,k+this.state.thePageSize);
-        date_datatotal[cnt3] = datedatatotal.slice(k,k+this.state.thePageSize);
-        date_dataother[cnt3] = datedataother.slice(k,k+this.state.thePageSize);
-        per_remainingtrump[cnt3] = perremainingtrump.slice(k,k+this.state.thePageSize);
-        per_remainingbiden[cnt3] = perremainingbiden.slice(k,k+this.state.thePageSize);
+    for(var k=0;k < datedatabiden.length;k=k+this.state.thePageSize*parse_interval){
+        date_headers[cnt3] = dateheaders.slice(k,k+this.state.thePageSize*parse_interval);
+        date_databiden[cnt3] = datedatabiden.slice(k,k+this.state.thePageSize*parse_interval);
+        date_datatrump[cnt3] = datedatatrump.slice(k,k+this.state.thePageSize*parse_interval);
+        date_databidenadd[cnt3] = datedatabidenadd.slice(k,k+this.state.thePageSize*parse_interval);
+        date_datatrumpadd[cnt3] = datedatatrumpadd.slice(k,k+this.state.thePageSize*parse_interval);
+        date_databidenadddiff[cnt3] = datedatabidenadddiff.slice(k,k+this.state.thePageSize*parse_interval);
+        date_datatrumpadddiff[cnt3] = datedatatrumpadddiff.slice(k,k+this.state.thePageSize*parse_interval);
+        date_dataotheradd[cnt3] = datedataotheradd.slice(k,k+this.state.thePageSize*parse_interval);
+        date_datatotaladd[cnt3] = datedatatotaladd.slice(k,k+this.state.thePageSize*parse_interval);
+        date_datatotal[cnt3] = datedatatotal.slice(k,k+this.state.thePageSize*parse_interval);
+        date_dataother[cnt3] = datedataother.slice(k,k+this.state.thePageSize*parse_interval);
+        per_remainingtrump[cnt3] = perremainingtrump.slice(k,k+this.state.thePageSize*parse_interval);
+        per_remainingbiden[cnt3] = perremainingbiden.slice(k,k+this.state.thePageSize*parse_interval);
         cnt3++;
     }
 
@@ -457,8 +455,7 @@ export default class VotesApp extends React.Component {
             }
     }
 
-   // Trim Out Nulls
-     
+   // Trim Out Nulls     
     dateheaders_store  = dateheaders_store.filter((i) => i.length > 0);
     datedatabiden_store  = datedatabiden_store.filter((i) => i.length > 0);
     datedatabidenadd_store  = datedatabidenadd_store.filter((i) => i.length > 0);
@@ -471,8 +468,7 @@ export default class VotesApp extends React.Component {
     datedatatotaladd_store  = datedatatotaladd_store.filter((i) => i.length > 0);
     datedataotheradd_store  = datedataotheradd_store.filter((i) => i.length > 0);
     perremainingtrump_store  = perremainingtrump_store.filter((i) => i.length > 0);
-    perremainingbiden_store  = perremainingbiden_store.filter((i) => i.length > 0);
-  
+    perremainingbiden_store  = perremainingbiden_store.filter((i) => i.length > 0);  
 
     this.setState({
         noOfChartPages: dateheaders_store.length
@@ -486,22 +482,15 @@ export default class VotesApp extends React.Component {
     for(var i=0;i<arr.length;i++){
         arr2[i]=[];
         for(var j = i*parseInt(this.state.thePageSize); j <= (i*parseInt(this.state.thePageSize)+parseInt(this.state.thePageSize)-1); j++ ){   
-           arr2[i].push(j); 
-            
+           arr2[i].push(j);             
       }       
-    }
- 
+    } 
 
     this.setState({
         theChartArray: arr2
     });
-
-
-
     
-    // Fill Votebins
-
-    
+    // Fill Votebins    
     // Set up Vote Bins
     var index = 0;
     var interval = 0;
@@ -509,8 +498,7 @@ export default class VotesApp extends React.Component {
         "interval":0,
         "biden_in_bin": 0,
         "trump_in_bin":0,
-    };
-  
+    };  
   
    let step = Math.floor(parseInt(200000)/(this.state.noOfChartPages*10));
     //var step = 2500;
@@ -528,11 +516,8 @@ export default class VotesApp extends React.Component {
             "biden_in_bin": 0,
             "trump_in_bin":0,
         };
-
     }
    
-
-
     // Put in Biden Bins
     for(var j = 0;j<datedatabidenadddiff_store.length;j++){
         var store = datedatabidenadddiff_store[j];
@@ -544,10 +529,6 @@ export default class VotesApp extends React.Component {
             }
         }
     }
-
-
-    
-
 
     // Put in Trump Bins
     for(var j = 0;j<datedatatrumpadddiff_store.length;j++){
@@ -563,7 +544,6 @@ export default class VotesApp extends React.Component {
     var bin_headers = [];
     var bin_biden = [];
     var bin_trump = [];
-    // Just for update
 
     var index = 0;
     for(let i=0;i<vote_bins.length;i++){
@@ -603,7 +583,7 @@ export default class VotesApp extends React.Component {
         bidenslices = bidenslices.filter((i) => i != 0);
         trumpslices = trumpslices.filter((i) => i != 0);
         otherslices = otherslices.filter((i) => i != 0);
-       totalslices = totalslices.filter((i) => i != 0);
+        totalslices = totalslices.filter((i) => i != 0);
         pieheaders = pieheaders.filter((i) => i != null);
         vote_bins = vote_bins.filter((i) => i != null);
         bin_headers = bin_headers.filter((i) => i != null);
@@ -611,7 +591,7 @@ export default class VotesApp extends React.Component {
         bin_trump = bin_trump.filter((i) => i != null);
     
     
-
+    let interval_message = this.getTimeDiff(dateheaders_store);
     let dataLoad = {
       "dateHeadersStore": dateheaders_store,
       "dateDataBidenStore": datedatabiden_store,
@@ -634,11 +614,10 @@ export default class VotesApp extends React.Component {
       "voteBins": vote_bins,
       "bin_headers": bin_headers,
       "bin_biden": bin_biden,
-      "bin_trump": bin_trump
+      "bin_trump": bin_trump,
+      "interval_message": interval_message
     }
-
-   //$('#interval_message').html(this.getTimeDiff(dataLoad.dateHeadersStore));
-
+    
     return dataLoad;
   }
 
@@ -775,12 +754,13 @@ export default class VotesApp extends React.Component {
     
             if(votes.bidenj == 0)
                 votes.biden_votes = 0;
+            else    
                 votes.biden_votes = votes.bidenj*votes.votes;
             
             if(votes.trumpd == 0)
                 votes.trump_votes = 0;
-          
-            votes.trump_votes = votes.trumpd*votes.votes;
+            else
+                votes.trump_votes = votes.trumpd*votes.votes;
     
             votes.other_votes = votes.votes - votes.biden_votes - votes.trump_votes;
             votes.total_vote_add_trump = votes.votes*votes.trumpd - pres_votes[index-1].votes*pres_votes[index-1].trumpd;

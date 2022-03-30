@@ -138,6 +138,7 @@ nav.navbar {
      margin-top: -1em;
      color:red;
      background-color:lightcyan;
+     text-align: center;
  }
 
  .page:hover {
