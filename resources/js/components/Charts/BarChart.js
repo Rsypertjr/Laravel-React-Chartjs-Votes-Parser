@@ -65,10 +65,11 @@ export default function BarChart(props) {
         let ctx = document.getElementById('myChart').getContext('2d');
 
         $('.viewerClose').on('click', function(){
-            $('.chart-viewer').removeClass('upslide').addClass('downslide');
+            $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
             $('.viewerClose').css('display','none');
         });
- 
+        $('#page-'+props.pageNo).css('background-color','#ffc107');       
+     
 
        // let data = [65, 59, 80, 81, 56, 55, 40];
         let label =  '# of Votes';
@@ -85,14 +86,14 @@ export default function BarChart(props) {
         let datedata_trump = chartData.dateDataTrumpStore.map((item) => item);
 
         let datasets = [];   
-        let labels = date_headers[selected_index];
+        let labels = date_headers[selected_index-1];
 
         var data1= {};
         data1.label = "Biden Votes";
         data1.backgroundColor = bgColors[0];
         data1.borderColor = bgColors[0];
         data1.data = [];
-        datedata_biden[selected_index].map((data) => {               
+        datedata_biden[selected_index-1].map((data) => {               
             data1.data.push(data);
         });
         let dataset1 = data1;
@@ -103,7 +104,7 @@ export default function BarChart(props) {
         data2.backgroundColor = bgColors[1];
         data2.borderColor = bgColors[1];
         data2.data = [];
-        datedata_trump[selected_index].map((data) => {                
+        datedata_trump[selected_index-1].map((data) => {                
             data2.data.push(data);
         });
         let dataset2 = data2;
@@ -114,7 +115,7 @@ export default function BarChart(props) {
         data3.backgroundColor = bgColors[3];
         data3.borderColor = bgColors[3];
         data3.data = [];
-        datedata_other[selected_index].map((data) => {                
+        datedata_other[selected_index-1].map((data) => {                
             data3.data.push(data);
         });
         let dataset3 = data3;

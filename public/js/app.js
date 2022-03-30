@@ -3162,7 +3162,7 @@ function ChartPager(props) {
       onClick: leftArrow
     }), props.theChartArray[parseInt(props.thePageSetNumber) - 1].map(function (num) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-        children: num < props.chartData.dateHeadersStore.length - 1 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+        children: num < props.chartData.dateHeadersStore.length && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
           type: "button",
           "class": "page",
           id: "page-".concat(num + 1),
@@ -3215,9 +3215,10 @@ function BarChart(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var ctx = document.getElementById('myChart').getContext('2d');
     $('.viewerClose').on('click', function () {
-      $('.chart-viewer').removeClass('upslide').addClass('downslide');
+      $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
       $('.viewerClose').css('display', 'none');
-    }); // let data = [65, 59, 80, 81, 56, 55, 40];
+    });
+    $('#page-' + props.pageNo).css('background-color', '#ffc107'); // let data = [65, 59, 80, 81, 56, 55, 40];
 
     var label = '# of Votes';
     var type = props.type;
@@ -3239,13 +3240,13 @@ function BarChart(props) {
       return item;
     });
     var datasets = [];
-    var labels = date_headers[selected_index];
+    var labels = date_headers[selected_index - 1];
     var data1 = {};
     data1.label = "Biden Votes";
     data1.backgroundColor = bgColors[0];
     data1.borderColor = bgColors[0];
     data1.data = [];
-    datedata_biden[selected_index].map(function (data) {
+    datedata_biden[selected_index - 1].map(function (data) {
       data1.data.push(data);
     });
     var dataset1 = data1; //alert(JSON.stringify(dataset1));
@@ -3255,7 +3256,7 @@ function BarChart(props) {
     data2.backgroundColor = bgColors[1];
     data2.borderColor = bgColors[1];
     data2.data = [];
-    datedata_trump[selected_index].map(function (data) {
+    datedata_trump[selected_index - 1].map(function (data) {
       data2.data.push(data);
     });
     var dataset2 = data2; //alert(JSON.stringify(dataset2));
@@ -3265,7 +3266,7 @@ function BarChart(props) {
     data3.backgroundColor = bgColors[3];
     data3.borderColor = bgColors[3];
     data3.data = [];
-    datedata_other[selected_index].map(function (data) {
+    datedata_other[selected_index - 1].map(function (data) {
       data3.data.push(data);
     });
     var dataset3 = data3;
@@ -3346,9 +3347,10 @@ function BinStackedChart(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var ctx = document.getElementById('myChart').getContext('2d');
     $('.viewerClose').on('click', function () {
-      $('.chart-viewer').removeClass('upslide').addClass('downslide');
+      $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
       $('.viewerClose').css('display', 'none');
-    }); // let data = [65, 59, 80, 81, 56, 55, 40];
+    });
+    $('#page-' + props.pageNo).css('background-color', '#ffc107'); // let data = [65, 59, 80, 81, 56, 55, 40];
 
     var label = '# of Votes';
     var type = props.type;
@@ -3370,13 +3372,13 @@ function BinStackedChart(props) {
       return item;
     });
     var datasets = [];
-    var labels = date_headers[selected_index];
+    var labels = date_headers[selected_index - 1];
     var data1 = {};
     data1.label = "Biden Votes";
     data1.backgroundColor = bgColors[0];
     data1.borderColor = bgColors[0];
     data1.data = [];
-    datedata_biden[selected_index].map(function (data) {
+    datedata_biden[selected_index - 1].map(function (data) {
       data1.data.push(data);
     });
     var dataset1 = data1; //alert(JSON.stringify(dataset1));
@@ -3386,7 +3388,7 @@ function BinStackedChart(props) {
     data2.backgroundColor = bgColors[1];
     data2.borderColor = bgColors[1];
     data2.data = [];
-    datedata_trump[selected_index].map(function (data) {
+    datedata_trump[selected_index - 1].map(function (data) {
       data2.data.push(data);
     });
     var dataset2 = data2; //alert(JSON.stringify(dataset2));
@@ -3396,7 +3398,7 @@ function BinStackedChart(props) {
     data3.backgroundColor = bgColors[3];
     data3.borderColor = bgColors[3];
     data3.data = [];
-    datedata_other[selected_index].map(function (data) {
+    datedata_other[selected_index - 1].map(function (data) {
       data3.data.push(data);
     });
     var dataset3 = data3;
@@ -3521,9 +3523,11 @@ function DiffLineChart(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var ctx = document.getElementById('myChart').getContext('2d');
     $('.viewerClose').on('click', function () {
-      $('.chart-viewer').removeClass('upslide').addClass('downslide');
+      $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
       $('.viewerClose').css('display', 'none');
-    }); // let data = [65, 59, 80, 81, 56, 55, 40];
+    });
+    $('.page').css('background-color', 'rgb(239, 239, 239').css('border-color', 'rgb(255, 255, 255').css('border-width', '3px');
+    $('#page-' + props.pageNo).css('background-color', '#ffc107'); // let data = [65, 59, 80, 81, 56, 55, 40];
 
     var label = '# of Votes';
     var type = props.type;
@@ -3541,13 +3545,13 @@ function DiffLineChart(props) {
       return item;
     });
     var datasets = [];
-    var labels = date_headers[selected_index];
+    var labels = date_headers[selected_index - 1];
     var data1 = {};
     data1.label = "Biden Gain/Loss";
     data1.backgroundColor = bgColors[0];
     data1.borderColor = bgColors[0];
     data1.data = [];
-    datedata_biden_diff_add[selected_index].map(function (data) {
+    datedata_biden_diff_add[selected_index - 1].map(function (data) {
       data1.data.push(data);
     });
     var dataset1 = data1; //alert(JSON.stringify(dataset1));
@@ -3557,7 +3561,7 @@ function DiffLineChart(props) {
     data2.backgroundColor = bgColors[1];
     data2.borderColor = bgColors[1];
     data2.data = [];
-    datedata_trump_diff_add[selected_index].map(function (data) {
+    datedata_trump_diff_add[selected_index - 1].map(function (data) {
       data2.data.push(data);
     });
     var dataset2 = data2; //alert(JSON.stringify(dataset2));
@@ -3642,9 +3646,10 @@ function PerLineChart(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var ctx = document.getElementById('myChart').getContext('2d');
     $('.viewerClose').on('click', function () {
-      $('.chart-viewer').removeClass('upslide').addClass('downslide');
+      $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
       $('.viewerClose').css('display', 'none');
-    }); // let data = [65, 59, 80, 81, 56, 55, 40];
+    });
+    $('#page-' + props.pageNo).css('background-color', '#ffc107'); // let data = [65, 59, 80, 81, 56, 55, 40];
 
     var label = '# of Votes';
     var type = props.type;
@@ -3663,13 +3668,13 @@ function PerLineChart(props) {
       return item;
     });
     var datasets = [];
-    var labels = date_headers[selected_index];
+    var labels = date_headers[selected_index - 1];
     var data1 = {};
     data1.label = "Biden % of Remaining Vote";
     data1.backgroundColor = bgColors[0];
     data1.borderColor = bgColors[0];
     data1.data = [];
-    perremainingbiden_store[selected_index].map(function (data) {
+    perremainingbiden_store[selected_index - 1].map(function (data) {
       data1.data.push(data);
     });
     var dataset1 = data1; //alert(JSON.stringify(dataset1));
@@ -3679,7 +3684,7 @@ function PerLineChart(props) {
     data2.backgroundColor = bgColors[1];
     data2.borderColor = bgColors[1];
     data2.data = [];
-    perremainingtrump_store[selected_index].map(function (data) {
+    perremainingtrump_store[selected_index - 1].map(function (data) {
       data2.data.push(data);
     });
     var dataset2 = data2; //alert(JSON.stringify(dataset2));
@@ -3787,9 +3792,10 @@ function SpikesLineChart(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var ctx = document.getElementById('myChart').getContext('2d');
     $('.viewerClose').on('click', function () {
-      $('.chart-viewer').addClass('downslide').fadeOut();
+      $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
       $('.viewerClose').css('display', 'none');
-    }); // let data = [65, 59, 80, 81, 56, 55, 40];
+    });
+    $('#page-' + props.pageNo).css('background-color', '#ffc107'); // let data = [65, 59, 80, 81, 56, 55, 40];
 
     var label = '# of Votes';
     var type = props.type;
@@ -3830,7 +3836,7 @@ function SpikesLineChart(props) {
     data2.backgroundColor = bgColors[1];
     data2.borderColor = bgColors[1];
     data2.data = [];
-    datedata_trump_add[selected_index].map(function (data) {
+    datedata_trump_add[selected_index - 1].map(function (data) {
       data2.data.push(data);
     });
     var dataset2 = data2; //alert(JSON.stringify(dataset2));
@@ -3840,7 +3846,7 @@ function SpikesLineChart(props) {
     data3.backgroundColor = bgColors[2];
     data3.borderColor = bgColors[2];
     data3.data = [];
-    datedata_other_add[selected_index].map(function (data) {
+    datedata_other_add[selected_index - 1].map(function (data) {
       data3.data.push(data);
     });
     var dataset3 = data3;
@@ -3849,7 +3855,7 @@ function SpikesLineChart(props) {
     data4.backgroundColor = bgColors[3];
     data4.borderColor = bgColors[3];
     data4.data = [];
-    datedata_total_add[selected_index].map(function (data) {
+    datedata_total_add[selected_index - 1].map(function (data) {
       data4.data.push(data);
     });
     var dataset4 = data4;
@@ -3934,9 +3940,10 @@ function VotesLineChart2(props) {
     var ctx = document.getElementById('myChart').getContext('2d');
     $('.viewerClose').on('click', function () {
       //$('.chart-viewer').css('margin-top','0').css('transition','opacity 100s ease-in-out').css('z-index','1').css('border-style','none');
-      $('.chart-viewer').removeClass('upslide').addClass('downslide');
+      $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
       $('.viewerClose').css('display', 'none');
     });
+    $('#page-' + props.pageNo).css('background-color', '#ffc107');
     var label = '# of Votes';
     var type = props.type;
     var selected_index = props.pageNo;
@@ -3963,7 +3970,7 @@ function VotesLineChart2(props) {
     data1.backgroundColor = bgColors[0];
     data1.borderColor = bgColors[0];
     data1.data = [];
-    datedata_biden[selected_index].map(function (data) {
+    datedata_biden[selected_index - 1].map(function (data) {
       data1.data.push(data);
     });
     var dataset1 = data1; //alert(JSON.stringify(dataset1));
@@ -3973,7 +3980,7 @@ function VotesLineChart2(props) {
     data2.backgroundColor = bgColors[1];
     data2.borderColor = bgColors[1];
     data2.data = [];
-    datedata_trump[selected_index].map(function (data) {
+    datedata_trump[selected_index - 1].map(function (data) {
       data2.data.push(data);
     });
     var dataset2 = data2; //alert(JSON.stringify(dataset2));
@@ -3983,7 +3990,7 @@ function VotesLineChart2(props) {
     data3.backgroundColor = bgColors[2];
     data3.borderColor = bgColors[2];
     data3.data = [];
-    datedata_other[selected_index].map(function (data) {
+    datedata_other[selected_index - 1].map(function (data) {
       data3.data.push(data);
     });
     var dataset3 = data3;
@@ -4285,9 +4292,10 @@ function OuterTable(props) {
 function VoteTableReact(props) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     $('.viewerClose').on('click', function () {
-      $('.chart-viewer').css('margin-top', '0').css('transition', 'opacity 100s ease-in-out').css('z-index', '1').css('border-style', 'none');
+      $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
       $('.viewerClose').css('display', 'none');
     });
+    $('#page-' + props.pageNo).css('background-color', '#ffc107');
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     "class": "chart-viewer",
@@ -4420,7 +4428,7 @@ var linkStyle = {
   fontSize: '0.8em'
 };
 var states = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"];
-var resolutions = [5, 10, 15, 20];
+var resolutions = [1, 5, 10, 15, 20];
 
 var VotesApp = /*#__PURE__*/function (_React$Component) {
   _inherits(VotesApp, _React$Component);
@@ -4463,7 +4471,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
       chartData: {},
       graphType: 'table',
       goto_Linechart: false,
-      parse_resolution: 10,
+      parse_resolution: 1,
       noOfChartPages: 0,
       theChartArray: [],
       theResolutions: resolutions
@@ -4480,9 +4488,11 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
     value: function getPageNumber(obj) {
       var num = obj.num;
       this.setState({
-        theCurrentPage: this.state.theCurrentPages[parseInt(num) - 1],
+        // theCurrentPage:this.state.theCurrentPages[parseInt(num)-1],
         pageNo: num
       });
+      $('.page').css('background-color', 'rgb(239, 239, 239').css('border-color', 'rgb(255, 255, 255').css('border-width', '3px');
+      $('#page-' + this.state.pageNo).css('background-color', 'lightgrey');
     }
   }, {
     key: "rightArrow",
@@ -4502,11 +4512,10 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
           pageNo: num
         });
       } else if (type == 'table' && parseInt(num) >= this.state.thePagingArray.length) {
-        var _newNum = (parseInt(this.state.thePageSetNumber) - 1) * this.state.thePageSize + 1;
-
+        var newNum2 = (parseInt(this.state.thePageSetNumber) - 1) * this.state.thePageSize + 1;
         this.setState({
           thePageSetNumber: this.state.thePageSetNumber,
-          pageNo: _newNum
+          pageNo: newNum2
         });
       } else if (type != 'table' && parseInt(num) >= this.state.chartData.dateHeadersStore.length || _typeof(this.state.theChartArray[num - 1]) != undefined) {
         //let newNum2 = (parseInt(this.state.thePageSetNumber) - 1)*this.state.thePageSize;
@@ -4514,9 +4523,10 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
           thePageSetNumber: this.state.thePageSetNumber,
           pageNo: num - this.state.thePageSize
         });
-        $('.page').css('background-color', 'rgb(239, 239, 239').css('border-color', 'rgb(255, 255, 255').css('border-width', '3px');
-        $('#page-' + newNum2).css('background-color', 'lightgrey');
       }
+
+      $('.page').css('background-color', 'rgb(239, 239, 239').css('border-color', 'rgb(255, 255, 255').css('border-width', '3px');
+      $('#page-' + this.state.pageNo).css('background-color', 'lightgrey');
     }
   }, {
     key: "leftArrow",
@@ -4527,16 +4537,17 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
       if (newNum > 0) {
         this.setState({
           thePageSetNumber: parseInt(this.state.thePageSetNumber) - 1,
-          pageNo: parseInt(newNum)
+          pageNo: parseInt(newNum) + 1
         });
-        $('.page').css('background-color', 'rgb(239, 239, 239').css('border-color', 'rgb(255, 255, 255').css('border-width', '3px');
-        $('#page-' + newNum).css('background-color', 'lightgrey');
       } else {
         this.setState({
           thePageSetNumber: 1,
           pageNo: 1
         });
       }
+
+      $('.page').css('background-color', 'rgb(239, 239, 239').css('border-color', 'rgb(255, 255, 255').css('border-width', '3px');
+      $('#page-' + this.state.pageNo).css('background-color', 'lightgrey');
     }
   }, {
     key: "getStateData",
@@ -4573,9 +4584,8 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
           defaultOption: _this2.state.theState
         });
 
-        var chartData = _this2.getChartsData(_this2.state.parse_resolution);
+        var chartData = _this2.getChartsData(_this2.state.parse_resolution); //this.getTimeDiff(chartData.dateHeadersStore);
 
-        _this2.getTimeDiff(chartData.dateHeadersStore);
 
         _this2.setState({
           chartData: chartData
@@ -4690,47 +4700,38 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
       var trumpslices = [];
       var otherslices = [];
       var pieheaders = [];
+      var j = 0;
 
-      for (i = 0; i < vote_rows.length; i++) {
-        dateheaders[i] = vote_rows.slice(i * parseInt(parse_interval), i * parseInt(parse_interval) + parseInt(parse_interval)).map(function (item) {
-          return item.timestamp;
-        });
-        datedatabiden[i] = vote_rows.slice(i * parseInt(parse_interval), i * parseInt(parse_interval) + parseInt(parse_interval)).map(function (item) {
-          return item.biden_votes;
-        });
-        datedatatrump[i] = vote_rows.slice(i * parseInt(parse_interval), i * parseInt(parse_interval) + parseInt(parse_interval)).map(function (item) {
-          return item.trump_votes;
-        });
-        datedatabidenadd[i] = vote_rows.slice(i * parseInt(parse_interval), i * parseInt(parse_interval) + parseInt(parse_interval)).map(function (item) {
-          return item.biden_votes;
-        });
-        datedatatrumpadd[i] = vote_rows.slice(i * parseInt(parse_interval), i * parseInt(parse_interval) + parseInt(parse_interval)).map(function (item) {
-          return item.trump_votes;
-        });
-        datedatabidenadddiff[i] = vote_rows.slice(i * parseInt(parse_interval), i * parseInt(parse_interval) + parseInt(parse_interval)).map(function (item) {
-          return item.biden_votes;
-        });
-        datedatatrumpadddiff[i] = vote_rows.slice(i * parseInt(parse_interval), i * parseInt(parse_interval) + parseInt(parse_interval)).map(function (item) {
-          return item.trump_votes;
-        });
-        datedataotheradd[i] = vote_rows.slice(i * parseInt(parse_interval), i * parseInt(parse_interval) + parseInt(parse_interval)).map(function (item) {
-          return item.other_votes;
-        });
-        datedatatotaladd[i] = vote_rows.slice(i * parseInt(parse_interval), i * parseInt(parse_interval) + parseInt(parse_interval)).map(function (item) {
-          return item.votes;
-        });
-        datedatatotal[i] = vote_rows.slice(i * parseInt(parse_interval), i * parseInt(parse_interval) + parseInt(parse_interval)).map(function (item) {
-          return item.votes;
-        });
-        datedataother[i] = vote_rows.slice(i * parseInt(parse_interval), i * parseInt(parse_interval) + parseInt(parse_interval)).map(function (item) {
-          return item.other_votes;
-        });
-        perremainingtrump[i] = vote_rows.slice(i * parseInt(parse_interval), i * parseInt(parse_interval) + parseInt(parse_interval)).map(function (item) {
-          return item.remaining_percent_trump;
-        });
-        perremainingbiden[i] = vote_rows.slice(i * parseInt(parse_interval), i * parseInt(parse_interval) + parseInt(parse_interval)).map(function (item) {
-          return item.remaining_percent_biden;
-        });
+      for (i = 0; i < vote_rows.length; i = i + parse_interval) {
+        /*
+        dateheaders[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.timestamp);
+        datedatabiden[i] = vote_rows.slice(i*parseInt(parse_interval + 1),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.biden_votes);
+        datedatatrump[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.trump_votes);
+        datedatabidenadd[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.biden_votes);
+        datedatatrumpadd[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.trump_votes);
+        datedatabidenadddiff[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.biden_votes);
+        datedatatrumpadddiff[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.trump_votes);
+        datedataotheradd[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.other_votes);
+        datedatatotaladd[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.votes);
+        datedatatotal[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.votes);
+        datedataother[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.other_votes);
+        perremainingtrump[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.remaining_percent_trump);
+        perremainingbiden[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.remaining_percent_biden);
+        */
+        dateheaders[j] = vote_rows[i].timestamp;
+        datedatabiden[j] = vote_rows[i].biden_votes;
+        datedatatrump[j] = vote_rows[i].trump_votes;
+        datedatabidenadd[j] = vote_rows[i].biden_votes;
+        datedatatrumpadd[j] = vote_rows[i].trump_votes;
+        datedatabidenadddiff[j] = vote_rows[i].biden_votes;
+        datedatatrumpadddiff[j] = vote_rows[i].trump_votes;
+        datedataotheradd[j] = vote_rows[i].other_votes;
+        datedatatotaladd[j] = vote_rows[i].votes;
+        datedatatotal[j] = vote_rows[i].votes;
+        datedataother[j] = vote_rows[i].other_votes;
+        perremainingtrump[j] = vote_rows[i].remaining_percent_trump;
+        perremainingbiden[j] = vote_rows[i].remaining_percent_biden;
+        j++;
 
         if (i > 0) {
           datedatabidenadd.push(vote_rows[i].biden_votes - vote_rows[i - 1].biden_votes);
@@ -4742,6 +4743,51 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
         }
       }
 
+      var date_headers = [];
+      var date_databiden = [];
+      var date_datatrump = [];
+      var date_databidenadd = [];
+      var date_datatrumpadd = [];
+      var date_databidenadddiff = [];
+      var date_datatrumpadddiff = [];
+      var date_dataotheradd = [];
+      var date_datatotaladd = [];
+      var date_datatotal = [];
+      var date_dataother = [];
+      var per_remainingtrump = [];
+      var per_remainingbiden = [];
+      var cnt3 = 0;
+
+      for (var k = 0; k < datedatabiden.length; k = k + this.state.thePageSize) {
+        date_headers[cnt3] = dateheaders.slice(k, k + this.state.thePageSize);
+        date_databiden[cnt3] = datedatabiden.slice(k, k + this.state.thePageSize);
+        date_datatrump[cnt3] = datedatatrump.slice(k, k + this.state.thePageSize);
+        date_databidenadd[cnt3] = datedatabidenadd.slice(k, k + this.state.thePageSize);
+        date_datatrumpadd[cnt3] = datedatatrumpadd.slice(k, k + this.state.thePageSize);
+        date_databidenadddiff[cnt3] = datedatabidenadddiff.slice(k, k + this.state.thePageSize);
+        date_datatrumpadddiff[cnt3] = datedatatrumpadddiff.slice(k, k + this.state.thePageSize);
+        date_dataotheradd[cnt3] = datedataotheradd.slice(k, k + this.state.thePageSize);
+        date_datatotaladd[cnt3] = datedatatotaladd.slice(k, k + this.state.thePageSize);
+        date_datatotal[cnt3] = datedatatotal.slice(k, k + this.state.thePageSize);
+        date_dataother[cnt3] = datedataother.slice(k, k + this.state.thePageSize);
+        per_remainingtrump[cnt3] = perremainingtrump.slice(k, k + this.state.thePageSize);
+        per_remainingbiden[cnt3] = perremainingbiden.slice(k, k + this.state.thePageSize);
+        cnt3++;
+      }
+
+      dateheaders = date_headers;
+      datedatabiden = date_databiden;
+      datedatatrump = date_datatrump;
+      datedatabidenadd = date_databidenadd;
+      datedatatrumpadd = date_datatrumpadd;
+      datedatabidenadddiff = date_databidenadddiff;
+      datedatatrumpadddiff = date_datatrumpadddiff;
+      datedataotheradd = date_dataotheradd;
+      datedatatotaladd = date_datatotaladd;
+      datedatatotal = date_datatotal;
+      datedataother = date_dataother;
+      perremainingtrump = per_remainingtrump;
+      perremainingbiden = per_remainingbiden;
       datedatabidenadd_store = datedatabidenadd.map(function (item) {
         return item != null ? item : item["delete"]();
       });
@@ -5006,8 +5052,8 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
         "bin_headers": bin_headers,
         "bin_biden": bin_biden,
         "bin_trump": bin_trump
-      };
-      $('#interval_message').html(this.getTimeDiff(dataLoad.dateHeadersStore));
+      }; //$('#interval_message').html(this.getTimeDiff(dataLoad.dateHeadersStore));
+
       return dataLoad;
     }
   }, {

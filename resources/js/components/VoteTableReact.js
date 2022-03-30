@@ -30,9 +30,11 @@ export default function VoteTableReact(props)  {
              
         useEffect(() => {
             $('.viewerClose').on('click', function(){
-                $('.chart-viewer').css('margin-top','0').css('transition','opacity 100s ease-in-out').css('z-index','1').css('border-style','none');
+                $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
                 $('.viewerClose').css('display','none');
             });
+            $('#page-'+props.pageNo).css('background-color','#ffc107');       
+     
         });
 
         return (          

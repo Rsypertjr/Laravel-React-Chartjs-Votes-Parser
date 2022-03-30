@@ -64,10 +64,11 @@ export default function PerLineChart(props) {
         let ctx = document.getElementById('myChart').getContext('2d');
 
         $('.viewerClose').on('click', function(){
-            $('.chart-viewer').removeClass('upslide').addClass('downslide');
+            $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
             $('.viewerClose').css('display','none');
         });
- 
+        $('#page-'+props.pageNo).css('background-color','#ffc107');       
+     
 
        // let data = [65, 59, 80, 81, 56, 55, 40];
         let label =  '# of Votes';
@@ -82,14 +83,14 @@ export default function PerLineChart(props) {
         let perremainingbiden_store = chartData.perRemainingBidenStore.map((item) => item);
         let perremainingtrump_store = chartData.perRemainingTrumpStore.map((item) => item);
         let datasets = [];   
-        let labels = date_headers[selected_index];
+        let labels = date_headers[selected_index-1];
 
         var data1= {};
         data1.label = "Biden % of Remaining Vote";
         data1.backgroundColor = bgColors[0];
         data1.borderColor = bgColors[0];
         data1.data = [];
-        perremainingbiden_store[selected_index].map((data) => {               
+        perremainingbiden_store[selected_index-1].map((data) => {               
             data1.data.push(data);
         });
         let dataset1 = data1;
@@ -100,7 +101,7 @@ export default function PerLineChart(props) {
         data2.backgroundColor = bgColors[1];
         data2.borderColor = bgColors[1];
         data2.data = [];
-        perremainingtrump_store[selected_index].map((data) => {                
+        perremainingtrump_store[selected_index-1].map((data) => {                
             data2.data.push(data);
         });
         let dataset2 = data2;

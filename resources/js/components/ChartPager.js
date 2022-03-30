@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
-
 export default function ChartPager(props){
-
+   
+    
     const handlePage = (e) => {
         let num = e.target.value;
         let obj = {};
@@ -11,7 +11,7 @@ export default function ChartPager(props){
         obj.type = props.type;
         props.getPageNumber(obj);
         $('.page').css('background-color','rgb(239, 239, 239').css('border-color','rgb(255, 255, 255').css('border-width','3px');
-        $('#page-'+pageNum).css('background-color','lightgrey');        
+        $('#page-'+pageNum).css('background-color','lightgrey');   
      
     }
 
@@ -45,7 +45,7 @@ export default function ChartPager(props){
                 
                 props.theChartArray[parseInt(props.thePageSetNumber)-1].map((num) => (      
                         <span>
-                        { (num < (props.chartData.dateHeadersStore.length-1)) && <input type="button" class="page" id={`page-${num+1}`} value={num+1} onClick={handlePage}/> }
+                        { (num < (props.chartData.dateHeadersStore.length)) && <input type="button" class="page" id={`page-${num+1}`} value={num+1} onClick={handlePage}/> }
                         </span>
                     ))              
                          

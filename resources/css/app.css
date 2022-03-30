@@ -89,6 +89,18 @@ nav.navbar {
     animation-delay: 0.5s;
 }
 
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear;
+  }
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s 2s, opacity 2s linear;
+  }
+
 @-webkit-keyframes slideup {
     100% { margin-top: -15em; }
 }
@@ -126,6 +138,10 @@ nav.navbar {
      margin-top: -1em;
      color:red;
      background-color:lightcyan;
+ }
+
+ .page:hover {
+     background-color: grey;
  }
   /*
   .col-sm-12:nth-child(2n+1) { 

@@ -66,9 +66,11 @@ export default function VotesLineChart2(props) {
         
         $('.viewerClose').on('click', function(){
             //$('.chart-viewer').css('margin-top','0').css('transition','opacity 100s ease-in-out').css('z-index','1').css('border-style','none');
-            $('.chart-viewer').removeClass('upslide').addClass('downslide');
+            $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
             $('.viewerClose').css('display','none');
         });
+        $('#page-'+props.pageNo).css('background-color','#ffc107');       
+      
 
         let label =  '# of Votes';
         let type = props.type;
@@ -90,7 +92,7 @@ export default function VotesLineChart2(props) {
         data1.backgroundColor = bgColors[0];
         data1.borderColor = bgColors[0];
         data1.data = [];
-        datedata_biden[selected_index].map((data) => {               
+        datedata_biden[selected_index-1].map((data) => {               
             data1.data.push(data);
         });
         let dataset1 = data1;
@@ -101,7 +103,7 @@ export default function VotesLineChart2(props) {
         data2.backgroundColor = bgColors[1];
         data2.borderColor = bgColors[1];
         data2.data = [];
-        datedata_trump[selected_index].map((data) => {                
+        datedata_trump[selected_index-1].map((data) => {                
             data2.data.push(data);
         });
         let dataset2 = data2;
@@ -114,7 +116,7 @@ export default function VotesLineChart2(props) {
         data3.borderColor = bgColors[2];          
         data3.data = [];
         
-        datedata_other[selected_index].map((data) => {
+        datedata_other[selected_index-1].map((data) => {
             data3.data.push(data);
         });
         let dataset3 = data3;
