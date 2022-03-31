@@ -2,6 +2,20 @@ table.table.table-sm {
     zoom:75%;
 
 }
+body{
+    background-color: rgb(187, 223, 223);
+}
+li.nav-item{
+    -webkit-transition: color 2s;
+    transition: color 2s;
+}
+li.nav-item:hover {
+    background-color:rgb(187, 223, 223);
+}
+
+li.nav-item a:hover{
+    text-decoration: underline;
+}
 
 .navbar-nav {
     padding-left: 10em;
@@ -23,11 +37,12 @@ nav.navbar {
 .row.justify-content-start{
     margin-bottom:2em;
 }
-
+/*
 .jumbotron {
     transform:scale(0.65);
     margin-top:-4em;
 }  
+*/
 
 .vertical-scrollable > .row {
     position: relative;
@@ -82,7 +97,7 @@ nav.navbar {
 .downslide{
     z-index:1.0;
     opacity:1.0;
-    margin-top:-15em;
+    margin-top:-20em;
     -webkit-animation: slidedown 0.5s forwards;
     -webkit-animation-delay: 0.5s;
     animation: slidedown 0.5s forwards;
@@ -102,11 +117,11 @@ nav.navbar {
   }
 
 @-webkit-keyframes slideup {
-    100% { margin-top: -15em; }
+    100% { margin-top: -20em; }
 }
 
 @keyframes slideup {
-    100% { margin-top: -15em; }
+    100% { margin-top: -20em; }
 }
 
 @-webkit-keyframes slidedown {
