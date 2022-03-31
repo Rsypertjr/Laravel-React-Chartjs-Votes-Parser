@@ -4,8 +4,5 @@ require('./bootstrap');
 
 // React Components
 require('./components/VoteTableReact');
-require('./components/Sea/Sea');
-
-require('./components/Manatee/Manatee');
 require('./components/VotesApp');
 require('./components/Charts/VotesLineChart2');
