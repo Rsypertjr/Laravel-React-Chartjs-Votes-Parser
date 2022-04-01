@@ -10,8 +10,8 @@ export default function VotesPager(props){
         obj.num = num;
         obj.type = props.type;
         props.getPageNumber(obj);
-        $('.page').css('background-color','rgb(239, 239, 239').css('border-color','rgb(255, 255, 255').css('border-width','3px');
-        $('#page-'+pageNum).css('background-color','lightgrey');        
+       // $('.page').css('background-color','rgb(239, 239, 239').css('border-color','rgb(255, 255, 255').css('border-width','3px');
+        //$('#page-'+pageNum).css('background-color','lightgrey');        
     }
 
 
@@ -44,7 +44,7 @@ export default function VotesPager(props){
                     props.thePagingArray[parseInt(props.thePageSetNumber)-1].map((num) => (      
                     //pagingArr.map((num) => (    
                         <span>
-                        { props.theCurrentPages[parseInt(num)] !== undefined  && <input type="button" class="page" id={`page-${num+1}`} value={num+1} onClick={handlePage}/> }
+                        { props.theCurrentPages[parseInt(num)] !== undefined  && <input type="button" class="vpage" id={`vpage-${num+1}`} value={num+1} onClick={handlePage}/> }
                         </span>
                     ))                    
                 }                    

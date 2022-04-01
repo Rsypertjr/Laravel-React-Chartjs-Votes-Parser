@@ -8,47 +8,62 @@ export default function ChartPager(props){
         let num = e.target.value;
         let obj = {};
         obj.num = num;
+        
         obj.type = props.type;
-        props.getPageNumber(obj);
-        $('.page').css('background-color','rgb(239, 239, 239').css('border-color','rgb(255, 255, 255').css('border-width','3px');
-        $('#page-'+pageNum).css('background-color','lightgrey');   
+        props.getPageNumber(obj);      
+    }
+
+    const leftArrow = (e) => {  
+        let check = (parseInt(props.thePageSetNumber)-1)*parseInt(props.thePageSize) + 1;
+        if((parseInt(props.pageNo)) > check){
+            e.target.value = parseInt(props.pageNo) - 1;           
+            handlePage(e);
+         }
+         else{
+            let nxpagenum = parseInt(props.thePageSetNumber)*parseInt(props.thePageSize) - 1;
+            let obj = {};  
+            obj.nxpagenum = nxpagenum;
+            obj.num = props.pageNo-1;
+            obj.type = props.type;
+            obj.type = props.type;
+            props.leftArrow(obj);
+         }
+    }
+
+    const rightArrow = (e) => {   
+           // alert(props.chartData.dateHeadersStore.length);
+           let chk1 = (parseInt(props.pageNo)+1) <= (parseInt(props.thePageSetNumber)-1)*parseInt(props.thePageSize) + parseInt(props.thePageSize);
+           let chk2 =  (parseInt(props.pageNo)+1) <= props.chartData.dateHeadersStore.length;
+           //let chk3 = (parseInt(props.pageNo)+1) == parseInt(props.thePageSetNumber)*parseInt(props.thePageSize);
+            if( chk1 && chk2){
+                e.target.value = parseInt(props.pageNo) + 1;           
+                handlePage(e);
+             }        
+            else if( !chk1 && chk2 ) {
+                 //alert('doing');
+                let obj = {};
+                let nxpagenum = parseInt(props.thePageSetNumber)*parseInt(props.thePageSize) + 1;
+                obj.nxpagenum = nxpagenum;
+                obj.num = parseInt(props.pageNo) + 1;
+                obj.type = props.type;
+                props.rightArrow(obj);
+             }
+             else{
+                // alert('not doing');
+             }
      
     }
 
 
-    
-
-    const leftArrow = (e) => {  
-      let num = parseInt(props.thePageSetNumber)*parseInt(props.thePageSize) - 1;
-      let obj = {};
-      obj.num = num;
-      obj.type = props.type;
-      props.leftArrow(obj);
-
-    }
-
-    const rightArrow = (e) => {    
-         let obj = {};
-         let num = parseInt(props.thePageSetNumber)*(props.thePageSize) + 1;
-         obj.num = num;
-         obj.type = props.type;
-         props.rightArrow(obj);
-    }
-
-
-    return(
-        
-            <div>
-                
+    return(        
+            <div>                
                 <input class="page-arrow" type="button" value="<" onClick={leftArrow}/>                
-                {  
-                
-                props.theChartArray[parseInt(props.thePageSetNumber)-1].map((num) => (      
+                {                  
+                    props.theChartArray[parseInt(props.thePageSetNumber)-1].map((num) => (      
                         <span>
                         { (num < (props.chartData.dateHeadersStore.length)) && <input type="button" class="page" id={`page-${num+1}`} value={num+1} onClick={handlePage}/> }
                         </span>
-                    ))              
-                         
+                    ))          
                 }                    
                 <input class="page-arrow" type="button" value=">" onClick={rightArrow}/> 
             </div>                    

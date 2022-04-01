@@ -41,6 +41,7 @@ export default class VotesApp extends React.Component {
       this.rightArrow = this.rightArrow.bind(this);
       this.selectResolution = this.selectResolution.bind(this);
       this.getTimeDiff = this.getTimeDiff.bind(this);
+      this.resetCharts = this.resetCharts.bind(this);
       this.state = {
           theVotes: [],
           DataisLoaded: false,
@@ -65,13 +66,9 @@ export default class VotesApp extends React.Component {
           noOfChartPages:0,
           theChartArray:[],
           theResolutions: resolutions
-        
-
-
       };
       let state = this.state.defaultOption;
-      this.getStateData(state);
-    
+      this.getStateData(state);    
   }
 
  
@@ -80,63 +77,71 @@ export default class VotesApp extends React.Component {
   {         
      let num = obj.num;
      this.setState({
-        // theCurrentPage:this.state.theCurrentPages[parseInt(num)-1],
          pageNo: num
      });   
-     $('.page').css('background-color','rgb(239, 239, 239').css('border-color','rgb(255, 255, 255').css('border-width','3px');
-     $('#page-'+this.state.pageNo).css('background-color','lightgrey');        
-
-
-    
-     
+   
   }
 
-  rightArrow(obj){
 
-      let num = obj.num;
+  rightArrow(obj){
+      let num = obj.num;      
+      let nxpagenum = obj.nxpagenum     
       let type = obj.type;
-      let newNum = Math.ceil(parseInt(this.state.thePageSetNumber-1) % this.state.thePageSize)*(this.state.thePageSize) + 1;
-      if(type == 'table' && parseInt(num) < this.state.thePagingArray.length){
-            this.setState({
-                thePageSetNumber:this.state.thePageSetNumber + 1,
-                pageNo: newNum
-            });
-        } 
-      else if(type != 'table' && parseInt(num) < this.state.chartData.dateHeadersStore.length){
-            this.setState({
-                thePageSetNumber:this.state.thePageSetNumber+1,
-                pageNo: num
-            });
-        } 
-      else if(type == 'table' && parseInt(num) >= this.state.thePagingArray.length){
-         
-            let newNum2 = (parseInt(this.state.thePageSetNumber) - 1)*this.state.thePageSize + 1;
-            this.setState({
-                thePageSetNumber:this.state.thePageSetNumber,
-                pageNo: newNum2
-            });
-        }
-     else if((type != 'table' && parseInt(num) >= this.state.chartData.dateHeadersStore.length) || typeof(this.state.theChartArray[num-1]) != undefined ){
-            //let newNum2 = (parseInt(this.state.thePageSetNumber) - 1)*this.state.thePageSize;
-            this.setState({
-                thePageSetNumber:this.state.thePageSetNumber,
-                pageNo: num - this.state.thePageSize
-            });
-           
-        }  
-        $('.page').css('background-color','rgb(239, 239, 239').css('border-color','rgb(255, 255, 255').css('border-width','3px');
-        $('#page-'+this.state.pageNo).css('background-color','lightgrey');            
+     
+      if( parseInt(num) < parseInt(this.state.thePageSetNumber+1)*parseInt(this.state.thePageSize) )
+      {
+        let newNum = Math.ceil(parseInt(this.state.thePageSetNumber-1) % parseInt(this.state.thePageSize))*parseInt(this.state.thePageSize) + 1;
+        if(type == 'table' && parseInt(nxpagenum) < parseInt(this.state.thePagingArray.length)){
+              this.setState({
+                  thePageSetNumber:parseInt(this.state.thePageSetNumber) + 1,
+                  pageNo: newNum
+              });
+          } 
+          
+        else if(type != 'table' && parseInt(num) <= this.state.chartData.dateHeadersStore.length){
+              //alert("there");
+              this.setState({
+                  thePageSetNumber:parseInt(this.state.thePageSetNumber)+1,
+                  pageNo: num
+              });F
+          } 
+          
+        else if(type == 'table' && parseInt(nxpagenum) >= this.state.theVotes.length){
+              //alert("here");
+              let newNum2 = (parseInt(this.state.thePageSetNumber) - 1)*parseInt(this.state.thePageSize) + 1;
+              this.setState({
+                  thePageSetNumber:this.state.thePageSetNumber,
+                  pageNo: newNum2
+              });
+          }
+          /*
+        else if(type != 'table' && parseInt(num) > this.state.chartData.dateHeadersStore.length ){
+              //let newNum2 = (parseInt(this.state.thePageSetNumber) - 1)*this.state.thePageSize;
+              this.setState({
+                  thePageSetNumber: parseInt(this.state.thePageSetNumber),
+                  pageNo: parseInt(num) - 1
+              });             
+          } 
+          */
+          else;
+      } 
+      $('.page').css('background-color','rgb(239, 239, 239').css('border-color','rgb(255, 255, 255').css('border-width','3px');
+      $('#page-'+this.state.pageNo).css('background-color','#ffc107');            
   }
 
   leftArrow(obj){
      
       let num = obj.num;
-      let newNum = parseInt(num) -this.state.thePageSize;
+      let newNum = parseInt(this.state.thePageSetNumber-1)*this.state.thePageSize;
       if(newNum > 0){
         this.setState({
             thePageSetNumber:parseInt(this.state.thePageSetNumber) - 1,
-            pageNo: parseInt(newNum)+1
-        });      
+            pageNo: num
+        });     
+        $('.page').css('background-color','rgb(239, 239, 239').css('border-color','rgb(255, 255, 255').css('border-width','3px');
+        $('#page-'+this.state.pageNo).css('background-color','#ffc107');        
+   
+   
     }
     else {
         this.setState({
@@ -144,8 +149,6 @@ export default class VotesApp extends React.Component {
             pageNo: 1
       });   
     }
-    $('.page').css('background-color','rgb(239, 239, 239').css('border-color','rgb(255, 255, 255').css('border-width','3px');
-    $('#page-'+ this.state.pageNo).css('background-color','lightgrey'); 
   }
 
 
@@ -688,6 +691,15 @@ export default class VotesApp extends React.Component {
      
   }
 
+  resetCharts(e){
+    this.setState({     
+       pageNo:1,
+       thePageSetNumber:1,
+       parse_resolution: 1,
+       chartData: this.getChartsData(1)
+       });
+  }
+
 
   getVotes(res){
       let jobj = res;
@@ -823,7 +835,7 @@ export default class VotesApp extends React.Component {
                 <p>State: { this.state.theState }</p>
                   
             </div>             
-            <AppRouter {...this.state} selectResolution={this.selectResolution}  getPageNumber={this.getPageNumber} rightArrow={this.rightArrow} leftArrow={this.leftArrow} />              
+            <AppRouter {...this.state} selectResolution={this.selectResolution} resetCharts={this.resetCharts}  getPageNumber={this.getPageNumber} rightArrow={this.rightArrow} leftArrow={this.leftArrow} />              
         </div>     
     
       </div>

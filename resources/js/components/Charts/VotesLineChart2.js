@@ -1,5 +1,5 @@
 import {React, useEffect, useState} from 'react';
-import VotesPager from '../VotesPager';
+import ChartPager from '../ChartPager';
 import ResolutionDropdown from '../ResolutionDropdown';
 import {
     Chart,
@@ -68,9 +68,10 @@ export default function VotesLineChart2(props) {
             //$('.chart-viewer').css('margin-top','0').css('transition','opacity 100s ease-in-out').css('z-index','1').css('border-style','none');
             $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
             $('.viewerClose').css('display','none');
+            props.resetCharts();
         });
-        $('#page-'+props.pageNo).css('background-color','#ffc107');       
-      
+        $('.page').css('background-color','rgb(239, 239, 239').css('border-color','rgb(255, 255, 255').css('border-width','3px');
+        $('#page-'+ props.pageNo).css('background-color','#ffc107');  
 
         let label =  '# of Votes';
         let type = props.type;
@@ -151,7 +152,7 @@ export default function VotesLineChart2(props) {
                 <div><canvas id="myChart"></canvas></div>
             </div> 
             <div class="container h-100 d-flex justify-content-center">
-                <VotesPager {...props} pageClick={props.getPageNumber} type={'line'} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>
+                <ChartPager {...props} pageClick={props.getPageNumber} type={'line'} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>
             </div>   
         </div>
 

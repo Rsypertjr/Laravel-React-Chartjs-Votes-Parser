@@ -3036,6 +3036,7 @@ function AppRouter(props) {
         exact: true,
         path: "/",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_VoteTableReact__WEBPACK_IMPORTED_MODULE_9__["default"], _objectSpread(_objectSpread({}, props), {}, {
+          resetCharts: props.resetCharts,
           getPageNumber: props.getPageNumber,
           type: 'table',
           rightArrow: props.rightArrow,
@@ -3044,6 +3045,7 @@ function AppRouter(props) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
         path: "/voteslinechart",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Charts_VotesLineChart2__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
+          resetCharts: props.resetCharts,
           selectResolution: props.selectResolution,
           getPageNumber: props.getPageNumber,
           type: 'line',
@@ -3053,6 +3055,7 @@ function AppRouter(props) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
         path: "/spikeslinechart",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Charts_SpikesLineChart__WEBPACK_IMPORTED_MODULE_3__["default"], _objectSpread(_objectSpread({}, props), {}, {
+          resetCharts: props.resetCharts,
           selectResolution: props.selectResolution,
           getPageNumber: props.getPageNumber,
           type: 'line',
@@ -3062,6 +3065,7 @@ function AppRouter(props) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
         path: "/difflinechart",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Charts_DiffLineChart__WEBPACK_IMPORTED_MODULE_4__["default"], _objectSpread(_objectSpread({}, props), {}, {
+          resetCharts: props.resetCharts,
           selectResolution: props.selectResolution,
           getPageNumber: props.getPageNumber,
           type: 'line',
@@ -3071,6 +3075,7 @@ function AppRouter(props) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
         path: "/perlinechart",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Charts_PerLineChart__WEBPACK_IMPORTED_MODULE_5__["default"], _objectSpread(_objectSpread({}, props), {}, {
+          resetCharts: props.resetCharts,
           selectResolution: props.selectResolution,
           getPageNumber: props.getPageNumber,
           type: 'line',
@@ -3083,6 +3088,7 @@ function AppRouter(props) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
         path: "/barchart",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Charts_BarChart__WEBPACK_IMPORTED_MODULE_7__["default"], _objectSpread(_objectSpread({}, props), {}, {
+          resetCharts: props.resetCharts,
           selectResolution: props.selectResolution,
           getPageNumber: props.getPageNumber,
           type: 'bar',
@@ -3092,6 +3098,7 @@ function AppRouter(props) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
         path: "/binstackedchart",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Charts_BinStackedChart__WEBPACK_IMPORTED_MODULE_8__["default"], _objectSpread(_objectSpread({}, props), {}, {
+          resetCharts: props.resetCharts,
           selectResolution: props.selectResolution,
           getPageNumber: props.getPageNumber,
           type: 'bar',
@@ -3130,24 +3137,43 @@ function ChartPager(props) {
     obj.num = num;
     obj.type = props.type;
     props.getPageNumber(obj);
-    $('.page').css('background-color', 'rgb(239, 239, 239').css('border-color', 'rgb(255, 255, 255').css('border-width', '3px');
-    $('#page-' + pageNum).css('background-color', 'lightgrey');
   };
 
   var leftArrow = function leftArrow(e) {
-    var num = parseInt(props.thePageSetNumber) * parseInt(props.thePageSize) - 1;
-    var obj = {};
-    obj.num = num;
-    obj.type = props.type;
-    props.leftArrow(obj);
+    var check = (parseInt(props.thePageSetNumber) - 1) * parseInt(props.thePageSize) + 1;
+
+    if (parseInt(props.pageNo) > check) {
+      e.target.value = parseInt(props.pageNo) - 1;
+      handlePage(e);
+    } else {
+      var nxpagenum = parseInt(props.thePageSetNumber) * parseInt(props.thePageSize) - 1;
+      var obj = {};
+      obj.nxpagenum = nxpagenum;
+      obj.num = props.pageNo - 1;
+      obj.type = props.type;
+      obj.type = props.type;
+      props.leftArrow(obj);
+    }
   };
 
   var rightArrow = function rightArrow(e) {
-    var obj = {};
-    var num = parseInt(props.thePageSetNumber) * props.thePageSize + 1;
-    obj.num = num;
-    obj.type = props.type;
-    props.rightArrow(obj);
+    // alert(props.chartData.dateHeadersStore.length);
+    var chk1 = parseInt(props.pageNo) + 1 <= (parseInt(props.thePageSetNumber) - 1) * parseInt(props.thePageSize) + parseInt(props.thePageSize);
+    var chk2 = parseInt(props.pageNo) + 1 <= props.chartData.dateHeadersStore.length; //let chk3 = (parseInt(props.pageNo)+1) == parseInt(props.thePageSetNumber)*parseInt(props.thePageSize);
+
+    if (chk1 && chk2) {
+      e.target.value = parseInt(props.pageNo) + 1;
+      handlePage(e);
+    } else if (!chk1 && chk2) {
+      //alert('doing');
+      var obj = {};
+      var nxpagenum = parseInt(props.thePageSetNumber) * parseInt(props.thePageSize) + 1;
+      obj.nxpagenum = nxpagenum;
+      obj.num = parseInt(props.pageNo) + 1;
+      obj.type = props.type;
+      props.rightArrow(obj);
+    } else {// alert('not doing');
+    }
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
@@ -3212,7 +3238,9 @@ function BarChart(props) {
     $('.viewerClose').on('click', function () {
       $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
       $('.viewerClose').css('display', 'none');
+      props.resetCharts();
     });
+    $('.page').css('background-color', 'rgb(239, 239, 239').css('border-color', 'rgb(255, 255, 255').css('border-width', '3px');
     $('#page-' + props.pageNo).css('background-color', '#ffc107'); // let data = [65, 59, 80, 81, 56, 55, 40];
 
     var label = '# of Votes';
@@ -3347,7 +3375,9 @@ function BinStackedChart(props) {
     $('.viewerClose').on('click', function () {
       $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
       $('.viewerClose').css('display', 'none');
+      props.resetCharts();
     });
+    $('.page').css('background-color', 'rgb(239, 239, 239').css('border-color', 'rgb(255, 255, 255').css('border-width', '3px');
     $('#page-' + props.pageNo).css('background-color', '#ffc107'); // let data = [65, 59, 80, 81, 56, 55, 40];
 
     var label = '# of Votes';
@@ -3523,6 +3553,7 @@ function DiffLineChart(props) {
     $('.viewerClose').on('click', function () {
       $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
       $('.viewerClose').css('display', 'none');
+      props.resetCharts();
     });
     $('.page').css('background-color', 'rgb(239, 239, 239').css('border-color', 'rgb(255, 255, 255').css('border-width', '3px');
     $('#page-' + props.pageNo).css('background-color', '#ffc107'); // let data = [65, 59, 80, 81, 56, 55, 40];
@@ -3646,7 +3677,9 @@ function PerLineChart(props) {
     $('.viewerClose').on('click', function () {
       $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
       $('.viewerClose').css('display', 'none');
+      props.resetCharts();
     });
+    $('.page').css('background-color', 'rgb(239, 239, 239').css('border-color', 'rgb(255, 255, 255').css('border-width', '3px');
     $('#page-' + props.pageNo).css('background-color', '#ffc107'); // let data = [65, 59, 80, 81, 56, 55, 40];
 
     var label = '# of Votes';
@@ -3792,7 +3825,9 @@ function SpikesLineChart(props) {
     $('.viewerClose').on('click', function () {
       $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
       $('.viewerClose').css('display', 'none');
+      props.resetCharts();
     });
+    $('.page').css('background-color', 'rgb(239, 239, 239').css('border-color', 'rgb(255, 255, 255').css('border-width', '3px');
     $('#page-' + props.pageNo).css('background-color', '#ffc107'); // let data = [65, 59, 80, 81, 56, 55, 40];
 
     var label = '# of Votes';
@@ -3916,7 +3951,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ VotesLineChart2)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _VotesPager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VotesPager */ "./resources/js/components/VotesPager.js");
+/* harmony import */ var _ChartPager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../ChartPager */ "./resources/js/components/ChartPager.js");
 /* harmony import */ var _ResolutionDropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ResolutionDropdown */ "./resources/js/components/ResolutionDropdown.js");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/chart.esm.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
@@ -3940,7 +3975,9 @@ function VotesLineChart2(props) {
       //$('.chart-viewer').css('margin-top','0').css('transition','opacity 100s ease-in-out').css('z-index','1').css('border-style','none');
       $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
       $('.viewerClose').css('display', 'none');
+      props.resetCharts();
     });
+    $('.page').css('background-color', 'rgb(239, 239, 239').css('border-color', 'rgb(255, 255, 255').css('border-width', '3px');
     $('#page-' + props.pageNo).css('background-color', '#ffc107');
     var label = '# of Votes';
     var type = props.type;
@@ -4027,7 +4064,7 @@ function VotesLineChart2(props) {
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container h-100 d-flex justify-content-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_VotesPager__WEBPACK_IMPORTED_MODULE_1__["default"], _objectSpread(_objectSpread({}, props), {}, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ChartPager__WEBPACK_IMPORTED_MODULE_1__["default"], _objectSpread(_objectSpread({}, props), {}, {
         pageClick: props.getPageNumber,
         type: 'line',
         leftArrow: props.leftArrow,
@@ -4135,7 +4172,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _VotesPager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VotesPager */ "./resources/js/components/VotesPager.js");
+/* harmony import */ var _ChartPager__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ChartPager */ "./resources/js/components/ChartPager.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
@@ -4176,7 +4213,9 @@ function VoteTableReact(props) {
     $('.viewerClose').on('click', function () {
       $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
       $('.viewerClose').css('display', 'none');
+      props.resetCharts();
     });
+    $('.page').css('background-color', 'rgb(239, 239, 239').css('border-color', 'rgb(255, 255, 255').css('border-width', '3px');
     $('#page-' + props.pageNo).css('background-color', '#ffc107');
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -4228,7 +4267,7 @@ function VoteTableReact(props) {
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       "class": "container h-100 d-flex justify-content-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_VotesPager__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ChartPager__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
         pageClick: props.getPageNumber,
         type: 'line',
         leftArrow: props.leftArrow,
@@ -4260,6 +4299,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
 var _templateObject;
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -4267,8 +4308,6 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -4333,6 +4372,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
     _this.rightArrow = _this.rightArrow.bind(_assertThisInitialized(_this));
     _this.selectResolution = _this.selectResolution.bind(_assertThisInitialized(_this));
     _this.getTimeDiff = _this.getTimeDiff.bind(_assertThisInitialized(_this));
+    _this.resetCharts = _this.resetCharts.bind(_assertThisInitialized(_this));
     _this.state = {
       theVotes: [],
       DataisLoaded: false,
@@ -4370,66 +4410,73 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
     value: function getPageNumber(obj) {
       var num = obj.num;
       this.setState({
-        // theCurrentPage:this.state.theCurrentPages[parseInt(num)-1],
         pageNo: num
       });
-      $('.page').css('background-color', 'rgb(239, 239, 239').css('border-color', 'rgb(255, 255, 255').css('border-width', '3px');
-      $('#page-' + this.state.pageNo).css('background-color', 'lightgrey');
     }
   }, {
     key: "rightArrow",
     value: function rightArrow(obj) {
       var num = obj.num;
+      var nxpagenum = obj.nxpagenum;
       var type = obj.type;
-      var newNum = Math.ceil(parseInt(this.state.thePageSetNumber - 1) % this.state.thePageSize) * this.state.thePageSize + 1;
 
-      if (type == 'table' && parseInt(num) < this.state.thePagingArray.length) {
-        this.setState({
-          thePageSetNumber: this.state.thePageSetNumber + 1,
-          pageNo: newNum
-        });
-      } else if (type != 'table' && parseInt(num) < this.state.chartData.dateHeadersStore.length) {
-        this.setState({
-          thePageSetNumber: this.state.thePageSetNumber + 1,
-          pageNo: num
-        });
-      } else if (type == 'table' && parseInt(num) >= this.state.thePagingArray.length) {
-        var newNum2 = (parseInt(this.state.thePageSetNumber) - 1) * this.state.thePageSize + 1;
-        this.setState({
-          thePageSetNumber: this.state.thePageSetNumber,
-          pageNo: newNum2
-        });
-      } else if (type != 'table' && parseInt(num) >= this.state.chartData.dateHeadersStore.length || _typeof(this.state.theChartArray[num - 1]) != undefined) {
-        //let newNum2 = (parseInt(this.state.thePageSetNumber) - 1)*this.state.thePageSize;
-        this.setState({
-          thePageSetNumber: this.state.thePageSetNumber,
-          pageNo: num - this.state.thePageSize
-        });
+      if (parseInt(num) < parseInt(this.state.thePageSetNumber + 1) * parseInt(this.state.thePageSize)) {
+        var newNum = Math.ceil(parseInt(this.state.thePageSetNumber - 1) % parseInt(this.state.thePageSize)) * parseInt(this.state.thePageSize) + 1;
+
+        if (type == 'table' && parseInt(nxpagenum) < parseInt(this.state.thePagingArray.length)) {
+          this.setState({
+            thePageSetNumber: parseInt(this.state.thePageSetNumber) + 1,
+            pageNo: newNum
+          });
+        } else if (type != 'table' && parseInt(num) <= this.state.chartData.dateHeadersStore.length) {
+          //alert("there");
+          this.setState({
+            thePageSetNumber: parseInt(this.state.thePageSetNumber) + 1,
+            pageNo: num
+          });
+          F;
+        } else if (type == 'table' && parseInt(nxpagenum) >= this.state.theVotes.length) {
+          //alert("here");
+          var newNum2 = (parseInt(this.state.thePageSetNumber) - 1) * parseInt(this.state.thePageSize) + 1;
+          this.setState({
+            thePageSetNumber: this.state.thePageSetNumber,
+            pageNo: newNum2
+          });
+        }
+        /*
+        else if(type != 'table' && parseInt(num) > this.state.chartData.dateHeadersStore.length ){
+            //let newNum2 = (parseInt(this.state.thePageSetNumber) - 1)*this.state.thePageSize;
+            this.setState({
+                thePageSetNumber: parseInt(this.state.thePageSetNumber),
+                pageNo: parseInt(num) - 1
+            });             
+        } 
+        */
+        else ;
       }
 
       $('.page').css('background-color', 'rgb(239, 239, 239').css('border-color', 'rgb(255, 255, 255').css('border-width', '3px');
-      $('#page-' + this.state.pageNo).css('background-color', 'lightgrey');
+      $('#page-' + this.state.pageNo).css('background-color', '#ffc107');
     }
   }, {
     key: "leftArrow",
     value: function leftArrow(obj) {
       var num = obj.num;
-      var newNum = parseInt(num) - this.state.thePageSize;
+      var newNum = parseInt(this.state.thePageSetNumber - 1) * this.state.thePageSize;
 
       if (newNum > 0) {
         this.setState({
           thePageSetNumber: parseInt(this.state.thePageSetNumber) - 1,
-          pageNo: parseInt(newNum) + 1
+          pageNo: num
         });
+        $('.page').css('background-color', 'rgb(239, 239, 239').css('border-color', 'rgb(255, 255, 255').css('border-width', '3px');
+        $('#page-' + this.state.pageNo).css('background-color', '#ffc107');
       } else {
         this.setState({
           thePageSetNumber: 1,
           pageNo: 1
         });
       }
-
-      $('.page').css('background-color', 'rgb(239, 239, 239').css('border-color', 'rgb(255, 255, 255').css('border-width', '3px');
-      $('#page-' + this.state.pageNo).css('background-color', 'lightgrey');
     }
   }, {
     key: "getStateData",
@@ -4995,6 +5042,16 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "resetCharts",
+    value: function resetCharts(e) {
+      this.setState({
+        pageNo: 1,
+        thePageSetNumber: 1,
+        parse_resolution: 1,
+        chartData: this.getChartsData(1)
+      });
+    }
+  }, {
     key: "getVotes",
     value: function getVotes(res) {
       var jobj = res;
@@ -5128,6 +5185,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
             })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_AppRouter__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, this.state), {}, {
             selectResolution: this.selectResolution,
+            resetCharts: this.resetCharts,
             getPageNumber: this.getPageNumber,
             rightArrow: this.rightArrow,
             leftArrow: this.leftArrow
@@ -5144,82 +5202,6 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
 
 if (document.getElementById('votes-table-react')) {
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(VotesApp, {}), document.getElementById('votes-table-react'));
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/VotesPager.js":
-/*!***********************************************!*\
-  !*** ./resources/js/components/VotesPager.js ***!
-  \***********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ VotesPager)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-
-
-function VotesPager(props) {
-  var handlePage = function handlePage(e) {
-    var num = e.target.value;
-    var obj = {};
-    obj.num = num;
-    obj.type = props.type;
-    props.getPageNumber(obj);
-    $('.page').css('background-color', 'rgb(239, 239, 239').css('border-color', 'rgb(255, 255, 255').css('border-width', '3px');
-    $('#page-' + pageNum).css('background-color', 'lightgrey');
-  };
-
-  var leftArrow = function leftArrow(e) {
-    var num = (parseInt(props.thePageSetNumber) - 1) * props.thePageSize;
-    var obj = {};
-    obj.num = num;
-    obj.type = props.type;
-    props.leftArrow(obj);
-  };
-
-  var rightArrow = function rightArrow(e) {
-    var obj = {};
-    var num = parseInt(props.thePageSetNumber) * props.thePageSize;
-    obj.num = num;
-    obj.type = props.type;
-    props.rightArrow(obj);
-  };
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-      "class": "page-arrow",
-      type: "button",
-      value: "<",
-      onClick: leftArrow
-    }), props.thePagingArray[parseInt(props.thePageSetNumber) - 1].map(function (num) {
-      return (
-        /*#__PURE__*/
-        //pagingArr.map((num) => (    
-        (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-          children: props.theCurrentPages[parseInt(num)] !== undefined && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-            type: "button",
-            "class": "page",
-            id: "page-".concat(num + 1),
-            value: num + 1,
-            onClick: handlePage
-          })
-        })
-      );
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-      "class": "page-arrow",
-      type: "button",
-      value: ">",
-      onClick: rightArrow
-    })]
-  });
 }
 
 /***/ }),

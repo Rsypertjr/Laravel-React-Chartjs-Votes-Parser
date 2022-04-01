@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import VotesPager from './VotesPager';
+import ChartPager from './ChartPager';
 
 
 function OuterTable(props){
@@ -32,8 +32,10 @@ export default function VoteTableReact(props)  {
             $('.viewerClose').on('click', function(){
                 $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
                 $('.viewerClose').css('display','none');
+                props.resetCharts();
             });
-            $('#page-'+props.pageNo).css('background-color','#ffc107');       
+            $('.page').css('background-color','rgb(239, 239, 239').css('border-color','rgb(255, 255, 255').css('border-width','3px');
+            $('#page-'+ props.pageNo).css('background-color','#ffc107');   
      
         });
 
@@ -67,7 +69,7 @@ export default function VoteTableReact(props)  {
                 </OuterTable>  
             </div> 
             <div class="container h-100 d-flex justify-content-center">
-                <VotesPager {...props} pageClick={props.getPageNumber} type={'line'} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>
+                <ChartPager {...props} pageClick={props.getPageNumber} type={'line'} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>
             </div> 
         </div>        
         );
