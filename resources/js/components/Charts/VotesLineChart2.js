@@ -143,7 +143,7 @@ export default function VotesLineChart2(props) {
    
     return (
         <div class="chart-viewer">
-            <span class="viewerClose">X</span>        
+            <span class="viewerClose"><font color="cyan">Close Chart</font></span>        
             <ResolutionDropdown  {...props} theResolutions={props.theResolutions} selectResolution={props.selectResolution}/>     
             <div class="container h-10 d-flex justify-content-center">
                 <h3>Votes Line Chart</h3>
