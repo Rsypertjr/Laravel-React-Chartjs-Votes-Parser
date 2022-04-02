@@ -67,11 +67,12 @@ export default class VotesApp extends React.Component {
           theChartArray:[],
           theResolutions: resolutions
       };
+   
+
       let state = this.state.defaultOption;
       this.getStateData(state);    
   }
 
- 
 
   getPageNumber(obj)
   {         

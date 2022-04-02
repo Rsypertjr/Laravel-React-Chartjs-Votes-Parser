@@ -6,15 +6,25 @@ body{
     background-color: rgb(187, 223, 223);
 }
 li.nav-item{
-    -webkit-transition: color 2s;
-    transition: color 2s;
+    -webkit-transition: background-color 1s;
+    transition: background-color 1s;
 }
 li.nav-item:hover {
     background-color:rgb(187, 223, 223);
 }
 
+
 li.nav-item a:hover{
-    text-decoration: underline;
+    text-decoration: underline;  
+    color:white;
+
+}
+
+.linkStyle {
+    margin: 1rem;
+    text-decoration: none;
+    color:black;
+    font-size: 0.8em;
 }
 
 .navbar-nav {

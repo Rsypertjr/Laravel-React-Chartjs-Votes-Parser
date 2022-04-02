@@ -27,11 +27,116 @@ const linkStyle = {
   fontSize: '0.8em'
 };
 
-export default function AppRouter(props){
+const linkStyle2 = {
+  margin: "1rem",
+  textDecoration: "none",
+  color: 'grey',
+  fontSize: '0.8em'
+};
 
 
+export default function AppRouter(props){   
+  const [voteLineStyle, setVoteLineStyle] = useState(linkStyle);
+  const [voteTableStyle, setVoteTableStyle] = useState(linkStyle);
+  const [spikesLineStyle, setSpikesLineStyle] = useState(linkStyle);
+  const [diffLineStyle, setDiffLineStyle] = useState(linkStyle);
+  const [perLineStyle, setPerLineStyle] = useState(linkStyle);
+  const [pieChartStyle, setPieChartStyle] = useState(linkStyle);
+  const [barChartStyle, setBarChartStyle] = useState(linkStyle);
+  const [binStackedStyle, setBinStackedStyle] = useState(linkStyle);
 
 
+  const changeVLStyle = () => {
+    setVoteLineStyle(linkStyle2);  
+    setVoteTableStyle(linkStyle);
+    setSpikesLineStyle(linkStyle); 
+    setDiffLineStyle(linkStyle); 
+    setPerLineStyle(linkStyle);  
+    setPieChartStyle(linkStyle);
+    setBarChartStyle(linkStyle);
+  }
+
+  const changeVTStyle = () => {
+      setVoteTableStyle(linkStyle2);  
+      setVoteLineStyle(linkStyle);  
+      setSpikesLineStyle(linkStyle);
+      setDiffLineStyle(linkStyle);  
+      setPerLineStyle(linkStyle);  
+      setPieChartStyle(linkStyle);
+      setBarChartStyle(linkStyle);
+      setBinStackedStyle(linkStyle);
+   } 
+
+  const changeSPStyle = () => {
+    setSpikesLineStyle(linkStyle2);
+    setVoteTableStyle(linkStyle);  
+    setVoteLineStyle(linkStyle);  
+    setDiffLineStyle(linkStyle); 
+    setPerLineStyle(linkStyle);  
+    setPieChartStyle(linkStyle);
+    setBarChartStyle(linkStyle);
+    setBinStackedStyle(linkStyle);
+  } 
+
+  const changeDLStyle = () => {
+    setDiffLineStyle(linkStyle2)
+    setSpikesLineStyle(linkStyle);
+    setVoteTableStyle(linkStyle);  
+    setVoteLineStyle(linkStyle); 
+    setPerLineStyle(linkStyle); 
+    setPieChartStyle(linkStyle); 
+    setBarChartStyle(linkStyle);
+    setBinStackedStyle(linkStyle);
+  } 
+
+  const changePLStyle = () => {
+    setPerLineStyle(linkStyle2);
+    setDiffLineStyle(linkStyle)
+    setSpikesLineStyle(linkStyle);
+    setVoteTableStyle(linkStyle);  
+    setVoteLineStyle(linkStyle);  
+    setPieChartStyle(linkStyle);
+    setBarChartStyle(linkStyle);
+    setBinStackedStyle(linkStyle);
+  } 
+
+  const changePCStyle = () => {
+    setPieChartStyle(linkStyle2);
+    setPerLineStyle(linkStyle);
+    setDiffLineStyle(linkStyle)
+    setSpikesLineStyle(linkStyle);
+    setVoteTableStyle(linkStyle);  
+    setVoteLineStyle(linkStyle);  
+    setBarChartStyle(linkStyle);
+    setBinStackedStyle(linkStyle);
+  } 
+  const changeBCStyle = () => {
+    setBarChartStyle(linkStyle2);
+    setPieChartStyle(linkStyle);
+    setPerLineStyle(linkStyle);
+    setDiffLineStyle(linkStyle)
+    setSpikesLineStyle(linkStyle);
+    setVoteTableStyle(linkStyle);  
+    setVoteLineStyle(linkStyle);  
+    setBinStackedStyle(linkStyle);
+  } 
+
+  const changeBSTStyle = () => {
+    setBinStackedStyle(linkStyle2);
+    setBarChartStyle(linkStyle);
+    setPieChartStyle(linkStyle);
+    setPerLineStyle(linkStyle);
+    setDiffLineStyle(linkStyle)
+    setSpikesLineStyle(linkStyle);
+    setVoteTableStyle(linkStyle);  
+    setVoteLineStyle(linkStyle);  
+  } 
+
+
+  useEffect(() => {
+  
+  });
+   
     return(
         <BrowserRouter>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -41,29 +146,29 @@ export default function AppRouter(props){
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="#"><Link to="/" style={linkStyle} >Votes Table</Link><span class="sr-only">(current)</span></a>   
+              <li class="nav-item">
+                <a class="nav-link" href="#" onClick={changeVTStyle}><Link to="/" style={voteTableStyle} >Votes Table</Link><span class="sr-only">(current)</span></a>   
+              </li>
+              <li class="nav-item" >
+                <a class="nav-link" href="#" onClick={changeVLStyle}><Link to="/voteslinechart"  style={voteLineStyle}>Votes Line Chart</Link></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#"><Link to="/voteslinechart" style={linkStyle} >Votes Line Chart</Link></a>
+                <a class="nav-link" href="#" onClick={changeSPStyle}><Link to="/spikeslinechart" style={spikesLineStyle} >Spikes Line Chart</Link></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#"><Link to="/spikeslinechart" style={linkStyle} >Spikes Line Chart</Link></a>
+                <a class="nav-link" href="#" onClick={changeDLStyle}><Link to="/difflinechart" style={diffLineStyle} >Difference Line Chart</Link></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#"><Link to="/difflinechart" style={linkStyle} >Difference Line Chart</Link></a>
+                <a class="nav-link" href="#" onClick={changePLStyle}><Link to="/perlinechart" style={perLineStyle} >Percent Line Chart</Link></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#"><Link to="/perlinechart" style={linkStyle} >Percent Line Chart</Link></a>
+                <a class="nav-link" href="#" onClick={changePCStyle}><Link to="/piechart" style={pieChartStyle} >Pie Chart</Link></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#"><Link to="/piechart" style={linkStyle} >Pie Chart</Link></a>
+                <a class="nav-link" href="#" onClick={changeBCStyle}><Link to="/barchart" style={barChartStyle} >Votes Bar Chart</Link></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#"><Link to="/barchart" style={linkStyle} >Votes Bar Chart</Link></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#"><Link to="/binstackedchart" style={linkStyle} >Bin Stacked Chart</Link></a>
+                <a class="nav-link" href="#" onClick={changeBSTStyle}><Link to="/binstackedchart" style={binStackedStyle} >Bin Stacked Chart</Link></a>
               </li>
             </ul>
           </div>
@@ -76,7 +181,7 @@ export default function AppRouter(props){
             <Route path="/perlinechart" element={<PerLineChart  {...props} resetCharts={props.resetCharts}  selectResolution={props.selectResolution} getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />} />
             <Route path="/piechart" element={<PieChart />}/>
             <Route path="/barchart" element={<BarChart  {...props} resetCharts={props.resetCharts}  selectResolution={props.selectResolution}  getPageNumber={props.getPageNumber} type={'bar'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />}/>
-            <Route path="/binstackedchart" element={<BinStackedChart {...props} resetCharts={props.resetCharts} selectResolution={props.selectResolution}  getPageNumber={props.getPageNumber} type={'bar'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />} />
+            <Route path="/binstackedchart" element={<BinStackedChart {...props} resetCharts={props.resetCharts}  selectResolution={props.selectResolution}  getPageNumber={props.getPageNumber} type={'bar'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />} />
           </Routes>
         </BrowserRouter>
     );

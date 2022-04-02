@@ -1,6 +1,7 @@
 import {React, useEffect, useState} from 'react';
 import ChartPager from '../ChartPager';
 import ResolutionDropdown from '../ResolutionDropdown';
+import '../../../css/app.css';
 import {
     Chart,
     ArcElement,
@@ -59,7 +60,6 @@ import {
 
 
 export default function SpikesLineChart(props) {
-    
     useEffect(() => {
         let ctx = document.getElementById('myChart').getContext('2d');
             
