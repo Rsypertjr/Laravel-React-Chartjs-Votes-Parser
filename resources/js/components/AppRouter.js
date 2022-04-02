@@ -10,6 +10,7 @@ import PieChart from './Charts/PieChart';
 import BarChart from './Charts/BarChart';
 import BinStackedChart from './Charts/BinStackedChart';
 import VoteTableReact from './VoteTableReact';
+import VotesApp from './VotesApp';
 
 
 
@@ -30,7 +31,7 @@ const linkStyle = {
 const linkStyle2 = {
   margin: "1rem",
   textDecoration: "none",
-  color: 'grey',
+  color: 'lightgrey',
   fontSize: '0.8em'
 };
 
@@ -147,6 +148,9 @@ export default function AppRouter(props){
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
+                <a class="nav-link" href="/votes-table" ><span class="linkStyle">Home/Reset</span></a>   
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="#" onClick={changeVTStyle}><Link to="/" style={voteTableStyle} >Votes Table</Link><span class="sr-only">(current)</span></a>   
               </li>
               <li class="nav-item" >
@@ -174,6 +178,7 @@ export default function AppRouter(props){
           </div>
         </nav>
           <Routes>
+            <Route path='/home'/>
             <Route exact path="/" element={<VoteTableReact {...props} resetCharts={props.resetCharts} getPageNumber={props.getPageNumber} type={'table'} rightArrow={props.rightArrow} leftArrow={props.leftArrow}/>} />
             <Route path="/voteslinechart" element={<VotesLineChart2 {...props}  resetCharts={props.resetCharts}  selectResolution={props.selectResolution} getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow}/>} />
             <Route path="/spikeslinechart" element={<SpikesLineChart {...props} resetCharts={props.resetCharts}  selectResolution={props.selectResolution}  getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow}  />}/>
