@@ -160,7 +160,7 @@ export default function BinStackedChart(props) {
    
     return (      
         <div class="chart-viewer">
-            <span class="viewerClose"><font color="cyan">Close Chart</font></span>    
+            <span class="viewerClose">Close Chart</span>    
             <ResolutionDropdown {...props} theResolutions={props.theResolutions} selectResolution={props.selectResolution}/>        
             <div class="container h-10 d-flex justify-content-center">
                 <h4>Bin Stacked Chart</h4>
