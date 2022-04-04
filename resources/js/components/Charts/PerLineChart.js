@@ -130,9 +130,12 @@ export default function PerLineChart(props) {
     return (      
         <div class="chart-viewer">
             <span class="viewerClose">Close Chart</span>  
+            <div class="container h-10 d-flex justify-content-center">
+                <h4>Remaining Percetage of Vote Chart</h4>
+            </div>
             <ResolutionDropdown {...props} theResolutions={props.theResolutions} selectResolution={props.selectResolution}/>           
             <div class="container h-10 d-flex justify-content-center">
-                <h4>Percent Line Chart</h4>
+                <h4>Incremental Remaining Percentage</h4>
             </div>
             <div class="container smaller justify-content-center">
                 <div><canvas id="myChart"></canvas></div>

@@ -41,7 +41,7 @@ export default function VoteTableReact(props)  {
 
         return (          
         <div class="chart-viewer">
-            <span class="viewerClose"><font color="cyan">Close Chart</font></span>            
+            <span class="viewerClose">Close Chart</span>            
             <div class="container h-10 d-flex justify-content-center">
                 <h4>2020 Presidential Election Votes</h4>
             </div>

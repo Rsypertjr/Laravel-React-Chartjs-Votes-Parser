@@ -156,9 +156,12 @@ export default function SpikesLineChart(props) {
         
         <div class="chart-viewer">
             <span class="viewerClose">Close Chart</span>  
+            <div class="container h-10 d-flex justify-content-center">
+                <h4>Vote Spikes Line Chart</h4>
+            </div>
             <ResolutionDropdown {...props} theResolutions={props.theResolutions} selectResolution={props.selectResolution}/>           
             <div class="container h-10 d-flex justify-content-center">
-                <h4>Votes Spike Line Chart</h4>
+                <h4>Incremental Vote Spike</h4>
             </div>
             <div class="container smaller justify-content-center">
                 <div><canvas id="myChart"></canvas></div>

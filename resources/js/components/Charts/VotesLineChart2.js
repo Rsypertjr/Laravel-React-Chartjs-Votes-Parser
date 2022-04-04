@@ -143,10 +143,13 @@ export default function VotesLineChart2(props) {
    
     return (
         <div class="chart-viewer">
-            <span class="viewerClose">Close Chart</span>        
+            <span class="viewerClose">Close Chart</span>    
+            <div class="container h-10 d-flex justify-content-center">
+                <h4>Total Votes Line Chart</h4>
+            </div>   
             <ResolutionDropdown  {...props} theResolutions={props.theResolutions} selectResolution={props.selectResolution}/>     
             <div class="container h-10 d-flex justify-content-center">
-                <h3>Votes Line Chart</h3>
+                <h3>Incremental Total Votes</h3>
             </div>
             <div class="container smaller justify-content-center">
                 <div><canvas id="myChart"></canvas></div>
