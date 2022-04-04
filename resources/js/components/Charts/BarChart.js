@@ -78,7 +78,6 @@ export default function BarChart(props) {
         let bdColors =  ['black'];
         
         let chartData =   props.chartData;
-        //alert(JSON.stringify(chartData));
         let date_headers =    chartData.dateHeadersStore.map((item) => item);
         let datedata_biden = chartData.dateDataBidenStore.map((item) => item);
         let datedata_other = chartData.dateDataOtherStore.map((item) => item);        
@@ -144,7 +143,7 @@ export default function BarChart(props) {
             <span class="viewerClose">Close Chart</span>     
             <ResolutionDropdown {...props} theResolutions={props.theResolutions} selectResolution={props.selectResolution}/>               
             <div class="container h-10 d-flex justify-content-center">
-                <h4>Incremental Gain/Loss of Votes</h4>
+                <h4>Votes Bar Chart</h4>
             </div>
             <div class="container smaller justify-content-center">
                 <div><canvas id="myChart"></canvas></div>

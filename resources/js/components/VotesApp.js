@@ -191,7 +191,9 @@ export default class VotesApp extends React.Component {
       let chartData = this.getChartsData(this.state.parse_resolution);
       //this.getTimeDiff(chartData.dateHeadersStore);
       this.setState({       
-        chartData: chartData
+        chartData: chartData,
+        noOfChartPages : chartData.numPages,
+        theChartArray: chartData.chartArray  
     });
 
     
@@ -474,11 +476,12 @@ export default class VotesApp extends React.Component {
     perremainingtrump_store  = perremainingtrump_store.filter((i) => i.length > 0);
     perremainingbiden_store  = perremainingbiden_store.filter((i) => i.length > 0);  
 
-    this.setState({
-        noOfChartPages: dateheaders_store.length
-    });
+    //this.setState({
+    //    noOfChartPages: dateheaders_store.length
+    //});
+    let numPages = dateheaders_store.length;
     var arr = [];
-    for(var i=0;i<this.state.noOfChartPages;i++){
+    for(var i=0;i<numPages;i++){
         arr[i]=i;
     }
 
@@ -490,9 +493,10 @@ export default class VotesApp extends React.Component {
       }       
     } 
 
-    this.setState({
-        theChartArray: arr2
-    });
+   // this.setState({
+    //    theChartArray: arr2
+  //  });
+    let chartArray = arr2;
     
     // Fill Votebins    
     // Set up Vote Bins
@@ -504,7 +508,7 @@ export default class VotesApp extends React.Component {
         "trump_in_bin":0,
     };  
   
-   let step = Math.floor(parseInt(200000)/(this.state.noOfChartPages*10));
+   let step = Math.floor(parseInt(200000)/(numPages*10));
     //var step = 2500;
     interval = vote_bin.interval;
     while(interval <= 200000){
@@ -619,7 +623,9 @@ export default class VotesApp extends React.Component {
       "bin_headers": bin_headers,
       "bin_biden": bin_biden,
       "bin_trump": bin_trump,
-      "interval_message": interval_message
+      "interval_message": interval_message,
+      "numPages": numPages,
+      "chartArray": chartArray
     }
     
     return dataLoad;
@@ -684,20 +690,25 @@ export default class VotesApp extends React.Component {
   }
 
   selectResolution(e){
-      
+      let chartData = this.getChartsData(parseInt(e));
       this.setState({     
         parse_resolution:parseInt(e),
-        chartData: this.getChartsData(parseInt(e))  
+        chartData: chartData,
+        noOfChartPages : chartData.numPages,
+        theChartArray: chartData.chartArray  
        });
      
   }
 
   resetCharts(e){
+    let chartData = this.getChartsData(1);
     this.setState({     
        pageNo:1,
        thePageSetNumber:1,
        parse_resolution: 1,
-       chartData: this.getChartsData(1)
+       chartData: chartData,
+       noOfChartPages : chartData.numPages,
+       theChartArray: chartData.chartArray  
        });
   }
 
@@ -836,7 +847,7 @@ export default class VotesApp extends React.Component {
                 <p>State: { this.state.theState }</p>
                   
             </div>             
-            <AppRouter {...this.state} selectResolution={this.selectResolution} resetCharts={this.resetCharts}  getPageNumber={this.getPageNumber} rightArrow={this.rightArrow} leftArrow={this.leftArrow} />              
+            <AppRouter {...this.state} selectResolution={this.selectResolution} getChartsData={this.getChartsData} resetCharts={this.resetCharts}  getPageNumber={this.getPageNumber} rightArrow={this.rightArrow} leftArrow={this.leftArrow} />              
         </div>     
     
       </div>
