@@ -2,20 +2,6 @@ import {React, useEffect, useState, useCallback} from 'react';
 import ReactDOM from 'react-dom';
 import { Button, OverlayTrigger, Tooltip, input } from 'react-bootstrap';
 
-
-function ResolutionOption(props){
-
-
-    return(
-        <input type="input" class="dropdown-item" href="#" id={'res_'+props.res} onMouseEnter={props.checkResolution} onClick={props.selectResolution} value={props.res}
-                               data-toggle="tooltip" data-placement="top" title={props.title}/> 
-    );
-
-
-}
-
-
-
 export default function ResolutionDropdown(props){ 
     const[resolution, setResolution ] = useState();
     const[isAvail, setIsAvail] = useState(true);
@@ -27,8 +13,7 @@ export default function ResolutionDropdown(props){
 
    
 
-    const checkResolution = useCallback((e) => {
-      
+    const checkResolution = useCallback((e) => {      
         try {
             let test = props.getChartsData(e.target.value).dateHeadersStore;
         
@@ -45,21 +30,18 @@ export default function ResolutionDropdown(props){
        }
     });
 
-    const getTitle = useCallback((res) => {
-      
+    const getTitle = useCallback((res) => {      
         try {
             let test = props.getChartsData(res).dateHeadersStore;
         
             if(test.length > 0 && typeof(test) != "undefined" && test[0] != null)
             {     
                 return "Available";
-            }
-               
+            }               
         }
        catch(err){
            return "Not Available";
-       }
-       
+       }       
     });
 
     let titles = [];
@@ -85,11 +67,8 @@ export default function ResolutionDropdown(props){
                             Select Chart Resolution (X Times)
                         </button>
                         <div class="dropdown-menu">
-                           {/*} { props.theResolutions.map((res) => 
-                              <ResolutionOption selectResolution={selectResolution} checkResolution={checkResolution} res={res} title={titles[res]}/>
-                           )}*/}
+                        
                            <>
-                               {/* {['top', 'right', 'bottom', 'left'].map((placement) => ( */}
                                { props.theResolutions.map((res) => (
                                     <OverlayTrigger
                                         key='top'
@@ -111,8 +90,6 @@ export default function ResolutionDropdown(props){
                <div class="container h-10 d-flex justify-content-center">
                     <h6 id="interval_message"></h6>
                             </div> 
-          
-               
             </div>    
     );
 

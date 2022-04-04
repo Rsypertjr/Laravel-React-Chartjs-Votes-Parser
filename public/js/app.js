@@ -8291,22 +8291,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-function ResolutionOption(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-    type: "input",
-    "class": "dropdown-item",
-    href: "#",
-    id: 'res_' + props.res,
-    onMouseEnter: props.checkResolution,
-    onClick: props.selectResolution,
-    value: props.res,
-    "data-toggle": "tooltip",
-    "data-placement": "top",
-    title: props.title
-  });
-}
-
 function ResolutionDropdown(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
       _useState2 = _slicedToArray(_useState, 2),
