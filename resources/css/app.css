@@ -147,15 +147,13 @@ nav.navbar {
 
  .pie-chart {
      margin-top:0em;
+     margin-left:35%;
  }
 
  .pie-pager {
      margin-top: 2em;
  }
  
- #myChart {
-     margin-left:35%;
- }
 
  .viewerClose{
     

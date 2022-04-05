@@ -8126,7 +8126,7 @@ function PieChart(props) {
     };
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    "class": "chart-viewer pie-viewer",
+    "class": "chart-viewer",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container h-10 d-flex justify-content-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h6", {
@@ -8148,6 +8148,7 @@ function PieChart(props) {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("canvas", {
           id: "myChart",
+          "class": "pie-chart",
           width: "400px",
           height: "400px",
           left: "300px"
