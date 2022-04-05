@@ -31,16 +31,13 @@ export default function ChartPager(props){
     }
 
     const rightArrow = (e) => {   
-           // alert(props.chartData.dateHeadersStore.length);
            let chk1 = (parseInt(props.pageNo)+1) <= (parseInt(props.thePageSetNumber)-1)*parseInt(props.thePageSize) + parseInt(props.thePageSize);
            let chk2 =  (parseInt(props.pageNo)+1) <= props.chartData.dateHeadersStore.length;
-           //let chk3 = (parseInt(props.pageNo)+1) == parseInt(props.thePageSetNumber)*parseInt(props.thePageSize);
             if( chk1 && chk2){
                 e.target.value = parseInt(props.pageNo) + 1;           
                 handlePage(e);
              }        
             else if( !chk1 && chk2 ) {
-                 //alert('doing');
                 let obj = {};
                 let nxpagenum = parseInt(props.thePageSetNumber)*parseInt(props.thePageSize) + 1;
                 obj.nxpagenum = nxpagenum;
@@ -49,7 +46,7 @@ export default function ChartPager(props){
                 props.rightArrow(obj);
              }
              else{
-                // alert('not doing');
+                 ;
              }
      
     }

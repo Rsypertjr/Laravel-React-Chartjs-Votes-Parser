@@ -140,13 +140,14 @@ export default function BarChart(props) {
    
     return (      
         <div class="chart-viewer">
-            <span class="viewerClose">Close Chart</span>     
             <div class="container h-10 d-flex justify-content-center">
-                <h4>Votes Bar Chart</h4>
+                <h4>Total Votes Bar Chart</h4>
             </div>
+            <span class="viewerClose">Close Chart</span>     
+            
             <ResolutionDropdown {...props} theResolutions={props.theResolutions} selectResolution={props.selectResolution}/>               
             <div class="container h-10 d-flex justify-content-center">
-                <h4>Total Votes</h4>
+                <h4>Incremental Total Votes</h4>
             </div>
             <div class="container smaller justify-content-center">
                 <div><canvas id="myChart"></canvas></div>

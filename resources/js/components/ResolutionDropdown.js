@@ -3,60 +3,33 @@ import ReactDOM from 'react-dom';
 import { Button, OverlayTrigger, Tooltip, input } from 'react-bootstrap';
 
 export default function ResolutionDropdown(props){ 
-    const[resolution, setResolution ] = useState();
+    const[resolution, setResolution ] = useState(props.parse_resolution);
     const[isAvail, setIsAvail] = useState(true);
     const[title, setTitle ] = useState('');
+    const[chArray, setCHArray] = useState(props.chartData.chartArray);
    
-    const selectResolution = (e) => {           
+    const selectResolution = (e) => {   
+        if(getTitle(e.target.value) == "Available")
+            setResolution(e.target.value);  
         props.selectResolution(e.target.value); 
+      
     }
 
-   
-
-    const checkResolution = useCallback((e) => {      
-        try {
-            let test = props.getChartsData(e.target.value).dateHeadersStore;
-        
-            if(test.length > 0 && typeof(test) != "undefined" && test[0] != null)
-            {               
-               
-                setTitle('Available');
-                $('[data-toggle="tooltip"]').tooltip();
-            }               
-        }
-       catch(err){
-           setTitle('Not Available');
-           $('[data-toggle="tooltip"]').tooltip();
-       }
-    });
+  
 
     const getTitle = useCallback((res) => {      
-        try {
-            let test = props.getChartsData(res).dateHeadersStore;
+            let test = (props.pageNo-1)*10*res+res;
         
-            if(test.length > 0 && typeof(test) != "undefined" && test[0] != null)
-            {     
+            if(test <=  props.theVotes.length)
                 return "Available";
-            }               
-        }
-       catch(err){
-           return "Not Available";
-       }       
+            else
+                return "Not Available";
     });
 
-    let titles = [];
-    for(var i=0;i<props.theResolutions.length;i++){
-        titles[i] = getTitle(props.theResolutions[i]);
-    }
-
-    useEffect(() => {        
-       
+    useEffect(() => {       
+      
         $('[data-toggle="tooltip"]').tooltip();
-        setResolution(props.parse_resolution);
-        if(typeof(props.chartData.interval_message) != "undefined")
-           $('#interval_message').html(props.chartData.interval_message + "<br>"); 
-        if(!$('#interval_message').html().toString().match('The Current Chart') && typeof(resolution) != "undefined" )
-           $('#interval_message').append("The Current Chart Resolution is: "+ resolution );       
+            
     });
 
     return(
@@ -88,8 +61,11 @@ export default function ResolutionDropdown(props){
                     </div>
                 </div>
                <div class="container h-10 d-flex justify-content-center">
-                    <h6 id="interval_message"></h6>
-                            </div> 
+                    <h6 id="interval_message">
+                        <span>{props.interval_message}</span><br/>
+                        <span>The Current Chart Resolution is: {resolution}</span>
+                    </h6>      
+               </div> 
             </div>    
     );
 

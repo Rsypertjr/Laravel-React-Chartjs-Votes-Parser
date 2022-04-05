@@ -7259,7 +7259,14 @@ function AppRouter(props) {
         }))
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
         path: "/piechart",
-        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Charts_PieChart__WEBPACK_IMPORTED_MODULE_5__["default"], {})
+        element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Charts_PieChart__WEBPACK_IMPORTED_MODULE_5__["default"], _objectSpread(_objectSpread({}, props), {}, {
+          resetCharts: props.resetCharts,
+          selectResolution: props.selectResolution,
+          getPageNumber: props.getPageNumber,
+          type: 'pie',
+          rightArrow: props.rightArrow,
+          leftArrow: props.leftArrow
+        }))
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
         path: "/barchart",
         element: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_Charts_BarChart__WEBPACK_IMPORTED_MODULE_6__["default"], _objectSpread(_objectSpread({}, props), {}, {
@@ -7332,22 +7339,21 @@ function ChartPager(props) {
   };
 
   var rightArrow = function rightArrow(e) {
-    // alert(props.chartData.dateHeadersStore.length);
     var chk1 = parseInt(props.pageNo) + 1 <= (parseInt(props.thePageSetNumber) - 1) * parseInt(props.thePageSize) + parseInt(props.thePageSize);
-    var chk2 = parseInt(props.pageNo) + 1 <= props.chartData.dateHeadersStore.length; //let chk3 = (parseInt(props.pageNo)+1) == parseInt(props.thePageSetNumber)*parseInt(props.thePageSize);
+    var chk2 = parseInt(props.pageNo) + 1 <= props.chartData.dateHeadersStore.length;
 
     if (chk1 && chk2) {
       e.target.value = parseInt(props.pageNo) + 1;
       handlePage(e);
     } else if (!chk1 && chk2) {
-      //alert('doing');
       var obj = {};
       var nxpagenum = parseInt(props.thePageSetNumber) * parseInt(props.thePageSize) + 1;
       obj.nxpagenum = nxpagenum;
       obj.num = parseInt(props.pageNo) + 1;
       obj.type = props.type;
       props.rightArrow(obj);
-    } else {// alert('not doing');
+    } else {
+      ;
     }
   };
 
@@ -7482,7 +7488,12 @@ function BarChart(props) {
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     "class": "chart-viewer",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      "class": "container h-10 d-flex justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+        children: "Total Votes Bar Chart"
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
       "class": "viewerClose",
       children: "Close Chart"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ResolutionDropdown__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
@@ -7491,7 +7502,7 @@ function BarChart(props) {
     })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container h-10 d-flex justify-content-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
-        children: "Votes Bar Chart"
+        children: "Incremental Total Votes"
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container smaller justify-content-center",
@@ -7636,7 +7647,12 @@ function BinStackedChart(props) {
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     "class": "chart-viewer",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      "class": "container h-10 d-flex justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+        children: "Total Votes Bin Stacked Chart"
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
       "class": "viewerClose",
       children: "Close Chart"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ResolutionDropdown__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
@@ -7645,7 +7661,7 @@ function BinStackedChart(props) {
     })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container h-10 d-flex justify-content-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
-        children: "Bin Stacked Chart"
+        children: "Incremental Stacked Total Votes"
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container smaller justify-content-center",
@@ -7786,7 +7802,7 @@ function DiffLineChart(props) {
     "class": "chart-viewer",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container h-10 d-flex justify-content-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h6", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
         children: "Difference Line Chart"
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
@@ -7917,13 +7933,18 @@ function PerLineChart(props) {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
       "class": "viewerClose",
       children: "Close Chart"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      "class": "container h-10 d-flex justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+        children: "Remaining Percetage of Vote Chart"
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ResolutionDropdown__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
       theResolutions: props.theResolutions,
       selectResolution: props.selectResolution
     })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container h-10 d-flex justify-content-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
-        children: "Percent Line Chart"
+        children: "Incremental Remaining Percentage"
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container smaller justify-content-center",
@@ -7958,12 +7979,187 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ PieChart)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _ChartPager__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../ChartPager */ "./resources/js/components/ChartPager.js");
+/* harmony import */ var _ResolutionDropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ResolutionDropdown */ "./resources/js/components/ResolutionDropdown.js");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/chart.esm.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-function PieChart() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
-    children: "Pie Chart"
+
+
+
+
+
+chart_js__WEBPACK_IMPORTED_MODULE_3__.Chart.register(chart_js__WEBPACK_IMPORTED_MODULE_3__.ArcElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.LineElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.BarElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.PointElement, chart_js__WEBPACK_IMPORTED_MODULE_3__.BarController, chart_js__WEBPACK_IMPORTED_MODULE_3__.BubbleController, chart_js__WEBPACK_IMPORTED_MODULE_3__.DoughnutController, chart_js__WEBPACK_IMPORTED_MODULE_3__.LineController, chart_js__WEBPACK_IMPORTED_MODULE_3__.PieController, chart_js__WEBPACK_IMPORTED_MODULE_3__.PolarAreaController, chart_js__WEBPACK_IMPORTED_MODULE_3__.RadarController, chart_js__WEBPACK_IMPORTED_MODULE_3__.ScatterController, chart_js__WEBPACK_IMPORTED_MODULE_3__.CategoryScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.LinearScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.LogarithmicScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.RadialLinearScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.TimeScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.TimeSeriesScale, chart_js__WEBPACK_IMPORTED_MODULE_3__.Decimation, chart_js__WEBPACK_IMPORTED_MODULE_3__.Filler, chart_js__WEBPACK_IMPORTED_MODULE_3__.Legend, chart_js__WEBPACK_IMPORTED_MODULE_3__.Title, chart_js__WEBPACK_IMPORTED_MODULE_3__.Tooltip, chart_js__WEBPACK_IMPORTED_MODULE_3__.SubTitle);
+var dataLoad = {
+  dateHeadersStore: [],
+  dateDataBidenStore: [],
+  dateDataBidenAddStore: [],
+  dateDataBidenAddDiffStore: [],
+  dateDataTrumpStore: [],
+  dateDataTrumpAddStore: [],
+  dateDataTrumpAddDiffStore: [],
+  dateDataTotalStore: [],
+  dateDataOtherStore: [],
+  dateDataOtherAddStore: [],
+  dateDataTotalAddStore: [],
+  perRemainingTrumpStore: [],
+  perRemainingBidenStore: [],
+  bidenSlices: [],
+  trumpSlices: [],
+  otherSlices: [],
+  totalSlices: [],
+  pieHeaders: [],
+  voteBins: [],
+  bin_headers: [],
+  bin_biden: [],
+  bin_trump: []
+};
+function PieChart(props) {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      title = _useState2[0],
+      setTitle = _useState2[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var ctx = document.getElementById('myChart').getContext('2d');
+    $('.viewerClose').on('click', function () {
+      $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
+      $('.viewerClose').css('display', 'none');
+      props.resetCharts();
+    });
+    $('.page').css('background-color', 'rgb(239, 239, 239').css('border-color', 'rgb(255, 255, 255').css('border-width', '3px');
+    $('#page-' + props.pageNo).css('background-color', '#ffc107'); // let data = [65, 59, 80, 81, 56, 55, 40];
+    //let label =  '# of Votes';
+
+    var type = props.type;
+    var selected_index = props.pageNo;
+    var bgColors = ['red', 'orange', 'yellow', 'lime', 'green', 'teal', 'blue', 'purple'];
+    var bdColors = ['black'];
+    var chartData = props.chartData;
+    var date_headers = chartData.dateHeadersStore[selected_index - 1]; //let biden_slices = chartData.bidenSlices.map((item) => item);
+    //let trump_slices = chartData.trumpSlices.map((item) => item);
+    //let other_slices = chartData.otherSlices.map((item) => item);
+
+    var labels = ["Biden Votes", "Trump Votes", "Other Votes"];
+    var label = "Votes from: " + date_headers[0].replace(/T/g, '@').replace(/Z/g, ' ') + " to " + date_headers[date_headers.length - 1].replace(/T/g, '@').replace(/Z/g, ' ');
+    setTitle(label);
+    var biden_slice = chartData.bidenSlices[selected_index - 1];
+    var trump_slice = chartData.trumpSlices[selected_index - 1];
+    var other_slice = chartData.otherSlices[selected_index - 1];
+    var datasets = [{
+      label: label,
+      data: [biden_slice, trump_slice, other_slice],
+      backgroundColor: [bgColors[0], bgColors[1], bgColors[2]],
+      borderColor: [bgColors[0], bgColors[1], bgColors[2]],
+      borderWidth: 1
+    }]; //let labels = date_headers[selected_index-1];
+    //var data1= {};
+    //data1.label = "Biden Votes";
+    //data1.backgroundColor = bgColors[0];
+    //data1.borderColor = bgColors[0];
+    //data1.data = [];
+    //let dataset = [biden_slice,trump_slice,other_slice]
+    //biden_slices[selected_index-1].map((dat) => {       
+
+    /* biden_slices.map((dat) => {               
+         data1.data.push(dat);
+     });
+     let dataset1 = data1;
+     //alert(JSON.stringify(dataset1));
+      var data2 = {};
+     data2.label = "Trump Votes";
+     data2.backgroundColor = bgColors[1];
+     data2.borderColor = bgColors[1];
+     data2.data = [];
+     //trump_slices[selected_index-1].map((data) => {       
+     trump_slices.map((data) => {                
+         data2.data.push(data);
+     });
+     let dataset2 = data2;
+     //alert(JSON.stringify(dataset2));
+      var data3 = {};
+     data3.label = "Other Votes";
+     data3.backgroundColor = bgColors[2];
+     data3.borderColor = bgColors[2];
+     data3.data = [];
+     //other_slices[selected_index-1].map((data) => {           
+     other_slices.map((data) => {           
+         data2.data.push(data);
+     });
+     let dataset3 = data3;
+     //alert(JSON.stringify(dataset3));
+     
+      datasets = [dataset1, dataset2, dataset3]
+     */
+    //alert(JSON.stringify(datasets));
+
+    var myChart = new chart_js__WEBPACK_IMPORTED_MODULE_3__.Chart(ctx, {
+      type: type,
+      data: {
+        labels: labels,
+        datasets: datasets
+      },
+      options: {
+        radius: "40%"
+      }
+    });
+    return function () {
+      myChart.destroy();
+    };
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    "class": "chart-viewer pie-viewer",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      "class": "container h-10 d-flex justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h6", {
+        children: "Votes Pie Chart"
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+      "class": "viewerClose",
+      children: "Close Chart"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ResolutionDropdown__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
+      theResolutions: props.theResolutions,
+      selectResolution: props.selectResolution
+    })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      "class": "container h-10 d-flex justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+        children: title
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      "class": "container smaller justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("canvas", {
+          id: "myChart",
+          "class": "pie-chart"
+        })
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      "class": "container h-100 d-flex justify-content-center pie-pager",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ChartPager__WEBPACK_IMPORTED_MODULE_1__["default"], _objectSpread(_objectSpread({}, props), {}, {
+        getPageNumber: props.getPageNumber,
+        type: 'line',
+        leftArrow: props.leftArrow,
+        rightArrow: props.rightArrow
+      }))
+    })]
   });
 }
 
@@ -8088,7 +8284,12 @@ function SpikesLineChart(props) {
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     "class": "chart-viewer",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+      "class": "container h-10 d-flex justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
+        children: "Vote Spikes Line Chart"
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
       "class": "viewerClose",
       children: "Close Chart"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ResolutionDropdown__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
@@ -8097,7 +8298,7 @@ function SpikesLineChart(props) {
     })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
       "class": "container h-10 d-flex justify-content-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
-        children: "Votes Spike Line Chart"
+        children: "Incremental Vote Spike"
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
       "class": "container smaller justify-content-center",
@@ -8225,7 +8426,12 @@ function VotesLineChart2(props) {
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     "class": "chart-viewer",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      "class": "container h-10 d-flex justify-content-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h6", {
+        children: "Total Votes Line Chart"
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
       "class": "viewerClose",
       children: "Close Chart"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ResolutionDropdown__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({}, props), {}, {
@@ -8234,7 +8440,7 @@ function VotesLineChart2(props) {
     })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container h-10 d-flex justify-content-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
-        children: "Votes Line Chart"
+        children: "Incremental Total Votes"
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       "class": "container smaller justify-content-center",
@@ -8292,7 +8498,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function ResolutionDropdown(props) {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(props.parse_resolution),
       _useState2 = _slicedToArray(_useState, 2),
       resolution = _useState2[0],
       setResolution = _useState2[1];
@@ -8307,45 +8513,22 @@ function ResolutionDropdown(props) {
       title = _useState6[0],
       setTitle = _useState6[1];
 
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(props.chartData.chartArray),
+      _useState8 = _slicedToArray(_useState7, 2),
+      chArray = _useState8[0],
+      setCHArray = _useState8[1];
+
   var selectResolution = function selectResolution(e) {
+    if (getTitle(e.target.value) == "Available") setResolution(e.target.value);
     props.selectResolution(e.target.value);
   };
 
-  var checkResolution = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (e) {
-    try {
-      var test = props.getChartsData(e.target.value).dateHeadersStore;
-
-      if (test.length > 0 && typeof test != "undefined" && test[0] != null) {
-        setTitle('Available');
-        $('[data-toggle="tooltip"]').tooltip();
-      }
-    } catch (err) {
-      setTitle('Not Available');
-      $('[data-toggle="tooltip"]').tooltip();
-    }
-  });
   var getTitle = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (res) {
-    try {
-      var test = props.getChartsData(res).dateHeadersStore;
-
-      if (test.length > 0 && typeof test != "undefined" && test[0] != null) {
-        return "Available";
-      }
-    } catch (err) {
-      return "Not Available";
-    }
+    var test = (props.pageNo - 1) * 10 * res + res;
+    if (test <= props.theVotes.length) return "Available";else return "Not Available";
   });
-  var titles = [];
-
-  for (var i = 0; i < props.theResolutions.length; i++) {
-    titles[i] = getTitle(props.theResolutions[i]);
-  }
-
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     $('[data-toggle="tooltip"]').tooltip();
-    setResolution(props.parse_resolution);
-    if (typeof props.chartData.interval_message != "undefined") $('#interval_message').html(props.chartData.interval_message + "<br>");
-    if (!$('#interval_message').html().toString().match('The Current Chart') && typeof resolution != "undefined") $('#interval_message').append("The Current Chart Resolution is: " + resolution);
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     "class": "container",
@@ -8390,8 +8573,13 @@ function ResolutionDropdown(props) {
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       "class": "container h-10 d-flex justify-content-center",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h6", {
-        id: "interval_message"
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("h6", {
+        id: "interval_message",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+          children: props.interval_message
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
+          children: ["The Current Chart Resolution is: ", resolution]
+        })]
       })
     })]
   });
@@ -8462,10 +8650,7 @@ function VoteTableReact(props) {
     "class": "chart-viewer",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
       "class": "viewerClose",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("font", {
-        color: "cyan",
-        children: "Close Chart"
-      })
+      children: "Close Chart"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       "class": "container h-10 d-flex justify-content-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h4", {
@@ -8639,7 +8824,8 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
       parse_resolution: 1,
       noOfChartPages: 0,
       theChartArray: [],
-      theResolutions: resolutions
+      theResolutions: resolutions,
+      interval_message: ''
     };
     var state = _this.state.defaultOption;
 
@@ -8652,8 +8838,10 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
     key: "getPageNumber",
     value: function getPageNumber(obj) {
       var num = obj.num;
+      var interval_message = this.getTimeDiff(this.state.chartData.dateHeadersStore, num);
       this.setState({
-        pageNo: num
+        pageNo: num,
+        interval_message: interval_message
       });
     }
   }, {
@@ -8672,14 +8860,12 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
             pageNo: newNum
           });
         } else if (type != 'table' && parseInt(num) <= this.state.chartData.dateHeadersStore.length) {
-          //alert("there");
           this.setState({
             thePageSetNumber: parseInt(this.state.thePageSetNumber) + 1,
             pageNo: num
           });
           F;
         } else if (type == 'table' && parseInt(nxpagenum) >= this.state.theVotes.length) {
-          //alert("here");
           var newNum2 = (parseInt(this.state.thePageSetNumber) - 1) * parseInt(this.state.thePageSize) + 1;
           this.setState({
             thePageSetNumber: this.state.thePageSetNumber,
@@ -8756,8 +8942,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
           defaultOption: _this2.state.theState
         });
 
-        var chartData = _this2.getChartsData(_this2.state.parse_resolution); //this.getTimeDiff(chartData.dateHeadersStore);
-
+        var chartData = _this2.getChartsData(_this2.state.parse_resolution);
 
         _this2.setState({
           chartData: chartData,
@@ -8780,62 +8965,85 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "getTimeDiff",
-    value: function getTimeDiff(dateHeadersStore) {
-      var flat_times = [];
-      dateHeadersStore.forEach(function (page) {
-        return page.forEach(function (time) {
-          flat_times.push(time);
-        });
-      });
+    value: function getTimeDiff(dateHeadersStore, pageNo) {
       var newDateHeaderStore = [];
-      dateHeadersStore[this.state.pageNo].forEach(function (atime) {
-        var regex = /(\d\d\d\d)(-)/;
-        var found = atime.match(regex);
-        var year = parseInt(found[1]); // Parse Month
-
-        var regex2 = /(-)(\d\d)(-)/;
-        var found2 = atime.match(regex2);
-        var month = parseInt(found2[2]); // Parse Day
-
-        var regex3 = /(-)(\d\d)(T)/;
-        var found3 = atime.match(regex3);
-        var day = parseInt(found3[2]); // Parse Hour
-
-        var regex4 = /(T)(\d\d)(:)/;
-        var found4 = atime.match(regex4);
-        var hours = parseInt(found4[2]); // Parse Minutes
-
-        var regex5 = /(:)(\d\d)(:)/;
-        var found5 = atime.match(regex5);
-        var minutes = parseInt(found5[2]); // Parse Seconds
-
-        var regex6 = /(:)(\d\d)([Z])/;
-        var found6 = atime.match(regex6);
-        var seconds = 0;
-        if (found6 != null) seconds = parseInt(found6[2]);
-        var d = new Date(year, month - 1, day, hours, minutes, seconds);
+      var dhStore = dateHeadersStore.sort();
+      dhStore[pageNo - 1].forEach(function (atime) {
+        /*
+        const regex = /(\d\d\d\d)(-)/;
+        const found = atime.match(regex);
+        let year = parseInt(found[1]);   
+        // Parse Month
+        const regex2 = /(-)(\d\d)(-)/;
+        const found2 = atime.match(regex2);
+        let month = parseInt(found2[2]);
+             // Parse Day
+        const regex3 = /(-)(\d\d)(T)/;
+        const found3 = atime.match(regex3);
+        let day = parseInt(found3[2]);
+             // Parse Hour
+        const regex4 = /(T)(\d\d)(:)/;
+        const found4 = atime.match(regex4);
+        let hours = parseInt(found4[2]);
+             // Parse Minutes
+        const regex5 = /(:)(\d\d)(:)/;
+        const found5 = atime.match(regex5);
+        let minutes = parseInt(found5[2]);
+             // Parse Seconds
+        const regex6 = /(:)(\d\d)([Z])/;
+        const found6 = atime.match(regex6);
+        let seconds = 0;
+        if(found6 != null)
+            seconds = parseInt(found6[2]);
+        let d = new Date(year,month,day,hours,minutes,seconds);
         newDateHeaderStore.push(d.getTime());
-      }); //alert(JSON.stringify(newDateHeaderStore));
+        */
+        var d = atime.replace(/T|Z/, " ");
+        var date = new Date(d);
+        newDateHeaderStore.push(date);
+      });
+      newDateHeaderStore.sort(); //alert(JSON.stringify(newDateHeaderStore));
 
       var timeDiff_accum = 0;
-      var count = 0;
+      var count = 1;
 
-      for (var i = 0; i < newDateHeaderStore.length; i++) {
-        if (i > 0) {
-          var diff = newDateHeaderStore[i + 1] / 1000 - newDateHeaderStore[i] / 1000;
+      for (var i = 0; i < newDateHeaderStore.length - 1; i++) {
+        var diff = newDateHeaderStore[i + 1] - newDateHeaderStore[i];
+        count++;
+        timeDiff_accum += diff;
+      } // timeDiff_accum = (newDateHeaderStore[newDateHeaderStore.length-1]-newDateHeaderStore[0])/(newDateHeaderStore.length*1000)
+      // let minutes_diff = 0;
+      //let hours_diff = 0;
+      // count++;
+      //hours_diff = Math.floor(timeDiff_accum/(3600*1000*count));
+      //  minutes_diff = timeDiff_accum/(60*1000*count) -  hours_diff*60;
+      // let seconds_diff = 0;
+      // if(hours_diff >= 1){
+      //    minutes_diff = minutes_diff - hours_diff*60;
+      //  }
+      //   else
+      //     hours_diff = 0;
+      //   if(minutes_diff < 1){
+      ////       seconds_diff = minutes_diff*60;          
+      //       minutes_diff = 0;
+      //    }
 
-          if (diff > 0) {
-            timeDiff_accum += diff;
-            count++;
-          }
-        }
+
+      var s = timeDiff_accum / count;
+
+      function pad(n, z) {
+        z = z || 2;
+        return ('00' + n).slice(-z);
       }
 
-      var hours_diff = timeDiff_accum / (count * 3600);
-      var minutes_diff = 0;
-      if (hours_diff < 1) minutes_diff = timeDiff_accum / (count * 60);else minutes_diff = hours_diff * 60;
-      hours_diff = Math.floor(hours_diff);
-      var time_diff = "Average Time Interval: " + hours_diff.toFixed(2) + " hours, and " + minutes_diff.toFixed(2) + " minutes";
+      var ms = s % 1000;
+      s = (s - ms) / 1000;
+      var secs = s % 60;
+      s = (s - secs) / 60;
+      var mins = s % 60;
+      var hrs = (s - mins) / 60; //return pad(hrs) + ':' + pad(mins) + ':' + pad(secs) + '.' + pad(ms, 3);
+
+      var time_diff = "Average Time Interval: " + hrs.toFixed(2) + " hours, and " + mins.toFixed(2) + " minutes, " + secs + " seconds.";
       return time_diff;
     }
   }, {
@@ -9206,7 +9414,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
       bin_trump = bin_trump.filter(function (i) {
         return i != null;
       });
-      var interval_message = this.getTimeDiff(dateheaders_store);
+      var interval_message = this.getTimeDiff(dateheaders_store, this.state.pageNo);
       var dataLoad = {
         "dateHeadersStore": dateheaders_store,
         "dateDataBidenStore": datedatabiden_store,
@@ -9230,9 +9438,9 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
         "bin_headers": bin_headers,
         "bin_biden": bin_biden,
         "bin_trump": bin_trump,
-        "interval_message": interval_message,
         "numPages": numPages,
-        "chartArray": chartArray
+        "chartArray": chartArray,
+        "interval_message": interval_message
       };
       return dataLoad;
     }
@@ -9290,20 +9498,17 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
         parse_resolution: parseInt(e),
         chartData: chartData,
         noOfChartPages: chartData.numPages,
-        theChartArray: chartData.chartArray
+        theChartArray: chartData.chartArray,
+        interval_message: chartData.interval_message
       });
     }
   }, {
     key: "resetCharts",
     value: function resetCharts(e) {
-      var chartData = this.getChartsData(1);
       this.setState({
         pageNo: 1,
         thePageSetNumber: 1,
-        parse_resolution: 1,
-        chartData: chartData,
-        noOfChartPages: chartData.numPages,
-        theChartArray: chartData.chartArray
+        parse_resolution: 1
       });
     }
   }, {

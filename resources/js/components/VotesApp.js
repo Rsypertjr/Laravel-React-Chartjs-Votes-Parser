@@ -65,10 +65,11 @@ export default class VotesApp extends React.Component {
           parse_resolution: 1,
           noOfChartPages:0,
           theChartArray:[],
-          theResolutions: resolutions
+          theResolutions: resolutions,
+          interval_message:''
       };
    
-
+      
       let state = this.state.defaultOption;
       this.getStateData(state);    
   }
@@ -77,9 +78,14 @@ export default class VotesApp extends React.Component {
   getPageNumber(obj)
   {         
      let num = obj.num;
+     let interval_message = this.getTimeDiff(this.state.chartData.dateHeadersStore,num);
      this.setState({
-         pageNo: num
+         pageNo: num,
+         interval_message: interval_message
      });   
+    
+   
+
    
   }
 
@@ -100,7 +106,6 @@ export default class VotesApp extends React.Component {
           } 
           
         else if(type != 'table' && parseInt(num) <= this.state.chartData.dateHeadersStore.length){
-              //alert("there");
               this.setState({
                   thePageSetNumber:parseInt(this.state.thePageSetNumber)+1,
                   pageNo: num
@@ -108,7 +113,6 @@ export default class VotesApp extends React.Component {
           } 
           
         else if(type == 'table' && parseInt(nxpagenum) >= this.state.theVotes.length){
-              //alert("here");
               let newNum2 = (parseInt(this.state.thePageSetNumber) - 1)*parseInt(this.state.thePageSize) + 1;
               this.setState({
                   thePageSetNumber:this.state.thePageSetNumber,
@@ -189,14 +193,13 @@ export default class VotesApp extends React.Component {
 
       
       let chartData = this.getChartsData(this.state.parse_resolution);
-      //this.getTimeDiff(chartData.dateHeadersStore);
+      
       this.setState({       
         chartData: chartData,
         noOfChartPages : chartData.numPages,
         theChartArray: chartData.chartArray  
     });
-
-    
+  
 
     return theVotes;
     
@@ -217,15 +220,13 @@ export default class VotesApp extends React.Component {
           
   }
 
-  getTimeDiff(dateHeadersStore){
-    
-      let flat_times = [];
-      dateHeadersStore.forEach((page) => page.forEach((time) => {              
-                    flat_times.push(time);
-                }));
+  getTimeDiff(dateHeadersStore,pageNo){
+      
 
       let newDateHeaderStore = [];
-      dateHeadersStore[this.state.pageNo].forEach((atime) => {
+      let dhStore = dateHeadersStore.sort();
+      dhStore[pageNo-1].forEach((atime) => {
+        /*
         const regex = /(\d\d\d\d)(-)/;
         const found = atime.match(regex);
         let year = parseInt(found[1]);   
@@ -255,36 +256,67 @@ export default class VotesApp extends React.Component {
         let seconds = 0;
         if(found6 != null)
             seconds = parseInt(found6[2]);
-        let d = new Date(year,month-1,day,hours,minutes,seconds);
+        let d = new Date(year,month,day,hours,minutes,seconds);
         newDateHeaderStore.push(d.getTime());
+        */
+        let d = atime.replace(/T|Z/," ");
+        var date = new Date(d);
+        newDateHeaderStore.push(date);
       });
 
+      newDateHeaderStore.sort();
+
       //alert(JSON.stringify(newDateHeaderStore));
-
       let timeDiff_accum = 0;
-      let count = 0;
-      for(var i=0;i<newDateHeaderStore.length;i++)
+      let count = 1;
+      
+      for(var i=0;i<newDateHeaderStore.length-1;i++)
       {
-          if(i>0){
-            let diff = newDateHeaderStore[i+1]/1000 - newDateHeaderStore[i]/1000;
-            if(diff > 0){
-                timeDiff_accum += diff;
+          
+            let diff = newDateHeaderStore[i+1] - newDateHeaderStore[i]; 
                 count++;
-            }
-          }
+                timeDiff_accum += diff;
       }
-     
-      let hours_diff = timeDiff_accum/(count*3600);
-      let minutes_diff = 0;
-      if(hours_diff < 1)
-        minutes_diff = timeDiff_accum/(count*60);
-      else 
-        minutes_diff = hours_diff * 60;
+      // timeDiff_accum = (newDateHeaderStore[newDateHeaderStore.length-1]-newDateHeaderStore[0])/(newDateHeaderStore.length*1000)
 
-      hours_diff = Math.floor(hours_diff);
+     // let minutes_diff = 0;
+      //let hours_diff = 0;
+     // count++;
+      //hours_diff = Math.floor(timeDiff_accum/(3600*1000*count));
+    //  minutes_diff = timeDiff_accum/(60*1000*count) -  hours_diff*60;
      
-    let time_diff = "Average Time Interval: " + hours_diff.toFixed(2) + " hours, and " + minutes_diff.toFixed(2) + " minutes";
-    return time_diff;
+     // let seconds_diff = 0;
+      
+     // if(hours_diff >= 1){
+    //    minutes_diff = minutes_diff - hours_diff*60;
+
+    //  }
+   //   else
+   //     hours_diff = 0;
+     
+   //   if(minutes_diff < 1){
+   ////       seconds_diff = minutes_diff*60;          
+   //       minutes_diff = 0;
+  //    }
+        let s = timeDiff_accum/count;
+        function pad(n, z) {
+            z = z || 2;
+            return ('00' + n).slice(-z);
+        }
+
+        var ms = s % 1000;
+        s = (s - ms) / 1000;
+        var secs = s % 60;
+        s = (s - secs) / 60;
+        var mins = s % 60;
+        var hrs = (s - mins) / 60;
+
+       //return pad(hrs) + ':' + pad(mins) + ':' + pad(secs) + '.' + pad(ms, 3);
+      
+     
+        let time_diff = "Average Time Interval: " +  hrs.toFixed(2) + " hours, and " + mins.toFixed(2) + " minutes, " + secs + " seconds.";
+   
+        return time_diff;
   }
 
   getChartsData(parse_interval){
@@ -599,7 +631,7 @@ export default class VotesApp extends React.Component {
         bin_trump = bin_trump.filter((i) => i != null);
     
     
-    let interval_message = this.getTimeDiff(dateheaders_store);
+    let interval_message = this.getTimeDiff(dateheaders_store,this.state.pageNo);
     let dataLoad = {
       "dateHeadersStore": dateheaders_store,
       "dateDataBidenStore": datedatabiden_store,
@@ -623,9 +655,9 @@ export default class VotesApp extends React.Component {
       "bin_headers": bin_headers,
       "bin_biden": bin_biden,
       "bin_trump": bin_trump,
-      "interval_message": interval_message,
       "numPages": numPages,
-      "chartArray": chartArray
+      "chartArray": chartArray,
+      "interval_message": interval_message
     }
     
     return dataLoad;
@@ -693,22 +725,20 @@ export default class VotesApp extends React.Component {
       let chartData = this.getChartsData(parseInt(e));
       this.setState({     
         parse_resolution:parseInt(e),
-        chartData: chartData,
+        chartData:  chartData,
         noOfChartPages : chartData.numPages,
-        theChartArray: chartData.chartArray  
+        theChartArray: chartData.chartArray,
+        interval_message: chartData.interval_message
        });
-     
+      
   }
 
   resetCharts(e){
-    let chartData = this.getChartsData(1);
+   
     this.setState({     
        pageNo:1,
        thePageSetNumber:1,
-       parse_resolution: 1,
-       chartData: chartData,
-       noOfChartPages : chartData.numPages,
-       theChartArray: chartData.chartArray  
+       parse_resolution: 1
        });
   }
 

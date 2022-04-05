@@ -158,11 +158,12 @@ export default function DiffLineChart(props) {
 
 
     return (      
-        <div class="chart-viewer">          
-            <span class="viewerClose">Close Chart</span>     
+        <div class="chart-viewer">  
             <div class="container h-10 d-flex justify-content-center">
-                <h6>Difference Line Chart</h6>
-            </div>    
+                <h4>Difference Line Chart</h4>
+            </div>       
+            <span class="viewerClose">Close Chart</span>     
+            
             <ResolutionDropdown {...props} theResolutions={props.theResolutions} selectResolution={props.selectResolution}/> 
             <div class="container h-10 d-flex justify-content-center">
                 <h4>Incremental Gain/Loss of Votes</h4>

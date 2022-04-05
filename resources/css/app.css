@@ -149,6 +149,18 @@ nav.navbar {
      margin-bottom:1em;
  }
 
+ .pie-chart {
+     margin-top:-18em;
+ }
+
+ .pie-pager {
+     margin-top: -16em;
+ }
+
+ .pie-viewer {
+     transform: scale(0.80);
+ }
+
 
  .viewerClose{
     
