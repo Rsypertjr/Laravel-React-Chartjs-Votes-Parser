@@ -181,7 +181,7 @@ export default function PieChart(props) {
                     datasets: datasets
                 },
                 options: {
-                  radius: "40%",
+                  responsive:false,
                 }
                
             });
@@ -206,8 +206,8 @@ export default function PieChart(props) {
             <div class="container h-10 d-flex justify-content-center">
                 <h4>{title}</h4>
             </div>
-            <div class="container smaller justify-content-center">
-                <div><canvas id="myChart" class='pie-chart'></canvas></div>
+            <div class="container justify-content-center">
+                <div><canvas id="myChart" width="400px" height="400px" left="300px"></canvas></div>
             </div> 
             <div class="container h-100 d-flex justify-content-center pie-pager">
                 <ChartPager {...props} getPageNumber={props.getPageNumber} type={'line'} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>

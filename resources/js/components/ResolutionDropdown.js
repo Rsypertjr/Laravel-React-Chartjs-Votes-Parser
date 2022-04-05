@@ -29,6 +29,7 @@ export default function ResolutionDropdown(props){
     useEffect(() => {       
       
         $('[data-toggle="tooltip"]').tooltip();
+        setResolution(props.parse_resolution);
             
     });
 

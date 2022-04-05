@@ -145,22 +145,17 @@ nav.navbar {
     margin-top:1em;
   }
 
- #myChart{
-     margin-bottom:1em;
- }
-
  .pie-chart {
-     margin-top:-18em;
+     margin-top:0em;
  }
 
  .pie-pager {
-     margin-top: -16em;
+     margin-top: 2em;
  }
-
- .pie-viewer {
-     transform: scale(0.80);
+ 
+ #myChart {
+     margin-left:35%;
  }
-
 
  .viewerClose{
     

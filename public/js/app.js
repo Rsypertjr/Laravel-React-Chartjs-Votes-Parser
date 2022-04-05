@@ -8118,7 +8118,7 @@ function PieChart(props) {
         datasets: datasets
       },
       options: {
-        radius: "40%"
+        responsive: false
       }
     });
     return function () {
@@ -8144,11 +8144,13 @@ function PieChart(props) {
         children: title
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-      "class": "container smaller justify-content-center",
+      "class": "container justify-content-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("canvas", {
           id: "myChart",
-          "class": "pie-chart"
+          width: "400px",
+          height: "400px",
+          left: "300px"
         })
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
@@ -8529,6 +8531,7 @@ function ResolutionDropdown(props) {
   });
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     $('[data-toggle="tooltip"]').tooltip();
+    setResolution(props.parse_resolution);
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     "class": "container",
