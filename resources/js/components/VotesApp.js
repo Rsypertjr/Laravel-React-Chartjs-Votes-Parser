@@ -6,6 +6,8 @@ import styled from "styled-components";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import { map, takeRightWhile } from 'lodash';
+import {Container, Row, Col } from 'react-bootstrap';
+
 
 
 
@@ -356,26 +358,8 @@ export default class VotesApp extends React.Component {
     var trumpslices = [];
     var otherslices = [];
     var pieheaders = [];
-    //var j = 0;
-    //for(i=0;i<vote_rows.length;i=i+parse_interval){
     for(i=0;i<vote_rows.length;i++){
-      
-        /*
-        dateheaders[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.timestamp);
-        datedatabiden[i] = vote_rows.slice(i*parseInt(parse_interval + 1),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.biden_votes);
-        datedatatrump[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.trump_votes);
-        datedatabidenadd[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.biden_votes);
-        datedatatrumpadd[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.trump_votes);
-        datedatabidenadddiff[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.biden_votes);
-        datedatatrumpadddiff[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.trump_votes);
-        datedataotheradd[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.other_votes);
-        datedatatotaladd[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.votes);
-        datedatatotal[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.votes);
-        datedataother[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.other_votes);
-        perremainingtrump[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.remaining_percent_trump);
-        perremainingbiden[i] = vote_rows.slice(i*parseInt(parse_interval),( i*parseInt(parse_interval)+parseInt(parse_interval) ) ).map( (item) => item.remaining_percent_biden);
-        */
-        
+    
         dateheaders[i] = vote_rows[i].timestamp;
         datedatabiden[i] = vote_rows[i].biden_votes;
         datedatatrump[i] = vote_rows[i].trump_votes;
@@ -383,7 +367,6 @@ export default class VotesApp extends React.Component {
         datedatatotal[i] = vote_rows[i].votes;
         perremainingtrump[i] = vote_rows[i].remaining_percent_trump;
         perremainingbiden[i] = vote_rows[i].remaining_percent_biden;
-        //j++;
         
 
         if(i == 0)
@@ -508,9 +491,6 @@ export default class VotesApp extends React.Component {
     perremainingtrump_store  = perremainingtrump_store.filter((i) => i.length > 0);
     perremainingbiden_store  = perremainingbiden_store.filter((i) => i.length > 0);  
 
-    //this.setState({
-    //    noOfChartPages: dateheaders_store.length
-    //});
     let numPages = dateheaders_store.length;
     var arr = [];
     for(var i=0;i<numPages;i++){
@@ -525,9 +505,6 @@ export default class VotesApp extends React.Component {
       }       
     } 
 
-   // this.setState({
-    //    theChartArray: arr2
-  //  });
     let chartArray = arr2;
     
     // Fill Votebins    
@@ -540,8 +517,7 @@ export default class VotesApp extends React.Component {
         "trump_in_bin":0,
     };  
   
-   let step = Math.floor(parseInt(200000)/(numPages*10));
-    //var step = 2500;
+    let step = Math.floor(parseInt(200000)/(numPages*10));
     interval = vote_bin.interval;
     while(interval <= 200000){
         vote_bin.interval = interval;
@@ -858,27 +834,29 @@ export default class VotesApp extends React.Component {
   render() {
     return (
       <div className="wrapper">
-        <div class="container-fluid">
+        <Container fluid>
             <div class="jumbotron text-center" > 
-                <div class="row justify-content-start">
-                    <div class="col-3"/>
-                    <div class="col-1">
-                      <span>Select a State: </span>
-                    </div>
-                    <div class="col-4">
-                      <Dropdown options={this.state.options} onChange={this.selectState} value={this.state.defaultOption} placeholder="Select an option" /> 
-                    </div>
-                </div>
-                <h3>Laravel/React 2020 Presidential Election Parser</h3> 
-                <h4>Race Data:</h4>   
-                <p>{ this.state.raceId }</p>
-                <p>{ this.state.raceSlug }</p>
-                <p>{ this.state.raceUrl }</p>
-                <p>State: { this.state.theState }</p>
+                <Row className="justify-content-md-center pb-2">
+                    <Col xs lg="2"/>
+                    <Col md="auto pt-2">
+                      <span>Select a State: </span> 
+                    </Col>
+                    <Col md="auto"><Dropdown options={this.state.options} onChange={this.selectState} value={this.state.defaultOption} placeholder="Select an option" /></Col>
+                    <Col xs lg="2"/>
+                </Row>
+                <Row className="justify-content-center">
+                    <h3>Laravel/React 2020 Presidential Election Parser</h3> 
+                    <h4>Race Data:</h4>   
+                    <p>{ this.state.raceId }</p>
+                    <p>{ this.state.raceSlug }</p>
+                    <p>{ this.state.raceUrl }</p>
+                    <p>State: { this.state.theState }</p>
+                </Row>
+                
                   
             </div>             
             <AppRouter {...this.state} selectResolution={this.selectResolution} getChartsData={this.getChartsData} resetCharts={this.resetCharts}  getPageNumber={this.getPageNumber} rightArrow={this.rightArrow} leftArrow={this.leftArrow} />              
-        </div>     
+        </Container>     
     
       </div>
       

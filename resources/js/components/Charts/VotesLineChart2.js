@@ -1,6 +1,7 @@
 import {React, useEffect, useState} from 'react';
 import ChartPager from '../ChartPager';
 import ResolutionDropdown from '../ResolutionDropdown';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import {
     Chart,
     ArcElement,
@@ -59,17 +60,16 @@ import {
 
 
 export default function VotesLineChart2(props) {
-    
+      
+    const handleClick = () => {
+        $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
+        $('.viewerClose').css('display','none');
+        props.resetCharts();
+    }
+
     useEffect(() => {
         let ctx = document.getElementById('myChart').getContext('2d');
-        
-        
-        $('.viewerClose').on('click', function(){
-            //$('.chart-viewer').css('margin-top','0').css('transition','opacity 100s ease-in-out').css('z-index','1').css('border-style','none');
-            $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
-            $('.viewerClose').css('display','none');
-            props.resetCharts();
-        });
+     
         $('.page').css('background-color','rgb(239, 239, 239').css('border-color','rgb(255, 255, 255').css('border-width','3px');
         $('#page-'+ props.pageNo).css('background-color','#ffc107');  
 
@@ -143,20 +143,28 @@ export default function VotesLineChart2(props) {
    
     return (
         <div class="chart-viewer">
-             <div class="container h-10 d-flex justify-content-center">
-                <h6>Total Votes Line Chart</h6>
-            </div>   
-            <span class="viewerClose">Close Chart</span>               
-            <ResolutionDropdown  {...props} theResolutions={props.theResolutions} selectResolution={props.selectResolution}/>     
-            <div class="container h-10 d-flex justify-content-center">
-                <h3>Incremental Total Votes</h3>
-            </div>
-            <div class="container smaller justify-content-center">
+             <Container className="h-10 d-flex justify-content-center">
+                <h4>Total Votes Line Chart</h4>
+            </Container>   
+            <Container>
+                <Row>
+                    <Col className="pt-4" xs={1}>
+                        <Button variant="outline-success" onClick={handleClick} className="viewerClose">Close Chart</Button>{' '}
+                    </Col>
+                    <Col xs={11}>
+                        <ResolutionDropdown {...props} theResolutions={props.theResolutions} selectResolution={props.selectResolution}/>    
+                    </Col>
+                </Row>
+            </Container>    
+            <Container className="h-10 d-flex justify-content-center">
+                <h4>Incremental Total Votes</h4>
+            </Container>
+            <Container className="smaller justify-content-center">
                 <div><canvas id="myChart"></canvas></div>
-            </div> 
-            <div class="container h-100 d-flex justify-content-center">
+            </Container> 
+            <Container className="h-100 d-flex justify-content-center">
                 <ChartPager {...props} pageClick={props.getPageNumber} type={'line'} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>
-            </div>   
+            </Container>   
         </div>
 
     );

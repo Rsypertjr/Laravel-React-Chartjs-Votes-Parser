@@ -1,6 +1,7 @@
 import {React, useEffect} from 'react';
 import ChartPager from '../ChartPager';
 import ResolutionDropdown from '../ResolutionDropdown';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 
 import {
     Chart,
@@ -83,16 +84,17 @@ import {
     bin_trump: []
   };
 
-export default function DiffLineChart(props) {
+export default function DiffLineChart(props) {    
     
+    const handleClick = () => {
+        $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
+        $('.viewerClose').css('display','none');
+        props.resetCharts();
+    }
+
     useEffect(() => {
         let ctx = document.getElementById('myChart').getContext('2d');
 
-        $('.viewerClose').on('click', function(){
-            $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
-            $('.viewerClose').css('display','none');
-            props.resetCharts();
-        });
         $('.page').css('background-color','rgb(239, 239, 239').css('border-color','rgb(255, 255, 255').css('border-width','3px');
         $('#page-'+ props.pageNo).css('background-color','#ffc107');   
      
@@ -162,9 +164,16 @@ export default function DiffLineChart(props) {
             <div class="container h-10 d-flex justify-content-center">
                 <h4>Difference Line Chart</h4>
             </div>       
-            <span class="viewerClose">Close Chart</span>     
-            
-            <ResolutionDropdown {...props} theResolutions={props.theResolutions} selectResolution={props.selectResolution}/> 
+            <Container>
+                <Row>
+                    <Col className="pt-4" xs={1}>
+                        <Button variant="outline-success" onClick={handleClick} className="viewerClose">Close Chart</Button>{' '}
+                    </Col>
+                    <Col xs={11}>
+                        <ResolutionDropdown {...props} theResolutions={props.theResolutions} selectResolution={props.selectResolution}/>    
+                    </Col>
+                </Row>
+            </Container>    
             <div class="container h-10 d-flex justify-content-center">
                 <h4>Incremental Gain/Loss of Votes</h4>
             </div>

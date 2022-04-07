@@ -3,8 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import ChartPager from './ChartPager';
-import { Container } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
 
 
 function OuterTable(props){
@@ -30,15 +28,12 @@ function OuterTable(props){
 
 export default function VoteTableReact(props)  {
              
-        const handleClick = () => {
-            $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
-            $('.viewerClose').css('display','none');
-            props.resetCharts();
-        }
-    
-
         useEffect(() => {
-          
+            $('.viewerClose').on('click', function(){
+                $('.chart-viewer').removeClass('upslide').addClass('downslide').addClass('hidden');
+                $('.viewerClose').css('display','none');
+                props.resetCharts();
+            });
             $('.page').css('background-color','rgb(239, 239, 239').css('border-color','rgb(255, 255, 255').css('border-width','3px');
             $('#page-'+ props.pageNo).css('background-color','#ffc107');   
      
@@ -46,11 +41,11 @@ export default function VoteTableReact(props)  {
 
         return (          
         <div class="chart-viewer">
-            <Button variant="outline-success" onClick={handleClick} className="viewerClose">Close Chart</Button>{' '}            
-            <Container className="h-10 d-flex justify-content-center">
+            <span class="viewerClose">Close Chart</span>            
+            <div class="container h-10 d-flex justify-content-center">
                 <h4>2020 Presidential Election Votes</h4>
-            </Container>
-            <Container className="smaller justify-content-center">
+            </div>
+            <div class="container smaller justify-content-center">
                 <OuterTable>
                     <tbody>
                         { props.theCurrentPages[props.pageNo-1].map(row => 
@@ -72,10 +67,10 @@ export default function VoteTableReact(props)  {
                         )}                  
                     </tbody>
                 </OuterTable>  
-            </Container> 
-            <Container className="h-100 d-flex justify-content-center">
+            </div> 
+            <div class="container h-100 d-flex justify-content-center">
                 <ChartPager {...props} pageClick={props.getPageNumber} type={'line'} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>
-            </Container> 
+            </div> 
         </div>        
         );
 }

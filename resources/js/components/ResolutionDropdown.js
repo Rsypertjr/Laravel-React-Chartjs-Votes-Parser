@@ -1,6 +1,6 @@
 import {React, useEffect, useState, useCallback} from 'react';
 import ReactDOM from 'react-dom';
-import { Button, OverlayTrigger, Tooltip, input } from 'react-bootstrap';
+import { Button, OverlayTrigger, Tooltip, input,Container, Row } from 'react-bootstrap';
 
 export default function ResolutionDropdown(props){ 
     const[resolution, setResolution ] = useState(props.parse_resolution);
@@ -34,8 +34,8 @@ export default function ResolutionDropdown(props){
     });
 
     return(
-            <div class="container">
-                <div class="row justify-content-start">
+            <Container>
+                <Row className="justify-content-start">
                     <div class="btn-group dropright">
                         <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Select Chart Resolution (X Times)
@@ -60,14 +60,14 @@ export default function ResolutionDropdown(props){
                             </>
                         </div>
                     </div>
-                </div>
-               <div class="container h-10 d-flex justify-content-center">
+                </Row>
+               <Container className="h-10 d-flex justify-content-center">
                     <h6 id="interval_message">
                         <span>{props.interval_message}</span><br/>
                         <span>The Current Chart Resolution is: {resolution}</span>
                     </h6>      
-               </div> 
-            </div>    
+               </Container> 
+            </Container>    
     );
 
 
