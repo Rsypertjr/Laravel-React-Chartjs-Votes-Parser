@@ -68,7 +68,7 @@ export default function About(props){
                                     </ListGroup.Item>   
                                 </ListGroup>
                                 <ListGroup>
-                                    <ListGroup.Item variant="success">
+                                    <ListGroup.Item variant="primary">
                                         <Container className="d-flex justify-content-center mb-2 lamp">                                            
                                             <span><i class="bi bi-mailbox"></i></span> 
                                         </Container>
@@ -84,7 +84,7 @@ export default function About(props){
                                     </ListGroup.Item>   
                                 </ListGroup>
                                 <ListGroup>
-                                    <ListGroup.Item variant="success">
+                                    <ListGroup.Item variant="secondary">
                                         <Container className="d-flex justify-content-center mb-2">                                            
                                             <img src="./images/myFace.jpg" alt="My Profile"/>
                                         </Container>

@@ -9314,7 +9314,7 @@ function About(props) {
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Item, {
-                variant: "success",
+                variant: "primary",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
                   className: "d-flex justify-content-center mb-2 lamp",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
@@ -9349,7 +9349,7 @@ function About(props) {
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"].Item, {
-                variant: "success",
+                variant: "secondary",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
                   className: "d-flex justify-content-center mb-2",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
@@ -12293,18 +12293,14 @@ var info = [{
       children: ["Software Development-", '>', "LAMP-based"]
     }), " menu tab."]
   })
-}, {
-  header: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-    children: "Docker Technology"
-  }),
-  statement: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
-    children: ["Docker technology is used in terms of Docker Engine for implementing an Angular javascript app that contains a Dockerfile and a Docker-compose file for implementations of development and production versions. Karma and Protractor unit testing of code is also included. Link to this code is ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-      href: "https://github.com/Rsypertjr/dockerVoteParser/tree/dockerVoteParser",
-      target: "_blank",
-      children: "Docker Angular Code"
-    })]
-  })
-}, {
+},
+/*{
+    header:<span>Docker Technology</span>,
+    statement:<span>Docker technology is used in terms of Docker Engine for implementing an Angular javascript app that contains a Dockerfile and a 
+    Docker-compose file for implementations of development and production versions. Karma and Protractor unit testing of code is also included.
+    Link to this code is <a href="https://github.com/Rsypertjr/dockerVoteParser/tree/dockerVoteParser" target="_blank">Docker Angular Code</a></span>
+}, */
+{
   header: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
     children: "Laravel Mix/React App"
   }),
