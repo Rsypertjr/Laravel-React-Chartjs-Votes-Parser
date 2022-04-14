@@ -23,5 +23,8 @@ Route::get('/votes-table', function () {
     return view('votes-table');
 });
 
+Route::get('/work-portfolio', function () {
+    return view('work-portfolio');
+});
 
 Route::get('/vote-rows/{state}', [VoteRowController::class, 'vote_rows']);

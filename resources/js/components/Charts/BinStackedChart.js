@@ -1,7 +1,7 @@
 import {React, useEffect, useState} from 'react';
 import ChartPager from '../ChartPager';
 import ResolutionDropdown from '../ResolutionDropdown';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, Stack } from 'react-bootstrap';
 import {
     Chart,
     ArcElement,

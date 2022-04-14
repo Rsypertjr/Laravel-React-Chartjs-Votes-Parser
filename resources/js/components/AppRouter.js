@@ -13,12 +13,6 @@ import VotesApp from './VotesApp';
 
 
 import styled from "styled-components";
-import { map, takeRightWhile } from 'lodash';
-
-const NavUnlisted = styled.ul`
-  text-decoration: none;
-`;
-
 const linkStyle = {
   margin: "1rem",
   textDecoration: "none",
