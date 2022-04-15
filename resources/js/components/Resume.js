@@ -59,7 +59,7 @@ export default function Resume(props){
                                         <Container className="d-flex justify-content-center">
                                                 <a href="https://rsypertjr.com/dynResume" target="_blank">
                                                     <p>
-                                                        <a href="https://rsypertjr.com/dynResume" target="_blank" data-toggle="tooltip" data-placement="right"  title="Click for Full Page App!">JQuery Mobile App</a>	
+                                                        <a href="https://rsypertjr.com/dynResume" target="_blank" data-toggle="tooltip" data-placement="right"  title="Click for Full Page App!">Dynamic Resume</a>	
                                                     </p>                                                
                                                 </a>
                                         </Container>

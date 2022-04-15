@@ -76,7 +76,8 @@ export default function MyNavbar(props){
             <Route path="/about" element={<About />} />
             <Route path="/repos" element={<Repos />}/>
             <Route path="/manuals" element={<Manuals /> }/>
-            <Route path="/specifications" element={<Specifications />} />
+            <Route path="/specifications" element={<Specifications />} />            
+            <Route path="/resume" element={<Resume />} />
             <Route path="/living" element={<InVegas />} />
             <Route path="/oldportfolio" element={<OldPortfolio />} />
         </Routes>
