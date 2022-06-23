@@ -45,7 +45,7 @@ export default function VoteTableReact(props)  {
         });
 
         return (          
-        <div class="chart-viewer">
+        <Container className="chart-viewer">
             <Button variant="outline-success" onClick={handleClick} className="viewerClose">Close Chart</Button>{' '}            
             <Container className="h-10 d-flex justify-content-center">
                 <h4>2020 Presidential Election Votes</h4>
@@ -76,6 +76,6 @@ export default function VoteTableReact(props)  {
             <Container className="h-100 d-flex justify-content-center">
                 <ChartPager {...props} pageClick={props.getPageNumber} type={'line'} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>
             </Container> 
-        </div>        
+        </Container>        
         );
 }

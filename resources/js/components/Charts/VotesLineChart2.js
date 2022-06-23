@@ -142,7 +142,7 @@ export default function VotesLineChart2(props) {
       });
    
     return (
-        <div class="chart-viewer">
+        <Container className="chart-viewer">
              <Container className="h-10 d-flex justify-content-center">
                 <h4>Total Votes Line Chart</h4>
             </Container>   
@@ -165,7 +165,7 @@ export default function VotesLineChart2(props) {
             <Container className="h-100 d-flex justify-content-center">
                 <ChartPager {...props} pageClick={props.getPageNumber} type={'line'} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>
             </Container>   
-        </div>
+        </Container>
 
     );
 

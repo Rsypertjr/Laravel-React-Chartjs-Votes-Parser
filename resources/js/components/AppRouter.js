@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Link, Route, Routes, Redirect, useHistory } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes, Redirect, useHistory} from 'react-router-dom';
+import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import VotesLineChart2 from './Charts/VotesLineChart2';
 import SpikesLineChart from './Charts/SpikesLineChart'; 
 import DiffLineChart from './Charts/DiffLineChart';
@@ -29,6 +30,7 @@ const linkStyle2 = {
 
 
 export default function AppRouter(props){   
+  const [resetStyle, setResetStyle] = useState(linkStyle);
   const [voteLineStyle, setVoteLineStyle] = useState(linkStyle);
   const [voteTableStyle, setVoteTableStyle] = useState(linkStyle);
   const [spikesLineStyle, setSpikesLineStyle] = useState(linkStyle);
@@ -125,6 +127,17 @@ export default function AppRouter(props){
     setVoteLineStyle(linkStyle);  
   } 
 
+  const changeResetStyle = () => {
+    setBinStackedStyle(linkStyle);
+    setBarChartStyle(linkStyle);
+    setPieChartStyle(linkStyle);
+    setPerLineStyle(linkStyle);
+    setDiffLineStyle(linkStyle)
+    setSpikesLineStyle(linkStyle);
+    setVoteTableStyle(linkStyle);  
+    setVoteLineStyle(linkStyle);  
+  } 
+
 
   useEffect(() => {
   
@@ -132,43 +145,64 @@ export default function AppRouter(props){
    
     return(
         <BrowserRouter>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">Select Table or Chart</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="/votes-table" ><span class="linkStyle">Home/Reset</span></a>   
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" onClick={changeVTStyle}><Link to="/" style={voteTableStyle} >Votes Table</Link><span class="sr-only">(current)</span></a>   
-              </li>
-              <li class="nav-item" >
-                <a class="nav-link" href="#" onClick={changeVLStyle}><Link to="/voteslinechart"  style={voteLineStyle}>Votes Line Chart</Link></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" onClick={changeSPStyle}><Link to="/spikeslinechart" style={spikesLineStyle} >Spikes Line Chart</Link></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" onClick={changeDLStyle}><Link to="/difflinechart" style={diffLineStyle} >Difference Line Chart</Link></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" onClick={changePLStyle}><Link to="/perlinechart" style={perLineStyle} >Percent Line Chart</Link></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" onClick={changePCStyle}><Link to="/piechart" style={pieChartStyle} >Pie Chart</Link></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" onClick={changeBCStyle}><Link to="/barchart" style={barChartStyle} >Votes Bar Chart</Link></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" onClick={changeBSTStyle}><Link to="/binstackedchart" style={binStackedStyle} >Bin Stacked Chart</Link></a>
-              </li>
-            </ul>
-          </div>
-        </nav>
+          <>
+            <Navbar bg="light" expand="lg">
+              <Container>
+                <Navbar.Brand href="#home">Select Table/Chart</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                  <Nav className="me-auto">
+                    <Nav.Link href="#" onClick={changeResetStyle}>
+                      <Link to="/votes-table"  style={resetStyle}>
+                        <Container className="text-center">Home/Reset</Container>                      
+                      </Link>
+                    </Nav.Link>
+                    <Nav.Link href="#" onClick={changeVTStyle}>
+                      <Link to="/" style={voteTableStyle} >
+                        <Container className="text-center">Votes Table</Container>                      
+                      </Link>
+                    </Nav.Link>
+                    <Nav.Link href="#" onClick={changeVLStyle}>
+                      <Link to="/voteslinechart"  style={voteLineStyle}>
+                        <Container className="text-center">Votes Line Chart</Container>
+                      </Link>
+                    </Nav.Link>
+                    <Nav.Link href="#" onClick={changeSPStyle}>
+                      <Link to="/spikeslinechart" style={spikesLineStyle} >
+                        <Container className="text-center">Spikes Line Chart</Container>
+                      </Link>
+                    </Nav.Link>
+                    <Nav.Link href="#" onClick={changeDLStyle}>
+                      <Link to="/difflinechart" style={diffLineStyle} >
+                        <Container className="text-center">Difference Line Chart</Container>
+                      </Link>
+                    </Nav.Link>
+                    <Nav.Link href="#" onClick={changePLStyle}>
+                      <Link to="/perlinechart" style={perLineStyle} >
+                        <Container className="text-center">Percent Line Chart</Container>
+                      </Link>
+                    </Nav.Link>
+                    <Nav.Link href="#" onClick={changePCStyle}>
+                      <Link to="/piechart" style={pieChartStyle} >
+                        <Container className="text-center">Pie Chart</Container>
+                      </Link>
+                    </Nav.Link>
+                    <Nav.Link href="#" onClick={changeBCStyle}>
+                      <Link to="/barchart" style={barChartStyle} >
+                        <Container className="text-center">Votes Bar Chart</Container>
+                      </Link>
+                    </Nav.Link>
+                    <Nav.Link href="#" onClick={changeBSTStyle}>
+                      <Link to="/binstackedchart" style={barChartStyle} >
+                        <Container className="text-center">Bin Stacked Chart</Container>
+                      </Link>
+                    </Nav.Link>
+                  </Nav>
+                </Navbar.Collapse>
+              </Container>
+            </Navbar>
+          </>
+     
           <Routes>
             <Route path='/home'/>
             <Route exact path="/" element={<VoteTableReact {...props} resetCharts={props.resetCharts}  getPageNumber={props.getPageNumber} type={'table'} rightArrow={props.rightArrow} leftArrow={props.leftArrow}/>} />
