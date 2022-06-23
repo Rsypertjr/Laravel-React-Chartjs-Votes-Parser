@@ -5,18 +5,18 @@ table.table.table-sm {
 body{
     background-color: rgb(187, 223, 223);
 }
-li.nav-item{
+.nav-link{
     -webkit-transition: background-color 1s;
     transition: background-color 1s;
 }
-li.nav-item:hover {
+.nav-link:hover {
     background-color:rgb(187, 223, 223);
 }
 
 
-li.nav-item a:hover{
+.nav-link .text-center:hover{
     text-decoration: underline;  
-    color:white;
+    color:grey;
 
 }
 
