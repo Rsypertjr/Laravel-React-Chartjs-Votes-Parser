@@ -849,7 +849,7 @@ export default class VotesApp extends React.Component {
                     <h4>Race Data:</h4>   
                     <p>{ this.state.raceId }</p>
                     <p>{ this.state.raceSlug }</p>
-                    <p>{ this.state.raceUrl }</p>
+                    <p class="text-break stateUrl">{ this.state.raceUrl }</p>
                     <p>State: { this.state.theState }</p>
                 </Row>
                 

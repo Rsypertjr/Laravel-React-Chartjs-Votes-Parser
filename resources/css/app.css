@@ -253,6 +253,11 @@ nav.navbar {
     text-align: center;
 }
 
+.stateUrl {
+    color:blue;
+    margin-bottom:1em;
+}
+
   /*
   .col-sm-12:nth-child(2n+1) { 
       background: green; 
