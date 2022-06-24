@@ -81,19 +81,22 @@ export default function MyCarousel(props){
 	return doc.body;
 };
 return(  
-        <Carousel id="myCarousel" >
-            { cinfo.map((info) =>(
-                            
-              <Carousel.Item className="carousel-item">                              
-                    <Carousel.Caption></Carousel.Caption> 
-                    <Container className="fluid p-2 w-75 h-90">
-                        <h3>{info.header}</h3>
-                        <p>{info.statement}</p>
-                    </Container>               
-                </Carousel.Item>
-            ))
-           
-        }
-        </Carousel>
+        <Container>
+            <Carousel id="myCarousel" >
+                { cinfo.map((info) =>(
+                                
+                <Carousel.Item className="carousel-item">                              
+                        <Carousel.Caption></Carousel.Caption> 
+                        <Container className="fluid p-2 w-75 h-90">
+                            <h3>{info.header}</h3>
+                            <p>{info.statement}</p>
+                        </Container>               
+                    </Carousel.Item>
+                ))
+            
+            }
+            </Carousel>
+        </Container>
+        
     );
 }

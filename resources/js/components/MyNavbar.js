@@ -42,12 +42,12 @@ export default function MyNavbar(props){
         <BrowserRouter>            
             <Navbar bg="dark" variant="dark" expand="lg" >
                 <Container className="nav-bar">
-                    <Navbar.Brand href="#home">Laravel/React/Bootstrap Work Porfolio</Navbar.Brand>
+                    <Navbar.Brand href="#">Laravel/React/Bootstrap Work Porfolio</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="#home"><Link to="/repos" onMouseDown={handleClick} >Home/Code Repos</Link></Nav.Link>
-                            <Nav.Link href="#about"><Link to="/about" >About</Link></Nav.Link>
+                            <Nav.Link href="#"><Link to="/repos" onMouseDown={handleClick} >Home/Code Repos</Link></Nav.Link>
+                            <Nav.Link href="#"><Link to="/about" >About</Link></Nav.Link>
                             <NavDropdown title="Software Development" >
                                 <NavDropdown.Item href="#"><Link to="/lamp"  style={linkStyle}>LAMP - based</Link></NavDropdown.Item>                                
                                 <NavDropdown.Divider />
@@ -56,13 +56,13 @@ export default function MyNavbar(props){
                                 <NavDropdown.Item href="#frameworks"><Link to="/frameworks"  style={linkStyle}>Frameworks</Link></NavDropdown.Item>
                             </NavDropdown>
                             <NavDropdown title="Technical Writing" >
-                                <NavDropdown.Item href="#manuals"><Link to="/manuals" style={linkStyle}>Production and Maintenance Manuals</Link></NavDropdown.Item>
+                                <NavDropdown.Item href="#"><Link to="/manuals" style={linkStyle}>Production and Maintenance Manuals</Link></NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#specifications"><Link to="/specifications" style={linkStyle}>Technical Specification Manuals</Link></NavDropdown.Item>
                             </NavDropdown>                        
-                            <Nav.Link href="#resume"><Link to="/resume" >My Resume</Link></Nav.Link>                        
-                            <Nav.Link href="#living"><Link to="/living" >Living In Vegas</Link></Nav.Link>
-                            <Nav.Link href="#oldportfolio"><Link to="/oldportfolio" >Old Lamp/CodeIgniter Portfolio</Link></Nav.Link>
+                            <Nav.Link href="#"><Link to="/resume" >My Resume</Link></Nav.Link>                        
+                            <Nav.Link href="#"><Link to="/living" >Living In Vegas</Link></Nav.Link>
+                            <Nav.Link href="#"><Link to="/oldportfolio" >Old Lamp/CodeIgniter Portfolio</Link></Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
