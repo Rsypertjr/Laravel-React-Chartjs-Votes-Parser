@@ -5,6 +5,8 @@ table.table.table-sm {
 body{
     background-color: rgb(187, 223, 223);
 }
+
+
 .nav-link{
     -webkit-transition: background-color 1s;
     transition: background-color 1s;
@@ -20,20 +22,17 @@ body{
 
 }
 
+.navbar {
+    background-color: beige;
+}
+
+
+
 .linkStyle {
     margin: 1rem;
     text-decoration: none;
     color:black;
     font-size: 0.8em;
-}
-
-.navbar-nav {
-    padding-left: 10em;
-}
-
-nav.navbar {
-    margin-bottom: 1em;
-    margin-top:-5em;
 }
 
 .col-4 {
@@ -47,12 +46,7 @@ nav.navbar {
 .row.justify-content-start{
     margin-bottom:2em;
 }
-/*
-.jumbotron {
-    transform:scale(0.65);
-    margin-top:-4em;
-}  
-*/
+
 
 .vertical-scrollable > .row {
     position: relative;
@@ -184,21 +178,13 @@ nav.navbar {
      height:20em;     
  }
  
- .nav-bar{
-     margin-left:0em;
- }
+.nav-link a, #basic-nav-dropdown1,#basic-nav-dropdown2 {
+    color:white;
+}
 
- .nav-link, .nav-item.dropdown{
-    margin-right:2em;
-    height:75%;
- }
- #basic-navbar-nav > div > div:nth-child(3) > a,#basic-navbar-nav > div > div:nth-child(4) > a, a.nav-link > a   {
-     color:white;
- }
-
- #basic-navbar-nav > div > div:nth-child(3) > a:hover, #basic-navbar-nav > div > div:nth-child(4) > a:hover, a.nav-link > a:hover{
-     color:lightgrey;
- }
+#basic-navbar-nav > div > div.nav-item.show.dropdown > div > a > a {
+    color:grey;
+}
 
  .carousel-inner{
      position:relative;
@@ -258,13 +244,4 @@ nav.navbar {
     margin-bottom:1em;
 }
 
-  /*
-  .col-sm-12:nth-child(2n+1) { 
-      background: green; 
-  } 
-    
-  .col-sm-12:nth-child(2n+2) { 
-      background: black; 
-  } 
-  */
-  
+ 

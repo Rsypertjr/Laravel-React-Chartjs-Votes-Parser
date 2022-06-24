@@ -16,10 +16,7 @@ import OldPortfolio from './OldPortfolio';
 
 import styled from "styled-components";
 const linkStyle = {
-  margin: "1rem",
-  textDecoration: "none",
-  color: 'black',
-  fontSize: '0.8em'
+  color: '#808080',
 };
 
 const linkStyle2 = {
@@ -39,34 +36,37 @@ export default function MyNavbar(props){
       
      });
     return(
-        <BrowserRouter>            
-            <Navbar bg="dark" variant="dark" expand="lg" >
-                <Container className="nav-bar">
-                    <Navbar.Brand href="#">Laravel/React/Bootstrap Work Porfolio</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="me-auto">
-                            <Nav.Link href="#"><Link to="/repos" onMouseDown={handleClick} >Home/Code Repos</Link></Nav.Link>
-                            <Nav.Link href="#"><Link to="/about" >About</Link></Nav.Link>
-                            <NavDropdown title="Software Development" >
-                                <NavDropdown.Item href="#"><Link to="/lamp"  style={linkStyle}>LAMP - based</Link></NavDropdown.Item>                                
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="#mobile"><Link to="/mobile"  style={linkStyle}>JQuery Mobile</Link></NavDropdown.Item>                                
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="#frameworks"><Link to="/frameworks"  style={linkStyle}>Frameworks</Link></NavDropdown.Item>
-                            </NavDropdown>
-                            <NavDropdown title="Technical Writing" >
-                                <NavDropdown.Item href="#"><Link to="/manuals" style={linkStyle}>Production and Maintenance Manuals</Link></NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="#specifications"><Link to="/specifications" style={linkStyle}>Technical Specification Manuals</Link></NavDropdown.Item>
-                            </NavDropdown>                        
-                            <Nav.Link href="#"><Link to="/resume" >My Resume</Link></Nav.Link>                        
-                            <Nav.Link href="#"><Link to="/living" >Living In Vegas</Link></Nav.Link>
-                            <Nav.Link href="#"><Link to="/oldportfolio" >Old Lamp/CodeIgniter Portfolio</Link></Nav.Link>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
+        <BrowserRouter>    
+            <>
+                <Navbar bg="dark" variant="dark" className="navbar-expand-lg">
+                    <Container className="d-flex justify-content-evenly">
+                        <Navbar.Brand href="#home" >Laravel/React/Bootstrap Work Porfolio</Navbar.Brand>
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                        <Navbar.Collapse id="basic-navbar-nav">
+                            <Nav className="me-auto">
+                                <Nav.Link href="#repos"><Link to="/repos" onMouseDown={handleClick} >Home/Code Repos</Link></Nav.Link>
+                                <Nav.Link href="#about"><Link to="/about"  >About</Link></Nav.Link>
+                                <NavDropdown title="Software Development"  id="basic-nav-dropdown1">
+                                    <NavDropdown.Item href="#lamp"><Link to="/lamp" >LAMP - based</Link></NavDropdown.Item>                                
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item href="#mobile"><Link to="/mobile" >JQuery Mobile</Link></NavDropdown.Item>                                
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item href="#frameworks"><Link to="/frameworks" >Frameworks</Link></NavDropdown.Item>
+                                </NavDropdown>
+                                <NavDropdown title="Technical Writing" id="basic-nav-dropdown2">
+                                    <NavDropdown.Item href="#"><Link to="/manuals">Production and Maintenance Manuals</Link></NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item href="#specifications"><Link to="/specifications" >Technical Specification Manuals</Link></NavDropdown.Item>
+                                </NavDropdown>                        
+                                <Nav.Link href="#resume"><Link to="/resume" >My Resume</Link></Nav.Link>                        
+                                <Nav.Link href="#living"><Link to="/living" >Living In Vegas</Link></Nav.Link>
+                                <Nav.Link href="#oldporfolio"><Link to="/oldportfolio" >Old Lamp/CodeIgniter Portfolio</Link></Nav.Link>
+                            </Nav>
+                        </Navbar.Collapse>
+                    </Container>
+                </Navbar>
+            </>        
+           
         <Routes>
             <Route path='/home'/>
             <Route exact path="/" element={<LampBased />} />

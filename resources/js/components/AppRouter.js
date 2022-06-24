@@ -17,7 +17,7 @@ import styled from "styled-components";
 const linkStyle = {
   margin: "1rem",
   textDecoration: "none",
-  color: 'black',
+  color: 'white',
   fontSize: '0.8em'
 };
 
@@ -146,11 +146,11 @@ export default function AppRouter(props){
     return(
         <BrowserRouter>
           <>
-            <Navbar bg="light" expand="lg">
-              <Container>
-                <Navbar.Brand href="#home">Select Table/Chart</Navbar.Brand>
+            <Navbar className="navbar-dark bg-dark" expand="lg">
+              <Container className="d-flex justify-content-between">
+                <Navbar.Brand href="#">Select Table/Chart</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
+                <Navbar.Collapse id="basic-navbar-nav" className="ml-5">
                   <Nav className="me-auto">
                     <Nav.Link href="#" onClick={changeResetStyle}>
                       <Link to="/votes-table"  style={resetStyle}>

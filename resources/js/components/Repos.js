@@ -54,7 +54,7 @@ export default function About(props){
                                 <ListGroup>
                                     <ListGroup.Item variant="success">
                                         <Container className="d-flex justify-content-center mb-2">                                            
-                                                <img src="./images/codeStorageImage.jpg" alt="Technology Ideas"/>
+                                                <img src="./images/codestorageimage.jpg" alt="Technology Ideas"/>
                                         </Container>
                                         <Container className="d-flex justify-content-center">
                                                 <a href="https://github.com/Rsypertjr/fuelCMS/tree/fuelPF" target="_blank">
