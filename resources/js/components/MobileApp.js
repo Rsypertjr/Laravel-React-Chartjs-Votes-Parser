@@ -47,7 +47,7 @@ export default function MyApp(props){
                                     <h3>Mobile Portfolio</h3>
                                 </Container>
                                 <Container className="d-flex justify-content-center lamp"> 
-                                    <i class="bi bi-phone"></i>
+                                    <i className="bi bi-phone"></i>
                                 </Container> 
                             </Card.Title>
                             <Card.Text>
@@ -72,7 +72,7 @@ export default function MyApp(props){
                                     <div className="container d-flex justify-content-center">
                                         <div>
                                             <Container className="d-flex justify-content-center lamp p-2 mb-2"> 
-                                                <i class="bi bi-phone"></i>
+                                                <i className="bi bi-phone"></i>
                                             </Container>                                            
                                             <Container className="d-flex justify-content-center"> 
                                                 <h1>Mobile Portfolio</h1>

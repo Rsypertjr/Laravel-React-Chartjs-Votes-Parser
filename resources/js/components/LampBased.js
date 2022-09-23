@@ -45,14 +45,14 @@ export default function LampBased(props){
                                     <h3>Software Development</h3>
                                 </Container>
                                 <Container className="d-flex justify-content-center lamp"> 
-                                    <i class="bi bi-lamp"></i>
+                                    <i className="bi bi-lamp"></i>
                                 </Container> 
                             </Card.Title>
                             <Card.Text>
                                 <ListGroup>
                                     <ListGroup.Item variant="success">
                                         <Container className="d-flex justify-content-center">                                            
-                                                <img class="img-circle" src="./images/dataanalysis.jpg" alt="Data Anaysis"/>
+                                                <img className="img-circle" src="./images/dataanalysis.jpg" alt="Data Anaysis"/>
                                         </Container>
                                         <Container className="d-flex justify-content-center">
                                                 <a href="https://rsypertjr.com/amino" target="_blank">
@@ -103,7 +103,7 @@ export default function LampBased(props){
                                     </ListGroup.Item>
                                     <ListGroup.Item variant="primary">
                                         <Container className="d-flex justify-content-center">
-                                            <img class="img-circle" src="./images/othellogameimage.jpg" alt="Game Coding"/>
+                                            <img className="img-circle" src="./images/othellogameimage.jpg" alt="Game Coding"/>
                                         </Container>
                                         <Container className="d-flex justify-content-center"> 
                                             <a href="https://rsypertjr.com/othello" target="_blank">
@@ -138,7 +138,7 @@ export default function LampBased(props){
                             
                             <Container className="fluid cover" ref={innerRef}>
                                 <Container className="d-flex justify-content-center lamp p-2 mb-2"> 
-                                    <i class="bi bi-lamp"></i>
+                                    <i className="bi bi-lamp"></i>
                                 </Container>
                                 <Container className="d-flex justify-content-center"> 
                                     <h1>LAMP Technologies</h1>

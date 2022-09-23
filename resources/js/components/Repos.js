@@ -47,7 +47,7 @@ export default function About(props){
                                     <h3>Home/Code Repos</h3>
                                 </Container>
                                 <Container className="d-flex justify-content-center lamp"> 
-                                    <i class="bi bi-archive"></i>
+                                    <i className="bi bi-archive"></i>
                                 </Container> 
                             </Card.Title>
                             <Card.Text>
@@ -73,7 +73,7 @@ export default function About(props){
                                     <div id="description" className="container d-flex justify-content-center">
                                         <div>
                                             <Container className="d-flex justify-content-center lamp p-2 mb-2"> 
-                                                <i class="bi bi-archive"></i>
+                                                <i className="bi bi-archive"></i>
                                             </Container>                                            
                                             <Container className="d-flex justify-content-center"> 
                                                 <h1>Git Repository</h1>

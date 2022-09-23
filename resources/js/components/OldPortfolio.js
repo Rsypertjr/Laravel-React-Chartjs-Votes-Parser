@@ -45,7 +45,7 @@ export default function OldPortfolio(props){
                                 <h3>Old Work Portfolio</h3>
                             </Container>
                             <Container className="d-flex justify-content-center lamp"> 
-                                <i class="bi bi-lamp"></i>
+                                <i className="bi bi-lamp"></i>
                             </Container> 
                         </Card.Title>
                         <Card.Text>
@@ -74,7 +74,7 @@ export default function OldPortfolio(props){
                                 <div className="container d-flex justify-content-center">
                                     <div>
                                         <Container className="d-flex justify-content-center lamp p-2 mb-2"> 
-                                            <i class="bi bi-lamp"></i>
+                                            <i className="bi bi-lamp"></i>
                                         </Container>                                            
                                         <Container className="d-flex justify-content-center"> 
                                             <h1>Old Work Portfolio</h1>

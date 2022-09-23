@@ -47,7 +47,7 @@ export default function Frameworks(props){
                                     <h3>Frameworks</h3>
                                 </Container>
                                 <Container className="d-flex justify-content-center lamp"> 
-                                    <i class="bi bi-tree"></i>
+                                    <i className="bi bi-tree"></i>
                                 </Container> 
                             </Card.Title>
                             <Card.Text>
@@ -58,7 +58,7 @@ export default function Frameworks(props){
                                         </Container>
                                         <Container className="d-flex justify-content-center">
                                                 <a href="amino" target="_blank">
-                                                    <p class="sectionTitle">
+                                                    <p className="sectionTitle">
                                                         <a href="amino" target="_blank" data-toggle="tooltip" data-placement="right"  title="Click for Full Page App!">Vue JavaScript App</a>	
                                                     </p>                                                
                                                 </a>
@@ -122,7 +122,7 @@ export default function Frameworks(props){
                                     </ListGroup.Item>
                                     <ListGroup.Item variant="light">
                                         <Container className="d-flex justify-content-center mb-2">                                            
-                                                <img class="img-circle" src="./images/vote_icon.jpg" alt="Vote Icon"/>
+                                                <img className="img-circle" src="./images/vote_icon.jpg" alt="Vote Icon"/>
                                         </Container>
                                         <Container className="d-flex justify-content-center">
                                             <a href="https://angularvotes.rsypertjr.com" target="_blank">
@@ -140,7 +140,7 @@ export default function Frameworks(props){
                                     </ListGroup.Item>
                                     <ListGroup.Item variant="info">
                                         <Container className="d-flex justify-content-center mb-2">                                            
-                                                <img class="img-circle" src="./images/reactjs_icon.jpg" alt="React Icon"/>
+                                                <img className="img-circle" src="./images/reactjs_icon.jpg" alt="React Icon"/>
                                         </Container>
                                         <Container className="d-flex justify-content-center">
                                             <a href="https://rsypertjr.com/tictactoe" target="_blank">
@@ -157,8 +157,8 @@ export default function Frameworks(props){
                                     </ListGroup.Item>                                   
                                     <ListGroup.Item variant="secondary">
                                         <Container className="d-flex justify-content-center mb-2"> 
-                                                <img class="img-circle" src="./images/laravel_icon.jpg" alt="Express Icon"/>                                 
-                                                <img class="img-circle" src="./images/reactjs_icon.jpg" alt="React Icon"/>
+                                                <img className="img-circle" src="./images/laravel_icon.jpg" alt="Express Icon"/>                                 
+                                                <img className="img-circle" src="./images/reactjs_icon.jpg" alt="React Icon"/>
                                         </Container>
                                         <Container className="d-flex justify-content-center">
                                             <a href="https://laravelvotes.rsypertjr.com/votes-table" target="_blank">
@@ -180,7 +180,7 @@ export default function Frameworks(props){
                                     <div className="container d-flex justify-content-center">
                                         <div>
                                             <Container className="d-flex justify-content-center lamp p-2 mb-2"> 
-                                                <i class="bi bi-tree"></i>
+                                                <i className="bi bi-tree"></i>
                                             </Container>                                            
                                             <Container className="d-flex justify-content-center"> 
                                                 <h1>Frameworks</h1>

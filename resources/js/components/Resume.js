@@ -47,7 +47,7 @@ export default function Resume(props){
                                     <h3>Resume</h3>
                                 </Container>
                                 <Container className="d-flex justify-content-center lamp"> 
-                                    <i class="bi bi-book"></i>
+                                    <i className="bi bi-book"></i>
                                 </Container> 
                             </Card.Title>
                             <Card.Text>
@@ -72,7 +72,7 @@ export default function Resume(props){
                                     <div className="container d-flex justify-content-center">
                                         <div>
                                             <Container className="d-flex justify-content-center lamp p-2 mb-2"> 
-                                                <i class="bi bi-book"></i>
+                                                <i className="bi bi-book"></i>
                                             </Container>                                            
                                             <Container className="d-flex justify-content-center"> 
                                                 <h1>Resume</h1>

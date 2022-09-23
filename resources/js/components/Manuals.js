@@ -47,7 +47,7 @@ export default function Manuals(props){
                                     <h3>Production Maintenance Manuals</h3>
                                 </Container>
                                 <Container className="d-flex justify-content-center lamp"> 
-                                    <i class="bi bi-pen"></i>
+                                    <i className="bi bi-pen"></i>
                                 </Container> 
                             </Card.Title>
                             <Card.Text>
@@ -115,7 +115,7 @@ export default function Manuals(props){
                                     <div className="container d-flex justify-content-center">
                                         <div>
                                             <Container className="d-flex justify-content-center lamp p-2 mb-2"> 
-                                                <i class="bi bi-archive"></i>
+                                                <i className="bi bi-archive"></i>
                                             </Container>                                            
                                             <Container className="d-flex justify-content-center"> 
                                                 <h1>Production Manuals</h1>

@@ -47,7 +47,7 @@ export default function About(props){
                                     <h3>About</h3>
                                 </Container>
                                 <Container className="d-flex justify-content-center lamp"> 
-                                    <i class="bi bi-wrench"></i>
+                                    <i className="bi bi-wrench"></i>
                                 </Container> 
                             </Card.Title>
                             <Card.Text>
@@ -70,7 +70,7 @@ export default function About(props){
                                 <ListGroup>
                                     <ListGroup.Item variant="primary">
                                         <Container className="d-flex justify-content-center mb-2 lamp">                                            
-                                            <span><i class="bi bi-mailbox"></i></span> 
+                                            <span><i className="bi bi-mailbox"></i></span> 
                                         </Container>
                                         <Container className="d-flex justify-content-center">
                                                 <a href="https://rsypertjr.com/emailno" target="_blank">
@@ -104,7 +104,7 @@ export default function About(props){
                                     <div className="container d-flex justify-content-center">
                                         <div>
                                             <Container className="d-flex justify-content-center lamp p-2 mb-2"> 
-                                                <i class="bi bi-wrench"></i>
+                                                <i className="bi bi-wrench"></i>
                                             </Container>                                            
                                             <Container className="d-flex justify-content-center"> 
                                                 <h1>About</h1>

@@ -9,8 +9,8 @@ function OuterTable(props){
     const headers = ["Index","Biden %","Biden Votes","Trump %","Trump Votes","Other Votes","Time Stamps","Votes", "Votes Added","Trump Added","Biden Added","% of Remaining Biden","% of Remaining Trump"];
     //const headers = ['X','Y','Z']
     return (
-            <div class="container">
-                <table class="table table-striped table-bordered table-responsive table-hover table-sm">
+            <div className="container">
+                <table className="table table-striped table-bordered table-responsive table-hover table-sm">
                     <thead>
                         <tr>
                             {headers.map(header => (
@@ -40,12 +40,12 @@ export default function VoteTableReact(props)  {
         });
 
         return (          
-        <div class="chart-viewer">
-            <span class="viewerClose">Close Chart</span>            
-            <div class="container h-10 d-flex justify-content-center">
+        <div className="chart-viewer">
+            <span className="viewerClose">Close Chart</span>            
+            <div className="container h-10 d-flex justify-content-center">
                 <h4>2020 Presidential Election Votes</h4>
             </div>
-            <div class="container smaller justify-content-center">
+            <div className="container smaller justify-content-center">
                 <OuterTable>
                     <tbody>
                         { props.theCurrentPages[props.pageNo-1].map(row => 
@@ -68,7 +68,7 @@ export default function VoteTableReact(props)  {
                     </tbody>
                 </OuterTable>  
             </div> 
-            <div class="container h-100 d-flex justify-content-center">
+            <div className="container h-100 d-flex justify-content-center">
                 <ChartPager {...props} pageClick={props.getPageNumber} type={'line'} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>
             </div> 
         </div>        

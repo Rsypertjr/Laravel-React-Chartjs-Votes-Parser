@@ -47,7 +47,7 @@ export default function InVegas(props){
                                     <h3>Living In Vegas</h3>
                                 </Container>
                                 <Container className="d-flex justify-content-center lamp"> 
-                                    <i class="bi bi-camera"></i>
+                                    <i className="bi bi-camera"></i>
                                 </Container> 
                             </Card.Title>
                             <Card.Text>
@@ -72,7 +72,7 @@ export default function InVegas(props){
                                     <div className="container d-flex justify-content-center">
                                         <div>
                                             <Container className="d-flex justify-content-center lamp p-2 mb-2"> 
-                                                <i class="bi bi-camera"></i>
+                                                <i className="bi bi-camera"></i>
                                             </Container>                                            
                                             <Container className="d-flex justify-content-center"> 
                                                 <h1>Living In Vegas</h1>
