@@ -7,6 +7,10 @@ import { Container } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 
 
+function AHeader(props){
+    return  <th scope="col">{ props.header }</th>
+}
+
 function OuterTable(props){
     const headers = ["Index","Biden %","Biden Votes","Trump %","Trump Votes","Other Votes","Time Stamps","Votes", "Votes Added","Trump Added","Biden Added","% of Remaining Biden","% of Remaining Trump"];
     //const headers = ['X','Y','Z']
@@ -15,9 +19,11 @@ function OuterTable(props){
                 <table className="table table-striped table-bordered table-responsive table-hover table-sm">
                     <thead>
                         <tr>
-                            {headers.map(header => (
-                                 <th key={header.toString()} scope="col">{ header }</th>
-                             ))}
+                            {
+                                headers.map((header) => (
+                                    <AHeader key={header.toString()} header={header} />
+                                ))
+                            }
                     
                         </tr>
                     </thead>

@@ -110,7 +110,7 @@ export default class VotesApp extends React.Component {
               this.setState({
                   thePageSetNumber:parseInt(this.state.thePageSetNumber)+1,
                   pageNo: num
-              });F
+              });
           } 
           
         else if(type == 'table' && parseInt(nxpagenum) >= this.state.theVotes.length){

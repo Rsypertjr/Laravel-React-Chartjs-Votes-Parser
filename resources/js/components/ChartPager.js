@@ -60,8 +60,10 @@ export default function ChartPager(props){
                 {  
                 
                 props.theChartArray[parseInt(props.thePageSetNumber)-1].map((num) => (      
-                    <span key={num.toString()} >
-                    { (num < (props.chartData.dateHeadersStore.length)) && < input type="button" className="page" id={`page-${num+1}`} value={num+1} onClick={handlePage}/> }
+                    <span key={num.toString()}>
+                        { 
+                            (num < (props.chartData.dateHeadersStore.length)) &&  <APage key={num.toString()} num={num} handlePage={handlePage}/>  
+                        }
                     </span>
                 ))
                 
@@ -69,4 +71,8 @@ export default function ChartPager(props){
                 <input className="page-arrow" type="button" value=">" onClick={rightArrow}/> 
             </div>                    
         );
+}
+
+function APage(props){
+    return <input type="button" className="page" id={`page-${props.num+1}`} value={props.num+1} onClick={props.handlePage}/>
 }

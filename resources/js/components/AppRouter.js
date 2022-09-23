@@ -27,6 +27,11 @@ const linkStyle2 = {
   fontSize: '0.8em'
 };
 
+const linkMarginTop = {
+  marginTop: "0.45em",
+  fontSize: "1.2em"
+};
+
 
 export default function AppRouter(props){   
   const [voteLineStyle, setVoteLineStyle] = useState(linkStyle);
@@ -139,32 +144,32 @@ export default function AppRouter(props){
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link" href="/votes-table" ><span className="linkStyle">Home/Reset</span></a>   
+              <li className="nav-item" style={linkMarginTop}>
+                <Link className="nav-link"  href="/votes-table" ><span className="linkStyle">Reset</span></Link>   
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#" onClick={changeVTStyle}><Link to="/" style={voteTableStyle} >Votes Table</Link><span className="sr-only">(current)</span></a>   
+                <Link className="nav-link" href="#" onClick={changeVTStyle} to="/" style={voteTableStyle} >Votes Table</Link><span className="sr-only">(current)</span>  
               </li>
               <li className="nav-item" >
-                <a className="nav-link" href="#" onClick={changeVLStyle}><Link to="/voteslinechart"  style={voteLineStyle}>Votes Line Chart</Link></a>
+                <Link className="nav-link" href="#" onClick={changeVLStyle} to="/voteslinechart"  style={voteLineStyle}>Votes Line Chart</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#" onClick={changeSPStyle}><Link to="/spikeslinechart" style={spikesLineStyle} >Spikes Line Chart</Link></a>
+                <Link className="nav-link" href="#" onClick={changeSPStyle} to="/spikeslinechart" style={spikesLineStyle}>Spikes Line Chart</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#" onClick={changeDLStyle}><Link to="/difflinechart" style={diffLineStyle} >Difference Line Chart</Link></a>
+                <Link className="nav-link" href="#" onClick={changeDLStyle} to="/difflinechart" style={diffLineStyle}>Difference Line Chart</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#" onClick={changePLStyle}><Link to="/perlinechart" style={perLineStyle} >Percent Line Chart</Link></a>
+                <Link className="nav-link" href="#" onClick={changePLStyle}  to="/perlinechart" style={perLineStyle}>Percent Line Chart</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#" onClick={changePCStyle}><Link to="/piechart" style={pieChartStyle} >Pie Chart</Link></a>
+                <Link className="nav-link" href="#" onClick={changePCStyle} to="/piechart" style={pieChartStyle}>Pie Chart</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#" onClick={changeBCStyle}><Link to="/barchart" style={barChartStyle} >Votes Bar Chart</Link></a>
+                <Link className="nav-link" href="#" onClick={changeBCStyle}  to="/barchart" style={barChartStyle} >Votes Bar Chart</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#" onClick={changeBSTStyle}><Link to="/binstackedchart" style={binStackedStyle} >Bin Stacked Chart</Link></a>
+                <Link className="nav-link" href="#" onClick={changeBSTStyle}  to="/binstackedchart" style={binStackedStyle} >Bin Stacked Chart</Link>
               </li>
             </ul>
           </div>
