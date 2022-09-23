@@ -13077,8 +13077,9 @@ function AppRouter(props) {
             className: "nav-item",
             style: linkMarginTop,
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Link, {
+              to: "/",
               className: "nav-link",
-              href: "/votes-table",
+              href: "#",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("span", {
                 className: "linkStyle",
                 children: "Reset"
@@ -13087,7 +13088,7 @@ function AppRouter(props) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("li", {
             className: "nav-item",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Link, {
-              className: "nav-link",
+              className: "nav-link align-middle",
               href: "#",
               onClick: changeVTStyle,
               to: "/",
@@ -13100,7 +13101,7 @@ function AppRouter(props) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("li", {
             className: "nav-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Link, {
-              className: "nav-link",
+              className: "nav-link align-middle",
               href: "#",
               onClick: changeVLStyle,
               to: "/voteslinechart",
@@ -13110,7 +13111,7 @@ function AppRouter(props) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("li", {
             className: "nav-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Link, {
-              className: "nav-link",
+              className: "nav-link align-middle",
               href: "#",
               onClick: changeSPStyle,
               to: "/spikeslinechart",
@@ -13120,7 +13121,7 @@ function AppRouter(props) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("li", {
             className: "nav-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Link, {
-              className: "nav-link",
+              className: "nav-link align-middle",
               href: "#",
               onClick: changeDLStyle,
               to: "/difflinechart",
@@ -13130,7 +13131,7 @@ function AppRouter(props) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("li", {
             className: "nav-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Link, {
-              className: "nav-link",
+              className: "nav-link align-middle",
               href: "#",
               onClick: changePLStyle,
               to: "/perlinechart",
@@ -13140,7 +13141,7 @@ function AppRouter(props) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("li", {
             className: "nav-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Link, {
-              className: "nav-link",
+              className: "nav-link align-middle",
               href: "#",
               onClick: changePCStyle,
               to: "/piechart",
@@ -13150,7 +13151,7 @@ function AppRouter(props) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("li", {
             className: "nav-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Link, {
-              className: "nav-link",
+              className: "nav-link align-middle",
               href: "#",
               onClick: changeBCStyle,
               to: "/barchart",
@@ -13160,7 +13161,7 @@ function AppRouter(props) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("li", {
             className: "nav-item",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Link, {
-              className: "nav-link",
+              className: "nav-link align-middle",
               href: "#",
               onClick: changeBSTStyle,
               to: "/binstackedchart",

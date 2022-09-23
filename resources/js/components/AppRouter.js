@@ -137,54 +137,55 @@ export default function AppRouter(props){
    
     return(
         <BrowserRouter>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="#">Select Table or Chart</a>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item" style={linkMarginTop}>
-                <Link to="/" className="nav-link"  href="#"><span className="linkStyle">Reset</span></Link>   
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link align-middle" href="#" onClick={changeVTStyle} to="/" style={voteTableStyle} >Votes Table</Link><span className="sr-only">(current)</span>  
-              </li>
-              <li className="nav-item" >
-                <Link className="nav-link align-middle" href="#" onClick={changeVLStyle} to="/voteslinechart"  style={voteLineStyle}>Votes Line Chart</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link align-middle" href="#" onClick={changeSPStyle} to="/spikeslinechart" style={spikesLineStyle}>Spikes Line Chart</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link align-middle" href="#" onClick={changeDLStyle} to="/difflinechart" style={diffLineStyle}>Difference Line Chart</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link align-middle" href="#" onClick={changePLStyle}  to="/perlinechart" style={perLineStyle}>Percent Line Chart</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link align-middle" href="#" onClick={changePCStyle} to="/piechart" style={pieChartStyle}>Pie Chart</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link align-middle" href="#" onClick={changeBCStyle}  to="/barchart" style={barChartStyle} >Votes Bar Chart</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link align-middle" href="#" onClick={changeBSTStyle}  to="/binstackedchart" style={binStackedStyle} >Bin Stacked Chart</Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
-          <Routes>
-            <Route path='/home'/>
-            <Route exact path="/" element={<VoteTableReact {...props} resetCharts={props.resetCharts}  getPageNumber={props.getPageNumber} type={'table'} rightArrow={props.rightArrow} leftArrow={props.leftArrow}/>} />
-            <Route path="/voteslinechart" element={<VotesLineChart2 {...props}  resetCharts={props.resetCharts} selectResolution={props.selectResolution} getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow}/>} />
-            <Route path="/spikeslinechart" element={<SpikesLineChart {...props} resetCharts={props.resetCharts}  selectResolution={props.selectResolution}  getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow}  />}/>
-            <Route path="/difflinechart" element={<DiffLineChart  {...props} resetCharts={props.resetCharts}  selectResolution={props.selectResolution} getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />}/>
-            <Route path="/perlinechart" element={<PerLineChart  {...props} resetCharts={props.resetCharts}  selectResolution={props.selectResolution} getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />} />
-            <Route path="/piechart" element={<PieChart {...props} resetCharts={props.resetCharts}  selectResolution={props.selectResolution}  getPageNumber={props.getPageNumber} type={'pie'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow}  />}/>
-            <Route path="/barchart" element={<BarChart  {...props} resetCharts={props.resetCharts}  selectResolution={props.selectResolution}  getPageNumber={props.getPageNumber} type={'bar'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />}/>
-            <Route path="/binstackedchart" element={<BinStackedChart {...props} resetCharts={props.resetCharts}  selectResolution={props.selectResolution}  getPageNumber={props.getPageNumber} type={'bar'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />} />
-          </Routes>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+              <a className="navbar-brand" href="#">Select Table or Chart</a>
+              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+              </button>
+              <div className="collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav">
+                  <li className="nav-item" style={linkMarginTop}>
+                    <Link to="/" className="nav-link"  href="#"><span className="linkStyle">Reset</span></Link>   
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link align-middle" href="#" onClick={changeVTStyle} to="/" style={voteTableStyle} >Votes Table</Link><span className="sr-only">(current)</span>  
+                  </li>
+                  <li className="nav-item" >
+                    <Link className="nav-link align-middle" href="#" onClick={changeVLStyle} to="/voteslinechart"  style={voteLineStyle}>Votes Line Chart</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link align-middle" href="#" onClick={changeSPStyle} to="/spikeslinechart" style={spikesLineStyle}>Spikes Line Chart</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link align-middle" href="#" onClick={changeDLStyle} to="/difflinechart" style={diffLineStyle}>Difference Line Chart</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link align-middle" href="#" onClick={changePLStyle}  to="/perlinechart" style={perLineStyle}>Percent Line Chart</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link align-middle" href="#" onClick={changePCStyle} to="/piechart" style={pieChartStyle}>Pie Chart</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link align-middle" href="#" onClick={changeBCStyle}  to="/barchart" style={barChartStyle} >Votes Bar Chart</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link align-middle" href="#" onClick={changeBSTStyle}  to="/binstackedchart" style={binStackedStyle} >Bin Stacked Chart</Link>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+            <Routes>
+              <Route path='/home'/>
+              <Route exact path="/" element={<VoteTableReact {...props} resetCharts={props.resetCharts}  getPageNumber={props.getPageNumber} type={'table'} rightArrow={props.rightArrow} leftArrow={props.leftArrow}/>} />
+              <Route path="/voteslinechart" element={<VotesLineChart2 {...props}  resetCharts={props.resetCharts} selectResolution={props.selectResolution} getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow}/>} />
+              <Route path="/spikeslinechart" element={<SpikesLineChart {...props} resetCharts={props.resetCharts}  selectResolution={props.selectResolution}  getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow}  />}/>
+              <Route path="/difflinechart" element={<DiffLineChart  {...props} resetCharts={props.resetCharts}  selectResolution={props.selectResolution} getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />}/>
+              <Route path="/perlinechart" element={<PerLineChart  {...props} resetCharts={props.resetCharts}  selectResolution={props.selectResolution} getPageNumber={props.getPageNumber} type={'line'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />} />
+              <Route path="/piechart" element={<PieChart {...props} resetCharts={props.resetCharts}  selectResolution={props.selectResolution}  getPageNumber={props.getPageNumber} type={'pie'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow}  />}/>
+              <Route path="/barchart" element={<BarChart  {...props} resetCharts={props.resetCharts}  selectResolution={props.selectResolution}  getPageNumber={props.getPageNumber} type={'bar'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />}/>
+              <Route path="/binstackedchart" element={<BinStackedChart {...props} resetCharts={props.resetCharts}  selectResolution={props.selectResolution}  getPageNumber={props.getPageNumber} type={'bar'}  rightArrow={props.rightArrow} leftArrow={props.leftArrow} />} />
+            </Routes>
         </BrowserRouter>
+            
     );
 }
