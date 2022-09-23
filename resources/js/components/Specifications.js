@@ -45,7 +45,7 @@ export default function Specifications(props){
                                 <h3>Technical Specification Documents</h3>
                             </Container>
                             <Container className="d-flex justify-content-center lamp"> 
-                                <i class="bi bi-pen"></i>
+                                <i className="bi bi-pen"></i>
                             </Container> 
                         </Card.Title>
                         <Card.Text>
@@ -93,7 +93,7 @@ export default function Specifications(props){
                                 <div className="container d-flex justify-content-center">
                                     <div>
                                         <Container className="d-flex justify-content-center lamp p-2 mb-2"> 
-                                            <i class="bi bi-pen"></i>
+                                            <i className="bi bi-pen"></i>
                                         </Container>                                            
                                         <Container className="d-flex justify-content-center"> 
                                             <h1>Technical Specifications</h1>

@@ -36,7 +36,7 @@ export default function ResolutionDropdown(props){
     return(
             <Container>
                 <Row className="justify-content-start">
-                    <div class="btn-group dropright">
+                    <div className="btn-group dropright">
                         <button type="button" className="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Select Chart Resolution (X Times)
                         </button>

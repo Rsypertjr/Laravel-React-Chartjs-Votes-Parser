@@ -11,8 +11,8 @@ function OuterTable(props){
     const headers = ["Index","Biden %","Biden Votes","Trump %","Trump Votes","Other Votes","Time Stamps","Votes", "Votes Added","Trump Added","Biden Added","% of Remaining Biden","% of Remaining Trump"];
     //const headers = ['X','Y','Z']
     return (
-            <div class="container">
-                <table class="table table-striped table-bordered table-responsive table-hover table-sm">
+            <div className="container">
+                <table className="table table-striped table-bordered table-responsive table-hover table-sm">
                     <thead>
                         <tr>
                             {headers.map(header => (
@@ -45,7 +45,7 @@ export default function VoteTableReact(props)  {
         });
 
         return (          
-        <div class="chart-viewer">
+        <div className="chart-viewer">
             <Button variant="outline-success" onClick={handleClick} className="viewerClose">Close Chart</Button>{' '}            
             <Container className="h-10 d-flex justify-content-center">
                 <h4>2020 Presidential Election Votes</h4>

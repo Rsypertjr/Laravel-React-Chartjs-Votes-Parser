@@ -44,7 +44,7 @@ export default function VotesPager(props){
                     props.thePagingArray[parseInt(props.thePageSetNumber)-1].map((num) => (      
                     //pagingArr.map((num) => (    
                         <span>
-                        { props.theCurrentPages[parseInt(num)] !== undefined  && <input type="button" class="vpage" id={`vpage-${num+1}`} value={num+1} onClick={handlePage}/> }
+                        { props.theCurrentPages[parseInt(num)] !== undefined  && <input type="button" className="vpage" id={`vpage-${num+1}`} value={num+1} onClick={handlePage}/> }
                         </span>
                     ))                    
                 }                    

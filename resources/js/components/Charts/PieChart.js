@@ -164,7 +164,7 @@ export default function PieChart(props) {
                 <h4>{title}</h4>
             </Container>
             <Container className="justify-content-center">
-                <div><canvas id="myChart" class="pie-chart" width="400px" height="400px" left="300px"></canvas></div>
+                <div><canvas id="myChart" className="pie-chart" width="400px" height="400px" left="300px"></canvas></div>
             </Container> 
             <Container className="h-100 d-flex justify-content-center pie-pager">
                 <ChartPager {...props} getPageNumber={props.getPageNumber} type={'line'} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>
