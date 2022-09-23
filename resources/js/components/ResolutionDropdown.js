@@ -44,13 +44,14 @@ export default function ResolutionDropdown(props){
                         
                            <>
                                { 
-                                props.theResolutions.map((res,i) => (
-                                    <span key={i} >
+                                props.theResolutions.map((res,j) => (
+                                    <span key={j}>
                                         <OverlayTrigger
                                             key='top'
                                             placement='top'
                                             overlay={
-                                                <Tooltip  id={`tooltip-${res}`}>
+                                                <Tooltip id={`tooltip-${res}`}>
+                                                    <strong>{getTitle(res)}</strong>
                                                 </Tooltip>
                                             }
                                             >
@@ -69,13 +70,11 @@ export default function ResolutionDropdown(props){
                     </div>
                 </Row>
                <Container className="h-10 d-flex justify-content-center">
-                    <h6 id="resolution_message">                       
+                    <h6 id="resolution_message">
                         <span>The Current Chart Resolution is: {resolution}</span>
                     </h6>      
                </Container> 
             </Container>    
     );
 }
-
-
 
