@@ -4,6 +4,9 @@ import { Button, OverlayTrigger, Tooltip, input,Container, Row } from 'react-boo
 
 export default function ResolutionDropdown(props){ 
     const[resolution, setResolution ] = useState(props.parse_resolution);
+    const[isAvail, setIsAvail] = useState(true);
+    const[title, setTitle ] = useState('');
+    const[chArray, setCHArray] = useState(props.chartData.chartArray);
    
     const selectResolution = (e) => {   
         if(getTitle(e.target.value) == "Available")
@@ -41,18 +44,18 @@ export default function ResolutionDropdown(props){
                         
                            <>
                                { 
-                                props.theResolutions.map((res) => (
-                                    <span>
+                                props.theResolutions.map((res,i) => (
+                                    <span key={i} >
                                         <OverlayTrigger
                                             key='top'
                                             placement='top'
                                             overlay={
-                                                <Tooltip key={res.toString()} id={`tooltip-${res}`}>
-                                                    <strong>{getTitle(res)}</strong>
+                                                <Tooltip  id={`tooltip-${res}`}>
                                                 </Tooltip>
                                             }
                                             >
-                                            <ResSelect key={res.toString()} res={res} selectResolution={selectResolution} /> 
+                                            <input type="number" className="dropdown-item" href="#" id={'res_'+res} onClick={selectResolution} value={res}
+                                                    data-toggle="tooltip" data-placement="top" title={title}/> 
                                         </OverlayTrigger>
                                     </span>
                                     ))
@@ -75,8 +78,5 @@ export default function ResolutionDropdown(props){
     );
 }
 
-function ResSelect(props){
-    return <input  type="number" className="dropdown-item" href="#" id={'res_'+ props.res} onClick={props.selectResolution} value={props.res}
-                data-toggle="tooltip" data-placement="top"/> 
-}
+
 
