@@ -145,7 +145,7 @@ export default function AppRouter(props){
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item" style={linkMarginTop}>
-                <Link className="nav-link"  href="#"><span className="linkStyle">Reset</span></Link>   
+                <Link to="/" className="nav-link"  href="#"><span className="linkStyle">Reset</span></Link>   
               </li>
               <li className="nav-item">
                 <Link className="nav-link align-middle" href="#" onClick={changeVTStyle} to="/" style={voteTableStyle} >Votes Table</Link><span className="sr-only">(current)</span>  
