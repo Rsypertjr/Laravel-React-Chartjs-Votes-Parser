@@ -68,7 +68,6 @@ export default class VotesApp extends React.Component {
           noOfChartPages:0,
           theChartArray:[],
           theResolutions: resolutions,
-          interval_message:''
       };
    
       
@@ -357,7 +356,6 @@ export default class VotesApp extends React.Component {
     var trumpslices = [];
     var otherslices = [];
     var pieheaders = [];
-    console.log("Vote ROws: ",vote_rows);
     for(i=0;i<vote_rows.length;i++){
     
         dateheaders[i] = vote_rows[i].timestamp;
@@ -387,7 +385,7 @@ export default class VotesApp extends React.Component {
           datedatatrumpadddiff.push(vote_rows[i].trump_votes - vote_rows[i-1].trump_votes);          
         }
     }
-     console.log("Inital Date Headers: ",dateheaders);
+  
     let date_headers = [];
     let date_databiden = [];
     let date_datatrump = [];
@@ -419,23 +417,7 @@ export default class VotesApp extends React.Component {
         cnt3++;
     }
 
-    /*
-    dateheaders = date_headers;
-    datedatabiden = date_databiden;
-    datedatatrump = date_datatrump;
-    datedatabidenadd = date_databidenadd;
-    datedatatrumpadd = date_datatrumpadd;
-    datedatabidenadddiff = date_databidenadddiff;
-    datedatatrumpadddiff = date_datatrumpadddiff;
-    datedataotheradd = date_dataotheradd;
-    datedatatotaladd = date_datatotaladd;
-    datedatatotal = date_datatotal;
-    datedataother = date_dataother;
-    perremainingtrump = per_remainingtrump;
-    perremainingbiden = per_remainingbiden; 
-    */
-
-    
+   
     datedatabidenadd_store = date_databidenadd;
     datedatatrumpadd_store = date_datatrumpadd;
     
@@ -608,8 +590,7 @@ export default class VotesApp extends React.Component {
         bin_biden = bin_biden.filter((i) => i != null);
         bin_trump = bin_trump.filter((i) => i != null);
     
-    console.log("Date HEaders Store: ",dateheaders_store);
-    //let interval_message = this.getTimeDiff(dateheaders_store,this.state.pageNo);
+    
     let dataLoad = {
       "dateHeadersStore": dateheaders_store,
       "dateDataBidenStore": datedatabiden_store,
@@ -634,8 +615,7 @@ export default class VotesApp extends React.Component {
       "bin_biden": bin_biden,
       "bin_trump": bin_trump,
       "numPages": numPages,
-      "chartArray": chartArray,
-      //"interval_message": interval_message
+      "chartArray": chartArray
     }
     
     return dataLoad;
@@ -705,8 +685,7 @@ export default class VotesApp extends React.Component {
         parse_resolution:parseInt(e),
         chartData:  chartData,
         noOfChartPages : chartData.numPages,
-        theChartArray: chartData.chartArray,
-        interval_message: chartData.interval_message
+        theChartArray: chartData.chartArray
        });
       
   }

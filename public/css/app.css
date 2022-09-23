@@ -163,8 +163,9 @@ nav.navbar {
      
  }
 
- #interval_message{
+ #resolution_message{
      margin-top: -1em;
+     padding: 1em;
      color:red;
      background-color:lightcyan;
      text-align: center;

@@ -69,8 +69,7 @@ export default function ResolutionDropdown(props){
                     </div>
                 </Row>
                <Container className="h-10 d-flex justify-content-center">
-                    <h6 id="interval_message">
-                        <span>{props.interval_message}</span><br/>
+                    <h6 id="resolution_message">                       
                         <span>The Current Chart Resolution is: {resolution}</span>
                     </h6>      
                </Container> 
