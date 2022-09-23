@@ -132,39 +132,39 @@ export default function AppRouter(props){
    
     return(
         <BrowserRouter>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">Select Table or Chart</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <a className="navbar-brand" href="#">Select Table or Chart</a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="/votes-table" ><span class="linkStyle">Home/Reset</span></a>   
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <a className="nav-link" href="/votes-table" ><span className="linkStyle">Home/Reset</span></a>   
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" onClick={changeVTStyle}><Link to="/" style={voteTableStyle} >Votes Table</Link><span class="sr-only">(current)</span></a>   
+              <li className="nav-item">
+                <a className="nav-link" href="#" onClick={changeVTStyle}><Link to="/" style={voteTableStyle} >Votes Table</Link><span className="sr-only">(current)</span></a>   
               </li>
-              <li class="nav-item" >
-                <a class="nav-link" href="#" onClick={changeVLStyle}><Link to="/voteslinechart"  style={voteLineStyle}>Votes Line Chart</Link></a>
+              <li className="nav-item" >
+                <a className="nav-link" href="#" onClick={changeVLStyle}><Link to="/voteslinechart"  style={voteLineStyle}>Votes Line Chart</Link></a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" onClick={changeSPStyle}><Link to="/spikeslinechart" style={spikesLineStyle} >Spikes Line Chart</Link></a>
+              <li className="nav-item">
+                <a className="nav-link" href="#" onClick={changeSPStyle}><Link to="/spikeslinechart" style={spikesLineStyle} >Spikes Line Chart</Link></a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" onClick={changeDLStyle}><Link to="/difflinechart" style={diffLineStyle} >Difference Line Chart</Link></a>
+              <li className="nav-item">
+                <a className="nav-link" href="#" onClick={changeDLStyle}><Link to="/difflinechart" style={diffLineStyle} >Difference Line Chart</Link></a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" onClick={changePLStyle}><Link to="/perlinechart" style={perLineStyle} >Percent Line Chart</Link></a>
+              <li className="nav-item">
+                <a className="nav-link" href="#" onClick={changePLStyle}><Link to="/perlinechart" style={perLineStyle} >Percent Line Chart</Link></a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" onClick={changePCStyle}><Link to="/piechart" style={pieChartStyle} >Pie Chart</Link></a>
+              <li className="nav-item">
+                <a className="nav-link" href="#" onClick={changePCStyle}><Link to="/piechart" style={pieChartStyle} >Pie Chart</Link></a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" onClick={changeBCStyle}><Link to="/barchart" style={barChartStyle} >Votes Bar Chart</Link></a>
+              <li className="nav-item">
+                <a className="nav-link" href="#" onClick={changeBCStyle}><Link to="/barchart" style={barChartStyle} >Votes Bar Chart</Link></a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#" onClick={changeBSTStyle}><Link to="/binstackedchart" style={binStackedStyle} >Bin Stacked Chart</Link></a>
+              <li className="nav-item">
+                <a className="nav-link" href="#" onClick={changeBSTStyle}><Link to="/binstackedchart" style={binStackedStyle} >Bin Stacked Chart</Link></a>
               </li>
             </ul>
           </div>

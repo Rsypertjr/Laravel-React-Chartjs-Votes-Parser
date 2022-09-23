@@ -39,7 +39,7 @@ export default function VotesPager(props){
 
     return(
             <div>
-                <input class="page-arrow" type="button" value="<" onClick={leftArrow}/>                
+                <input className="page-arrow" type="button" value="<" onClick={leftArrow}/>                
                 {                      
                     props.thePagingArray[parseInt(props.thePageSetNumber)-1].map((num) => (      
                     //pagingArr.map((num) => (    
@@ -48,7 +48,7 @@ export default function VotesPager(props){
                         </span>
                     ))                    
                 }                    
-                <input class="page-arrow" type="button" value=">" onClick={rightArrow}/> 
+                <input className="page-arrow" type="button" value=">" onClick={rightArrow}/> 
             </div>                    
         );
 }

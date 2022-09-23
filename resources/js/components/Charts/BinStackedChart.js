@@ -161,7 +161,7 @@ export default function BinStackedChart(props) {
       });
    
     return (      
-        <div class="chart-viewer">
+        <div className="chart-viewer">
             <Container className="h-10 d-flex justify-content-center">
                 <h4>Total Votes Bin Stacked Chart</h4>
             </Container>

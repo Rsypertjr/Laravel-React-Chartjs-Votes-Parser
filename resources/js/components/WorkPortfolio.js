@@ -24,9 +24,9 @@ export default class WorkPortfolio extends React.Component {
                             </a>
                         </header>*/}
 
-                    <div class="p-3 mb-4 top rounded-3">
-                        <div class="container-fluid py-2 top-container">
-                            <h1 class="d-flex justify-content-center fw-bold pb-4">Richard L. Sypert Jr's Work Portfolio</h1>
+                    <div className="p-3 mb-4 top rounded-3">
+                        <div className="container-fluid py-2 top-container">
+                            <h1 className="d-flex justify-content-center fw-bold pb-4">Richard L. Sypert Jr's Work Portfolio</h1>
                             <MyCarousel />
                         </div> 
                     </div> 

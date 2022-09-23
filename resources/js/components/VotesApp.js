@@ -80,10 +80,9 @@ export default class VotesApp extends React.Component {
   getPageNumber(obj)
   {         
      let num = obj.num;
-     let interval_message = this.getTimeDiff(this.state.chartData.dateHeadersStore,num);
      this.setState({
-         pageNo: num,
-         interval_message: interval_message
+         pageNo: num
+        
      });   
     
    
@@ -358,6 +357,7 @@ export default class VotesApp extends React.Component {
     var trumpslices = [];
     var otherslices = [];
     var pieheaders = [];
+    console.log("Vote ROws: ",vote_rows);
     for(i=0;i<vote_rows.length;i++){
     
         dateheaders[i] = vote_rows[i].timestamp;
@@ -387,7 +387,7 @@ export default class VotesApp extends React.Component {
           datedatatrumpadddiff.push(vote_rows[i].trump_votes - vote_rows[i-1].trump_votes);          
         }
     }
-
+     console.log("Inital Date Headers: ",dateheaders);
     let date_headers = [];
     let date_databiden = [];
     let date_datatrump = [];
@@ -419,6 +419,7 @@ export default class VotesApp extends React.Component {
         cnt3++;
     }
 
+    /*
     dateheaders = date_headers;
     datedatabiden = date_databiden;
     datedatatrump = date_datatrump;
@@ -431,25 +432,26 @@ export default class VotesApp extends React.Component {
     datedatatotal = date_datatotal;
     datedataother = date_dataother;
     perremainingtrump = per_remainingtrump;
-    perremainingbiden = per_remainingbiden;
+    perremainingbiden = per_remainingbiden; 
+    */
 
-
-    datedatabidenadd_store = datedatabidenadd.map((item) => item != null? item: item.delete());
-    datedatatrumpadd_store = datedatatrumpadd.map((item) => item);
     
-    datedataotheradd_store = datedataotheradd.map((item) => item);
-    datedatatotaladd_store = datedatatotaladd.map((item) => item);
+    datedatabidenadd_store = date_databidenadd;
+    datedatatrumpadd_store = date_datatrumpadd;
     
-    datedatabidenadddiff_store = datedatabidenadddiff.map((item) => item);
-    datedatatrumpadddiff_store = datedatatrumpadddiff.map((item) => item);
-    dateheaders_store = dateheaders.map((item) => item);
-    datedatabiden_store = datedatabiden.map((item) => item);
-    datedatatrump_store = datedatatrump.map((item) => item);
-    datedatatotal_store = datedatatotal.map((item) => item);
-    datedataother_store = datedataother.map((item) => item);
-    perremainingtrump_store = perremainingtrump.map((item) => item);
-    perremainingbiden_store = perremainingbiden.map((item) => item);            
-
+    datedataotheradd_store = date_dataotheradd;
+    datedatatotaladd_store = date_datatotaladd;
+    
+    datedatabidenadddiff_store = date_databidenadddiff;
+    datedatatrumpadddiff_store = date_datatrumpadddiff;
+    dateheaders_store = date_headers;
+    datedatabiden_store = date_databiden;
+    datedatatrump_store = date_datatrump;
+    datedatatotal_store = date_datatotal;
+    datedataother_store = date_dataother;
+    perremainingtrump_store = per_remainingtrump;
+    perremainingbiden_store = per_remainingbiden;            
+  
     // PieChart calculations        
     if(datedatabiden_store != null) {
         for(var i = 0;i < datedatabiden_store.length;i++){
@@ -606,7 +608,7 @@ export default class VotesApp extends React.Component {
         bin_biden = bin_biden.filter((i) => i != null);
         bin_trump = bin_trump.filter((i) => i != null);
     
-    
+    console.log("Date HEaders Store: ",dateheaders_store);
     let interval_message = this.getTimeDiff(dateheaders_store,this.state.pageNo);
     let dataLoad = {
       "dateHeadersStore": dateheaders_store,
@@ -835,7 +837,7 @@ export default class VotesApp extends React.Component {
     return (
       <div className="wrapper">
         <Container fluid>
-            <div class="jumbotron text-center" > 
+            <div className="jumbotron text-center" > 
                 <Row className="justify-content-md-center pb-2">
                     <Col xs lg="2"/>
                     <Col md="auto pt-2">

@@ -158,7 +158,7 @@ export default function SpikesLineChart(props) {
    
     return (
         
-        <div class="chart-viewer">
+        <div className="chart-viewer">
             <Container className="h-10 d-flex justify-content-center">
                 <h4>Vote Spikes Line Chart</h4>
             </Container>

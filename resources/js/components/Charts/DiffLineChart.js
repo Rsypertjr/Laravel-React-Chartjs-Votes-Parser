@@ -160,8 +160,8 @@ export default function DiffLineChart(props) {
 
 
     return (      
-        <div class="chart-viewer">  
-            <div class="container h-10 d-flex justify-content-center">
+        <div className="chart-viewer">  
+            <div className="container h-10 d-flex justify-content-center">
                 <h4>Difference Line Chart</h4>
             </div>       
             <Container>
@@ -174,13 +174,13 @@ export default function DiffLineChart(props) {
                     </Col>
                 </Row>
             </Container>    
-            <div class="container h-10 d-flex justify-content-center">
+            <div className="container h-10 d-flex justify-content-center">
                 <h4>Incremental Gain/Loss of Votes</h4>
             </div>
-            <div class="container smaller justify-content-center">
+            <div className="container smaller justify-content-center">
                 <div><canvas id="myChart"></canvas></div>
             </div> 
-            <div class="container h-100 d-flex justify-content-center">
+            <div className="container h-100 d-flex justify-content-center">
                 <ChartPager {...props} getPageNumber={props.getPageNumber} type={'line'} leftArrow={props.leftArrow} rightArrow={props.rightArrow}/>
             </div> 
         </div>

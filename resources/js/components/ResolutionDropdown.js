@@ -37,10 +37,10 @@ export default function ResolutionDropdown(props){
             <Container>
                 <Row className="justify-content-start">
                     <div class="btn-group dropright">
-                        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" className="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Select Chart Resolution (X Times)
                         </button>
-                        <div class="dropdown-menu">
+                        <div className="dropdown-menu">
                         
                            <>
                                { props.theResolutions.map((res) => (
@@ -53,7 +53,7 @@ export default function ResolutionDropdown(props){
                                             </Tooltip>
                                         }
                                         >
-                                         <input type="input" class="dropdown-item" href="#" id={'res_'+res} onClick={selectResolution} value={res}
+                                         <input type="input" className="dropdown-item" href="#" id={'res_'+res} onClick={selectResolution} value={res}
                                                 data-toggle="tooltip" data-placement="top" title={title}/> 
                                     </OverlayTrigger>
                                 ))}

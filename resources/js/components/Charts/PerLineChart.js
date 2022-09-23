@@ -132,7 +132,7 @@ export default function PerLineChart(props) {
       });
    
     return (      
-        <div class="chart-viewer">
+        <div className="chart-viewer">
             <Container className="h-10 d-flex justify-content-center">
                 <h4>Remaining Percetage of Vote Chart</h4>
             </Container>

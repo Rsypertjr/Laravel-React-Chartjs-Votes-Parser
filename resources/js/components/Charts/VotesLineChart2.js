@@ -86,7 +86,7 @@ export default function VotesLineChart2(props) {
         let datedata_trump = chartData.dateDataTrumpStore.map((item) => item);
         let datedata_other = chartData.dateDataOtherStore.map((item) => item);
         let datasets = [];   
-        let labels = date_headers[selected_index];
+        let labels = date_headers[selected_index-1];
 
         var data1= {};
         data1.label = "Biden Votes";
@@ -142,7 +142,7 @@ export default function VotesLineChart2(props) {
       });
    
     return (
-        <div class="chart-viewer">
+        <div className="chart-viewer">
              <Container className="h-10 d-flex justify-content-center">
                 <h4>Total Votes Line Chart</h4>
             </Container>   

@@ -53,15 +53,15 @@ export default function ChartPager(props){
 
     return(        
             <div>                
-                <input class="page-arrow" type="button" value="<" onClick={leftArrow}/>                
+                <input className="page-arrow" type="button" value="<" onClick={leftArrow}/>                
                 {                  
                     props.theChartArray[parseInt(props.thePageSetNumber)-1].map((num) => (      
                         <span>
-                        { (num < (props.chartData.dateHeadersStore.length)) && <input type="button" class="page" id={`page-${num+1}`} value={num+1} onClick={handlePage}/> }
+                        { (num < (props.chartData.dateHeadersStore.length)) && <input type="button" className="page" id={`page-${num+1}`} value={num+1} onClick={handlePage}/> }
                         </span>
                     ))          
                 }                    
-                <input class="page-arrow" type="button" value=">" onClick={rightArrow}/> 
+                <input className="page-arrow" type="button" value=">" onClick={rightArrow}/> 
             </div>                    
         );
 }
