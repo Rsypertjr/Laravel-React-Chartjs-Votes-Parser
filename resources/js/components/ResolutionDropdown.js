@@ -43,20 +43,28 @@ export default function ResolutionDropdown(props){
                         <div className="dropdown-menu">
                         
                            <>
-                               { props.theResolutions.map((res) => (
-                                    <OverlayTrigger
-                                        key='top'
-                                        placement='top'
-                                        overlay={
-                                            <Tooltip id={`tooltip-${res}`}>
-                                                <strong>{getTitle(res)}</strong>
-                                            </Tooltip>
-                                        }
-                                        >
-                                         <input type="input" className="dropdown-item" href="#" id={'res_'+res} onClick={selectResolution} value={res}
-                                                data-toggle="tooltip" data-placement="top" title={title}/> 
-                                    </OverlayTrigger>
-                                ))}
+                               { 
+                                props.theResolutions.map((res) => (
+                                    <span>
+                                        <OverlayTrigger
+                                            key='top'
+                                            placement='top'
+                                            overlay={
+                                                <Tooltip id={`tooltip-${res}`}>
+                                                    <strong>{getTitle(res)}</strong>
+                                                </Tooltip>
+                                            }
+                                            >
+                                            <input type="input" className="dropdown-item" href="#" id={'res_'+res} onClick={selectResolution} value={res}
+                                                    data-toggle="tooltip" data-placement="top" title={title}/> 
+                                        </OverlayTrigger>
+                                    </span>
+                                    ))
+                                
+                                }
+
+                                
+                                    
                             </>
                         </div>
                     </div>

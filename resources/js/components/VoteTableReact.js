@@ -16,7 +16,7 @@ function OuterTable(props){
                     <thead>
                         <tr>
                             {headers.map(header => (
-                                 <th scope="col">{ header }</th>
+                                 <th key={header.toString()} scope="col">{ header }</th>
                              ))}
                     
                         </tr>
@@ -54,7 +54,7 @@ export default function VoteTableReact(props)  {
                 <OuterTable>
                     <tbody>
                         { props.theCurrentPages[props.pageNo-1].map(row => 
-                            <tr>
+                            <tr  key={row.id.toString()}>
                                 <td>{ row.id }</td>
                                 <td>{ row.bidenj }</td>
                                 <td>{ row.biden_votes }</td>

@@ -609,7 +609,7 @@ export default class VotesApp extends React.Component {
         bin_trump = bin_trump.filter((i) => i != null);
     
     console.log("Date HEaders Store: ",dateheaders_store);
-    let interval_message = this.getTimeDiff(dateheaders_store,this.state.pageNo);
+    //let interval_message = this.getTimeDiff(dateheaders_store,this.state.pageNo);
     let dataLoad = {
       "dateHeadersStore": dateheaders_store,
       "dateDataBidenStore": datedatabiden_store,
@@ -635,7 +635,7 @@ export default class VotesApp extends React.Component {
       "bin_trump": bin_trump,
       "numPages": numPages,
       "chartArray": chartArray,
-      "interval_message": interval_message
+      //"interval_message": interval_message
     }
     
     return dataLoad;

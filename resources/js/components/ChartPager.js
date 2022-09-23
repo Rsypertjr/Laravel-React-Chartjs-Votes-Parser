@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 export default function ChartPager(props){
-   
+    const [pg, setPG] = useState(0);
     
     const handlePage = (e) => {
         let num = e.target.value;
@@ -15,7 +15,8 @@ export default function ChartPager(props){
     const leftArrow = (e) => {  
         let check = (parseInt(props.thePageSetNumber)-1)*parseInt(props.thePageSize) + 1;
         if((parseInt(props.pageNo)) > check){
-            e.target.value = parseInt(props.pageNo) - 1;           
+            e.target.value = parseInt(props.pageNo) - 1;   
+            setPG(e.target.value);         
             handlePage(e);
          }
          else{
@@ -23,6 +24,7 @@ export default function ChartPager(props){
             let obj = {};  
             obj.nxpagenum = nxpagenum;
             obj.num = props.pageNo-1;
+            setPG(obj.num);
             obj.type = props.type;
             obj.type = props.type;
             props.leftArrow(obj);
@@ -33,7 +35,8 @@ export default function ChartPager(props){
            let chk1 = (parseInt(props.pageNo)+1) <= (parseInt(props.thePageSetNumber)-1)*parseInt(props.thePageSize) + parseInt(props.thePageSize);
            let chk2 =  (parseInt(props.pageNo)+1) <= props.chartData.dateHeadersStore.length;
             if( chk1 && chk2){
-                e.target.value = parseInt(props.pageNo) + 1;           
+                e.target.value = parseInt(props.pageNo) + 1;   
+                setPG(e.target.value);        
                 handlePage(e);
              }        
             else if( !chk1 && chk2 ) {
@@ -41,25 +44,27 @@ export default function ChartPager(props){
                 let nxpagenum = parseInt(props.thePageSetNumber)*parseInt(props.thePageSize) + 1;
                 obj.nxpagenum = nxpagenum;
                 obj.num = parseInt(props.pageNo) + 1;
+                setPG(obj.num);
                 obj.type = props.type;
                 props.rightArrow(obj);
              }
              else{
-                 ;
+                 props.rightArrow(pg);
              }
-     
-    }
+        }
 
-
+                        
     return(        
             <div>                
                 <input className="page-arrow" type="button" value="<" onClick={leftArrow}/>                
-                {                  
-                    props.theChartArray[parseInt(props.thePageSetNumber)-1].map((num) => (      
-                        <span>
-                        { (num < (props.chartData.dateHeadersStore.length)) && <input type="button" className="page" id={`page-${num+1}`} value={num+1} onClick={handlePage}/> }
-                        </span>
-                    ))          
+                {  
+                
+                props.theChartArray[parseInt(props.thePageSetNumber)-1].map((num) => (      
+                    <span key={num.toString()} >
+                    { (num < (props.chartData.dateHeadersStore.length)) && < input type="button" className="page" id={`page-${num+1}`} value={num+1} onClick={handlePage}/> }
+                    </span>
+                ))
+                
                 }                    
                 <input className="page-arrow" type="button" value=">" onClick={rightArrow}/> 
             </div>                    
