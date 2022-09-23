@@ -148,28 +148,28 @@ export default function AppRouter(props){
                 <Link className="nav-link"  href="/votes-table" ><span className="linkStyle">Reset</span></Link>   
               </li>
               <li className="nav-item">
-                <Link className="nav-link" href="#" onClick={changeVTStyle} to="/" style={voteTableStyle} >Votes Table</Link><span className="sr-only">(current)</span>  
+                <Link className="nav-link align-middle" href="#" onClick={changeVTStyle} to="/" style={voteTableStyle} >Votes Table</Link><span className="sr-only">(current)</span>  
               </li>
               <li className="nav-item" >
-                <Link className="nav-link" href="#" onClick={changeVLStyle} to="/voteslinechart"  style={voteLineStyle}>Votes Line Chart</Link>
+                <Link className="nav-link align-middle" href="#" onClick={changeVLStyle} to="/voteslinechart"  style={voteLineStyle}>Votes Line Chart</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" href="#" onClick={changeSPStyle} to="/spikeslinechart" style={spikesLineStyle}>Spikes Line Chart</Link>
+                <Link className="nav-link align-middle" href="#" onClick={changeSPStyle} to="/spikeslinechart" style={spikesLineStyle}>Spikes Line Chart</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" href="#" onClick={changeDLStyle} to="/difflinechart" style={diffLineStyle}>Difference Line Chart</Link>
+                <Link className="nav-link align-middle" href="#" onClick={changeDLStyle} to="/difflinechart" style={diffLineStyle}>Difference Line Chart</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" href="#" onClick={changePLStyle}  to="/perlinechart" style={perLineStyle}>Percent Line Chart</Link>
+                <Link className="nav-link align-middle" href="#" onClick={changePLStyle}  to="/perlinechart" style={perLineStyle}>Percent Line Chart</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" href="#" onClick={changePCStyle} to="/piechart" style={pieChartStyle}>Pie Chart</Link>
+                <Link className="nav-link align-middle" href="#" onClick={changePCStyle} to="/piechart" style={pieChartStyle}>Pie Chart</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" href="#" onClick={changeBCStyle}  to="/barchart" style={barChartStyle} >Votes Bar Chart</Link>
+                <Link className="nav-link align-middle" href="#" onClick={changeBCStyle}  to="/barchart" style={barChartStyle} >Votes Bar Chart</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" href="#" onClick={changeBSTStyle}  to="/binstackedchart" style={binStackedStyle} >Bin Stacked Chart</Link>
+                <Link className="nav-link align-middle" href="#" onClick={changeBSTStyle}  to="/binstackedchart" style={binStackedStyle} >Bin Stacked Chart</Link>
               </li>
             </ul>
           </div>
