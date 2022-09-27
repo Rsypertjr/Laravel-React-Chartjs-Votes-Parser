@@ -40,8 +40,7 @@ export default function MyNavbar(props){
      });
     return(
         <BrowserRouter>            
-            <Navbar bg="dark" variant="dark" expand="lg" >
-                <Container className="nav-bar">
+            <Navbar bg="dark" variant="dark" expand="lg" className="p-4" >
                     <Navbar.Brand href="#home">Laravel/React/Bootstrap Work Porfolio</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
@@ -65,7 +64,6 @@ export default function MyNavbar(props){
                             <Nav.Link href="#oldportfolio"><Link to="/oldportfolio" >Old Lamp/CodeIgniter Portfolio</Link></Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
-                </Container>
             </Navbar>
         <Routes>
             <Route path='/home'/>
