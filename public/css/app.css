@@ -184,8 +184,8 @@ nav.navbar {
      height:20em;     
  }
  
- .nav-bar{
-     margin-left:0em;
+ nav.navbar{
+    padding-left:5em;
  }
 
  .nav-link, .nav-item.dropdown{

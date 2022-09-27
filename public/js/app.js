@@ -12917,10 +12917,6 @@ var linkStyle2 = {
   color: 'lightgrey',
   fontSize: '0.8em'
 };
-var linkMarginTop = {
-  marginTop: "0.45em",
-  fontSize: "1.2em"
-};
 function AppRouter(props) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(linkStyle),
       _useState2 = _slicedToArray(_useState, 2),
@@ -13054,9 +13050,9 @@ function AppRouter(props) {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("nav", {
       className: "navbar navbar-expand-lg navbar-light bg-light",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("a", {
-        className: "navbar-brand",
+        className: "navbar-brand align-middle",
         href: "#",
-        children: "Select Table or Chart"
+        children: "Select Table/Chart"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("button", {
         className: "navbar-toggler",
         type: "button",
@@ -13075,13 +13071,12 @@ function AppRouter(props) {
           className: "navbar-nav",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("li", {
             className: "nav-item",
-            style: linkMarginTop,
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Link, {
               to: "/",
               className: "nav-link",
+              style: linkStyle,
               href: "#",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("span", {
-                className: "linkStyle",
                 children: "Reset"
               })
             })
