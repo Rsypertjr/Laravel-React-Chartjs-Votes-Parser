@@ -80,15 +80,19 @@ export default function MyCarousel(props){
 	var doc = parser.parseFromString(str, 'text/html');
 	return doc.body;
 };
+
+  const centering = {
+    textAlign: "center"
+  }
 return(  
         <Carousel id="myCarousel" >
-            { cinfo.map((info) =>(
+            { cinfo.map((info,index) =>(
                             
               <Carousel.Item className="carousel-item">                              
                     <Carousel.Caption></Carousel.Caption> 
-                    <Container className="fluid p-2 w-75 h-90">
-                        <h3>{info.header}</h3>
-                        <p>{info.statement}</p>
+                    <Container key={index} className="fluid p-2 w-75 h-90">
+                        <h3 style={centering}>{info.header}</h3>
+                        <div style={centering}>{info.statement}</div>
                     </Container>               
                 </Carousel.Item>
             ))
