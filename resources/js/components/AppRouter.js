@@ -16,123 +16,31 @@ import styled from "styled-components";
 const linkStyle = {
   margin: "1rem",
   textDecoration: "none",
-  color: 'black',
+  color: 'white',
   fontSize: '0.8em'
 };
-
-const linkStyle2 = {
-  margin: "1rem",
-  textDecoration: "none",
-  color: 'lightgrey',
-  fontSize: '0.8em'
-};
-
 
 export default function AppRouter(props){   
-  const [voteLineStyle, setVoteLineStyle] = useState(linkStyle);
-  const [voteTableStyle, setVoteTableStyle] = useState(linkStyle);
-  const [spikesLineStyle, setSpikesLineStyle] = useState(linkStyle);
-  const [diffLineStyle, setDiffLineStyle] = useState(linkStyle);
-  const [perLineStyle, setPerLineStyle] = useState(linkStyle);
-  const [pieChartStyle, setPieChartStyle] = useState(linkStyle);
-  const [barChartStyle, setBarChartStyle] = useState(linkStyle);
-  const [binStackedStyle, setBinStackedStyle] = useState(linkStyle);
-
-
-  const changeVLStyle = () => {
-    setVoteLineStyle(linkStyle2);  
-    setVoteTableStyle(linkStyle);
-    setSpikesLineStyle(linkStyle); 
-    setDiffLineStyle(linkStyle); 
-    setPerLineStyle(linkStyle);  
-    setPieChartStyle(linkStyle);
-    setBarChartStyle(linkStyle);
-  }
-
-  const changeVTStyle = () => {
-      setVoteTableStyle(linkStyle2);  
-      setVoteLineStyle(linkStyle);  
-      setSpikesLineStyle(linkStyle);
-      setDiffLineStyle(linkStyle);  
-      setPerLineStyle(linkStyle);  
-      setPieChartStyle(linkStyle);
-      setBarChartStyle(linkStyle);
-      setBinStackedStyle(linkStyle);
-   } 
-
-  const changeSPStyle = () => {
-    setSpikesLineStyle(linkStyle2);
-    setVoteTableStyle(linkStyle);  
-    setVoteLineStyle(linkStyle);  
-    setDiffLineStyle(linkStyle); 
-    setPerLineStyle(linkStyle);  
-    setPieChartStyle(linkStyle);
-    setBarChartStyle(linkStyle);
-    setBinStackedStyle(linkStyle);
-  } 
-
-  const changeDLStyle = () => {
-    setDiffLineStyle(linkStyle2)
-    setSpikesLineStyle(linkStyle);
-    setVoteTableStyle(linkStyle);  
-    setVoteLineStyle(linkStyle); 
-    setPerLineStyle(linkStyle); 
-    setPieChartStyle(linkStyle); 
-    setBarChartStyle(linkStyle);
-    setBinStackedStyle(linkStyle);
-  } 
-
-  const changePLStyle = () => {
-    setPerLineStyle(linkStyle2);
-    setDiffLineStyle(linkStyle)
-    setSpikesLineStyle(linkStyle);
-    setVoteTableStyle(linkStyle);  
-    setVoteLineStyle(linkStyle);  
-    setPieChartStyle(linkStyle);
-    setBarChartStyle(linkStyle);
-    setBinStackedStyle(linkStyle);
-  } 
-
-  const changePCStyle = () => {
-    setPieChartStyle(linkStyle2);
-    setPerLineStyle(linkStyle);
-    setDiffLineStyle(linkStyle)
-    setSpikesLineStyle(linkStyle);
-    setVoteTableStyle(linkStyle);  
-    setVoteLineStyle(linkStyle);  
-    setBarChartStyle(linkStyle);
-    setBinStackedStyle(linkStyle);
-  } 
-  const changeBCStyle = () => {
-    setBarChartStyle(linkStyle2);
-    setPieChartStyle(linkStyle);
-    setPerLineStyle(linkStyle);
-    setDiffLineStyle(linkStyle)
-    setSpikesLineStyle(linkStyle);
-    setVoteTableStyle(linkStyle);  
-    setVoteLineStyle(linkStyle);  
-    setBinStackedStyle(linkStyle);
-  } 
-
-  const changeBSTStyle = () => {
-    setBinStackedStyle(linkStyle2);
-    setBarChartStyle(linkStyle);
-    setPieChartStyle(linkStyle);
-    setPerLineStyle(linkStyle);
-    setDiffLineStyle(linkStyle)
-    setSpikesLineStyle(linkStyle);
-    setVoteTableStyle(linkStyle);  
-    setVoteLineStyle(linkStyle);  
-  } 
-
+  
 
   useEffect(() => {
-  
+    $("#navbarNav > ul > li > a").on('mouseover',function(){
+      $(this).css('color','grey');
+    });
+    $("#navbarNav > ul > li > a").on('mouseover',function(){
+      $(this).css('color','white');
+    });
+
+    $("#navbarNav > ul > li > a").on('click',function(){
+      $("#navbarNav > ul > li > a").css('color','white');
+      $(this).css('color','grey');
+    }); 
+
   });
    
     return(
         <BrowserRouter>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">    
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">    
               <a className="navbar-brand align-middle" href="#">Select Table/Chart</a>  
               <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
@@ -143,28 +51,28 @@ export default function AppRouter(props){
                     <Link to="/" className="nav-link"  style={linkStyle}  href="#"><span>Reset</span></Link>   
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link align-middle" href="#" onClick={changeVTStyle} to="/" style={voteTableStyle} >Votes Table</Link><span className="sr-only">(current)</span>  
+                    <Link className="nav-link align-middle" href="#"  to="/" style={linkStyle} >Votes Table</Link><span className="sr-only">(current)</span>  
                   </li>
                   <li className="nav-item" >
-                    <Link className="nav-link align-middle" href="#" onClick={changeVLStyle} to="/voteslinechart"  style={voteLineStyle}>Votes Line Chart</Link>
+                    <Link className="nav-link align-middle" href="#"  to="/voteslinechart"  style={linkStyle}>Votes Line Chart</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link align-middle" href="#" onClick={changeSPStyle} to="/spikeslinechart" style={spikesLineStyle}>Spikes Line Chart</Link>
+                    <Link className="nav-link align-middle" href="#"  to="/spikeslinechart" style={linkStyle}>Spikes Line Chart</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link align-middle" href="#" onClick={changeDLStyle} to="/difflinechart" style={diffLineStyle}>Difference Line Chart</Link>
+                    <Link className="nav-link align-middle" href="#"  to="/difflinechart" style={linkStyle}>Difference Line Chart</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link align-middle" href="#" onClick={changePLStyle}  to="/perlinechart" style={perLineStyle}>Percent Line Chart</Link>
+                    <Link className="nav-link align-middle" href="#"  to="/perlinechart" style={linkStyle}>Percent Line Chart</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link align-middle" href="#" onClick={changePCStyle} to="/piechart" style={pieChartStyle}>Pie Chart</Link>
+                    <Link className="nav-link align-middle" href="#" to="/piechart" style={linkStyle}>Pie Chart</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link align-middle" href="#" onClick={changeBCStyle}  to="/barchart" style={barChartStyle} >Votes Bar Chart</Link>
+                    <Link className="nav-link align-middle" href="#"  to="/barchart" style={linkStyle} >Votes Bar Chart</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link align-middle" href="#" onClick={changeBSTStyle}  to="/binstackedchart" style={binStackedStyle} >Bin Stacked Chart</Link>
+                    <Link className="nav-link align-middle" href="#"  to="/binstackedchart" style={linkStyle} >Bin Stacked Chart</Link>
                   </li>
                 </ul>
               </div>    

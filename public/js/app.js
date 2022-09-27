@@ -12879,18 +12879,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -12908,147 +12896,25 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var linkStyle = {
   margin: "1rem",
   textDecoration: "none",
-  color: 'black',
-  fontSize: '0.8em'
-};
-var linkStyle2 = {
-  margin: "1rem",
-  textDecoration: "none",
-  color: 'lightgrey',
+  color: 'white',
   fontSize: '0.8em'
 };
 function AppRouter(props) {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(linkStyle),
-      _useState2 = _slicedToArray(_useState, 2),
-      voteLineStyle = _useState2[0],
-      setVoteLineStyle = _useState2[1];
-
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(linkStyle),
-      _useState4 = _slicedToArray(_useState3, 2),
-      voteTableStyle = _useState4[0],
-      setVoteTableStyle = _useState4[1];
-
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(linkStyle),
-      _useState6 = _slicedToArray(_useState5, 2),
-      spikesLineStyle = _useState6[0],
-      setSpikesLineStyle = _useState6[1];
-
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(linkStyle),
-      _useState8 = _slicedToArray(_useState7, 2),
-      diffLineStyle = _useState8[0],
-      setDiffLineStyle = _useState8[1];
-
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(linkStyle),
-      _useState10 = _slicedToArray(_useState9, 2),
-      perLineStyle = _useState10[0],
-      setPerLineStyle = _useState10[1];
-
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(linkStyle),
-      _useState12 = _slicedToArray(_useState11, 2),
-      pieChartStyle = _useState12[0],
-      setPieChartStyle = _useState12[1];
-
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(linkStyle),
-      _useState14 = _slicedToArray(_useState13, 2),
-      barChartStyle = _useState14[0],
-      setBarChartStyle = _useState14[1];
-
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(linkStyle),
-      _useState16 = _slicedToArray(_useState15, 2),
-      binStackedStyle = _useState16[0],
-      setBinStackedStyle = _useState16[1];
-
-  var changeVLStyle = function changeVLStyle() {
-    setVoteLineStyle(linkStyle2);
-    setVoteTableStyle(linkStyle);
-    setSpikesLineStyle(linkStyle);
-    setDiffLineStyle(linkStyle);
-    setPerLineStyle(linkStyle);
-    setPieChartStyle(linkStyle);
-    setBarChartStyle(linkStyle);
-  };
-
-  var changeVTStyle = function changeVTStyle() {
-    setVoteTableStyle(linkStyle2);
-    setVoteLineStyle(linkStyle);
-    setSpikesLineStyle(linkStyle);
-    setDiffLineStyle(linkStyle);
-    setPerLineStyle(linkStyle);
-    setPieChartStyle(linkStyle);
-    setBarChartStyle(linkStyle);
-    setBinStackedStyle(linkStyle);
-  };
-
-  var changeSPStyle = function changeSPStyle() {
-    setSpikesLineStyle(linkStyle2);
-    setVoteTableStyle(linkStyle);
-    setVoteLineStyle(linkStyle);
-    setDiffLineStyle(linkStyle);
-    setPerLineStyle(linkStyle);
-    setPieChartStyle(linkStyle);
-    setBarChartStyle(linkStyle);
-    setBinStackedStyle(linkStyle);
-  };
-
-  var changeDLStyle = function changeDLStyle() {
-    setDiffLineStyle(linkStyle2);
-    setSpikesLineStyle(linkStyle);
-    setVoteTableStyle(linkStyle);
-    setVoteLineStyle(linkStyle);
-    setPerLineStyle(linkStyle);
-    setPieChartStyle(linkStyle);
-    setBarChartStyle(linkStyle);
-    setBinStackedStyle(linkStyle);
-  };
-
-  var changePLStyle = function changePLStyle() {
-    setPerLineStyle(linkStyle2);
-    setDiffLineStyle(linkStyle);
-    setSpikesLineStyle(linkStyle);
-    setVoteTableStyle(linkStyle);
-    setVoteLineStyle(linkStyle);
-    setPieChartStyle(linkStyle);
-    setBarChartStyle(linkStyle);
-    setBinStackedStyle(linkStyle);
-  };
-
-  var changePCStyle = function changePCStyle() {
-    setPieChartStyle(linkStyle2);
-    setPerLineStyle(linkStyle);
-    setDiffLineStyle(linkStyle);
-    setSpikesLineStyle(linkStyle);
-    setVoteTableStyle(linkStyle);
-    setVoteLineStyle(linkStyle);
-    setBarChartStyle(linkStyle);
-    setBinStackedStyle(linkStyle);
-  };
-
-  var changeBCStyle = function changeBCStyle() {
-    setBarChartStyle(linkStyle2);
-    setPieChartStyle(linkStyle);
-    setPerLineStyle(linkStyle);
-    setDiffLineStyle(linkStyle);
-    setSpikesLineStyle(linkStyle);
-    setVoteTableStyle(linkStyle);
-    setVoteLineStyle(linkStyle);
-    setBinStackedStyle(linkStyle);
-  };
-
-  var changeBSTStyle = function changeBSTStyle() {
-    setBinStackedStyle(linkStyle2);
-    setBarChartStyle(linkStyle);
-    setPieChartStyle(linkStyle);
-    setPerLineStyle(linkStyle);
-    setDiffLineStyle(linkStyle);
-    setSpikesLineStyle(linkStyle);
-    setVoteTableStyle(linkStyle);
-    setVoteLineStyle(linkStyle);
-  };
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {});
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    $("#navbarNav > ul > li > a").on('mouseover', function () {
+      $(this).css('color', 'grey');
+    });
+    $("#navbarNav > ul > li > a").on('mouseover', function () {
+      $(this).css('color', 'white');
+    });
+    $("#navbarNav > ul > li > a").on('click', function () {
+      $("#navbarNav > ul > li > a").css('color', 'white');
+      $(this).css('color', 'grey');
+    });
+  });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.BrowserRouter, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxs)("nav", {
-      className: "navbar navbar-expand-lg navbar-light bg-light",
+      className: "navbar navbar-expand-lg navbar-dark bg-dark",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("a", {
         className: "navbar-brand align-middle",
         href: "#",
@@ -13085,9 +12951,8 @@ function AppRouter(props) {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Link, {
               className: "nav-link align-middle",
               href: "#",
-              onClick: changeVTStyle,
               to: "/",
-              style: voteTableStyle,
+              style: linkStyle,
               children: "Votes Table"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("span", {
               className: "sr-only",
@@ -13098,9 +12963,8 @@ function AppRouter(props) {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Link, {
               className: "nav-link align-middle",
               href: "#",
-              onClick: changeVLStyle,
               to: "/voteslinechart",
-              style: voteLineStyle,
+              style: linkStyle,
               children: "Votes Line Chart"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("li", {
@@ -13108,9 +12972,8 @@ function AppRouter(props) {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Link, {
               className: "nav-link align-middle",
               href: "#",
-              onClick: changeSPStyle,
               to: "/spikeslinechart",
-              style: spikesLineStyle,
+              style: linkStyle,
               children: "Spikes Line Chart"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("li", {
@@ -13118,9 +12981,8 @@ function AppRouter(props) {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Link, {
               className: "nav-link align-middle",
               href: "#",
-              onClick: changeDLStyle,
               to: "/difflinechart",
-              style: diffLineStyle,
+              style: linkStyle,
               children: "Difference Line Chart"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("li", {
@@ -13128,9 +12990,8 @@ function AppRouter(props) {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Link, {
               className: "nav-link align-middle",
               href: "#",
-              onClick: changePLStyle,
               to: "/perlinechart",
-              style: perLineStyle,
+              style: linkStyle,
               children: "Percent Line Chart"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("li", {
@@ -13138,9 +12999,8 @@ function AppRouter(props) {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Link, {
               className: "nav-link align-middle",
               href: "#",
-              onClick: changePCStyle,
               to: "/piechart",
-              style: pieChartStyle,
+              style: linkStyle,
               children: "Pie Chart"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("li", {
@@ -13148,9 +13008,8 @@ function AppRouter(props) {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Link, {
               className: "nav-link align-middle",
               href: "#",
-              onClick: changeBCStyle,
               to: "/barchart",
-              style: barChartStyle,
+              style: linkStyle,
               children: "Votes Bar Chart"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)("li", {
@@ -13158,9 +13017,8 @@ function AppRouter(props) {
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Link, {
               className: "nav-link align-middle",
               href: "#",
-              onClick: changeBSTStyle,
               to: "/binstackedchart",
-              style: binStackedStyle,
+              style: linkStyle,
               children: "Bin Stacked Chart"
             })
           })]
