@@ -27,11 +27,6 @@ const linkStyle2 = {
   fontSize: '0.8em'
 };
 
-const linkMarginTop = {
-  marginTop: "0.45em",
-  fontSize: "1.2em"
-};
-
 
 export default function AppRouter(props){   
   const [voteLineStyle, setVoteLineStyle] = useState(linkStyle);
@@ -137,42 +132,47 @@ export default function AppRouter(props){
    
     return(
         <BrowserRouter>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-              <a className="navbar-brand" href="#">Select Table or Chart</a>
-              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-              </button>
-              <div className="collapse navbar-collapse" id="navbarNav">
-                <ul className="navbar-nav">
-                  <li className="nav-item" style={linkMarginTop}>
-                    <Link to="/" className="nav-link"  href="#"><span className="linkStyle">Reset</span></Link>   
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link align-middle" href="#" onClick={changeVTStyle} to="/" style={voteTableStyle} >Votes Table</Link><span className="sr-only">(current)</span>  
-                  </li>
-                  <li className="nav-item" >
-                    <Link className="nav-link align-middle" href="#" onClick={changeVLStyle} to="/voteslinechart"  style={voteLineStyle}>Votes Line Chart</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link align-middle" href="#" onClick={changeSPStyle} to="/spikeslinechart" style={spikesLineStyle}>Spikes Line Chart</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link align-middle" href="#" onClick={changeDLStyle} to="/difflinechart" style={diffLineStyle}>Difference Line Chart</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link align-middle" href="#" onClick={changePLStyle}  to="/perlinechart" style={perLineStyle}>Percent Line Chart</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link align-middle" href="#" onClick={changePCStyle} to="/piechart" style={pieChartStyle}>Pie Chart</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link align-middle" href="#" onClick={changeBCStyle}  to="/barchart" style={barChartStyle} >Votes Bar Chart</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link align-middle" href="#" onClick={changeBSTStyle}  to="/binstackedchart" style={binStackedStyle} >Bin Stacked Chart</Link>
-                  </li>
-                </ul>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">             
+              <div className="row justify-content-md-center">                
+                <div className="col-2 col-lg-2">
+                  <a className="navbar-brand container mt-4" href="#">Select Table/Chart</a>
+                  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                  </button>
+                </div>
+                <div className="collapse navbar-collapse col-md-auto align-middle" id="navbarNav">
+                  <ul className="navbar-nav">
+                    <li className="nav-item">
+                      <Link to="/" className="nav-link align-middle" style={linkStyle}  href="#"><span>Reset</span></Link>   
+                    </li>
+                    <li className="nav-item">
+                      <Link className="nav-link align-middle" href="#" onClick={changeVTStyle} to="/" style={voteTableStyle} >Votes Table</Link><span className="sr-only">(current)</span>  
+                    </li>
+                    <li className="nav-item" >
+                      <Link className="nav-link align-middle" href="#" onClick={changeVLStyle} to="/voteslinechart"  style={voteLineStyle}>Votes Line Chart</Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link className="nav-link align-middle" href="#" onClick={changeSPStyle} to="/spikeslinechart" style={spikesLineStyle}>Spikes Line Chart</Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link className="nav-link align-middle" href="#" onClick={changeDLStyle} to="/difflinechart" style={diffLineStyle}>Difference Line Chart</Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link className="nav-link align-middle" href="#" onClick={changePLStyle}  to="/perlinechart" style={perLineStyle}>Percent Line Chart</Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link className="nav-link align-middle" href="#" onClick={changePCStyle} to="/piechart" style={pieChartStyle}>Pie Chart</Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link className="nav-link align-middle" href="#" onClick={changeBCStyle}  to="/barchart" style={barChartStyle} >Votes Bar Chart</Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link className="nav-link align-middle" href="#" onClick={changeBSTStyle}  to="/binstackedchart" style={binStackedStyle} >Bin Stacked Chart</Link>
+                    </li>
+                  </ul>
+                </div>    
               </div>
+              
             </nav>
             <Routes>
               <Route path='/home'/>
