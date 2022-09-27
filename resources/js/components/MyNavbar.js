@@ -41,8 +41,8 @@ export default function MyNavbar(props){
     return(
         <BrowserRouter>            
             <Navbar bg="dark" variant="dark" expand="lg" className="p-4" >
-                    <Navbar.Brand href="#home">Laravel/React/Bootstrap Work Porfolio</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Brand href="#home" className="text-break d-flex justify-content-center">Laravel/React/Bootstrap<br/> Work Porfolio</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" className="mt-2"/>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
                             <Nav.Link href="#home"><Link to="/repos" onMouseDown={handleClick} >Home/Code Repos</Link></Nav.Link>

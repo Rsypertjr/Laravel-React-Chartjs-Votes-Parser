@@ -84,13 +84,22 @@ export default function MyCarousel(props){
   const centering = {
     textAlign: "center"
   }
+
+  const carouStyle = {
+    margin : "0 2.5em 10em 0",
+    backgroundColor : "beige",
+    marginTop : "4em"
+}
+
+
 return(  
-        <Carousel id="myCarousel" >
+    <Container>
+        <Carousel id="myCarousel" style={carouStyle} >
             { cinfo.map((info,index) =>(
                             
               <Carousel.Item className="carousel-item">                              
                     <Carousel.Caption></Carousel.Caption> 
-                    <Container key={index} className="fluid p-2 w-75 h-90">
+                    <Container key={index} className="fluid p-2 w-75 h-90 text-break">
                         <h3 style={centering}>{info.header}</h3>
                         <div style={centering}>{info.statement}</div>
                     </Container>               
@@ -99,5 +108,7 @@ return(
            
         }
         </Carousel>
+    </Container>
+        
     );
 }
