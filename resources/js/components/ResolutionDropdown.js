@@ -1,6 +1,6 @@
 import {React, useEffect, useState, useCallback} from 'react';
 import ReactDOM from 'react-dom';
-import { Button, OverlayTrigger, Tooltip, input,Container, Row } from 'react-bootstrap';
+import { Button, Tooltip, input,Container, Row } from 'react-bootstrap';
 
 export default function ResolutionDropdown(props){ 
     const[resolution, setResolution ] = useState(props.parse_resolution);
@@ -35,8 +35,8 @@ export default function ResolutionDropdown(props){
 
     return(
             <Container>
-                <Row className="justify-content-start">
-                    <div className="btn-group dropright">
+                <Row className="justify-content-center">
+                    <div className="btn-group w-50 mb-4">
                         <button type="button" className="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Select Chart Resolution (X Times)
                         </button>
@@ -45,20 +45,9 @@ export default function ResolutionDropdown(props){
                            <>
                                { 
                                 props.theResolutions.map((res,j) => (
-                                    <span key={j}>
-                                        <OverlayTrigger
-                                            key='top'
-                                            placement='top'
-                                            overlay={
-                                                <Tooltip id={`tooltip-${res}`}>
-                                                    <strong>{getTitle(res)}</strong>
-                                                </Tooltip>
-                                            }
-                                            >
-                                            <input type="number" className="dropdown-item" href="#" id={'res_'+res} onClick={selectResolution} value={res}
-                                                    data-toggle="tooltip" data-placement="top" title={title}/> 
-                                        </OverlayTrigger>
-                                    </span>
+                                        
+                                        <input key={j} type="number" className="dropdown-item" href="#" id={'res_'+res} onClick={selectResolution} value={res}
+                                                data-toggle="tooltip" data-placement="top" title={title}/> 
                                     ))
                                 
                                 }

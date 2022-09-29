@@ -475,6 +475,9 @@ export default class VotesApp extends React.Component {
     perremainingtrump_store  = perremainingtrump_store.filter((i) => i.length > 0);
     perremainingbiden_store  = perremainingbiden_store.filter((i) => i.length > 0);  
 
+    console.log("Date Data Biden Add Store: ", datedatabidenadddiff_store);
+    console.log("Date Data Trump Add Store: ", datedatatrumpadddiff_store);
+
     let numPages = dateheaders_store.length;
     var arr = [];
     for(var i=0;i<numPages;i++){
@@ -684,6 +687,7 @@ export default class VotesApp extends React.Component {
       this.setState({     
         parse_resolution:parseInt(e),
         chartData:  chartData,
+        pageNo: 1,
         noOfChartPages : chartData.numPages,
         theChartArray: chartData.chartArray
        });

@@ -143,7 +143,7 @@ export default function VotesLineChart2(props) {
    
     return (
         <div className="chart-viewer">
-             <Container className="h-10 d-flex justify-content-center">
+             <Container className="h-10 d-flex justify-content-center mb-4">
                 <h4>Total Votes Line Chart</h4>
             </Container>   
             <Container>

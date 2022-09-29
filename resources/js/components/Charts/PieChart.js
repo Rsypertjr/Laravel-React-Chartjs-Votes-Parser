@@ -147,7 +147,7 @@ export default function PieChart(props) {
 
     return (      
         <div className="chart-viewer">
-            <Container className="h-10 d-flex justify-content-center">
+            <Container className="h-10 d-flex justify-content-center mb-4">
                 <h6>Votes Pie Chart</h6>
             </Container>
             <Container>

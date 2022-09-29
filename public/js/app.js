@@ -9754,133 +9754,6 @@ NavItem.displayName = 'NavItem';
 
 /***/ }),
 
-/***/ "./node_modules/@restart/ui/esm/Overlay.js":
-/*!*************************************************!*\
-  !*** ./node_modules/@restart/ui/esm/Overlay.js ***!
-  \*************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _restart_hooks_useCallbackRef__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @restart/hooks/useCallbackRef */ "./node_modules/@restart/hooks/esm/useCallbackRef.js");
-/* harmony import */ var _restart_hooks_useMergedRefs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @restart/hooks/useMergedRefs */ "./node_modules/@restart/hooks/esm/useMergedRefs.js");
-/* harmony import */ var _usePopper__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./usePopper */ "./node_modules/@restart/ui/esm/usePopper.js");
-/* harmony import */ var _useRootClose__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./useRootClose */ "./node_modules/@restart/ui/esm/useRootClose.js");
-/* harmony import */ var _useWaitForDOMRef__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./useWaitForDOMRef */ "./node_modules/@restart/ui/esm/useWaitForDOMRef.js");
-/* harmony import */ var _mergeOptionsWithPopperConfig__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./mergeOptionsWithPopperConfig */ "./node_modules/@restart/ui/esm/mergeOptionsWithPopperConfig.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-
-
-
-
-
-
-
-
-
-/**
- * Built on top of `Popper.js`, the overlay component is
- * great for custom tooltip overlays.
- */
-const Overlay = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef((props, outerRef) => {
-  const {
-    flip,
-    offset,
-    placement,
-    containerPadding,
-    popperConfig = {},
-    transition: Transition
-  } = props;
-  const [rootElement, attachRef] = (0,_restart_hooks_useCallbackRef__WEBPACK_IMPORTED_MODULE_2__["default"])();
-  const [arrowElement, attachArrowRef] = (0,_restart_hooks_useCallbackRef__WEBPACK_IMPORTED_MODULE_2__["default"])();
-  const mergedRef = (0,_restart_hooks_useMergedRefs__WEBPACK_IMPORTED_MODULE_3__["default"])(attachRef, outerRef);
-  const container = (0,_useWaitForDOMRef__WEBPACK_IMPORTED_MODULE_5__["default"])(props.container);
-  const target = (0,_useWaitForDOMRef__WEBPACK_IMPORTED_MODULE_5__["default"])(props.target);
-  const [exited, setExited] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(!props.show);
-  const popper = (0,_usePopper__WEBPACK_IMPORTED_MODULE_6__["default"])(target, rootElement, (0,_mergeOptionsWithPopperConfig__WEBPACK_IMPORTED_MODULE_7__["default"])({
-    placement,
-    enableEvents: !!props.show,
-    containerPadding: containerPadding || 5,
-    flip,
-    offset,
-    arrowElement,
-    popperConfig
-  }));
-
-  if (props.show) {
-    if (exited) setExited(false);
-  } else if (!props.transition && !exited) {
-    setExited(true);
-  }
-
-  const handleHidden = (...args) => {
-    setExited(true);
-
-    if (props.onExited) {
-      props.onExited(...args);
-    }
-  }; // Don't un-render the overlay while it's transitioning out.
-
-
-  const mountOverlay = props.show || Transition && !exited;
-  (0,_useRootClose__WEBPACK_IMPORTED_MODULE_8__["default"])(rootElement, props.onHide, {
-    disabled: !props.rootClose || props.rootCloseDisabled,
-    clickTrigger: props.rootCloseEvent
-  });
-
-  if (!mountOverlay) {
-    // Don't bother showing anything if we don't have to.
-    return null;
-  }
-
-  let child = props.children(Object.assign({}, popper.attributes.popper, {
-    style: popper.styles.popper,
-    ref: mergedRef
-  }), {
-    popper,
-    placement,
-    show: !!props.show,
-    arrowProps: Object.assign({}, popper.attributes.arrow, {
-      style: popper.styles.arrow,
-      ref: attachArrowRef
-    })
-  });
-
-  if (Transition) {
-    const {
-      onExit,
-      onExiting,
-      onEnter,
-      onEntering,
-      onEntered
-    } = props;
-    child = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Transition, {
-      in: props.show,
-      appear: true,
-      onExit: onExit,
-      onExiting: onExiting,
-      onExited: handleHidden,
-      onEnter: onEnter,
-      onEntering: onEntering,
-      onEntered: onEntered,
-      children: child
-    });
-  }
-
-  return container ? /*#__PURE__*/react_dom__WEBPACK_IMPORTED_MODULE_1__.createPortal(child, container) : null;
-});
-Overlay.displayName = 'Overlay';
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Overlay);
-
-/***/ }),
-
 /***/ "./node_modules/@restart/ui/esm/SelectableContext.js":
 /*!***********************************************************!*\
   !*** ./node_modules/@restart/ui/esm/SelectableContext.js ***!
@@ -10369,82 +10242,6 @@ function usePopper(referenceElement, popperElement, _ref = {}) {
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (usePopper);
-
-/***/ }),
-
-/***/ "./node_modules/@restart/ui/esm/useRootClose.js":
-/*!******************************************************!*\
-  !*** ./node_modules/@restart/ui/esm/useRootClose.js ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var dom_helpers_listen__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dom-helpers/listen */ "./node_modules/dom-helpers/esm/listen.js");
-/* harmony import */ var dom_helpers_ownerDocument__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! dom-helpers/ownerDocument */ "./node_modules/dom-helpers/esm/ownerDocument.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _restart_hooks_useEventCallback__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @restart/hooks/useEventCallback */ "./node_modules/@restart/hooks/esm/useEventCallback.js");
-/* harmony import */ var _useClickOutside__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./useClickOutside */ "./node_modules/@restart/ui/esm/useClickOutside.js");
-
-
-
-
-
-const escapeKeyCode = 27;
-
-const noop = () => {};
-
-/**
- * The `useRootClose` hook registers your callback on the document
- * when rendered. Powers the `<Overlay/>` component. This is used achieve modal
- * style behavior where your callback is triggered when the user tries to
- * interact with the rest of the document or hits the `esc` key.
- *
- * @param {Ref<HTMLElement>| HTMLElement} ref  The element boundary
- * @param {function} onRootClose
- * @param {object=}  options
- * @param {boolean=} options.disabled
- * @param {string=}  options.clickTrigger The DOM event name (click, mousedown, etc) to attach listeners on
- */
-function useRootClose(ref, onRootClose, {
-  disabled,
-  clickTrigger
-} = {}) {
-  const onClose = onRootClose || noop;
-  (0,_useClickOutside__WEBPACK_IMPORTED_MODULE_4__["default"])(ref, onClose, {
-    disabled,
-    clickTrigger
-  });
-  const handleKeyUp = (0,_restart_hooks_useEventCallback__WEBPACK_IMPORTED_MODULE_3__["default"])(e => {
-    if (e.keyCode === escapeKeyCode) {
-      onClose(e);
-    }
-  });
-  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
-    if (disabled || ref == null) return undefined;
-    const doc = (0,dom_helpers_ownerDocument__WEBPACK_IMPORTED_MODULE_1__["default"])((0,_useClickOutside__WEBPACK_IMPORTED_MODULE_4__.getRefTarget)(ref)); // Store the current event to avoid triggering handlers immediately
-    // https://github.com/facebook/react/issues/20074
-
-    let currentEvent = (doc.defaultView || window).event;
-    const removeKeyupListener = (0,dom_helpers_listen__WEBPACK_IMPORTED_MODULE_0__["default"])(doc, 'keyup', e => {
-      // skip if this event is the same as the one running when we added the handlers
-      if (e === currentEvent) {
-        currentEvent = undefined;
-        return;
-      }
-
-      handleKeyUp(e);
-    });
-    return () => {
-      removeKeyupListener();
-    };
-  }, [ref, disabled, handleKeyUp]);
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useRootClose);
 
 /***/ }),
 
@@ -13338,7 +13135,7 @@ function BarChart(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     className: "chart-viewer",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      className: "h-10 d-flex justify-content-center",
+      className: "h-10 d-flex justify-content-center mb-4",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
         children: "Total Votes Bar Chart"
       })
@@ -13516,7 +13313,7 @@ function BinStackedChart(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     className: "chart-viewer",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      className: "h-10 d-flex justify-content-center",
+      className: "h-10 d-flex justify-content-center mb-4",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
         children: "Total Votes Bin Stacked Chart"
       })
@@ -13688,7 +13485,7 @@ function DiffLineChart(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     className: "chart-viewer",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-      className: "container h-10 d-flex justify-content-center",
+      className: "container h-10 d-flex justify-content-center mb-4",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
         children: "Difference Line Chart"
       })
@@ -13837,7 +13634,7 @@ function PerLineChart(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     className: "chart-viewer",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      className: "h-10 d-flex justify-content-center",
+      className: "h-10 d-flex justify-content-center mb-4",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
         children: "Remaining Percetage of Vote Chart"
       })
@@ -14008,7 +13805,7 @@ function PieChart(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     className: "chart-viewer",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      className: "h-10 d-flex justify-content-center",
+      className: "h-10 d-flex justify-content-center mb-4",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h6", {
         children: "Votes Pie Chart"
       })
@@ -14187,7 +13984,7 @@ function SpikesLineChart(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     className: "chart-viewer",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      className: "h-10 d-flex justify-content-center",
+      className: "h-10 d-flex justify-content-center mb-4",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
         children: "Vote Spikes Line Chart"
       })
@@ -14347,7 +14144,7 @@ function VotesLineChart2(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     className: "chart-viewer",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      className: "h-10 d-flex justify-content-center",
+      className: "h-10 d-flex justify-content-center mb-4",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
         children: "Total Votes Line Chart"
       })
@@ -16213,8 +16010,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
 /* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Row.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/OverlayTrigger.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Tooltip.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -16270,9 +16065,9 @@ function ResolutionDropdown(props) {
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      className: "justify-content-start",
+      className: "justify-content-center",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        className: "btn-group dropright",
+        className: "btn-group w-50 mb-4",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
           type: "button",
           className: "btn btn-warning dropdown-toggle",
@@ -16284,27 +16079,16 @@ function ResolutionDropdown(props) {
           className: "dropdown-menu",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
             children: props.theResolutions.map(function (res, j) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                  placement: "top",
-                  overlay: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                    id: "tooltip-".concat(res),
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("strong", {
-                      children: getTitle(res)
-                    })
-                  }),
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                    type: "number",
-                    className: "dropdown-item",
-                    href: "#",
-                    id: 'res_' + res,
-                    onClick: selectResolution,
-                    value: res,
-                    "data-toggle": "tooltip",
-                    "data-placement": "top",
-                    title: title
-                  })
-                }, 'top')
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                type: "number",
+                className: "dropdown-item",
+                href: "#",
+                id: 'res_' + res,
+                onClick: selectResolution,
+                value: res,
+                "data-toggle": "tooltip",
+                "data-placement": "top",
+                title: title
               }, j);
             })
           })
@@ -17303,6 +17087,8 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
       perremainingbiden_store = perremainingbiden_store.filter(function (i) {
         return i.length > 0;
       });
+      console.log("Date Data Biden Add Store: ", datedatabidenadddiff_store);
+      console.log("Date Data Trump Add Store: ", datedatatrumpadddiff_store);
       var numPages = dateheaders_store.length;
       var arr = [];
 
@@ -17510,6 +17296,7 @@ var VotesApp = /*#__PURE__*/function (_React$Component) {
       this.setState({
         parse_resolution: parseInt(e),
         chartData: chartData,
+        pageNo: 1,
         noOfChartPages: chartData.numPages,
         theChartArray: chartData.chartArray
       });
@@ -40332,409 +40119,6 @@ OffcanvasToggling.displayName = 'OffcanvasToggling';
 
 /***/ }),
 
-/***/ "./node_modules/react-bootstrap/esm/Overlay.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/react-bootstrap/esm/Overlay.js ***!
-  \*****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _restart_ui_Overlay__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @restart/ui/Overlay */ "./node_modules/@restart/ui/esm/Overlay.js");
-/* harmony import */ var _restart_hooks_useCallbackRef__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @restart/hooks/useCallbackRef */ "./node_modules/@restart/hooks/esm/useCallbackRef.js");
-/* harmony import */ var _restart_hooks_useEventCallback__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @restart/hooks/useEventCallback */ "./node_modules/@restart/hooks/esm/useEventCallback.js");
-/* harmony import */ var _restart_hooks_useIsomorphicEffect__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @restart/hooks/useIsomorphicEffect */ "./node_modules/@restart/hooks/esm/useIsomorphicEffect.js");
-/* harmony import */ var _restart_hooks_useMergedRefs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @restart/hooks/useMergedRefs */ "./node_modules/@restart/hooks/esm/useMergedRefs.js");
-/* harmony import */ var _useOverlayOffset__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./useOverlayOffset */ "./node_modules/react-bootstrap/esm/useOverlayOffset.js");
-/* harmony import */ var _Fade__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Fade */ "./node_modules/react-bootstrap/esm/Fade.js");
-/* harmony import */ var _safeFindDOMNode__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./safeFindDOMNode */ "./node_modules/react-bootstrap/esm/safeFindDOMNode.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-
-
-
-
-
-
-
-
-
-
-const defaultProps = {
-  transition: _Fade__WEBPACK_IMPORTED_MODULE_7__["default"],
-  rootClose: false,
-  show: false,
-  placement: 'top'
-};
-
-function wrapRefs(props, arrowProps) {
-  const {
-    ref
-  } = props;
-  const {
-    ref: aRef
-  } = arrowProps;
-
-  props.ref = ref.__wrapped || (ref.__wrapped = r => ref((0,_safeFindDOMNode__WEBPACK_IMPORTED_MODULE_8__["default"])(r)));
-
-  arrowProps.ref = aRef.__wrapped || (aRef.__wrapped = r => aRef((0,_safeFindDOMNode__WEBPACK_IMPORTED_MODULE_8__["default"])(r)));
-}
-
-const Overlay = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.forwardRef(({
-  children: overlay,
-  transition,
-  popperConfig = {},
-  ...outerProps
-}, outerRef) => {
-  const popperRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)({});
-  const [firstRenderedState, setFirstRenderedState] = (0,_restart_hooks_useCallbackRef__WEBPACK_IMPORTED_MODULE_2__["default"])();
-  const [ref, modifiers] = (0,_useOverlayOffset__WEBPACK_IMPORTED_MODULE_9__["default"])(outerProps.offset);
-  const mergedRef = (0,_restart_hooks_useMergedRefs__WEBPACK_IMPORTED_MODULE_5__["default"])(outerRef, ref);
-  const actualTransition = transition === true ? _Fade__WEBPACK_IMPORTED_MODULE_7__["default"] : transition || undefined;
-  const handleFirstUpdate = (0,_restart_hooks_useEventCallback__WEBPACK_IMPORTED_MODULE_3__["default"])(state => {
-    setFirstRenderedState(state);
-    popperConfig == null ? void 0 : popperConfig.onFirstUpdate == null ? void 0 : popperConfig.onFirstUpdate(state);
-  });
-  (0,_restart_hooks_useIsomorphicEffect__WEBPACK_IMPORTED_MODULE_4__["default"])(() => {
-    if (firstRenderedState) {
-      popperRef.current.scheduleUpdate == null ? void 0 : popperRef.current.scheduleUpdate();
-    }
-  }, [firstRenderedState]);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_restart_ui_Overlay__WEBPACK_IMPORTED_MODULE_10__["default"], { ...outerProps,
-    ref: mergedRef,
-    popperConfig: { ...popperConfig,
-      modifiers: modifiers.concat(popperConfig.modifiers || []),
-      onFirstUpdate: handleFirstUpdate
-    },
-    transition: actualTransition,
-    children: (overlayProps, {
-      arrowProps,
-      popper: popperObj,
-      show
-    }) => {
-      var _popperObj$state, _popperObj$state$modi;
-
-      wrapRefs(overlayProps, arrowProps); // Need to get placement from popper object, handling case when overlay is flipped using 'flip' prop
-
-      const updatedPlacement = popperObj == null ? void 0 : popperObj.placement;
-      const popper = Object.assign(popperRef.current, {
-        state: popperObj == null ? void 0 : popperObj.state,
-        scheduleUpdate: popperObj == null ? void 0 : popperObj.update,
-        placement: updatedPlacement,
-        outOfBoundaries: (popperObj == null ? void 0 : (_popperObj$state = popperObj.state) == null ? void 0 : (_popperObj$state$modi = _popperObj$state.modifiersData.hide) == null ? void 0 : _popperObj$state$modi.isReferenceHidden) || false
-      });
-      if (typeof overlay === 'function') return overlay({ ...overlayProps,
-        placement: updatedPlacement,
-        show,
-        ...(!transition && show && {
-          className: 'show'
-        }),
-        popper,
-        arrowProps
-      });
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.cloneElement(overlay, { ...overlayProps,
-        placement: updatedPlacement,
-        arrowProps,
-        popper,
-        className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(overlay.props.className, !transition && show && 'show'),
-        style: { ...overlay.props.style,
-          ...overlayProps.style
-        }
-      });
-    }
-  });
-});
-Overlay.displayName = 'Overlay';
-Overlay.defaultProps = defaultProps;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Overlay);
-
-/***/ }),
-
-/***/ "./node_modules/react-bootstrap/esm/OverlayTrigger.js":
-/*!************************************************************!*\
-  !*** ./node_modules/react-bootstrap/esm/OverlayTrigger.js ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var dom_helpers_contains__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dom-helpers/contains */ "./node_modules/dom-helpers/esm/contains.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _restart_hooks_useTimeout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @restart/hooks/useTimeout */ "./node_modules/@restart/hooks/esm/useTimeout.js");
-/* harmony import */ var warning__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! warning */ "./node_modules/warning/warning.js");
-/* harmony import */ var warning__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(warning__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var uncontrollable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! uncontrollable */ "./node_modules/uncontrollable/lib/esm/index.js");
-/* harmony import */ var _restart_hooks_useMergedRefs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @restart/hooks/useMergedRefs */ "./node_modules/@restart/hooks/esm/useMergedRefs.js");
-/* harmony import */ var _Overlay__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Overlay */ "./node_modules/react-bootstrap/esm/Overlay.js");
-/* harmony import */ var _safeFindDOMNode__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./safeFindDOMNode */ "./node_modules/react-bootstrap/esm/safeFindDOMNode.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-
-
-
-
-
-
-
-
-
-
-
-function normalizeDelay(delay) {
-  return delay && typeof delay === 'object' ? delay : {
-    show: delay,
-    hide: delay
-  };
-} // Simple implementation of mouseEnter and mouseLeave.
-// React's built version is broken: https://github.com/facebook/react/issues/4251
-// for cases when the trigger is disabled and mouseOut/Over can cause flicker
-// moving from one child element to another.
-
-
-function handleMouseOverOut( // eslint-disable-next-line @typescript-eslint/no-shadow
-handler, args, relatedNative) {
-  const [e] = args;
-  const target = e.currentTarget;
-  const related = e.relatedTarget || e.nativeEvent[relatedNative];
-
-  if ((!related || related !== target) && !(0,dom_helpers_contains__WEBPACK_IMPORTED_MODULE_0__["default"])(target, related)) {
-    handler(...args);
-  }
-}
-
-const defaultProps = {
-  defaultShow: false,
-  trigger: ['hover', 'focus']
-};
-
-function OverlayTrigger({
-  trigger,
-  overlay,
-  children,
-  popperConfig = {},
-  show: propsShow,
-  defaultShow = false,
-  onToggle,
-  delay: propsDelay,
-  placement,
-  flip = placement && placement.indexOf('auto') !== -1,
-  ...props
-}) {
-  const triggerNodeRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
-  const mergedRef = (0,_restart_hooks_useMergedRefs__WEBPACK_IMPORTED_MODULE_5__["default"])(triggerNodeRef, children.ref);
-  const timeout = (0,_restart_hooks_useTimeout__WEBPACK_IMPORTED_MODULE_2__["default"])();
-  const hoverStateRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)('');
-  const [show, setShow] = (0,uncontrollable__WEBPACK_IMPORTED_MODULE_4__.useUncontrolledProp)(propsShow, defaultShow, onToggle);
-  const delay = normalizeDelay(propsDelay);
-  const {
-    onFocus,
-    onBlur,
-    onClick
-  } = typeof children !== 'function' ? react__WEBPACK_IMPORTED_MODULE_1__.Children.only(children).props : {};
-
-  const attachRef = r => {
-    mergedRef((0,_safeFindDOMNode__WEBPACK_IMPORTED_MODULE_7__["default"])(r));
-  };
-
-  const handleShow = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)(() => {
-    timeout.clear();
-    hoverStateRef.current = 'show';
-
-    if (!delay.show) {
-      setShow(true);
-      return;
-    }
-
-    timeout.set(() => {
-      if (hoverStateRef.current === 'show') setShow(true);
-    }, delay.show);
-  }, [delay.show, setShow, timeout]);
-  const handleHide = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)(() => {
-    timeout.clear();
-    hoverStateRef.current = 'hide';
-
-    if (!delay.hide) {
-      setShow(false);
-      return;
-    }
-
-    timeout.set(() => {
-      if (hoverStateRef.current === 'hide') setShow(false);
-    }, delay.hide);
-  }, [delay.hide, setShow, timeout]);
-  const handleFocus = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)((...args) => {
-    handleShow();
-    onFocus == null ? void 0 : onFocus(...args);
-  }, [handleShow, onFocus]);
-  const handleBlur = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)((...args) => {
-    handleHide();
-    onBlur == null ? void 0 : onBlur(...args);
-  }, [handleHide, onBlur]);
-  const handleClick = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)((...args) => {
-    setShow(!show);
-    onClick == null ? void 0 : onClick(...args);
-  }, [onClick, setShow, show]);
-  const handleMouseOver = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)((...args) => {
-    handleMouseOverOut(handleShow, args, 'fromElement');
-  }, [handleShow]);
-  const handleMouseOut = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)((...args) => {
-    handleMouseOverOut(handleHide, args, 'toElement');
-  }, [handleHide]);
-  const triggers = trigger == null ? [] : [].concat(trigger);
-  const triggerProps = {
-    ref: attachRef
-  };
-
-  if (triggers.indexOf('click') !== -1) {
-    triggerProps.onClick = handleClick;
-  }
-
-  if (triggers.indexOf('focus') !== -1) {
-    triggerProps.onFocus = handleFocus;
-    triggerProps.onBlur = handleBlur;
-  }
-
-  if (triggers.indexOf('hover') !== -1) {
-     true ? warning__WEBPACK_IMPORTED_MODULE_3___default()(triggers.length > 1, '[react-bootstrap] Specifying only the `"hover"` trigger limits the visibility of the overlay to just mouse users. Consider also including the `"focus"` trigger so that touch and keyboard only users can see the overlay as well.') : 0;
-    triggerProps.onMouseOver = handleMouseOver;
-    triggerProps.onMouseOut = handleMouseOut;
-  }
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
-    children: [typeof children === 'function' ? children(triggerProps) : /*#__PURE__*/(0,react__WEBPACK_IMPORTED_MODULE_1__.cloneElement)(children, triggerProps), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Overlay__WEBPACK_IMPORTED_MODULE_8__["default"], { ...props,
-      show: show,
-      onHide: handleHide,
-      flip: flip,
-      placement: placement,
-      popperConfig: popperConfig,
-      target: triggerNodeRef.current,
-      children: overlay
-    })]
-  });
-}
-
-OverlayTrigger.defaultProps = defaultProps;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OverlayTrigger);
-
-/***/ }),
-
-/***/ "./node_modules/react-bootstrap/esm/Popover.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/react-bootstrap/esm/Popover.js ***!
-  \*****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _ThemeProvider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ThemeProvider */ "./node_modules/react-bootstrap/esm/ThemeProvider.js");
-/* harmony import */ var _PopoverHeader__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./PopoverHeader */ "./node_modules/react-bootstrap/esm/PopoverHeader.js");
-/* harmony import */ var _PopoverBody__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./PopoverBody */ "./node_modules/react-bootstrap/esm/PopoverBody.js");
-/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./helpers */ "./node_modules/react-bootstrap/esm/helpers.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-
-
-
-
-
-
-const defaultProps = {
-  placement: 'right'
-};
-const Popover = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(({
-  bsPrefix,
-  placement,
-  className,
-  style,
-  children,
-  body,
-  arrowProps,
-  popper: _,
-  show: _1,
-  ...props
-}, ref) => {
-  const decoratedBsPrefix = (0,_ThemeProvider__WEBPACK_IMPORTED_MODULE_3__.useBootstrapPrefix)(bsPrefix, 'popover');
-  const isRTL = (0,_ThemeProvider__WEBPACK_IMPORTED_MODULE_3__.useIsRTL)();
-  const [primaryPlacement] = (placement == null ? void 0 : placement.split('-')) || [];
-  const bsDirection = (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.getOverlayDirection)(primaryPlacement, isRTL);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    ref: ref,
-    role: "tooltip",
-    style: style,
-    "x-placement": primaryPlacement,
-    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()(className, decoratedBsPrefix, primaryPlacement && `bs-popover-${bsDirection}`),
-    ...props,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "popover-arrow",
-      ...arrowProps
-    }), body ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_PopoverBody__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      children: children
-    }) : children]
-  });
-});
-Popover.defaultProps = defaultProps;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Object.assign(Popover, {
-  Header: _PopoverHeader__WEBPACK_IMPORTED_MODULE_6__["default"],
-  Body: _PopoverBody__WEBPACK_IMPORTED_MODULE_5__["default"],
-  // Default popover offset.
-  // https://github.com/twbs/bootstrap/blob/5c32767e0e0dbac2d934bcdee03719a65d3f1187/js/src/popover.js#L28
-  POPPER_OFFSET: [0, 8]
-}));
-
-/***/ }),
-
-/***/ "./node_modules/react-bootstrap/esm/PopoverBody.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/react-bootstrap/esm/PopoverBody.js ***!
-  \*********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _createWithBsPrefix__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createWithBsPrefix */ "./node_modules/react-bootstrap/esm/createWithBsPrefix.js");
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_createWithBsPrefix__WEBPACK_IMPORTED_MODULE_0__["default"])('popover-body'));
-
-/***/ }),
-
-/***/ "./node_modules/react-bootstrap/esm/PopoverHeader.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/react-bootstrap/esm/PopoverHeader.js ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _createWithBsPrefix__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createWithBsPrefix */ "./node_modules/react-bootstrap/esm/createWithBsPrefix.js");
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,_createWithBsPrefix__WEBPACK_IMPORTED_MODULE_0__["default"])('popover-header'));
-
-/***/ }),
-
 /***/ "./node_modules/react-bootstrap/esm/Row.js":
 /*!*************************************************!*\
   !*** ./node_modules/react-bootstrap/esm/Row.js ***!
@@ -40899,69 +40283,6 @@ function createBootstrapComponent(Component, opts) {
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ThemeProvider);
-
-/***/ }),
-
-/***/ "./node_modules/react-bootstrap/esm/Tooltip.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/react-bootstrap/esm/Tooltip.js ***!
-  \*****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _ThemeProvider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ThemeProvider */ "./node_modules/react-bootstrap/esm/ThemeProvider.js");
-/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./helpers */ "./node_modules/react-bootstrap/esm/helpers.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-
-
-
-
-const defaultProps = {
-  placement: 'right'
-};
-const Tooltip = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(({
-  bsPrefix,
-  placement,
-  className,
-  style,
-  children,
-  arrowProps,
-  popper: _,
-  show: _2,
-  ...props
-}, ref) => {
-  bsPrefix = (0,_ThemeProvider__WEBPACK_IMPORTED_MODULE_3__.useBootstrapPrefix)(bsPrefix, 'tooltip');
-  const isRTL = (0,_ThemeProvider__WEBPACK_IMPORTED_MODULE_3__.useIsRTL)();
-  const [primaryPlacement] = (placement == null ? void 0 : placement.split('-')) || [];
-  const bsDirection = (0,_helpers__WEBPACK_IMPORTED_MODULE_4__.getOverlayDirection)(primaryPlacement, isRTL);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    ref: ref,
-    style: style,
-    role: "tooltip",
-    "x-placement": primaryPlacement,
-    className: classnames__WEBPACK_IMPORTED_MODULE_0___default()(className, bsPrefix, `bs-tooltip-${bsDirection}`),
-    ...props,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: "tooltip-arrow",
-      ...arrowProps
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      className: `${bsPrefix}-inner`,
-      children: children
-    })]
-  });
-});
-Tooltip.defaultProps = defaultProps;
-Tooltip.displayName = 'Tooltip';
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Tooltip);
 
 /***/ }),
 
@@ -41161,36 +40482,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/react-bootstrap/esm/helpers.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/react-bootstrap/esm/helpers.js ***!
-  \*****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "BsPrefixComponent": () => (/* binding */ BsPrefixComponent),
-/* harmony export */   "getOverlayDirection": () => (/* binding */ getOverlayDirection)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-class BsPrefixComponent extends react__WEBPACK_IMPORTED_MODULE_0__.Component {} // Need to use this instead of typeof Component to get proper type checking.
-
-function getOverlayDirection(placement, isRTL) {
-  let bsDirection = placement;
-
-  if (placement === 'left') {
-    bsDirection = isRTL ? 'end' : 'start';
-  } else if (placement === 'right') {
-    bsDirection = isRTL ? 'start' : 'end';
-  }
-
-  return bsDirection;
-}
-
-/***/ }),
-
 /***/ "./node_modules/react-bootstrap/esm/safeFindDOMNode.js":
 /*!*************************************************************!*\
   !*** ./node_modules/react-bootstrap/esm/safeFindDOMNode.js ***!
@@ -41265,47 +40556,6 @@ __webpack_require__.r(__webpack_exports__);
 function triggerBrowserReflow(node) {
   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
   node.offsetHeight;
-}
-
-/***/ }),
-
-/***/ "./node_modules/react-bootstrap/esm/useOverlayOffset.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/react-bootstrap/esm/useOverlayOffset.js ***!
-  \**************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ useOverlayOffset)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var dom_helpers_hasClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! dom-helpers/hasClass */ "./node_modules/dom-helpers/esm/hasClass.js");
-/* harmony import */ var _ThemeProvider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ThemeProvider */ "./node_modules/react-bootstrap/esm/ThemeProvider.js");
-/* harmony import */ var _Popover__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Popover */ "./node_modules/react-bootstrap/esm/Popover.js");
-
-
-
- // This is meant for internal use.
-// This applies a custom offset to the overlay if it's a popover.
-
-function useOverlayOffset(customOffset) {
-  const overlayRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  const popoverClass = (0,_ThemeProvider__WEBPACK_IMPORTED_MODULE_2__.useBootstrapPrefix)(undefined, 'popover');
-  const offset = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => ({
-    name: 'offset',
-    options: {
-      offset: () => {
-        if (overlayRef.current && (0,dom_helpers_hasClass__WEBPACK_IMPORTED_MODULE_1__["default"])(overlayRef.current, popoverClass)) {
-          return customOffset || _Popover__WEBPACK_IMPORTED_MODULE_3__["default"].POPPER_OFFSET;
-        }
-
-        return customOffset || [0, 0];
-      }
-    }
-  }), [customOffset, popoverClass]);
-  return [overlayRef, [offset]];
 }
 
 /***/ }),

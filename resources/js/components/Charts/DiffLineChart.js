@@ -161,7 +161,7 @@ export default function DiffLineChart(props) {
 
     return (      
         <div className="chart-viewer">  
-            <div className="container h-10 d-flex justify-content-center">
+            <div className="container h-10 d-flex justify-content-center mb-4">
                 <h4>Difference Line Chart</h4>
             </div>       
             <Container>
