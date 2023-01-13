@@ -62,3 +62,15 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Composer 
+- Needs composer installed for Laravel dependencies including Artisan server and migration management
+- composer install or composer update to install dependencies
+- php artisan migrate - install mysql database
+
+
+## Laravel Mix w/npm
+- Needs Node and NPM installed
+- npm install or npm update to install dependencies
+- npm run dev to install Laravel mix dependencies
+- php artisan serve - to run local server
