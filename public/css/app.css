@@ -123,16 +123,8 @@ nav.navbar {
     transition: visibility 0s 2s, opacity 2s linear;
   }
 
-@-webkit-keyframes slideup {
-    100% { margin-top: -20em; }
-}
-
 @keyframes slideup {
     100% { margin-top: -20em; }
-}
-
-@-webkit-keyframes slidedown {
-    100% { margin-top: 0em; }
 }
 
 @keyframes slidedown {
