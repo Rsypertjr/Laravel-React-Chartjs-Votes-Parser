@@ -1,7 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
 table.table.table-sm {
     zoom:75%;
 
 }
+*/
 body{
     background-color: rgb(187, 223, 223);
 }
@@ -14,7 +20,7 @@ li.nav-item:hover {
 
 
 li.nav-item a:hover{
-    text-decoration: underline;  
+    text-decoration: underline;
     color:white;
 
 }
@@ -30,7 +36,7 @@ nav.navbar {
     margin-bottom: 1em;
     margin-top:-5em;
 }
-.navbar-brand {    
+.navbar-brand {
     padding: 0 2em;
 }
 
@@ -49,7 +55,7 @@ nav.navbar {
 .jumbotron {
     transform:scale(0.65);
     margin-top:-4em;
-}  
+}
 */
 
 .vertical-scrollable > .row {
@@ -57,28 +63,28 @@ nav.navbar {
     height: 50em;
     width:80%;
     margin-left: 10%;
-    overflow-y: scroll; 
+    overflow-y: scroll;
   }
-.col-sm-12 { 
+.col-sm-12 {
       font-size:13px;
-      padding-bottom: 20px; 
-      padding-top: 18px; 
+      padding-bottom: 20px;
+      padding-top: 18px;
       transform: scale(0.85);
-  } 
-  
+  }
+
   .smaller {
       height:65%;
       width:65%;
-  } 
+  }
 
   .csmaller {
     height:50%;
     width:50%;
 
-} 
+}
 
 .chart-viewer {
-  
+
     opacity:0.90;
     transform:scale(0.85);
     z-index:10;
@@ -91,7 +97,7 @@ nav.navbar {
     animation-delay: 0.5s;
 }
 
-.upslide{    
+.upslide{
     opacity:1;
     z-index:10;
     margin-top:0em;
@@ -142,16 +148,16 @@ nav.navbar {
  .pie-pager {
      margin-top: 2em;
  }
- 
+
 
  .viewerClose{
-    
+
      position:relative;
      float:left;
      display:block;
      cursor:pointer;
      color:rgb(77, 85, 85)
-     
+
  }
 
  #resolution_message{
@@ -172,9 +178,9 @@ nav.navbar {
 
  .top{
      background-color:lightgrey;
-     height:20em;     
+     height:20em;
  }
- 
+
  nav.navbar{
     padding-left:5em;
  }
@@ -245,12 +251,13 @@ nav.navbar {
 }
 
   /*
-  .col-sm-12:nth-child(2n+1) { 
-      background: green; 
-  } 
-    
-  .col-sm-12:nth-child(2n+2) { 
-      background: black; 
-  } 
+  .col-sm-12:nth-child(2n+1) {
+      background: green;
+  }
+
+  .col-sm-12:nth-child(2n+2) {
+      background: black;
+  }
   */
-  
+
+
