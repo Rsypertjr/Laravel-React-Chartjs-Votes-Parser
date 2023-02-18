@@ -69,7 +69,7 @@ export default function ResolutionDropdown(props){
     return(
 
             <Container className='resolution'>
-                <Row>
+                <Row className="d-flex align-items-center">
                     <Col className="col-4" ></Col>
                     <Col className="col-3 bg-warning bg-gradient text-dark pt-3">
                         <p>Select Chart Resolution (X Times)</p>
